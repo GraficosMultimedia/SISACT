@@ -1,0 +1,928 @@
+/* =========================================================
+   Colibrí Print México — Login SISACT v2
+   Ajuste visual basado en el mockup aprobado.
+   ========================================================= */
+
+:root {
+    --cp-bg: #020a18;
+    --cp-bg-2: #06152e;
+    --cp-card: rgba(8, 23, 51, .88);
+    --cp-card-deep: rgba(4, 14, 34, .95);
+
+    --cp-white: #f7f9ff;
+    --cp-text: #eef4ff;
+    --cp-muted: #a6b6d3;
+    --cp-muted-2: #7e91b5;
+
+    --cp-blue: #00b9f2;
+    --cp-blue-2: #087cf0;
+    --cp-magenta: #f00672;
+    --cp-magenta-2: #d90063;
+    --cp-yellow: #ffd400;
+    --cp-green: #64d20a;
+
+    --cp-border: rgba(92, 154, 235, .58);
+    --cp-input-border: rgba(111, 157, 220, .58);
+    --cp-danger: #ff607d;
+
+    --cp-radius-card: 29px;
+    --cp-radius-input: 15px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body.cp-login-page {
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100svh;
+    overflow-x: hidden;
+    color: var(--cp-text);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+    background:
+        radial-gradient(circle at 17% 17%, rgba(0, 183, 242, .12), transparent 27%),
+        radial-gradient(circle at 78% 13%, rgba(240, 6, 114, .10), transparent 25%),
+        radial-gradient(circle at 84% 82%, rgba(0, 100, 255, .12), transparent 28%),
+        linear-gradient(135deg, #020916 0%, #06152c 50%, #020916 100%);
+}
+
+/* Decoración controlada: se queda en los bordes y no cruza el contenido. */
+.cp-decor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+    border-radius: 999px;
+    transform-origin: center;
+}
+
+.cp-decor-left {
+    left: -26vw;
+    bottom: -18vw;
+    width: 74vw;
+    height: 29vw;
+    transform: rotate(-24deg);
+    opacity: .78;
+
+    background:
+        linear-gradient(
+            90deg,
+            #093c91 0%,
+            #008cf0 22%,
+            #f00672 51%,
+            #ffce00 72%,
+            rgba(255, 206, 0, .18) 88%,
+            transparent 100%
+        );
+
+    box-shadow:
+        0 0 60px rgba(0, 155, 255, .18),
+        0 0 90px rgba(240, 6, 114, .12);
+}
+
+.cp-decor-left::after {
+    content: "";
+    position: absolute;
+    inset: 48% -4% -12% 7%;
+    border-radius: inherit;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 83, 210, .82),
+            rgba(0, 185, 242, .62),
+            rgba(240, 6, 114, .18),
+            transparent 88%
+        );
+    filter: blur(2px);
+}
+
+.cp-decor-right {
+    right: -25vw;
+    top: -17vw;
+    width: 63vw;
+    height: 25vw;
+    transform: rotate(-25deg);
+    opacity: .60;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(17, 71, 160, .65) 22%,
+            rgba(240, 6, 114, .76) 55%,
+            rgba(255, 212, 0, .86) 82%,
+            transparent 100%
+        );
+
+    box-shadow:
+        0 0 80px rgba(240, 6, 114, .12);
+}
+
+.cp-login-shell {
+    position: relative;
+    z-index: 1;
+
+    width: min(100%, 1680px);
+    min-height: 100vh;
+    min-height: 100svh;
+
+    margin: 0 auto;
+    padding: clamp(32px, 4vw, 72px);
+
+    display: grid;
+    grid-template-columns: minmax(0, 1.28fr) minmax(470px, .86fr);
+    align-items: center;
+    gap: clamp(60px, 6vw, 110px);
+}
+
+.cp-brand-panel,
+.cp-form-panel {
+    min-width: 0;
+}
+
+.cp-brand-content {
+    width: min(100%, 850px);
+    margin: 0 auto;
+    text-align: center;
+}
+
+.cp-logo {
+    display: block;
+    width: min(100%, 690px);
+    height: auto;
+    margin: 0 auto clamp(30px, 4.2vh, 48px);
+
+    filter:
+        drop-shadow(0 22px 38px rgba(0, 0, 0, .30))
+        drop-shadow(0 0 24px rgba(0, 178, 255, .04));
+}
+
+.cp-system-title h1 {
+    margin: 0;
+    color: var(--cp-white);
+
+    font-size: clamp(42px, 4vw, 68px);
+    line-height: 1.02;
+    font-weight: 850;
+    letter-spacing: -.045em;
+
+    text-shadow: 0 9px 30px rgba(0, 0, 0, .34);
+}
+
+.cp-system-title h1 span {
+    background: linear-gradient(90deg, #00c7ff 0%, #008bef 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.cp-kicker {
+    margin: 24px 0 13px;
+    color: #e6edf9;
+
+    font-size: clamp(14px, 1.15vw, 19px);
+    font-weight: 700;
+    letter-spacing: .34em;
+}
+
+.cp-cmyk-line,
+.cp-signature-line {
+    display: flex;
+    width: 190px;
+    height: 3px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 999px;
+}
+
+.cp-cmyk-line i {
+    flex: 1;
+}
+
+.cp-cmyk-line i:nth-child(1) {
+    background: var(--cp-magenta);
+}
+
+.cp-cmyk-line i:nth-child(2) {
+    background: var(--cp-yellow);
+}
+
+.cp-cmyk-line i:nth-child(3) {
+    background: var(--cp-blue);
+}
+
+.cp-authorized {
+    margin: 16px 0 0;
+    color: #b8c6dd;
+
+    font-size: clamp(16px, 1.25vw, 20px);
+    letter-spacing: .025em;
+}
+
+.cp-features {
+    width: min(100%, 680px);
+    margin: clamp(34px, 5vh, 50px) auto 0;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.cp-feature {
+    min-height: 105px;
+    padding: 0 24px;
+
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    gap: 12px;
+
+    color: #dfe8f7;
+    font-size: 12px;
+    line-height: 1.4;
+    font-weight: 700;
+    letter-spacing: .01em;
+}
+
+.cp-feature + .cp-feature {
+    border-left: 1px solid rgba(146, 177, 219, .30);
+}
+
+.cp-feature svg {
+    width: 34px;
+    height: 34px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.65;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.cp-feature:nth-child(1) svg {
+    color: var(--cp-magenta);
+}
+
+.cp-feature:nth-child(2) svg {
+    color: var(--cp-blue);
+}
+
+.cp-feature:nth-child(3) svg {
+    color: var(--cp-yellow);
+}
+
+.cp-brand-signature {
+    margin-top: clamp(29px, 4.6vh, 48px);
+    color: rgba(241, 246, 255, .90);
+
+    font-size: clamp(21px, 1.8vw, 29px);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: .015em;
+}
+
+.cp-signature-line {
+    width: 230px;
+    margin-top: 11px;
+    background:
+        linear-gradient(
+            90deg,
+            var(--cp-magenta) 0 38%,
+            var(--cp-yellow) 38% 58%,
+            var(--cp-blue) 58% 100%
+        );
+}
+
+/* =========================================================
+   Tarjeta
+   ========================================================= */
+
+.cp-form-panel {
+    display: flex;
+    justify-content: center;
+}
+
+.cp-login-card {
+    position: relative;
+    isolation: isolate;
+
+    width: min(100%, 565px);
+    padding: clamp(42px, 4vw, 58px);
+
+    border: 1px solid rgba(40, 156, 255, .72);
+    border-radius: var(--cp-radius-card);
+
+    background:
+        radial-gradient(circle at 100% 0%, rgba(240, 6, 114, .08), transparent 30%),
+        linear-gradient(145deg, rgba(20, 42, 82, .91), rgba(5, 16, 39, .96));
+
+    box-shadow:
+        0 34px 90px rgba(0, 0, 0, .46),
+        0 0 36px rgba(0, 142, 255, .09),
+        0 0 62px rgba(240, 6, 114, .05),
+        inset 0 1px 0 rgba(255, 255, 255, .07);
+
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+}
+
+.cp-login-card::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: -1px;
+
+    border-radius: inherit;
+    padding: 1px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 192, 255, .88),
+            rgba(52, 108, 225, .10) 40%,
+            rgba(240, 6, 114, .56)
+        );
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    pointer-events: none;
+}
+
+.cp-login-card::after {
+    content: "";
+    position: absolute;
+    z-index: -2;
+    left: 12%;
+    right: 12%;
+    bottom: -25px;
+    height: 50px;
+
+    border-radius: 50%;
+    background: rgba(240, 6, 114, .10);
+    filter: blur(28px);
+}
+
+.cp-mobile-logo {
+    display: none;
+}
+
+.cp-card-header h2 {
+    margin: 0;
+    color: var(--cp-white);
+
+    font-size: clamp(37px, 3vw, 50px);
+    line-height: 1.08;
+    font-weight: 850;
+    letter-spacing: -.04em;
+}
+
+.cp-card-header p {
+    margin: 15px 0 0;
+    color: #aab9d4;
+
+    font-size: 17px;
+    line-height: 1.45;
+}
+
+.cp-alert {
+    margin-top: 24px;
+    padding: 13px 15px;
+
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    border: 1px solid rgba(255, 96, 125, .48);
+    border-radius: 12px;
+
+    color: #ffe1e7;
+    background: rgba(255, 57, 92, .10);
+
+    font-size: 14px;
+}
+
+.cp-alert svg,
+.cp-security-note svg {
+    flex: 0 0 auto;
+    width: 19px;
+    height: 19px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.cp-login-form {
+    margin-top: 37px;
+}
+
+.cp-field {
+    margin-top: 24px;
+}
+
+.cp-field:first-of-type {
+    margin-top: 0;
+}
+
+.cp-field label {
+    display: block;
+    margin: 0 0 10px;
+
+    color: #f5f8ff;
+    font-size: 15px;
+    font-weight: 760;
+}
+
+/* =========================================================
+   Inputs oscuros + corrección de Chrome Autofill
+   ========================================================= */
+
+.cp-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.cp-input-wrap > svg {
+    position: absolute;
+    z-index: 3;
+    left: 18px;
+
+    width: 22px;
+    height: 22px;
+
+    fill: none;
+    stroke: #9fb1d1;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    pointer-events: none;
+}
+
+.cp-input-wrap input {
+    width: 100%;
+    min-height: 64px;
+    margin: 0;
+    padding: 0 54px;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    border: 1px solid var(--cp-input-border);
+    border-radius: var(--cp-radius-input);
+    outline: none;
+
+    color: #f5f8ff !important;
+    caret-color: #ffffff;
+
+    background: rgba(4, 16, 39, .82) !important;
+
+    box-shadow:
+        inset 0 1px 7px rgba(0, 0, 0, .20),
+        0 0 0 rgba(0, 0, 0, 0);
+
+    font: inherit;
+    font-size: 16px;
+
+    transition:
+        border-color .18s ease,
+        box-shadow .18s ease,
+        background .18s ease;
+}
+
+.cp-input-wrap input::placeholder {
+    color: #7d91b6;
+    opacity: 1;
+}
+
+.cp-input-wrap input:hover {
+    border-color: rgba(124, 177, 242, .72);
+}
+
+.cp-input-wrap input:focus {
+    border-color: var(--cp-blue);
+    background: rgba(5, 20, 46, .96) !important;
+
+    box-shadow:
+        0 0 0 3px rgba(0, 185, 242, .11),
+        inset 0 1px 7px rgba(0, 0, 0, .16);
+}
+
+/* Impide que Chrome/Edge conviertan los campos autocompletados en blancos. */
+.cp-input-wrap input:-webkit-autofill,
+.cp-input-wrap input:-webkit-autofill:hover,
+.cp-input-wrap input:-webkit-autofill:focus,
+.cp-input-wrap input:-webkit-autofill:active {
+    -webkit-text-fill-color: #f5f8ff !important;
+    caret-color: #ffffff !important;
+
+    -webkit-box-shadow:
+        0 0 0 1000px #071a38 inset,
+        0 0 0 1px rgba(111, 157, 220, .58) !important;
+
+    box-shadow:
+        0 0 0 1000px #071a38 inset,
+        0 0 0 1px rgba(111, 157, 220, .58) !important;
+
+    transition: background-color 9999s ease-out 0s;
+}
+
+.cp-password-toggle {
+    position: absolute;
+    z-index: 4;
+    right: 10px;
+
+    width: 44px;
+    height: 44px;
+
+    display: grid;
+    place-items: center;
+
+    border: 0;
+    border-radius: 11px;
+
+    color: #a7bad9;
+    background: transparent;
+
+    cursor: pointer;
+}
+
+.cp-password-toggle:hover,
+.cp-password-toggle:focus-visible {
+    color: #ffffff;
+    background: rgba(255, 255, 255, .06);
+    outline: none;
+}
+
+.cp-password-toggle svg {
+    width: 22px;
+    height: 22px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.cp-password-toggle .eye-closed {
+    display: none;
+}
+
+.cp-password-toggle.is-visible .eye-open {
+    display: none;
+}
+
+.cp-password-toggle.is-visible .eye-closed {
+    display: block;
+}
+
+/* =========================================================
+   Recordarme
+   ========================================================= */
+
+.cp-remember {
+    width: fit-content;
+    margin-top: 24px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+
+    color: #aebdd6;
+    font-size: 15px;
+
+    cursor: pointer;
+    user-select: none;
+}
+
+.cp-remember input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.cp-checkmark {
+    width: 25px;
+    height: 25px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid #607da8;
+    border-radius: 7px;
+
+    background: rgba(4, 18, 42, .84);
+
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, .15);
+
+    transition:
+        border-color .18s ease,
+        background .18s ease,
+        box-shadow .18s ease;
+}
+
+.cp-checkmark svg {
+    width: 16px;
+    height: 16px;
+
+    fill: none;
+    stroke: #fff;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    opacity: 0;
+    transform: scale(.72);
+
+    transition:
+        opacity .18s ease,
+        transform .18s ease;
+}
+
+.cp-remember:hover .cp-checkmark {
+    border-color: #8fa8cd;
+}
+
+.cp-remember input:focus-visible + .cp-checkmark {
+    outline: 3px solid rgba(0, 185, 242, .18);
+    outline-offset: 2px;
+}
+
+.cp-remember input:checked + .cp-checkmark {
+    border-color: var(--cp-magenta);
+    background: var(--cp-magenta);
+
+    box-shadow:
+        0 0 0 3px rgba(240, 6, 114, .09),
+        0 0 22px rgba(240, 6, 114, .20);
+}
+
+.cp-remember input:checked + .cp-checkmark svg {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* =========================================================
+   Botón
+   ========================================================= */
+
+.cp-submit {
+    width: 100%;
+    min-height: 67px;
+    margin-top: 31px;
+    padding: 0 27px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+
+    border: 1px solid rgba(255, 99, 172, .78);
+    border-radius: 15px;
+
+    color: #ffffff;
+    background:
+        linear-gradient(
+            90deg,
+            #ee006d 0%,
+            #f00672 50%,
+            #d80062 100%
+        );
+
+    box-shadow:
+        0 15px 32px rgba(240, 6, 114, .24),
+        inset 0 1px 0 rgba(255, 255, 255, .22);
+
+    font: inherit;
+    font-size: 18px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease,
+        filter .18s ease;
+}
+
+.cp-submit:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.055);
+
+    box-shadow:
+        0 20px 42px rgba(240, 6, 114, .31),
+        inset 0 1px 0 rgba(255, 255, 255, .25);
+}
+
+.cp-submit:active {
+    transform: translateY(0);
+}
+
+.cp-submit:focus-visible {
+    outline: 3px solid rgba(0, 185, 242, .33);
+    outline-offset: 3px;
+}
+
+.cp-submit:disabled {
+    opacity: .82;
+    cursor: wait;
+}
+
+.cp-arrow {
+    width: 25px;
+    height: 25px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.cp-spinner {
+    display: none;
+
+    width: 20px;
+    height: 20px;
+
+    border: 2px solid rgba(255, 255, 255, .35);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+
+    animation: cp-spin .7s linear infinite;
+}
+
+.cp-submit.is-loading .cp-spinner {
+    display: block;
+}
+
+.cp-submit.is-loading .cp-arrow {
+    display: none;
+}
+
+.cp-security-note {
+    margin: 19px 0 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+
+    color: #8195b8;
+    font-size: 12px;
+    letter-spacing: .01em;
+}
+
+.cp-security-note svg {
+    width: 15px;
+    height: 15px;
+}
+
+@keyframes cp-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+@media (max-width: 1180px) {
+    .cp-login-shell {
+        grid-template-columns: minmax(0, 1.08fr) minmax(440px, .92fr);
+        gap: 48px;
+    }
+
+    .cp-logo {
+        width: min(100%, 600px);
+    }
+
+    .cp-features {
+        width: min(100%, 620px);
+    }
+}
+
+@media (max-width: 980px) {
+    .cp-login-shell {
+        width: min(100%, 670px);
+        grid-template-columns: 1fr;
+        padding: 34px 22px 48px;
+        gap: 0;
+    }
+
+    .cp-brand-panel {
+        display: none;
+    }
+
+    .cp-mobile-logo {
+        display: block;
+        margin-bottom: 28px;
+    }
+
+    .cp-mobile-logo img {
+        display: block;
+        width: min(100%, 395px);
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .cp-login-card {
+        width: 100%;
+    }
+
+    .cp-decor-left {
+        left: -52vw;
+        bottom: -22vw;
+        width: 105vw;
+        height: 40vw;
+        opacity: .45;
+    }
+
+    .cp-decor-right {
+        right: -45vw;
+        top: -14vw;
+        width: 95vw;
+        height: 35vw;
+        opacity: .38;
+    }
+}
+
+@media (max-width: 560px) {
+    body.cp-login-page {
+        background:
+            radial-gradient(circle at 80% 0%, rgba(240, 6, 114, .10), transparent 28%),
+            linear-gradient(155deg, #031027, #020916);
+    }
+
+    .cp-login-shell {
+        min-height: 100svh;
+        padding: 16px 13px 22px;
+        align-items: center;
+    }
+
+    .cp-login-card {
+        padding: 27px 21px 25px;
+        border-radius: 23px;
+    }
+
+    .cp-mobile-logo {
+        margin-bottom: 22px;
+    }
+
+    .cp-mobile-logo img {
+        width: min(100%, 320px);
+    }
+
+    .cp-card-header {
+        text-align: center;
+    }
+
+    .cp-card-header h2 {
+        font-size: 32px;
+    }
+
+    .cp-card-header p {
+        font-size: 15px;
+    }
+
+    .cp-login-form {
+        margin-top: 27px;
+    }
+
+    .cp-input-wrap input {
+        min-height: 59px;
+        padding-left: 49px;
+    }
+
+    .cp-submit {
+        min-height: 61px;
+    }
+
+    .cp-security-note {
+        font-size: 11px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}
