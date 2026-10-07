@@ -1,0 +1,122 @@
+
+/* Colibrí Print · Global Mobile V1
+   Responsive/admin navigation layer. Does not alter business logic. */
+
+html{scroll-behavior:smooth}
+body{min-width:320px;overflow-x:hidden;-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}
+button,a,input,select,textarea{touch-action:manipulation}
+button,.btn,a.btn{min-height:40px}
+a{-webkit-tap-highlight-color:transparent}
+
+/* ----- Legacy admin shell ----- */
+.global-admin-shell{min-height:100vh}
+.global-sidebar{
+  position:fixed!important;
+  top:0!important;
+  left:0!important;
+  bottom:0!important;
+  z-index:3000!important;
+  width:260px!important;
+  height:100vh!important;
+  overflow:hidden!important;
+  display:flex!important;
+  flex-direction:column!important;
+  padding:16px!important;
+  background:rgba(4,14,26,.98)!important;
+  border-right:1px solid #1c3c59!important;
+  box-shadow:14px 0 44px rgba(0,0,0,.24)!important;
+}
+.global-sidebar .brand{flex:0 0 auto;position:relative;padding:8px 4px 16px!important}
+.global-sidebar nav{flex:1 1 auto;overflow:auto;min-height:0;padding:4px 2px 18px;margin-top:13px!important}
+.global-sidebar .side-note{position:static!important;flex:0 0 auto;padding:11px 3px 0;border-top:1px solid #193653;margin-top:4px}
+
+.nav-group{display:block;margin:0 0 9px}
+.nav-group-toggle{
+  width:100%;min-height:36px;padding:8px 10px;
+  border:1px solid transparent;border-radius:9px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:transparent;color:#6e89a4;
+  font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;
+}
+.nav-group-toggle:hover{background:#0b1c2e;color:#9bc1df}
+.nav-group-toggle[aria-expanded="false"] .nav-group-caret{transform:rotate(-90deg)}
+.nav-group-caret{transition:transform .18s ease;color:#5fbfe9}
+.nav-group-items{display:grid;gap:3px;max-height:500px;opacity:1;overflow:hidden;transition:max-height .24s ease,opacity .16s ease}
+.nav-group-toggle[aria-expanded="false"] + .nav-group-items{max-height:0;opacity:0}
+.global-sidebar .nav-group-items a{
+  display:flex;align-items:center;gap:8px;min-height:41px;
+  padding:9px 10px 9px 13px;border:1px solid transparent;border-radius:10px;
+  color:#bed0e0;text-decoration:none;font-size:12px;font-weight:750;
+  transition:background .16s ease,border-color .16s ease,color .16s ease,transform .16s ease;
+}
+.global-sidebar .nav-group-items a:hover{background:#0d2943;border-color:#224d70;color:#fff;transform:translateX(2px)}
+.global-sidebar .nav-group-items a.is-current{background:linear-gradient(90deg,#1178ec,#11a9e9);border-color:#25b9ff;color:#fff;box-shadow:0 7px 18px rgba(17,129,235,.18)}
+.global-sidebar .nav-group-items a.is-current::after{content:"";width:6px;height:6px;border-radius:50%;margin-left:auto;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.09)}
+.sidebar-mobile-close,.sidebar-mobile-toggle,.sidebar-overlay{display:none}
+
+.global-admin-shell>.content{margin-left:260px!important;width:calc(100% - 260px)!important;min-width:0!important;padding:28px 34px!important}
+
+/* ----- Mobile / tablet legacy shell ----- */
+@media(max-width:980px){
+  .global-sidebar{width:min(310px,88vw)!important;transform:translateX(-105%);transition:transform .28s cubic-bezier(.2,.8,.2,1)!important}
+  .global-sidebar.is-open{transform:translateX(0)}
+  .global-admin-shell>.content{margin-left:0!important;width:100%!important;padding:22px 18px 26px!important}
+  .sidebar-mobile-toggle{
+    display:inline-flex!important;align-items:center;gap:8px;
+    position:sticky;top:0;z-index:1600;
+    margin:0 0 12px;padding:10px 13px;
+    border:1px solid #2a5679;border-radius:11px;
+    background:#0b1d30;color:#eaf5ff;font-weight:850;cursor:pointer;
+    box-shadow:0 8px 18px rgba(0,0,0,.16)
+  }
+  .sidebar-mobile-toggle span{font-size:11px}
+  .sidebar-mobile-close{display:grid!important;place-items:center;position:absolute;top:12px;right:10px;width:34px;height:34px;border:1px solid #2a5679;border-radius:9px;background:#0b1d30;color:#fff;font-size:22px;cursor:pointer}
+  .global-brand{padding-right:43px!important}
+  .sidebar-overlay{display:block;position:fixed;inset:0;z-index:2990;background:rgba(0,0,0,.62);opacity:0;pointer-events:none;transition:opacity .22s ease}
+  .sidebar-overlay.is-visible{opacity:1;pointer-events:auto}
+  body.global-sidebar-open{overflow:hidden}
+}
+
+@media(max-width:680px){
+  .global-admin-shell>.content{padding:12px 12px 22px!important}
+  .global-sidebar{width:min(320px,92vw)!important}
+  .topbar{gap:10px!important;align-items:flex-start!important}
+  .topbar h1{font-size:23px!important;line-height:1.08!important}
+  .userbox{display:flex!important;align-items:center;gap:8px;flex-wrap:wrap;max-width:100%}
+  .hero{padding:16px!important;border-radius:14px!important}
+  .cards{grid-template-columns:1fr!important}
+  .grid2{grid-template-columns:1fr!important}
+  .form-grid{grid-template-columns:1fr!important}
+  .search-form{display:grid!important;grid-template-columns:1fr!important}
+  .search-form input{min-width:0!important}
+  .page-actions,.toolbar{align-items:stretch!important;flex-direction:column!important}
+  .page-actions>*,.toolbar-actions,.toolbar-actions .btn{width:100%!important}
+  .table-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .table{min-width:700px}
+  .card{padding:14px!important;border-radius:13px!important}
+  .btn{min-height:44px!important}
+}
+
+@media(max-width:420px){
+  .global-admin-shell>.content{padding:10px 9px 18px!important}
+  .topbar h1{font-size:20px!important}
+  .global-sidebar{width:94vw!important}
+}
+
+/* ----- New cp-admin theme compatibility ----- */
+@media(max-width:960px){
+  .cp-sidebar{width:min(310px,88vw)!important}
+}
+@media(max-width:680px){
+  .cp-page-content{padding:14px 12px 8px!important}
+  .cp-topbar{padding:12px!important}
+  .cp-topbar h1{font-size:21px!important}
+  .cp-toolbar-actions .cp-btn{min-height:44px}
+  .cp-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+}
+
+/* safe-area for modern phones */
+@supports(padding:max(0px)){
+  .global-sidebar{padding-left:max(16px,env(safe-area-inset-left))!important;padding-bottom:max(16px,env(safe-area-inset-bottom))!important}
+  .global-admin-shell>.content{padding-bottom:max(22px,env(safe-area-inset-bottom))!important}
+}

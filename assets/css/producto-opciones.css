@@ -1,0 +1,36 @@
+/* FASE 10 · Configurador de producto */
+.prod-options{margin-top:23px;padding:19px;border:1px solid #dedfe1;background:#fff;border-radius:17px}
+.prod-options>h2{margin:0 0 14px;font-size:17px;line-height:1.1}
+.prod-option-group{padding:13px 0;border-top:1px solid #eceeef}
+.prod-option-group:first-of-type{border-top:0;padding-top:0}
+.prod-option-label{display:flex;justify-content:space-between;gap:12px;align-items:baseline;margin-bottom:8px}
+.prod-option-label strong{font-size:11px}.prod-option-label small{color:#7b848d;font-size:9px}
+.prod-option-control input,.prod-option-control select,.prod-option-control textarea{
+  width:100%;border:1px solid #d8dade;background:#fbfbfb;border-radius:10px;padding:11px 12px;outline:none
+}
+.prod-option-control textarea{min-height:86px;resize:vertical}
+.prod-option-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.prod-option-choice{position:relative}
+.prod-option-choice input{position:absolute;opacity:0;pointer-events:none}
+.prod-option-choice label{
+  display:flex;justify-content:space-between;gap:10px;align-items:center;min-height:44px;
+  padding:10px 12px;background:#f8f7f4;border:1px solid #dfe1e3;border-radius:11px;cursor:pointer;
+  font-size:10px;font-weight:900
+}
+.prod-option-choice input:checked+label{border-color:#7d38e8;background:#f0e9ff;box-shadow:0 0 0 2px rgba(125,56,232,.07) inset}
+.prod-option-choice input:focus-visible+label{outline:3px solid rgba(125,56,232,.22);outline-offset:2px}
+.prod-option-choice em{font-style:normal;color:#ef174d;font-size:9px}
+.prod-option-help{margin:6px 0 0;color:#7a838c;font-size:9px;line-height:1.5}
+.prod-option-check{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:900}
+.prod-option-check input{width:auto}
+.prod-config-summary{
+  margin-top:15px;padding:14px;border-radius:13px;background:linear-gradient(120deg,#fff5cc,#f0e8ff);
+  border:1px solid #e7dcb8
+}
+.prod-config-summary small{display:block;text-transform:uppercase;letter-spacing:.08em;font-size:7px;font-weight:1000;color:#6f6576}
+.prod-config-summary strong{display:block;margin-top:5px;font-size:18px}
+.prod-config-summary span{display:block;margin-top:3px;color:#716f72;font-size:9px;line-height:1.55}
+.prod-config-wa{display:flex;align-items:center;justify-content:center;margin-top:10px;width:100%;min-height:46px;border-radius:11px;background:#25c96b;color:#07140b;font-size:9px;text-transform:uppercase;font-weight:1000;letter-spacing:.07em}
+.prod-config-wa:hover{filter:brightness(1.03)}
+.prod-option-control input[type="file"]{padding:9px}
+@media(max-width:560px){.prod-option-choices{grid-template-columns:1fr}}

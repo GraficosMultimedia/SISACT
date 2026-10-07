@@ -1,0 +1,22 @@
+
+/* Colibrí Print · aviso de nueva solicitud web */
+.cpq-admin-notifications{position:fixed;right:18px;top:18px;z-index:10000;display:grid;gap:9px;width:min(410px,calc(100vw - 28px));pointer-events:none}
+.cpq-admin-toast{pointer-events:auto;display:grid;grid-template-columns:40px minmax(0,1fr) 24px;gap:10px;padding:13px;border:1px solid #ec2460;border-radius:14px;background:linear-gradient(145deg,#101d2b,#081522);box-shadow:0 20px 55px rgba(0,0,0,.42),0 0 0 1px rgba(255,44,102,.08);opacity:0;transform:translateY(-16px) scale(.97);transition:.28s cubic-bezier(.2,.8,.2,1)}
+.cpq-admin-toast.is-visible{opacity:1;transform:translateY(0) scale(1)}
+.cpq-toast-icon{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:#ff1f63;color:#fff;font-size:19px;font-weight:1000;box-shadow:0 9px 22px rgba(255,31,99,.25)}
+.cpq-toast-body{min-width:0}
+.cpq-toast-kicker{display:block;color:#ffbf19;font-size:8px;letter-spacing:.14em;font-weight:900}
+.cpq-toast-body strong{display:block;margin-top:3px;color:#fff;font-size:14px;line-height:1.2}
+.cpq-toast-body p{margin:4px 0 9px;color:#96aec3;font-size:10px;line-height:1.45}
+.cpq-toast-actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.cpq-toast-actions a,.cpq-toast-actions button{border:0;background:none;color:#53d7ff;padding:0;font-size:9px;font-weight:900;text-decoration:none;cursor:pointer}
+.cpq-toast-actions button{color:#8ea7ba}
+.cpq-toast-close{border:0;background:transparent;color:#8ca4b8;font-size:19px;cursor:pointer;align-self:start}
+@media(max-width:520px){
+ .cpq-admin-notifications{right:10px;top:10px;width:calc(100vw - 20px)}
+ .cpq-admin-toast{grid-template-columns:36px minmax(0,1fr) 20px;padding:11px}
+ .cpq-toast-icon{width:36px;height:36px}
+}
+@media(prefers-reduced-motion:reduce){
+ .cpq-admin-toast{transition:none!important}
+}

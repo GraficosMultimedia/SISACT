@@ -1,0 +1,16 @@
+/* Recibo moderno. Este archivo sustituye seguimiento-recibo-v1.css */
+.tracking-receipt{background:#fff!important;color:#172b4d!important;border:1px solid #e3ebf4!important;border-radius:18px!important;box-shadow:0 12px 35px rgba(16,42,86,.08)!important}
+.tracking-receipt h2,.tracking-receipt h3,.tracking-receipt strong{color:#172b4d!important}
+.tracking-receipt p,.tracking-receipt small{color:#6d7d95!important}
+.receipt-badge{background:#eaf9f1!important;color:#087443!important;border:1px solid #c9ecd9!important}
+.receipt-kpis>div{background:#f7faff!important;border:1px solid #e5eef9!important}
+.receipt-kpis .paid strong{color:#19a85b!important}
+.receipt-kpis .balance strong{color:#e26b38!important}
+.receipt-items{border-color:#e3ebf4!important;background:#fff!important}
+.receipt-item{border-bottom-color:#e3ebf4!important;color:#172b4d!important}
+.receipt-item strong{color:#172b4d!important}
+.receipt-item small{color:#6d7d95!important}
+.advance-confirmed{background:#effaf4!important;border-color:#ccefdc!important}
+.advance-pending{background:#fff8ec!important;border-color:#f2dfb6!important}
+.receipt-actions .pdf{background:#087bd9!important;color:#fff!important}
+.receipt-actions .wa{background:#eaf9f1!important;color:#087443!important;border-color:#c9ecd9!important}

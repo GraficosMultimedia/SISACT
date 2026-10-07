@@ -1,0 +1,292 @@
+/*
+ * Configuración de impresión v8
+ * Solo presentación. No cambia endpoints, nombres de campos, CSRF ni lógica PHP.
+ */
+body.cp-admin-body{
+  background:radial-gradient(circle at 78% 0%,#12325a 0%,#071526 42%,#050d18 100%);
+}
+
+body.cp-admin-body .cp-admin-content{min-width:0}
+
+.print-config-page{
+  width:100%;
+  max-width:1320px;
+  margin:0 auto;
+  padding:0 0 42px;
+  color:#eaf5ff;
+}
+
+.print-config-toolbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  margin:0 0 16px;
+  padding:13px 15px;
+  border:1px solid #214a70;
+  border-radius:13px;
+  background:rgba(8,26,47,.88);
+  box-shadow:0 12px 30px rgba(0,0,0,.16);
+}
+.print-config-context{display:grid;gap:2px;min-width:0}
+.print-config-kicker{font-size:10px;font-weight:800;letter-spacing:.14em;color:#38d7ff}
+.print-config-context strong{font-size:15px;color:#f2f8ff}
+.print-config-context span:last-child{font-size:12px;color:#89a8c8}
+.print-config-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.print-config-actions .cp-btn{min-height:38px;padding:9px 13px;font-size:12px}
+
+.print-config-success{margin:0 0 16px!important}
+
+.print-config-grid{gap:16px!important}
+.print-section-full,.print-price-section{width:100%}
+
+body.cp-admin-body .print-config-page .cp-card{
+  background:linear-gradient(180deg,rgba(13,31,53,.98),rgba(9,25,44,.98));
+  border:1px solid #244b70;
+  border-radius:13px;
+  box-shadow:0 16px 38px rgba(0,0,0,.16);
+  color:#eaf5ff;
+}
+
+.print-section{overflow:hidden}
+.print-section-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding-bottom:12px;
+  margin-bottom:0!important;
+  border-bottom:1px solid #1d3b5a;
+}
+.print-section-title{min-width:0}
+body.cp-admin-body .print-config-page .cp-section-title h2{
+  color:#f1f7ff;
+  font-size:16px;
+  line-height:1.2;
+  margin:0 0 3px;
+}
+body.cp-admin-body .print-config-page .cp-section-title p{
+  color:#8da9c5;
+  font-size:11px;
+  margin:0;
+}
+body.cp-admin-body .print-config-page .cp-section-num{
+  width:30px;height:30px;min-width:30px;
+  display:grid;place-items:center;
+  background:#123d62;
+  color:#35d5ff;
+  border:1px solid #205d88;
+  box-shadow:none;
+  font-size:13px;
+}
+.print-section-badge{
+  flex:0 0 auto;
+  padding:5px 8px;
+  border:1px solid #244d72;
+  border-radius:999px;
+  background:#0a2037;
+  color:#8eb3d7;
+  font-size:10px;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+.cp-table-wrap{overflow-x:auto}
+.print-admin-table{width:100%;border-collapse:collapse;table-layout:auto}
+body.cp-admin-body .print-config-page .cp-admin-table th{
+  padding:10px 9px;
+  color:#76a4cc;
+  background:#0a1c31;
+  border-bottom:1px solid #21425f;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  white-space:nowrap;
+}
+body.cp-admin-body .print-config-page .cp-admin-table td{
+  padding:9px;
+  border-bottom:1px solid #17344f;
+  vertical-align:middle;
+  color:#eaf5ff;
+  font-size:12px;
+}
+body.cp-admin-body .print-config-page .cp-admin-table tr:last-child td{border-bottom:0}
+body.cp-admin-body .print-config-page .cp-admin-table tr:hover td{background:rgba(22,55,86,.34)}
+
+body.cp-admin-body .print-config-page input,
+body.cp-admin-body .print-config-page select{
+  box-sizing:border-box;
+  min-height:34px;
+  width:100%;
+  padding:7px 9px;
+  border:1px solid #315a82;
+  border-radius:8px;
+  background:#07192d;
+  color:#edf7ff;
+  outline:none;
+  font:inherit;
+  font-size:12px;
+}
+body.cp-admin-body .print-config-page input::placeholder{color:#6685a4}
+body.cp-admin-body .print-config-page input:focus,
+body.cp-admin-body .print-config-page select:focus{
+  border-color:#28cfff;
+  box-shadow:0 0 0 3px rgba(40,207,255,.11);
+}
+
+.print-size-fields{display:flex;align-items:center;gap:5px;min-width:185px}
+.print-size-fields .print-measure{width:82px!important;text-align:right}
+.print-size-fields span{color:#5f91b9;font-weight:800}
+.print-size-fields small{font-size:9px;color:#6d8eac}
+
+/* Checkbox rediseñado: sigue siendo un checkbox real, solo cambia su presentación. */
+.print-toggle{display:inline-flex;align-items:center;cursor:pointer;position:relative}
+.print-toggle input{
+  position:absolute!important;
+  width:1px!important;height:1px!important;
+  opacity:0!important;
+  pointer-events:none;
+}
+.print-toggle span{
+  position:relative;
+  width:38px;height:22px;
+  display:block;
+  border:1px solid #3a5975;
+  border-radius:999px;
+  background:#0a1b2d;
+  transition:.18s ease;
+}
+.print-toggle span:after{
+  content:"";
+  position:absolute;
+  top:3px;left:3px;
+  width:14px;height:14px;
+  border-radius:50%;
+  background:#7891a9;
+  transition:.18s ease;
+  box-shadow:0 2px 5px rgba(0,0,0,.3);
+}
+.print-toggle input:checked + span{
+  background:#0874d9;
+  border-color:#22baff;
+  box-shadow:0 0 0 3px rgba(34,186,255,.09);
+}
+.print-toggle input:checked + span:after{left:19px;background:#fff}
+.print-toggle input:focus-visible + span{outline:2px solid #31d7ff;outline-offset:3px}
+
+.print-action-form{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.print-inline-delete{display:inline-flex;margin-left:5px}
+.print-actions-cell{white-space:nowrap}
+.print-code-pill,.print-mode-pill{
+  display:inline-flex;
+  align-items:center;
+  min-height:25px;
+  padding:4px 7px;
+  border-radius:7px;
+  background:#0a2037;
+  border:1px solid #254e72;
+  color:#9ec3e3;
+  font-size:10px;
+  font-weight:700;
+}
+
+body.cp-admin-body .print-config-page .cp-btn{
+  min-height:32px;
+  padding:7px 11px;
+  border-radius:8px;
+  font-size:11px;
+  font-weight:800;
+  line-height:1;
+  transition:transform .15s ease,background .15s ease,border-color .15s ease;
+}
+body.cp-admin-body .print-config-page .cp-btn:hover{transform:translateY(-1px)}
+body.cp-admin-body .print-config-page .cp-btn-soft{
+  background:#153452;
+  border:1px solid #315d83;
+  color:#e7f4ff;
+}
+body.cp-admin-body .print-config-page .cp-btn-soft:hover{background:#1b4166}
+body.cp-admin-body .print-config-page .cp-btn-danger{
+  background:#4a1f2c;
+  border:1px solid #833548;
+  color:#ffb9c4;
+}
+body.cp-admin-body .print-config-page .cp-btn-danger:hover{background:#5b2635}
+body.cp-admin-body .print-config-page .cp-btn-primary{
+  background:linear-gradient(90deg,#138cff,#1ec8ff);
+  border:1px solid #20bfff;
+  color:#fff;
+}
+body.cp-admin-body .print-config-page .cp-btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+
+.print-price-form{
+  display:grid;
+  grid-template-columns:1.05fr 1.05fr 1.05fr .72fr .75fr 1fr auto;
+  gap:8px;
+  padding:13px 0 14px;
+}
+.print-field{min-width:0}
+.print-field label{display:block;margin:0 0 5px;color:#7398ba;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+.print-price-save{align-self:end;white-space:nowrap}
+
+.print-price-table td:nth-child(5){white-space:nowrap}
+.print-price-table td:nth-child(5) strong{font-size:12px;color:#f3f9ff}
+
+/* Evita que la pantalla de administración se convierta en una mesa de Excel en móvil. */
+@media(max-width:1100px){
+  .print-price-form{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .print-price-save{width:100%}
+}
+
+@media(max-width:760px){
+  .print-config-page{padding-bottom:28px}
+  .print-config-toolbar{align-items:stretch;flex-direction:column}
+  .print-config-actions{display:grid;grid-template-columns:1fr 1fr}
+  .print-config-actions .cp-btn{width:100%;text-align:center}
+  .print-price-form{grid-template-columns:1fr 1fr}
+
+  .print-admin-table,.print-admin-table tbody,.print-admin-table tr,.print-admin-table td{display:block;width:100%;box-sizing:border-box}
+  .print-admin-table tr:first-child{display:none}
+  .print-admin-table tr{
+    margin:0;
+    padding:10px 0;
+    border-bottom:1px solid #17344f;
+  }
+  .print-admin-table tr:last-child{border-bottom:0}
+  .print-admin-table td{
+    display:grid!important;
+    grid-template-columns:78px minmax(0,1fr);
+    align-items:center;
+    gap:10px;
+    padding:6px 3px!important;
+    border:0!important;
+    background:transparent!important;
+  }
+  .print-admin-table td:before{
+    content:attr(data-label);
+    color:#6f96ba;
+    font-size:9px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+  }
+  .print-admin-table td[data-label="Acciones"]{align-items:start}
+  .print-admin-table td[data-label="Acciones"] .print-action-form{width:100%}
+  .print-action-form .cp-btn{flex:1;min-width:0}
+  .print-inline-delete{margin-left:0;flex:1}
+  .print-inline-delete .cp-btn{width:100%}
+  .print-size-fields{min-width:0}
+  .print-size-fields .print-measure{width:100%!important}
+  .print-section-head{align-items:flex-start}
+  .print-section-badge{margin-top:2px}
+}
+
+@media(max-width:480px){
+  .print-config-actions,.print-price-form{grid-template-columns:1fr}
+  .print-config-actions .cp-btn{width:100%}
+  .print-section-head{gap:8px}
+  .print-section-badge{display:none}
+  .print-admin-table td{grid-template-columns:68px minmax(0,1fr);gap:8px}
+  .print-size-fields{gap:3px}
+  .print-size-fields .print-measure{min-width:0}
+}

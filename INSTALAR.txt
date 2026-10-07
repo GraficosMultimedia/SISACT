@@ -1,0 +1,43 @@
+COLIBRÍ PRINT · SOLICITUDES WEB COMPLETO
+
+ESTE PAQUETE NO ES UN PARCHE.
+
+ESTRUCTURA CORRECTA EN EL SERVIDOR:
+
+/public_html/
+├── admin/
+│   ├── cotizaciones_web.php
+│   ├── cotizacion_web_editar.php
+│   └── cotizacion_web_eliminar.php
+└── assets/
+    └── css/
+        └── cotizaciones-web-v1.css
+
+IMPORTANTE:
+1) Extrae ESTE ZIP en /public_html/
+2) NO lo extraigas dentro de /public_html/admin/
+3) NO debe existir:
+   /public_html/admin/admin/
+   /public_html/admin/assets/
+
+FUNCIONES INCLUIDAS:
+- Seleccionar todo
+- Editar una solicitud seleccionada
+- Borrar una o varias solicitudes
+- Protección para solicitudes ya convertidas a cotización
+- Editar cliente, contacto, servicio, cantidad, fecha, diseño, aplicación, entrega y notas
+- Abrir archivo recibido
+- WhatsApp
+- Correo
+- Cambio de estado
+- Vista responsive para móvil
+
+NO requiere migración SQL.
+
+Antes de reemplazar:
+haz un backup de:
+  /public_html/admin/cotizaciones_web.php
+
+La hoja:
+  /assets/css/cotizaciones-web-v1.css
+debe quedar en el directorio /assets/ principal.

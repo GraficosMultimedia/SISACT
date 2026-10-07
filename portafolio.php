@@ -1,0 +1,5 @@
+<?php
+declare(strict_types=1);
+require_once __DIR__.'/includes/web_common.php';$rows=db()->query('SELECT * FROM cp_projects WHERE enabled=1 AND visible_web=1 ORDER BY sort_order,id DESC')->fetchAll(PDO::FETCH_ASSOC);
+?>
+<!doctype html><html lang="es-MX"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Portafolio</title><link rel="stylesheet" href="<?=cp_web_h(cp_web_route('/assets/css/portfolio-v1.css'))?>"></head><body><main class="pf-wrap"><p class="pf-kicker">PORTAFOLIO</p><h1>Trabajos que<br>tomaron forma.</h1><div class="pf-grid"><?php foreach($rows as $r):$img=cp_web_image($r['image_path']??'');?><article class="pf-card"><?php if($img):?><img src="<?=cp_web_h($img)?>" alt="<?=cp_web_h($r['title'])?>" loading="lazy"><?php endif;?><div><small><?=cp_web_h($r['category']??'Proyecto')?></small><h2><?=cp_web_h($r['title'])?></h2><p><?=cp_web_h($r['excerpt']??'')?></p></div></article><?php endforeach;?></div><?php if(!$rows):?><div class="pf-empty">La galería de proyectos está en preparación.</div><?php endif;?></main></body></html>

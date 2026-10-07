@@ -1,0 +1,22 @@
+
+.option-admin-toolbar{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:18px}
+.option-admin-toolbar h2{margin:0}.option-admin-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:18px}
+.option-admin-section-head{margin-bottom:15px}.option-admin-section-head h3{margin:4px 0 0}
+.option-form,.option-value-form{display:grid;gap:9px}
+.option-form input,.option-form select,.option-form textarea,.option-value-form input{width:100%;border:1px solid #d9dcdf;border-radius:10px;padding:10px 12px;background:#fff}
+.option-form textarea{min-height:80px;resize:vertical}
+.option-form label{font-size:11px;color:#56606a;display:flex;gap:7px;align-items:center}
+.option-admin-empty{padding:30px;text-align:center;color:#737b83;border:1px dashed #ccd0d4;border-radius:13px}
+.option-admin-group{border:1px solid #e0e2e4;border-radius:15px;padding:15px;margin-bottom:12px;background:#fff}
+.option-admin-group-head{display:flex;justify-content:space-between;gap:15px;align-items:center}
+.option-admin-group-head strong{display:block;font-size:14px}.option-admin-group-head small{display:block;color:#7d858e;font-size:9px;margin-top:3px;text-transform:uppercase;letter-spacing:.07em}
+.option-admin-values{display:grid;gap:6px;margin:13px 0}
+.option-admin-values>div{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:9px 10px;border-radius:9px;background:#f7f7f5}
+.option-admin-values b{display:block;font-size:10px}.option-admin-values small{display:block;color:#858b91;font-size:8px}
+.option-admin-values strong{font-size:10px}
+.option-value-form{grid-template-columns:1.1fr 1fr .7fr .5fr auto;align-items:center}
+.option-admin-note{padding:10px;border-radius:10px;background:#f6f4ff;color:#675d7b;font-size:9px;line-height:1.5}
+.btn-primary{background:#ef174d;color:#fff;border:0}.btn-danger{background:#fee2e8;color:#b60d37;border:0}
+.link-danger{border:0;background:none;color:#bd0d39;font-size:9px;cursor:pointer}
+@media(max-width:920px){.option-admin-grid{grid-template-columns:1fr}.option-value-form{grid-template-columns:1fr 1fr}.option-value-form .btn{grid-column:1/-1}}
+@media(max-width:560px){.option-admin-toolbar{align-items:flex-start;flex-direction:column}.option-admin-values>div{grid-template-columns:1fr auto}.option-admin-values form{grid-column:1/-1}.option-value-form{grid-template-columns:1fr}}

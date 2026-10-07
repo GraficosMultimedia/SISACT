@@ -1,0 +1,297 @@
+
+/* Colibrí Print · Administración · Header superior responsive
+   Capa de presentación. NO modifica datos ni lógica. */
+
+html{scroll-behavior:smooth}
+body.admin-app{
+  min-width:320px;
+  overflow-x:hidden;
+  -webkit-text-size-adjust:100%;
+  text-rendering:optimizeLegibility;
+}
+body.admin-app *,body.admin-app *::before,body.admin-app *::after{box-sizing:border-box}
+body.admin-app a{-webkit-tap-highlight-color:transparent}
+body.admin-app button,body.admin-app a,body.admin-app input,body.admin-app select,body.admin-app textarea{touch-action:manipulation}
+
+/* El antiguo sidebar deja de ser lateral. Se transforma en HEADER superior. */
+body.admin-app .shell{
+  display:block!important;
+  width:100%;
+  min-height:100vh;
+}
+body.admin-app .admin-global-header{
+  width:100%!important;
+  min-width:0!important;
+  height:auto!important;
+  min-height:76px;
+  position:sticky!important;
+  top:0!important;
+  z-index:5000;
+  padding:0!important;
+  background:rgba(4,14,26,.96)!important;
+  border:0!important;
+  border-bottom:1px solid #193653!important;
+  box-shadow:0 10px 35px rgba(0,0,0,.20);
+  backdrop-filter:blur(14px);
+}
+.admin-header-main{
+  width:min(1500px,100%);
+  margin:0 auto;
+  min-height:76px;
+  padding:10px 24px;
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;
+  align-items:center;
+  gap:24px;
+}
+.admin-brand{
+  display:flex!important;
+  align-items:center;
+  gap:10px;
+  padding:0!important;
+  border:0!important;
+  color:#fff!important;
+  text-decoration:none!important;
+  white-space:nowrap;
+}
+.admin-brand .bird{font-size:30px}
+.admin-brand strong{display:block;font-size:18px;line-height:1.1}
+.admin-brand small{display:block;color:var(--cyan);font-size:11px;margin-top:2px}
+.admin-desktop-nav{
+  display:flex!important;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  min-width:0;
+  margin:0!important;
+}
+.admin-desktop-nav>a,
+.admin-nav-menu>summary{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  min-height:42px;
+  padding:9px 11px;
+  border:1px solid transparent;
+  border-radius:10px;
+  color:#c9dcef;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:800;
+  line-height:1.1;
+  white-space:nowrap;
+  cursor:pointer;
+  list-style:none;
+}
+.admin-nav-menu>summary::-webkit-details-marker{display:none}
+.admin-desktop-nav>a:hover,
+.admin-nav-menu[open]>summary,
+.admin-nav-menu>summary:hover{
+  color:#fff;
+  background:#102b45;
+  border-color:#244a6b;
+}
+.admin-desktop-nav a.is-current,
+.admin-nav-menu.has-current>summary{
+  color:#fff;
+  background:linear-gradient(90deg,#147edb,#14bce7);
+  border-color:#28c5ff;
+  box-shadow:0 7px 17px rgba(20,157,225,.15);
+}
+.admin-nav-menu{position:relative}
+.admin-dropdown{
+  position:absolute;
+  left:50%;
+  top:calc(100% + 8px);
+  transform:translateX(-50%);
+  min-width:220px;
+  padding:8px;
+  border:1px solid #244665;
+  border-radius:13px;
+  background:#08182a;
+  box-shadow:0 20px 44px rgba(0,0,0,.4);
+  display:grid;
+  gap:4px;
+}
+.admin-dropdown a{
+  min-height:40px;
+  padding:9px 11px;
+  border-radius:9px;
+  color:#c5dbf4;
+  text-decoration:none;
+  font-size:12px;
+  display:flex;
+  align-items:center;
+}
+.admin-dropdown a:hover{
+  background:#123255;
+  color:#fff;
+}
+.admin-dropdown a.is-current{
+  background:linear-gradient(90deg,#147edb,#14bce7);
+  color:#fff;
+  font-weight:800;
+}
+.admin-header-actions{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:8px;
+}
+.admin-header-actions .userbox{
+  margin:0!important;
+  white-space:nowrap;
+}
+.admin-menu-trigger{
+  display:none;
+  min-height:42px;
+  padding:9px 13px;
+  border:1px solid #31577e;
+  border-radius:10px;
+  background:#0c1d30;
+  color:#eaf5ff;
+  font-weight:800;
+  cursor:pointer;
+}
+body.admin-app .side-note{display:none!important}
+body.admin-app .content{
+  width:100%!important;
+  min-width:0!important;
+  padding:28px 34px!important;
+}
+
+/* Panel móvil */
+.admin-mobile-panel{
+  width:min(760px,100%);
+  margin:0 auto;
+  padding:10px 14px 15px;
+  border-top:1px solid #193653;
+  background:#061222;
+}
+.admin-mobile-nav{display:grid;gap:5px}
+.admin-mobile-nav>a,
+.admin-mobile-nav>details>summary{
+  display:flex;
+  align-items:center;
+  min-height:46px;
+  padding:10px 12px;
+  border:1px solid transparent;
+  border-radius:10px;
+  color:#cfe0f2;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:800;
+  cursor:pointer;
+  list-style:none;
+}
+.admin-mobile-nav>details>summary::-webkit-details-marker{display:none}
+.admin-mobile-nav>a:hover,
+.admin-mobile-nav>details[open]>summary{
+  background:#102b45;
+  border-color:#244a6b;
+  color:#fff;
+}
+.admin-mobile-nav>details>div{
+  display:grid;
+  gap:4px;
+  padding:4px 0 5px 10px;
+}
+.admin-mobile-nav>details>div a{
+  min-height:42px;
+  display:flex;
+  align-items:center;
+  padding:9px 12px;
+  border-radius:9px;
+  color:#a9c3dd;
+  text-decoration:none;
+  font-size:12px;
+}
+.admin-mobile-nav>details>div a:hover{
+  background:#0d2943;
+  color:#fff;
+}
+.admin-mobile-nav a.is-current{
+  background:linear-gradient(90deg,#147edb,#14bce7)!important;
+  border-color:#28c5ff!important;
+  color:#fff!important;
+  font-weight:800;
+}
+
+/* Tablet */
+@media(max-width:1150px){
+  .admin-header-main{grid-template-columns:auto minmax(0,1fr) auto;gap:12px;padding:9px 16px}
+  .admin-desktop-nav{justify-content:flex-end}
+  .admin-desktop-nav>a,.admin-nav-menu>summary{padding:8px 8px;font-size:11px}
+  .admin-header-actions .userbox{font-size:11px}
+}
+@media(max-width:920px){
+  body.admin-app .admin-global-header{
+    min-height:64px;
+  }
+  .admin-header-main{
+    min-height:64px;
+    grid-template-columns:auto auto;
+    justify-content:space-between;
+    padding:8px 12px;
+  }
+  .admin-desktop-nav{display:none!important}
+  .admin-header-actions .userbox{display:none}
+  .admin-menu-trigger{display:inline-flex;align-items:center;justify-content:center;gap:7px}
+  .admin-page-user{display:none!important}
+}
+@media(max-width:680px){
+  body.admin-app .content{padding:12px 10px 20px!important}
+  .admin-brand strong{font-size:17px}
+  .admin-brand .bird{font-size:28px}
+  .admin-mobile-panel{padding-left:9px;padding-right:9px}
+  body.admin-app .topbar{
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    gap:10px;
+  }
+  body.admin-app .topbar h1{font-size:23px;line-height:1.12}
+  body.admin-app .cards{grid-template-columns:1fr!important}
+  body.admin-app .grid2,body.admin-app .form-grid{grid-template-columns:1fr!important}
+  body.admin-app .page-actions,body.admin-app .toolbar{
+    align-items:stretch!important;
+    flex-direction:column!important;
+  }
+  body.admin-app .toolbar-actions{
+    display:grid;
+    grid-template-columns:1fr;
+    width:100%;
+  }
+  body.admin-app .search-form{
+    display:grid;
+    grid-template-columns:1fr;
+    width:100%;
+  }
+  body.admin-app .search-form input{min-width:0}
+  body.admin-app .table-wrap{
+    width:100%;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  body.admin-app .table{min-width:720px}
+  body.admin-app .card{padding:14px;border-radius:13px}
+  body.admin-app input,
+  body.admin-app select,
+  body.admin-app textarea,
+  body.admin-app button,
+  body.admin-app .btn{min-height:44px;font-size:16px}
+}
+@media(max-width:420px){
+  .admin-header-main{padding:7px 9px}
+  .admin-mobile-panel{padding-left:7px;padding-right:7px}
+  body.admin-app .content{padding:9px 8px 18px!important}
+  body.admin-app .topbar h1{font-size:20px}
+}
+@supports(padding:max(0px)){
+  .admin-global-header{padding-top:env(safe-area-inset-top)}
+  body.admin-app .content{padding-bottom:max(20px,env(safe-area-inset-bottom))!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .admin-dropdown,.admin-mobile-panel{transition:none!important}
+}

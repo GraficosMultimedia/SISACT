@@ -1,0 +1,20 @@
+
+2026-09-27 · AUTORIZACIÓN CLIENTE
+- El seguimiento público ahora funciona desde la solicitud CPQ, antes de crear la orden.
+- Las cotizaciones web pueden ser autorizadas por el cliente desde el mismo enlace seguro.
+- La autorización crea automáticamente la orden de servicio si no existe una activa.
+- Se sincronizan los estados de solicitud web: cotizada / autorizada.
+FASE 03 - 3.0.0
+- Catálogo de productos sobre cp_products.
+- Categorías sobre cp_categories.
+- Imágenes principales sobre cp_product_images.
+- Alta, edición, búsqueda y eliminación de productos.
+- Alta, edición, búsqueda y eliminación de categorías.
+- Protección para impedir borrar categorías con productos asociados.
+- Tipos de precio: fijo, variable, calculado y proyecto cotizable.
+- Campos de costo interno y precio de venta separados.
+- Visibilidad web y estado activo/inactivo.
+- Subida segura de JPG, PNG y WEBP hasta 5 MB.
+- Botones globales reutilizables: Editar, Borrar, Cancelar y Guardar.
+- Confirmación JavaScript global para acciones destructivas.
+- Mantiene Akaunting como histórico sin modificaciones.

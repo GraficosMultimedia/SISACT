@@ -1,0 +1,14 @@
+[26-Sep-2026 09:07:30 America/Mexico_City] Colibri Print submit_request: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'original_name' in 'field list'
+[26-Sep-2026 09:09:37 America/Mexico_City] Colibri Print submit_request: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'original_name' in 'field list'
+[26-Sep-2026 09:09:46 America/Mexico_City] Colibri Print submit_request: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'original_name' in 'field list'
+[26-Sep-2026 09:25:27 America/Mexico_City] Colibri Print submit_request: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'original_name' in 'field list'
+[26-Sep-2026 09:26:03 America/Mexico_City] Colibri Print submit_request: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'original_name' in 'field list'
+[26-Sep-2026 09:28:29 America/Mexico_City] Colibri Print submit_request: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'original_name' in 'field list'
+[26-Sep-2026 09:43:11 America/Mexico_City] Colibri Print submit_request: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'original_name' in 'field list'
+[26-Sep-2026 09:49:58 America/Mexico_City] Colibri Print submit_request: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'original_name' in 'field list'
+[26-Sep-2026 09:50:33 America/Mexico_City] Colibri Print submit_request: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'original_name' in 'field list'
+[26-Sep-2026 10:22:22 America/Mexico_City] Colibri Print submit_request: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'original_name' in 'field list'
+[26-Sep-2026 16:58:50 America/Chihuahua] [Colibri Print] print-request.php: SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1
+[26-Sep-2026 17:02:21 America/Chihuahua] [Colibri Print] print-request.php: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`colibrip_abcsistema`.`cp_print_request_items`, CONSTRAINT `fk_cp_print_request_items_rule` FOREIGN KEY (`price_rule_id`) REFERENCES `cp_print_price_rules` (`id`) ON DELETE SET NULL)
+[26-Sep-2026 17:04:28 America/Chihuahua] [Colibri Print] print-request.php: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?' at line 1
+[26-Sep-2026 17:04:56 America/Chihuahua] [Colibri Print] print-request.php: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?' at line 1

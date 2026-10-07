@@ -1,0 +1,15 @@
+<?php
+declare(strict_types=1);
+require_once __DIR__ . '/../config/runtime.php';
+require_auth();
+$title='Dashboard';
+try {
+    $localCustomers=(int)db()->query('SELECT COUNT(*) FROM cp_customers')->fetchColumn();
+    $localProducts=(int)db()->query('SELECT COUNT(*) FROM cp_products')->fetchColumn();
+    $activity=(int)db()->query('SELECT COUNT(*) FROM cp_activity_log')->fetchColumn();
+    $akaCustomers=(int)akaunting_db()->query("SELECT COUNT(*) FROM ak4s_contacts WHERE company_id=1 AND type='customer' AND deleted_at IS NULL")->fetchColumn();
+    $akaProducts=(int)akaunting_db()->query("SELECT COUNT(*) FROM ak4s_items WHERE company_id=1 AND enabled=1 AND deleted_at IS NULL")->fetchColumn();
+    $akaStatus='Conectado';
+} catch(Throwable $e) { $akaStatus='Sin conexión'; $akaCustomers=0; $akaProducts=0; }
+require __DIR__ . '/../includes/header.php';
+?><section class="hero"><div><span class="eyebrow">NÚCLEO DE PLATAFORMA</span><h2 style="margin:8px 0">Hola, <?=e(current_user()['name'])?> 👋</h2><p class="muted">Fase 3 instalada. Esta pantalla confirma que la nueva plataforma funciona de forma independiente y puede consultar el histórico de Akaunting.</p></div><div class="notice"><strong>Akaunting:</strong> <span class="<?= $akaStatus==='Conectado'?'ok':'danger' ?>"><?=e($akaStatus)?></span><br><span class="muted">Lectura de clientes y productos</span></div></section><section class="cards"><div class="card"><span class="muted">Clientes locales</span><div class="metric"><?=number_format($localCustomers)?></div><span class="pill">Base Colibrí</span></div><div class="card"><span class="muted">Productos locales</span><div class="metric"><?=number_format($localProducts)?></div><span class="pill">Base Colibrí</span></div><div class="card"><span class="muted">Clientes históricos</span><div class="metric"><?=number_format($akaCustomers)?></div><span class="pill">Akaunting</span></div><div class="card"><span class="muted">Productos históricos</span><div class="metric"><?=number_format($akaProducts)?></div><span class="pill">Akaunting</span></div></section><section class="grid2"><div class="card"><h3>Arquitectura inicial</h3><p class="muted">La plataforma nueva trabaja sobre <strong>colibrip_abcsistema</strong>. Akaunting se consulta aparte y no se modifica desde esta fase.</p><table class="table"><tr><th>Componente</th><th>Estado</th></tr><tr><td>Base nueva</td><td class="ok">✓ Operativa</td></tr><tr><td>Sesiones / Login</td><td class="ok">✓ Operativa</td></tr><tr><td>Lectura Akaunting</td><td class="ok">✓ Operativa</td></tr><tr><td>Registro de actividad</td><td class="ok">✓ Operativa</td></tr></table></div><div class="card"><h3>Próximas fases</h3><table class="table"><tr><td>02</td><td>Clientes</td><td><span class="pill">Operativa</span></td></tr><tr><td>03</td><td>Catálogo</td><td><span class="pill">Operativa</span></td></tr><tr><td>04</td><td>Cotizador</td><td><span class="pill">Pendiente</span></td></tr><tr><td>05</td><td>Cotizaciones</td><td><span class="pill">Pendiente</span></td></tr></table></div></section><?php require __DIR__ . '/../includes/footer.php'; ?>

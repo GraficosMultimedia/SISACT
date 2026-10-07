@@ -1,0 +1,61 @@
+PASO A PASO · FASE 01 LIMPIA
+============================
+
+ANTES DE SUBIR
+--------------
+[ ] Exportar colibrip_akau488 desde phpMyAdmin.
+[ ] Respaldar la instalación actual de /public_html.
+[ ] Confirmar que /public_html/Sistema corresponde a Akaunting y conservarlo.
+[ ] No borrar bases de datos desde este procedimiento.
+
+LIMPIEZA DEL DOMINIO
+--------------------
+La nueva plataforma será la página principal:
+https://colibriprint.com.mx/
+
+Retira la instalación WordPress y las carpetas/archivos de las versiones anteriores del proyecto nuevo.
+No borres /Sistema.
+No borres .well-known.
+No borres cgi-bin si el hosting lo usa.
+Si /Documentos solo contiene las pruebas Laravel que ya no se necesitan, puede retirarse después del respaldo.
+
+SUBIDA
+------
+Sube el contenido de FASE_01_COLIBRI_LIMPIA a /public_html.
+
+INSTALADOR
+----------
+Abre:
+https://colibriprint.com.mx/setup.php
+
+BASE NUEVA
+- Host: el host MySQL real del cPanel, normalmente localhost.
+- Base: colibrip_abcsistema
+- Usuario: colibrip_siscar o el usuario nuevo que decidas crear.
+- Contraseña: la real, no se escribe en este documento.
+
+HISTÓRICO AKAUNTING
+- Host: el host MySQL real del cPanel.
+- Base: colibrip_akau488
+- Usuario: colibrip_siscar o el usuario que tenga acceso a Akaunting.
+- Contraseña: la real.
+
+El instalador crea solo las tablas cp_* en la base nueva e importa clientes de Akaunting. No importa productos.
+
+SI HAY TABLAS cp_* ANTERIORES
+-----------------------------
+Marca únicamente la opción de reinicio de cp_* después de confirmar que tienes respaldo.
+Nunca se eliminan tablas ak4s_* desde este instalador.
+
+DESPUÉS
+-------
+Abrir https://colibriprint.com.mx/admin/
+
+Comprobar:
+- Login
+- Dashboard
+- Clientes: 25 por página, búsqueda, editar, guardar, borrar.
+- Productos: catálogo vacío, nuevo, editar, guardar, borrar.
+- Móvil: menú lateral y formularios.
+
+NO AVANZAR A FASE 2 HASTA APROBAR FASE 1.

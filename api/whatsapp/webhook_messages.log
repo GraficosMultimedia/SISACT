@@ -1,0 +1,27 @@
+{
+    "received_at": "2026-09-23 21:30:28",
+    "ip": "95.217.88.43",
+    "method": "POST",
+    "data": {
+        "messages": [
+            {
+                "id": "PrCrjNSSH73XgIY-wCESb8Ya2w",
+                "from_me": false,
+                "type": "text",
+                "timestamp": 1725958805,
+                "source": "web",
+                "device_id": 1,
+                "chat_name": "Receiver",
+                "starred": false,
+                "chat_id": "13135555657@s.whatsapp.net",
+                "from": "13135555657",
+                "text": {
+                    "body": "..."
+                },
+                "from_name": "Sender"
+            }
+        ],
+        "channel_id": "DEADPL-UAWN5"
+    }
+}
+

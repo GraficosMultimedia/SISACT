@@ -1,0 +1,38 @@
+/* Comprobantes de pago públicos + administración */
+.payment-receipts-public{overflow:hidden}
+.public-receipt-links{display:grid;gap:8px;margin:0 0 13px}
+.public-receipt-link{display:grid;grid-template-columns:36px minmax(0,1fr) 18px;gap:10px;align-items:center;padding:11px 12px;text-decoration:none;border:1px solid #e3ebf4;border-radius:12px;background:#fff;color:#172b4d;transition:.18s ease}
+.public-receipt-link:hover{border-color:#087bd9;transform:translateY(-1px);box-shadow:0 6px 15px rgba(16,42,86,.07)}
+.public-receipt-icon{width:36px;height:36px;border-radius:10px;background:#eaf4fd;color:#087bd9;display:grid;place-items:center}
+.public-receipt-link strong{display:block;font-size:11px;color:#172b4d}
+.public-receipt-link small{display:block;color:#758392;font-size:9px;margin-top:3px}
+.public-receipt-link b{color:#087bd9;text-align:right}
+.public-receipt-upload{display:grid;gap:9px;padding:13px;border-radius:13px;background:#f8fbff;border:1px solid #e1eaf3}
+.public-receipt-upload label{display:grid;gap:6px}
+.public-receipt-upload label>span{font-size:10px;font-weight:900;color:#172b4d}
+.public-receipt-upload input[type=file],.public-receipt-upload textarea{font:inherit;background:#fff;color:#172b4d;border:1px solid #d5e0eb;border-radius:9px;padding:10px}
+.public-receipt-upload button{border:0;background:#087bd9;color:#fff;border-radius:10px;padding:11px 14px;font-weight:900;cursor:pointer}
+.public-receipt-upload small{font-size:9px;color:#788695;line-height:1.45}
+.receipt-sent-banner{border-color:#b9ead4!important;background:#effbf6!important;margin-bottom:10px}
+.receipt-sent-banner strong{color:#08734d}
+.receipt-sent-banner p{margin:5px 0 0;color:#5f7a6f;font-size:10px}
+.payment-receipts-admin{margin-bottom:18px}
+.payment-receipt-install-warning,.payment-receipt-empty{padding:13px 14px;border-radius:12px;background:#f7faff;border:1px dashed #c9dced;color:#62758a}
+.payment-receipt-install-warning strong,.payment-receipt-empty strong{color:#172b4d;display:block}
+.payment-receipt-install-warning span,.payment-receipt-empty span{font-size:10px}
+.payment-receipt-admin-list{display:grid;gap:10px}
+.payment-receipt-admin-item{background:#fff;border:1px solid #e3ebf4;border-radius:12px;padding:12px}
+.payment-receipt-admin-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.payment-receipt-admin-head strong{display:block;color:#172b4d;font-size:11px}
+.payment-receipt-admin-head small{display:block;color:#7e8fa0;font-size:9px;margin-top:4px}
+.receipt-status{font-size:8px;font-weight:900;padding:6px 8px;border-radius:999px;white-space:nowrap}
+.receipt-status-pending{background:#fff4ce;color:#916700}
+.receipt-status-reviewing{background:#e7f4ff;color:#0870b9}
+.receipt-status-confirmed{background:#e9f9f1;color:#08734d}
+.receipt-status-rejected{background:#ffedf1;color:#b52a4a}
+.payment-receipt-note{font-size:10px;color:#62758a;line-height:1.45}
+.payment-receipt-review-grid{display:flex;gap:8px;align-items:flex-start;flex-wrap:wrap}
+.payment-receipt-review-grid form{display:grid;grid-template-columns:145px 190px minmax(170px,1fr) auto;gap:7px;flex:1;min-width:520px}
+.payment-receipt-review-grid select,.payment-receipt-review-grid input{background:#fff;color:#172b4d;border:1px solid #d5e0eb;border-radius:8px;padding:9px;font-size:10px;min-width:0}
+@media(max-width:900px){.payment-receipt-review-grid form{grid-template-columns:1fr 1fr;min-width:0;width:100%}.payment-receipt-review-grid form input,.payment-receipt-review-grid form button{grid-column:1/-1}}
+@media(max-width:600px){.payment-receipt-admin-head{flex-direction:column}.payment-receipt-review-grid form{grid-template-columns:1fr}.payment-receipt-review-grid form input,.payment-receipt-review-grid form button{grid-column:auto}.payment-receipt-review-grid .btn{width:100%;text-align:center}}

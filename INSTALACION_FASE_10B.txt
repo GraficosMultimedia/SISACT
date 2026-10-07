@@ -1,0 +1,16 @@
+COLIBRI PRINT MEXICO - FASE 10B
+Empresa + cotizacion formal + cliente buscable
+
+1. Reemplazar el contenido de public_html con el contenido de este ZIP.
+2. Ejecutar UNA SOLA VEZ:
+   database/migrations/010_fase10_empresa_cotizacion.sql
+   sobre la base de datos nueva de Colibri Print.
+3. Entrar a /admin/configuracion.php y capturar los datos de la empresa.
+4. Subir el logotipo desde Configuracion. JPG, PNG o WEBP, maximo 2 MB.
+5. Crear una cotizacion y probar la busqueda de clientes.
+6. Para crear un cliente durante una cotizacion, usar "Crear cliente". Se abre Clientes en una pestaña nueva y, al guardar, vuelve a Nueva cotizacion con el cliente seleccionado.
+7. En una cotizacion guardada, "Imprimir / PDF" abre la impresion del navegador. Elegir "Guardar como PDF" para generar el PDF en formato A4.
+
+IMPORTANTE
+- La cotizacion es un documento comercial. No sustituye un CFDI ni constituye por si sola un comprobante fiscal.
+- El archivo config/config.php conserva las credenciales de la instalacion de origen. No compartir publicamente el ZIP y rotar credenciales si el archivo fue expuesto.

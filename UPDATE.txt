@@ -1,0 +1,42 @@
+FASE 1.4 - ACTUALIZACIÓN SEGURA
+==============================
+
+Este paquete está diseñado para actualizar la Fase 1 ya instalada.
+
+NO contiene ni reemplaza:
+- config/config.php
+- setup.php
+- database/schema.sql
+- credenciales de base de datos
+
+NO ejecutar setup.php ni schema.sql.
+NO modificar la base de datos Akaunting.
+
+Cambios principales
+-------------------
+1. Sidebar completamente reconstruido para PC, tablet y móvil.
+2. Se elimina el checkbox oculto de navegación que podía provocar artefactos visuales.
+3. Una sola marca Colibrí Print, sin duplicación de logo.
+4. Menú móvil con botón y overlay mediante JavaScript.
+5. Dashboard más limpio y alineado con la arquitectura del proyecto.
+6. Productos: catálogo 100% nuevo; se elimina la importación desde Akaunting.
+7. Clientes: paginación, búsqueda y CRUD conservados.
+8. Edición de clientes y productos con animación CSS en cascada.
+9. Acciones Editar / Guardar / Borrar continúan afectando solamente a la base propia.
+
+Instalación
+-----------
+1. Hacer respaldo de la carpeta actual.
+2. Extraer el ZIP sobre la instalación existente respetando las carpetas.
+3. Conservar el config/config.php actual.
+4. Entrar a /admin y comprobar escritorio y móvil.
+
+Prueba rápida
+-------------
+- Abrir dashboard.
+- Abrir/cerrar menú en móvil.
+- Abrir Clientes.
+- Editar y guardar un cliente.
+- Abrir Productos.
+- Crear, editar y borrar un producto de prueba.
+- Confirmar que Akaunting no cambió.

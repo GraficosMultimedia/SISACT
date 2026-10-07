@@ -1,0 +1,4 @@
+Este paquete no reemplaza automáticamente includes/header.php.
+Para integrar TikTok al menú superior responsive, agregar:
+<a href="/admin/tiktok.php">♪ TikTok</a>
+dentro del grupo Comunicación de tu header actual.

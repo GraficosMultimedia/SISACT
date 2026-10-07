@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.colibriprint.com.mx/sitemap.php

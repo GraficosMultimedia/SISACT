@@ -1,0 +1,18 @@
+*{box-sizing:border-box}
+:root{color-scheme:dark;--bg:#06111f;--panel:#0d1d31;--line:#24425f;--text:#eef7ff;--muted:#9cb2c7;--accent:#16b8ff;--green:#18c978;--red:#ff5f6d;--yellow:#f4c95d}
+body{margin:0;background:radial-gradient(circle at 50% 0%,#123254 0,#06111f 42%,#030a12 100%);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);min-height:100vh}
+.wa-shell{width:min(1280px,94vw);margin:0 auto;padding:40px 0 80px}
+.wa-header{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:26px}
+.eyebrow{font-size:11px;letter-spacing:.16em;color:#16cfff;font-weight:800}
+h1{font-size:34px;margin:8px 0}h2{font-size:18px;margin:6px 0}p{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:14px}
+.card,.panel{background:rgba(13,29,49,.9);border:1px solid var(--line);border-radius:16px;box-shadow:0 16px 50px rgba(0,0,0,.2)}
+.card{padding:18px;display:flex;flex-direction:column;gap:9px}.card strong{font-size:20px}
+.panel{padding:20px;margin-bottom:14px}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:15px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.btn{border:1px solid #315574;background:#102945;color:#fff;border-radius:10px;padding:10px 15px;cursor:pointer;font-weight:700}.btn:hover{filter:brightness(1.15)}.btn-primary{background:#0a6caa;border-color:#16b8ff}
+pre{white-space:pre-wrap;word-break:break-word;background:#071421;border:1px solid #1a344c;border-radius:10px;padding:14px;max-height:480px;overflow:auto;color:#cfe5f7;font-size:12px}
+textarea,input{width:100%;border:1px solid #315574;background:#071421;color:#fff;border-radius:10px;padding:12px;outline:none}textarea:focus,input:focus{border-color:var(--accent)}
+.form-row{display:grid;grid-template-columns:1fr 2fr auto;gap:10px}.actions{display:flex;gap:10px;margin-top:12px}.muted{color:var(--muted);font-size:13px}
+.state-ok{color:var(--green)}.state-bad{color:var(--red)}.state-warn{color:var(--yellow)}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.wa-header{align-items:start;flex-direction:column}.form-row{grid-template-columns:1fr}}

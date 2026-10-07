@@ -1,0 +1,11 @@
+Proyecto: ABC Sistema | Colibrí Print México
+Fase: 03 - Catálogo
+Versión: 3.0.0
+Fecha: 2026-09-16
+Tecnología: PHP + MySQL + HTML5 + CSS3 + JavaScript
+Servidor objetivo: cPanel / Apache / MySQL 5.7
+Base nueva: colibrip_abcsistema
+Base histórica: colibrip_akau488
+
+Estado del paquete: preparado para instalar sobre Fase 2.
+La Fase 3 utiliza cp_products, cp_categories y cp_product_images de la base nueva y no modifica Akaunting.

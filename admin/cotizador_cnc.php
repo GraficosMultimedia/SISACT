@@ -1,0 +1,31 @@
+<?php
+declare(strict_types=1);
+require_once __DIR__ . '/../config/runtime.php';
+require_once __DIR__ . '/../includes/actions.php';
+require_once __DIR__ . '/../includes/calculadoras.php';
+require_auth();
+$title='Corte CNC';
+$defaults=['calculator.cnc.material_m2'=>450,'calculator.cnc.machine_hour'=>250,'calculator.cnc.labor_hour'=>120,'calculator.cnc.consumption_pct'=>10,'calculator.cnc.margin_pct'=>35];
+$s=calculator_settings($defaults);
+$input=['width_cm'=>'','height_cm'=>'','quantity'=>1,'material_m2'=>$s['calculator.cnc.material_m2'],'consumption_pct'=>$s['calculator.cnc.consumption_pct'],'machine_minutes'=>30,'setup_minutes'=>15,'machine_hour'=>$s['calculator.cnc.machine_hour'],'labor_minutes'=>10,'labor_hour'=>$s['calculator.cnc.labor_hour'],'margin_pct'=>$s['calculator.cnc.margin_pct']];
+$result=null;$error=null;
+if($_SERVER['REQUEST_METHOD']==='POST'){
+  if(!csrf_check($_POST['_csrf']??null))$error='La sesión del formulario expiró. Recarga la página.';
+  else{$input=array_merge($input,['width_cm'=>max(0,(float)($_POST['width_cm']??0)),'height_cm'=>max(0,(float)($_POST['height_cm']??0)),'quantity'=>max(1,(int)($_POST['quantity']??1)),'material_m2'=>max(0,(float)($_POST['material_m2']??0)),'consumption_pct'=>max(0,min(100,(float)($_POST['consumption_pct']??0))),'machine_minutes'=>max(0,(float)($_POST['machine_minutes']??0)),'setup_minutes'=>max(0,(float)($_POST['setup_minutes']??0)),'machine_hour'=>max(0,(float)($_POST['machine_hour']??0)),'labor_minutes'=>max(0,(float)($_POST['labor_minutes']??0)),'labor_hour'=>max(0,(float)($_POST['labor_hour']??0)),'margin_pct'=>max(0,min(99,(float)($_POST['margin_pct']??0)))]);if($input['width_cm']<=0||$input['height_cm']<=0)$error='Captura ancho y alto mayores a cero.';else{$result=calc_cnc($input);$_SESSION['cp_pending_quote']=['source'=>'corte_cnc','title'=>'Corte CNC','input'=>$input,'result'=>$result,'created_at'=>date('c')];log_activity('calculate','calculators','Cálculo interno Corte CNC');}}
+}
+require __DIR__ . '/../includes/header.php';
+?>
+<link rel="stylesheet" href="/assets/css/cotizadores.css">
+<div class="toolbar"><div class="toolbar-title"><span class="eyebrow">FASE 4 · COTIZADOR</span><h2>Corte CNC</h2><span class="muted">Material, máquina, preparación, mano de obra y utilidad.</span></div><div class="toolbar-actions"><?=cancel_button('/admin/cotizadores.php')?></div></div>
+<?php if($error): ?><div class="notice danger" style="margin-bottom:14px"><?=e($error)?></div><?php endif; ?>
+<div class="calc-layout"><div class="card"><form method="post"><input type="hidden" name="_csrf" value="<?=e(csrf_token())?>"><div class="section-label">Pieza y cantidad</div><div class="form-grid"><div class="field"><label>Ancho (cm)</label><input data-auto-focus type="number" step="0.01" min="0" name="width_cm" value="<?=e((string)$input['width_cm'])?>" required></div><div class="field"><label>Alto (cm)</label><input type="number" step="0.01" min="0" name="height_cm" value="<?=e((string)$input['height_cm'])?>" required></div><div class="field"><label>Cantidad</label><input type="number" min="1" step="1" name="quantity" value="<?=e((string)$input['quantity'])?>"></div><div class="field"><label>Tiempo de máquina / pieza (min)</label><input type="number" step="0.01" min="0" name="machine_minutes" value="<?=e((string)$input['machine_minutes'])?>"></div><div class="field"><label>Preparación / setup (min)</label><input type="number" step="0.01" min="0" name="setup_minutes" value="<?=e((string)$input['setup_minutes'])?>"></div><div class="field"><label>Mano de obra / pieza (min)</label><input type="number" step="0.01" min="0" name="labor_minutes" value="<?=e((string)$input['labor_minutes'])?>"></div></div><div class="section-label" style="margin-top:20px">Tarifas internas</div><div class="form-grid"><div class="field"><label>Material / m²</label><input type="number" step="0.01" min="0" name="material_m2" value="<?=e((string)$input['material_m2'])?>"></div><div class="field"><label>Consumo / desperdicio</label><div class="input-suffix"><input type="number" step="0.01" min="0" max="100" name="consumption_pct" value="<?=e((string)$input['consumption_pct'])?>"><span>%</span></div></div><div class="field"><label>Máquina / hora</label><input type="number" step="0.01" min="0" name="machine_hour" value="<?=e((string)$input['machine_hour'])?>"></div><div class="field"><label>Mano de obra / hora</label><input type="number" step="0.01" min="0" name="labor_hour" value="<?=e((string)$input['labor_hour'])?>"></div><div class="field"><label>Margen sobre venta</label><div class="input-suffix"><input type="number" step="0.01" min="0" max="99" name="margin_pct" value="<?=e((string)$input['margin_pct'])?>"><span>%</span></div></div></div><div class="form-actions"><?=cancel_button('/admin/cotizadores.php')?><?=save_button('Calcular costo')?></div></form></div>
+<div class="card result-card result-preview-card">
+  <div class="result-preview-head"><div><span class="eyebrow">RESULTADO DEL CÁLCULO</span><h3>Listo para revisar</h3></div><span class="result-lock">🔒 Interno</span></div>
+  <div id="calcResultPreview" class="result-preview">
+    <?php if($result): ?><div class="result-preview-price"><span>Precio de venta total</span><strong><?=money($result['sale'])?></strong><small>Precio unitario: <?=money($result['unit_sale'])?> · Utilidad: <?=money($result['profit'])?></small></div><button type="button" class="btn btn-primary js-open-result">Ver desglose completo</button><?php else: ?><div class="empty">Captura los datos y presiona <strong>Calcular costo</strong>. El resultado aparecerá en una ventana emergente.</div><?php endif; ?>
+  </div>
+</div></div>
+<?php if($result): ?><script>window.CP_CALC_RESULT=<?=json_encode(['type'=>'Corte CNC','input'=>$input,'result'=>$result],JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_NUMERIC_CHECK)?>;</script><?php endif; ?>
+<div class="notice calc-footnote">La preparación se cobra una sola vez por cálculo. El tiempo de máquina y mano de obra se multiplica por la cantidad. El resultado se guarda temporalmente en la sesión para que la Fase 5 pueda convertirlo en una cotización formal.</div>
+<script src="/assets/js/cotizadores.js" defer></script>
+<?php require __DIR__ . '/../includes/footer.php'; ?>

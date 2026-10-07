@@ -1,0 +1,58 @@
+/*
+ * Colibrí Print Admin · WhatsApp V5
+ * Unifica el Centro de WhatsApp con el lenguaje visual de app.css/admin-topnav.css.
+ * No redefine el header ni modifica la navegación administrativa.
+ */
+.wa4{display:grid;gap:18px}
+.wa4-toolbar{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:0 0 6px}
+.wa4-toolbar h2{margin:5px 0 0;font-size:29px;color:var(--text)}
+.wa4-toolbar p{margin:0;max-width:760px}
+.wa4-actions,.wa4-tools,.wa4-send,.wa4-template-actions{display:flex;gap:8px;flex-wrap:wrap}
+.wa4-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:10px 14px;border:1px solid var(--border);border-radius:10px;background:#0f2740;color:#dceeff;font:inherit;font-weight:700;text-decoration:none;cursor:pointer;transition:transform .15s ease,filter .15s ease,border-color .15s ease,background .15s ease}
+.wa4-btn:hover,.wa4-btn:focus-visible{border-color:#42d5ff;background:#123255;color:#fff;transform:translateY(-1px)}
+.wa4-btn.primary{border-color:var(--blue);background:linear-gradient(90deg,var(--blue),var(--cyan));color:#fff}
+.wa4-btn.green{border-color:#159b70;background:linear-gradient(90deg,#0d9f78,#0dd6a0);color:#fff}
+.wa4-btn.danger{border-color:#7d3345;background:#4a1f2a;color:#ffb5c0}
+.wa4-btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.wa4-btn.is-opening,.wa4-btn.is-copied{opacity:.82;cursor:wait}
+.wa4-btn--compact{min-height:30px;padding:5px 9px;font-size:11px}
+.wa4-status{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:12px}
+.wa4-dot{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;box-shadow:0 0 0 4px rgba(13,214,160,.08)}
+.wa4-layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:18px;align-items:start}
+.wa4-card{background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+.wa4-card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 18px;border-bottom:1px solid #19324f;background:linear-gradient(180deg,#10253d,#0d1c30)}
+.wa4-card-head h3{margin:3px 0 0;font-size:17px;color:var(--text)}
+.wa4-card-body{padding:18px}
+.wa4-step{font-size:10px;font-weight:800;letter-spacing:.08em;color:var(--cyan)}
+.wa4-field{margin-bottom:14px}.wa4-field:last-child{margin-bottom:0}
+.wa4-field label{display:block;font-size:12px;font-weight:700;color:#c5dbf4;margin-bottom:6px}
+.wa4-field select,.wa4-field input,.wa4-preview{width:100%;box-sizing:border-box;border:1px solid #31577e;border-radius:10px;background:#09182b;color:#eef7ff;padding:11px 12px;font:inherit;outline:none}
+.wa4-field select:focus,.wa4-field input:focus,.wa4-preview:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(34,213,255,.10)}
+.wa4-source-row{display:grid;grid-template-columns:150px minmax(0,1fr);gap:10px}
+.wa4-helper{font-size:11px;color:#7f9bb8;margin-top:5px}
+.wa4-preview-wrap{background:#07182b;border:1px solid var(--border);border-radius:12px;padding:12px}
+.wa4-preview{min-height:310px;resize:vertical;background:#07182b;line-height:1.55}
+.wa4-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:12px}
+.wa4-meta-item{border:1px solid var(--border);border-radius:10px;padding:9px 10px;background:#0a1a2e;min-width:0}
+.wa4-meta-item span{display:block;color:#7f9bb8;font-size:10px;text-transform:uppercase;letter-spacing:.04em}
+.wa4-meta-item strong{display:block;color:#eef7ff;font-size:12px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wa4-note{margin:10px 0;padding:10px 12px;border:1px solid rgba(34,213,255,.35);background:rgba(34,213,255,.08);border-radius:10px;color:#bfefff;font-size:11px}
+.wa4-send{margin-top:12px}.wa4-send .wa4-btn{min-height:44px}
+.wa4-empty{padding:36px 18px;text-align:center;color:#7f9bb8}.wa4-empty strong{display:block;color:#dceeff;margin-bottom:5px}.wa4-empty p{margin:0;font-size:12px}.wa4-empty-icon{font-size:34px;margin-bottom:8px}
+.wa4-summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 18px}.wa4-summary-text strong{display:block;color:#eef7ff}.wa4-summary-text span{font-size:11px;color:#7f9bb8}.wa4-count{min-width:24px;height:24px;padding:0 7px;border-radius:99px;background:#123652;color:#8cecff;display:grid;place-items:center;font-size:11px;font-weight:800}
+.wa4-dialog{width:min(920px,calc(100vw - 28px));max-height:min(86vh,900px);padding:0;border:1px solid var(--border);border-radius:18px;box-shadow:0 30px 100px rgba(0,0,0,.45);overflow:hidden;background:var(--panel)}
+.wa4-dialog::backdrop{background:rgba(2,12,24,.72);backdrop-filter:blur(2px)}
+.wa4-dialog-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 19px;background:var(--panel2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:2}.wa4-dialog-head h3{margin:2px 0 0;color:var(--text)}
+.wa4-dialog-body{padding:18px;overflow:auto;max-height:calc(86vh - 78px);background:var(--panel)}
+.wa4-dialog-note{margin-top:0}
+.wa4-close{width:36px;height:36px;border:1px solid #31577e;border-radius:9px;background:#0b1a2f;color:#dceeff;cursor:pointer;font-size:20px;line-height:1}.wa4-close:hover{background:#123255;border-color:var(--cyan)}
+.wa4-template-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.wa4-template-card{background:#0a1a2e;border:1px solid var(--border);border-radius:13px;padding:14px}.wa4-template-card h4{margin:3px 0 8px;color:#eef7ff}
+.wa4-template-card textarea{width:100%;box-sizing:border-box;min-height:150px;resize:vertical;border:1px solid #31577e;border-radius:10px;padding:10px;background:#07182b;color:#eef7ff;font:13px/1.5 inherit}
+.wa4-template-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.wa4-active{font-size:11px;color:#9eb8d5;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.wa4-template-actions{justify-content:flex-end;margin-top:9px}
+.wa4-log-wrap{overflow:auto;background:var(--panel);border-top:1px solid var(--border)}
+.wa4-log-table{width:100%;border-collapse:collapse;font-size:12px;min-width:680px}.wa4-log-table th,.wa4-log-table td{padding:11px 12px;border-bottom:1px solid #19324f;text-align:left;white-space:nowrap}.wa4-log-table th{font-size:10px;text-transform:uppercase;color:#8db1d5;background:#0a1a2e}.wa4-log-table td{color:#dceeff}.wa4-log-table tr:hover td{background:#0f2740}
+.wa4-mobile-note{display:none}
+@media(max-width:900px){.wa4-layout,.wa4-template-grid{grid-template-columns:1fr}}
+@media(max-width:650px){.wa4-toolbar{align-items:stretch}.wa4-actions,.wa4-tools{width:100%}.wa4-actions .wa4-btn,.wa4-tools .wa4-btn{flex:1}.wa4-source-row,.wa4-meta{grid-template-columns:1fr}.wa4-send{display:grid;grid-template-columns:1fr}.wa4-send .wa4-btn{width:100%}.wa4-card-head,.wa4-card-body{padding:14px}.wa4-dialog{width:calc(100vw - 12px);border-radius:14px}.wa4-dialog-body{padding:12px}.wa4-mobile-note{display:block;font-size:11px;color:#7f9bb8;margin-top:5px}}

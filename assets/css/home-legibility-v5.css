@@ -1,0 +1,193 @@
+
+/* Colibrí Print · V5 visual + readability layer
+   Designed to scale text without flattening hero/artwork. */
+
+html{font-size:16px}
+body{font-size:16px}
+
+.topbar{font-size:12px}
+.topbar-group a,.topbar-group span{font-size:12px}
+.topbar-tag{font-size:11px}
+
+.brand-copy strong{font-size:24px}
+.brand-copy small{font-size:8px}
+
+.nav a{font-size:14px}
+.nav-cta{font-size:14px}
+.search-pill{font-size:21px}
+.location-pill strong{font-size:13px}
+.location-pill small{font-size:10px}
+
+.eyebrow{font-size:12px}
+.hero h1>span{font-size:48px}
+.hero h1 strong{font-size:100px}
+.hero h1>b{font-size:42px}
+.hero-copy>p{font-size:18px;line-height:1.62}
+.btn{font-size:14px}
+.hero-checks{font-size:12px}
+
+.trust-strip span{font-size:12px}
+.category-content small{font-size:10px}
+.category-content strong{font-size:18px}
+.category-content span{font-size:12px}
+
+.section-head p{font-size:15px;line-height:1.65}
+.section-head a{font-size:13px}
+.service-card h3{font-size:22px}
+.service-card>p{font-size:14px}
+.service-card .service-detail{font-size:13px;line-height:1.65}
+.service-card a{font-size:12px}
+
+.process-copy p{font-size:16px;line-height:1.7}
+.step strong{font-size:18px}
+.step small{font-size:12px}
+
+.product-body h3{font-size:24px}
+.product-body p{font-size:13px;line-height:1.65}
+.product-foot strong{font-size:20px}
+.product-foot a{font-size:12px}
+
+.promo-body h3{font-size:22px}
+.promo-body p{font-size:13px;line-height:1.6}
+.promo-body strong{font-size:22px}
+
+.quote-banner h2{font-size:31px}
+.quote-banner p{font-size:15px}
+
+.about-card h2{font-size:46px}
+.about-card p{font-size:16px;line-height:1.68}
+.about-chips span{font-size:11px}
+
+.footer-grid a{font-size:12px}
+.footer p{font-size:12px;line-height:1.75}
+.footer-bottom{font-size:11px}
+
+/* Tablet */
+@media (max-width:930px){
+  .nav a{font-size:14px}
+  .hero-copy>p{font-size:17px}
+  .section-head p{font-size:15px}
+}
+
+/* Mobile: keep the visual hero prominent and readable. */
+@media (max-width:640px){
+  .shell{width:min(calc(100% - 26px),var(--max))}
+  .topbar{font-size:10px}
+  .topbar-group a,.topbar-group span{font-size:10px}
+  .brand-copy strong{font-size:21px}
+  .brand-copy small{font-size:6.5px}
+
+  .hero{
+    min-height:760px;
+    display:block;
+  }
+
+  .hero-bg{
+    /* More of the artwork remains visible behind the hero copy. */
+    background:
+      linear-gradient(180deg,rgba(7,9,13,.76) 0%,rgba(7,9,13,.58) 43%,rgba(7,9,13,.20) 75%,rgba(7,9,13,.45) 100%),
+      var(--hero) center 62% / cover no-repeat;
+  }
+
+  .hero-inner{
+    min-height:700px;
+    grid-template-columns:1fr;
+    align-content:start;
+  }
+
+  .hero-copy{
+    padding-top:45px;
+    padding-bottom:4px;
+  }
+
+  .eyebrow{font-size:11px;line-height:1.35}
+  .hero h1{margin:14px 0 17px}
+  .hero h1>span{font-size:31px}
+  .hero h1 strong{font-size:68px}
+  .hero h1>b{font-size:30px}
+  .hero-copy>p{
+    font-size:16px;
+    line-height:1.68;
+    max-width:100%;
+  }
+
+  .hero-actions{gap:10px}
+  .btn{
+    min-height:50px;
+    justify-content:center;
+    font-size:14px;
+    padding:14px 17px;
+  }
+
+  .hero-checks{
+    font-size:11px;
+    gap:10px 14px;
+    margin-top:17px;
+  }
+
+  .hero-art{
+    min-height:280px;
+    height:280px;
+    margin-top:3px;
+    padding:8px 0 20px;
+  }
+
+  .hero-art-card{
+    width:100%;
+    max-width:470px;
+    aspect-ratio:1.38;
+    transform:none;
+    border-radius:18px;
+  }
+
+  .bubble{
+    width:72px;
+    height:72px;
+    font-size:8px;
+  }
+  .bubble-laser{top:6%;right:3%}
+  .bubble-cnc{bottom:5%;left:2%}
+  .bubble-brand{top:41%;left:0}
+
+  .trust-strip{
+    grid-template-columns:1fr 1fr;
+    margin-top:-18px;
+  }
+  .trust-strip>div{padding:15px 9px;gap:8px}
+  .trust-strip b{font-size:20px}
+  .trust-strip span{font-size:10px}
+
+  .section-head h2{font-size:37px}
+  .section-head p{font-size:15px;line-height:1.7}
+
+  .service-card h3{font-size:21px}
+  .service-card>p{font-size:14px}
+  .service-card .service-detail{font-size:13px;line-height:1.7}
+
+  .product-body h3{font-size:21px}
+  .product-body p{font-size:13px}
+
+  .promo-body h3{font-size:20px}
+  .promo-body p{font-size:13px}
+
+  .about-card h2{font-size:39px}
+  .about-card p{font-size:15px;line-height:1.7}
+}
+
+/* Small phones */
+@media (max-width:380px){
+  .hero{min-height:720px}
+  .hero-inner{min-height:665px}
+  .hero h1>span{font-size:28px}
+  .hero h1 strong{font-size:61px}
+  .hero h1>b{font-size:27px}
+  .hero-copy>p{font-size:15px}
+  .hero-art{min-height:240px;height:240px}
+  .hero-art-card{max-width:390px}
+}
+
+/* Accessibility */
+:focus-visible{outline:3px solid rgba(39,191,255,.9);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}

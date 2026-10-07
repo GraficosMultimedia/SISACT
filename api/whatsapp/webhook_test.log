@@ -1,0 +1,88 @@
+{
+    "received_at": "2026-09-23 20:49:31",
+    "ip": "95.217.88.43",
+    "method": "POST",
+    "headers": {
+        "Accept-Encoding": "gzip, br",
+        "Accept": "application/json",
+        "Baggage": "sentry-environment=prod,sentry-public_key=22217dc31eef5d21afad60404664acb9,sentry-trace_id=a7ce6cfc5f434c79ba4f9d8260c536c8",
+        "Sentry-Trace": "a7ce6cfc5f434c79ba4f9d8260c536c8-a30ce2f98bd2a89c",
+        "Cf-Ray": "a3fe79ea681a1579-HEL",
+        "Content-Length": "302",
+        "Content-Type": "application/json",
+        "Cdn-Loop": "cloudflare; loops=1",
+        "Cf-Connecting-Ip": "95.217.88.43",
+        "Cf-Ipcountry": "FI",
+        "Cf-Visitor": "{\"scheme\":\"https\"}",
+        "X-Forwarded-Proto": "https",
+        "Host": "colibriprint.com.mx",
+        "X-HTTPS": "1"
+    },
+    "raw_body": "{\"messages\":[{\"id\":\"PrCrjNSSH73XgIY-wCESb8Ya2w\",\"from_me\":false,\"type\":\"text\",\"timestamp\":1725958805,\"source\":\"web\",\"device_id\":1,\"chat_name\":\"Receiver\",\"starred\":false,\"chat_id\":\"13135555657@s.whatsapp.net\",\"from\":\"13135555657\",\"text\":{\"body\":\"...\"},\"from_name\":\"Sender\"}],\"channel_id\":\"DEADPL-UAWN5\"}",
+    "data": {
+        "messages": [
+            {
+                "id": "PrCrjNSSH73XgIY-wCESb8Ya2w",
+                "from_me": false,
+                "type": "text",
+                "timestamp": 1725958805,
+                "source": "web",
+                "device_id": 1,
+                "chat_name": "Receiver",
+                "starred": false,
+                "chat_id": "13135555657@s.whatsapp.net",
+                "from": "13135555657",
+                "text": {
+                    "body": "..."
+                },
+                "from_name": "Sender"
+            }
+        ],
+        "channel_id": "DEADPL-UAWN5"
+    }
+}
+
+{
+    "received_at": "2026-09-23 20:49:40",
+    "ip": "95.217.88.43",
+    "method": "POST",
+    "headers": {
+        "Accept-Encoding": "gzip, br",
+        "Accept": "application/json",
+        "Baggage": "sentry-environment=prod,sentry-public_key=22217dc31eef5d21afad60404664acb9,sentry-trace_id=a7ce6cfc5f434c79ba4f9d8260c536c8",
+        "Sentry-Trace": "a7ce6cfc5f434c79ba4f9d8260c536c8-8e65d5f3907d4373",
+        "Cf-Ray": "a3fe7a2bceda27cc-HEL",
+        "Content-Length": "302",
+        "Content-Type": "application/json",
+        "Cdn-Loop": "cloudflare; loops=1",
+        "Cf-Connecting-Ip": "95.217.88.43",
+        "Cf-Ipcountry": "FI",
+        "Cf-Visitor": "{\"scheme\":\"https\"}",
+        "X-Forwarded-Proto": "https",
+        "Host": "colibriprint.com.mx",
+        "X-HTTPS": "1"
+    },
+    "raw_body": "{\"messages\":[{\"id\":\"PrCrjNSSH73XgIY-wCESb8Ya2w\",\"from_me\":false,\"type\":\"text\",\"timestamp\":1725958805,\"source\":\"web\",\"device_id\":1,\"chat_name\":\"Receiver\",\"starred\":false,\"chat_id\":\"13135555657@s.whatsapp.net\",\"from\":\"13135555657\",\"text\":{\"body\":\"...\"},\"from_name\":\"Sender\"}],\"channel_id\":\"DEADPL-UAWN5\"}",
+    "data": {
+        "messages": [
+            {
+                "id": "PrCrjNSSH73XgIY-wCESb8Ya2w",
+                "from_me": false,
+                "type": "text",
+                "timestamp": 1725958805,
+                "source": "web",
+                "device_id": 1,
+                "chat_name": "Receiver",
+                "starred": false,
+                "chat_id": "13135555657@s.whatsapp.net",
+                "from": "13135555657",
+                "text": {
+                    "body": "..."
+                },
+                "from_name": "Sender"
+            }
+        ],
+        "channel_id": "DEADPL-UAWN5"
+    }
+}
+

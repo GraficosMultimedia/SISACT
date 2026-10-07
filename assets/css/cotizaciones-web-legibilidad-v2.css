@@ -1,0 +1,60 @@
+
+/* Colibrí Print · Solicitudes web · escala de lectura V2 */
+.cpq2{font-size:14px}
+.cpq2-head h2{font-size:35px}
+.cpq2-head p{font-size:14px;line-height:1.55}
+.cpq2-btn{font-size:12px;min-height:42px;padding:10px 14px}
+.cpq2-kpis span{font-size:10px}
+.cpq2-kpis b{font-size:31px}
+.cpq2-kpis small{font-size:10px}
+.cpq2-panel-head h3{font-size:21px}
+.cpq2-panel-head p{font-size:11px}
+.cpq2-flow strong{font-size:29px}
+.cpq2-flow span{font-size:11px}
+.cpq2-request-main{padding:17px}
+.cpq2-ref{font-size:10px}
+.cpq2-request h4{font-size:20px}
+.cpq2-request-identity p{font-size:11px}
+.cpq2-status{font-size:11px;padding:7px 10px}
+.cpq2-request-grid>div{padding:11px}
+.cpq2-request-grid span{font-size:10px}
+.cpq2-request-grid strong{font-size:12px}
+.cpq2-file-strip a{min-width:190px;padding:8px}
+.cpq2-file-strip a span{font-size:11px}
+.cpq2-file-strip a small{font-size:9px}
+.cpq2-no-files{font-size:10px}
+.cpq2-mini-summary span{font-size:10px}
+.cpq2-open{font-size:11px}
+.cpq2-inline-actions>a{font-size:11px}
+.cpq2-inline-actions select,.cpq2-save{font-size:10px;min-height:35px}
+.cpq2-pagination{font-size:11px}
+.cpq2-drawer-panel>header h3{font-size:24px}
+.cpq2-drawer-panel>header p{font-size:11px}
+.cpq2-exp-hero h4,.cpq2-exp-block h4{font-size:19px}
+.cpq2-exp-hero>div{font-size:11px}
+.cpq2-exp-row{padding:10px 0}
+.cpq2-exp-row span{font-size:10px}
+.cpq2-exp-row strong{font-size:11px}
+.cpq2-exp-grid span{font-size:9px}
+.cpq2-exp-grid strong{font-size:11px}
+.cpq2-exp-file strong{font-size:11px}
+.cpq2-exp-file small{font-size:9px}
+.cpq2-muted{font-size:10px}
+.cpq2-raw summary{font-size:10px}
+
+@media(max-width:760px){
+ .cpq2-head h2{font-size:29px}
+ .cpq2-head p{font-size:13px}
+ .cpq2-kpis b{font-size:26px}
+ .cpq2-panel-head h3{font-size:19px}
+ .cpq2-request h4{font-size:19px}
+ .cpq2-request-grid strong{font-size:12px}
+ .cpq2-drawer-panel>header h3{font-size:21px}
+}
+@media(max-width:480px){
+ .cpq2-kpis b{font-size:24px}
+ .cpq2-request-main{padding:14px}
+ .cpq2-request h4{font-size:18px}
+ .cpq2-request-grid span{font-size:9px}
+ .cpq2-request-grid strong{font-size:11px}
+}

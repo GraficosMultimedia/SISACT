@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cfdi:Comprobante xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd" Version="4.0" Fecha="2026-09-28T11:25:23" Sello="w3wj5uLWS4CtZwtPP3iVLS/2sUXLqE72PX2Qvo5u4Kj/m63l8qPBRsSc/j22flfTUmyxClbn/Kwsu3QPDC3NQHK+GL+Oel29hd/pVNKJ24AeKb0cmjt4vHKm3NOga6NhzQro2ubJSqngTvh5WKqlqK99ou9bcc9GVF6caRngWf6LZmFou7nE34oFFK5Ggfi6El60jmmamA2YxdfP7NEcP4u8/gWM+6bfOUjcAv8POutTFZiSgZZl9BDfE2P483O2J84xykQ0KnLAbwzC35EpIghkm4w32z4y8VPbSeHd9pVs5ULV5sF5Wbki71K31Cs5/dcZkdzeTN63DoWfdsRjMQ==" FormaPago="03" NoCertificado="00001000000713224032" Certificado="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" SubTotal="2689.50" Moneda="MXN" Total="3119.82" TipoDeComprobante="I" Exportacion="01" MetodoPago="PUE" LugarExpedicion="33820" xmlns:cfdi="http://www.sat.gob.mx/cfd/4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <cfdi:Emisor Rfc="BUAE8208274R5" Nombre="ERIKA ELIZABETH BUSTILLOS AGUIRRE" RegimenFiscal="621" />
+  <cfdi:Receptor Rfc="CZS841128NH0" Nombre="COMERCIAL ZAPATERA SAN FELIPE EL REAL" DomicilioFiscalReceptor="31000" RegimenFiscalReceptor="601" UsoCFDI="G03" />
+  <cfdi:Conceptos>
+    <cfdi:Concepto ClaveProdServ="82121500" Cantidad="28" ClaveUnidad="E48" Unidad="Unidad de servicio" Descripcion="IMPREISON Y SUAJE HOJAS DE OTOÑO" ValorUnitario="35" Importe="980.000000" ObjetoImp="02">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="980.000000" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="156.800000" />
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="82121500" Cantidad="7" ClaveUnidad="E48" Unidad="Unidad de servicio" Descripcion="IMPRESION FRASES VINILO" ValorUnitario="190" Importe="1330.000000" ObjetoImp="02">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="1330.000000" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="212.800000" />
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto ClaveProdServ="60121015" Cantidad="1" ClaveUnidad="E48" Unidad="Unidad de servicio" Descripcion="MATERIAL TRANSFER PARA ROTULOS" ValorUnitario="379.5" Importe="379.500000" ObjetoImp="02">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="379.500000" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="60.720000" />
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+  </cfdi:Conceptos>
+  <cfdi:Impuestos TotalImpuestosTrasladados="430.32">
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="2689.50" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="430.32" />
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd" Version="1.1" UUID="586C8953-C9AB-434C-B469-59D815817DAF" FechaTimbrado="2026-09-28T11:26:24" RfcProvCertif="SAT970701NN3" SelloCFD="w3wj5uLWS4CtZwtPP3iVLS/2sUXLqE72PX2Qvo5u4Kj/m63l8qPBRsSc/j22flfTUmyxClbn/Kwsu3QPDC3NQHK+GL+Oel29hd/pVNKJ24AeKb0cmjt4vHKm3NOga6NhzQro2ubJSqngTvh5WKqlqK99ou9bcc9GVF6caRngWf6LZmFou7nE34oFFK5Ggfi6El60jmmamA2YxdfP7NEcP4u8/gWM+6bfOUjcAv8POutTFZiSgZZl9BDfE2P483O2J84xykQ0KnLAbwzC35EpIghkm4w32z4y8VPbSeHd9pVs5ULV5sF5Wbki71K31Cs5/dcZkdzeTN63DoWfdsRjMQ==" NoCertificadoSAT="00001000000705250068" SelloSAT="cxHFIeDh6gNMawm1Lz+mLNgei6UURML89YqxyYj35QdRmYGPa+Png3AMm2eOaRAPQ7T0CDgnJTfSrkVOFBR7XdC7REJpBP0+U7jdGz/Xu7gDGyrNYL7O0csUgvniscjE9uqpMmQXUkuylq59QvkrbT+OhH0rlw8qW11KZu5IbJABRBr7OHj8wxRWn4AUFEK3aDtBHiivn6R2sJyAs1AV55Ng4M8IJkvkRU27keDTmwftl04531UaoathzhFkpUM8/XvAc5bG5w+fwRz9y2nfzyqz6u5tf3FC9V9RLgAlUcuu0WjIuntb5gZbAL+3gxbWF495X3Zc3fNwOQ+epCoEgg==" />
+  </cfdi:Complemento>
+</cfdi:Comprobante>

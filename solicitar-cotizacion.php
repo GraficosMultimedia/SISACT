@@ -1,0 +1,12 @@
+<?php
+declare(strict_types=1);
+require_once __DIR__.'/includes/web_common.php';
+$services=['branding'=>'Branding y Diseño Gráfico Pro','cnc'=>'Letras Corpóreas y Corte CNC','laser'=>'Grabado Láser de Alta Precisión','sellos'=>'Sellos de Goma Autoentintables','comestible'=>'Impresión Comestible','textil'=>'Textiles y Ropa Personalizada','promo'=>'Artículos Promocionales y Souvenirs'];$service=(string)($_GET['servicio']??'');$title=$services[$service]??'Proyecto personalizado';
+if($_SERVER['REQUEST_METHOD']==='POST'){
+ $name=cp_web_sanitize_text((string)($_POST['customer_name']??''),190);$phone=cp_web_sanitize_text((string)($_POST['phone']??''),80);$email=trim((string)($_POST['email']??''));$text=cp_web_sanitize_text((string)($_POST['request_text']??''),5000);
+ if($name===''||$phone===''||$text===''){http_response_code(422);exit('Completa los campos obligatorios.');}
+ if($email!==''&&!filter_var($email,FILTER_VALIDATE_EMAIL)){http_response_code(422);exit('Correo inválido.');}
+ $s=db()->prepare('INSERT INTO cp_web_quote_requests(request_token,service_key,customer_name,email,phone,request_text,quantity,desired_date,status,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,NOW(),NOW())');$s->execute([bin2hex(random_bytes(32)),$service,$name,$email?:null,$phone,$text,$_POST['quantity']?:null,$_POST['desired_date']?:null,'new']);$company=cp_web_company();$wa=cp_web_wa($company,"Hola Colibrí Print México, envié una solicitud para ".$title.". Mi nombre es ".$name.".");header('Location: '.cp_web_route('/solicitar-cotizacion.php',['servicio'=>$service,'enviado'=>1,'wa'=>$wa]));exit;
+}
+?>
+<!doctype html><html lang="es-MX"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cotizar <?=cp_web_h($title)?></title><link rel="stylesheet" href="<?=cp_web_h(cp_web_route('/assets/css/services-v1.css'))?>"></head><body><main class="sv-wrap"><p class="sv-kicker">SOLICITUD</p><h1><?=cp_web_h($title)?></h1><?php if(isset($_GET['enviado'])):?><div class="sv-success">Solicitud recibida. Puedes continuar por WhatsApp.</div><?php endif;?><form class="sv-form" method="post"><label>Nombre<input required name="customer_name"></label><label>Teléfono<input required name="phone"></label><label>Correo<input type="email" name="email"></label><label>Cantidad<input name="quantity"></label><label>Fecha deseada<input type="date" name="desired_date"></label><label>Cuéntanos tu proyecto<textarea name="request_text" required rows="7"></textarea></label><button>Enviar solicitud →</button></form></main></body></html>

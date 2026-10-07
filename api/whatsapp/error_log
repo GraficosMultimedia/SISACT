@@ -1,0 +1,12 @@
+[23-Sep-2026 23:27:47 America/Mexico_City] PHP Fatal error:  Uncaught RuntimeException: No se encontró un config.php válido. in /home2/colibrip/public_html/api/whatsapp/lib/bootstrap.php:77
+Stack trace:
+#0 /home2/colibrip/public_html/api/whatsapp/lib/bootstrap.php(85): load_colibri_config()
+#1 /home2/colibrip/public_html/api/whatsapp/webhook.php(6): app_config()
+#2 {main}
+  thrown in /home2/colibrip/public_html/api/whatsapp/lib/bootstrap.php on line 77
+[23-Sep-2026 23:28:00 America/Mexico_City] PHP Fatal error:  Uncaught RuntimeException: No se encontró un config.php válido. in /home2/colibrip/public_html/api/whatsapp/lib/bootstrap.php:77
+Stack trace:
+#0 /home2/colibrip/public_html/api/whatsapp/lib/bootstrap.php(85): load_colibri_config()
+#1 /home2/colibrip/public_html/api/whatsapp/webhook.php(6): app_config()
+#2 {main}
+  thrown in /home2/colibrip/public_html/api/whatsapp/lib/bootstrap.php on line 77

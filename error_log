@@ -1,0 +1,301 @@
+[26-Sep-2026 03:21:35 America/Mexico_City] PHP Warning:  require_once(/home2/colibrip/public_html/../config/runtime.php): Failed to open stream: No such file or directory in /home2/colibrip/public_html/solicitar_impresion.php on line 3
+[26-Sep-2026 03:21:35 America/Mexico_City] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/colibrip/public_html/../config/runtime.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home2/colibrip/public_html/solicitar_impresion.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/solicitar_impresion.php on line 3
+[26-Sep-2026 03:22:01 America/Mexico_City] PHP Warning:  require_once(/home2/colibrip/public_html/../config/runtime.php): Failed to open stream: No such file or directory in /home2/colibrip/public_html/solicitar_impresion.php on line 3
+[26-Sep-2026 03:22:01 America/Mexico_City] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/colibrip/public_html/../config/runtime.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home2/colibrip/public_html/solicitar_impresion.php:3
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/solicitar_impresion.php on line 3
+[26-Sep-2026 03:27:17 America/Chihuahua] PHP Warning:  require_once(/home2/colibrip/public_html/../includes/print_pricing.php): Failed to open stream: No such file or directory in /home2/colibrip/public_html/solicitar_impresion.php on line 4
+[26-Sep-2026 03:27:17 America/Chihuahua] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/colibrip/public_html/../includes/print_pricing.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home2/colibrip/public_html/solicitar_impresion.php:4
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/solicitar_impresion.php on line 4
+[26-Sep-2026 03:27:31 America/Chihuahua] PHP Warning:  require_once(/home2/colibrip/public_html/../includes/print_pricing.php): Failed to open stream: No such file or directory in /home2/colibrip/public_html/solicitar_impresion.php on line 4
+[26-Sep-2026 03:27:31 America/Chihuahua] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/colibrip/public_html/../includes/print_pricing.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home2/colibrip/public_html/solicitar_impresion.php:4
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/solicitar_impresion.php on line 4
+[26-Sep-2026 03:33:15 America/Chihuahua] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'unit_label' in 'field list' in /home2/colibrip/public_html/includes/print_pricing.php:9
+Stack trace:
+#0 /home2/colibrip/public_html/includes/print_pricing.php(9): PDO->query('SELECT id,name,...')
+#1 /home2/colibrip/public_html/solicitar_impresion.php(6): print_price_catalog()
+#2 {main}
+  thrown in /home2/colibrip/public_html/includes/print_pricing.php on line 9
+[26-Sep-2026 03:40:14 America/Chihuahua] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'unit_label' in 'field list' in /home2/colibrip/public_html/includes/print_pricing.php:9
+Stack trace:
+#0 /home2/colibrip/public_html/includes/print_pricing.php(9): PDO->query('SELECT id,name,...')
+#1 /home2/colibrip/public_html/solicitar_impresion.php(6): print_price_catalog()
+#2 {main}
+  thrown in /home2/colibrip/public_html/includes/print_pricing.php on line 9
+[26-Sep-2026 03:40:52 America/Chihuahua] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'unit_label' in 'field list' in /home2/colibrip/public_html/includes/print_pricing.php:9
+Stack trace:
+#0 /home2/colibrip/public_html/includes/print_pricing.php(9): PDO->query('SELECT id,name,...')
+#1 /home2/colibrip/public_html/solicitar_impresion.php(6): print_price_catalog()
+#2 {main}
+  thrown in /home2/colibrip/public_html/includes/print_pricing.php on line 9
+[26-Sep-2026 03:45:27 America/Chihuahua] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'unit_label' in 'field list' in /home2/colibrip/public_html/includes/print_pricing.php:9
+Stack trace:
+#0 /home2/colibrip/public_html/includes/print_pricing.php(9): PDO->query('SELECT id,name,...')
+#1 /home2/colibrip/public_html/solicitar_impresion.php(6): print_price_catalog()
+#2 {main}
+  thrown in /home2/colibrip/public_html/includes/print_pricing.php on line 9
+[26-Sep-2026 03:48:48 America/Chihuahua] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'r.service_type' in 'where clause' in /home2/colibrip/public_html/includes/print_pricing.php:65
+Stack trace:
+#0 /home2/colibrip/public_html/includes/print_pricing.php(65): PDO->prepare('SELECT\n        ...')
+#1 /home2/colibrip/public_html/includes/print_pricing.php(80): print_find_price(Array)
+#2 /home2/colibrip/public_html/solicitar_impresion.php(8): print_calculate(Array)
+#3 {main}
+  thrown in /home2/colibrip/public_html/includes/print_pricing.php on line 65
+[26-Sep-2026 05:16:25 America/Mexico_City] PHP Warning:  session_name(): session.name &quot;&quot; must not be numeric, empty, contain null bytes or any of the following characters &quot;=,;.[ \t\r\n\013\014&quot; in /home2/colibrip/public_html/config/runtime.php on line 22
+[26-Sep-2026 05:16:25 America/Mexico_City] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2019] Unknown character set in /home2/colibrip/public_html/config/runtime.php:30
+Stack trace:
+#0 /home2/colibrip/public_html/config/runtime.php(30): PDO->__construct('mysql:host=;dbn...', '', Object(SensitiveParameterValue), Array)
+#1 /home2/colibrip/public_html/index.php(7): db()
+#2 {main}
+  thrown in /home2/colibrip/public_html/config/runtime.php on line 30
+[26-Sep-2026 05:17:27 America/Mexico_City] PHP Warning:  session_name(): session.name &quot;&quot; must not be numeric, empty, contain null bytes or any of the following characters &quot;=,;.[ \t\r\n\013\014&quot; in /home2/colibrip/public_html/config/runtime.php on line 22
+[26-Sep-2026 05:17:27 America/Mexico_City] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2019] Unknown character set in /home2/colibrip/public_html/config/runtime.php:30
+Stack trace:
+#0 /home2/colibrip/public_html/config/runtime.php(30): PDO->__construct('mysql:host=;dbn...', '', Object(SensitiveParameterValue), Array)
+#1 /home2/colibrip/public_html/index.php(7): db()
+#2 {main}
+  thrown in /home2/colibrip/public_html/config/runtime.php on line 30
+[26-Sep-2026 05:17:33 America/Mexico_City] PHP Warning:  session_name(): session.name &quot;&quot; must not be numeric, empty, contain null bytes or any of the following characters &quot;=,;.[ \t\r\n\013\014&quot; in /home2/colibrip/public_html/config/runtime.php on line 22
+[26-Sep-2026 05:17:33 America/Mexico_City] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2019] Unknown character set in /home2/colibrip/public_html/config/runtime.php:30
+Stack trace:
+#0 /home2/colibrip/public_html/config/runtime.php(30): PDO->__construct('mysql:host=;dbn...', '', Object(SensitiveParameterValue), Array)
+#1 /home2/colibrip/public_html/index.php(7): db()
+#2 {main}
+  thrown in /home2/colibrip/public_html/config/runtime.php on line 30
+[26-Sep-2026 05:17:33 America/Mexico_City] PHP Warning:  session_name(): session.name &quot;&quot; must not be numeric, empty, contain null bytes or any of the following characters &quot;=,;.[ \t\r\n\013\014&quot; in /home2/colibrip/public_html/config/runtime.php on line 22
+[26-Sep-2026 05:17:33 America/Mexico_City] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2019] Unknown character set in /home2/colibrip/public_html/config/runtime.php:30
+Stack trace:
+#0 /home2/colibrip/public_html/config/runtime.php(30): PDO->__construct('mysql:host=;dbn...', '', Object(SensitiveParameterValue), Array)
+#1 /home2/colibrip/public_html/index.php(7): db()
+#2 {main}
+  thrown in /home2/colibrip/public_html/config/runtime.php on line 30
+[26-Sep-2026 05:17:34 America/Mexico_City] PHP Warning:  session_name(): session.name &quot;&quot; must not be numeric, empty, contain null bytes or any of the following characters &quot;=,;.[ \t\r\n\013\014&quot; in /home2/colibrip/public_html/config/runtime.php on line 22
+[26-Sep-2026 05:17:34 America/Mexico_City] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2019] Unknown character set in /home2/colibrip/public_html/config/runtime.php:30
+Stack trace:
+#0 /home2/colibrip/public_html/config/runtime.php(30): PDO->__construct('mysql:host=;dbn...', '', Object(SensitiveParameterValue), Array)
+#1 /home2/colibrip/public_html/index.php(7): db()
+#2 {main}
+  thrown in /home2/colibrip/public_html/config/runtime.php on line 30
+[26-Sep-2026 05:21:20 America/Mexico_City] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO) in /home2/colibrip/public_html/config/config.php:21
+Stack trace:
+#0 /home2/colibrip/public_html/config/config.php(21): PDO->__construct('mysql:host=loca...', 'root', Object(SensitiveParameterValue), Array)
+#1 /home2/colibrip/public_html/solicitar_impresion.php(5): cp_db()
+#2 {main}
+  thrown in /home2/colibrip/public_html/config/config.php on line 21
+[26-Sep-2026 05:21:22 America/Mexico_City] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: NO) in /home2/colibrip/public_html/config/config.php:21
+Stack trace:
+#0 /home2/colibrip/public_html/config/config.php(21): PDO->__construct('mysql:host=loca...', 'root', Object(SensitiveParameterValue), Array)
+#1 /home2/colibrip/public_html/solicitar_impresion.php(5): cp_db()
+#2 {main}
+  thrown in /home2/colibrip/public_html/config/config.php on line 21
+[26-Sep-2026 05:21:30 America/Mexico_City] PHP Warning:  session_name(): session.name &quot;&quot; must not be numeric, empty, contain null bytes or any of the following characters &quot;=,;.[ \t\r\n\013\014&quot; in /home2/colibrip/public_html/config/runtime.php on line 22
+[26-Sep-2026 05:21:30 America/Mexico_City] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2019] Unknown character set in /home2/colibrip/public_html/config/runtime.php:30
+Stack trace:
+#0 /home2/colibrip/public_html/config/runtime.php(30): PDO->__construct('mysql:host=;dbn...', '', Object(SensitiveParameterValue), Array)
+#1 /home2/colibrip/public_html/index.php(7): db()
+#2 {main}
+  thrown in /home2/colibrip/public_html/config/runtime.php on line 30
+[26-Sep-2026 05:22:48 America/Mexico_City] PHP Warning:  session_name(): session.name &quot;&quot; must not be numeric, empty, contain null bytes or any of the following characters &quot;=,;.[ \t\r\n\013\014&quot; in /home2/colibrip/public_html/config/runtime.php on line 22
+[26-Sep-2026 05:22:48 America/Mexico_City] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2019] Unknown character set in /home2/colibrip/public_html/config/runtime.php:30
+Stack trace:
+#0 /home2/colibrip/public_html/config/runtime.php(30): PDO->__construct('mysql:host=;dbn...', '', Object(SensitiveParameterValue), Array)
+#1 /home2/colibrip/public_html/index.php(7): db()
+#2 {main}
+  thrown in /home2/colibrip/public_html/config/runtime.php on line 30
+[26-Sep-2026 05:24:47 America/Mexico_City] PHP Warning:  session_name(): session.name &quot;&quot; must not be numeric, empty, contain null bytes or any of the following characters &quot;=,;.[ \t\r\n\013\014&quot; in /home2/colibrip/public_html/config/runtime.php on line 22
+[26-Sep-2026 05:24:47 America/Mexico_City] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2019] Unknown character set in /home2/colibrip/public_html/config/runtime.php:30
+Stack trace:
+#0 /home2/colibrip/public_html/config/runtime.php(30): PDO->__construct('mysql:host=;dbn...', '', Object(SensitiveParameterValue), Array)
+#1 /home2/colibrip/public_html/index.php(7): db()
+#2 {main}
+  thrown in /home2/colibrip/public_html/config/runtime.php on line 30
+[26-Sep-2026 05:24:50 America/Mexico_City] PHP Warning:  session_name(): session.name &quot;&quot; must not be numeric, empty, contain null bytes or any of the following characters &quot;=,;.[ \t\r\n\013\014&quot; in /home2/colibrip/public_html/config/runtime.php on line 22
+[26-Sep-2026 05:24:50 America/Mexico_City] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2019] Unknown character set in /home2/colibrip/public_html/config/runtime.php:30
+Stack trace:
+#0 /home2/colibrip/public_html/config/runtime.php(30): PDO->__construct('mysql:host=;dbn...', '', Object(SensitiveParameterValue), Array)
+#1 /home2/colibrip/public_html/index.php(7): db()
+#2 {main}
+  thrown in /home2/colibrip/public_html/config/runtime.php on line 30
+[26-Sep-2026 05:26:28 America/Mexico_City] PHP Warning:  session_name(): session.name &quot;&quot; must not be numeric, empty, contain null bytes or any of the following characters &quot;=,;.[ \t\r\n\013\014&quot; in /home2/colibrip/public_html/config/runtime.php on line 22
+[26-Sep-2026 05:26:28 America/Mexico_City] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2019] Unknown character set in /home2/colibrip/public_html/config/runtime.php:30
+Stack trace:
+#0 /home2/colibrip/public_html/config/runtime.php(30): PDO->__construct('mysql:host=;dbn...', '', Object(SensitiveParameterValue), Array)
+#1 /home2/colibrip/public_html/index.php(7): db()
+#2 {main}
+  thrown in /home2/colibrip/public_html/config/runtime.php on line 30
+[26-Sep-2026 05:31:25 America/Mexico_City] PHP Warning:  session_name(): session.name &quot;&quot; must not be numeric, empty, contain null bytes or any of the following characters &quot;=,;.[ \t\r\n\013\014&quot; in /home2/colibrip/public_html/config/runtime.php on line 22
+[26-Sep-2026 05:31:25 America/Mexico_City] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2019] Unknown character set in /home2/colibrip/public_html/config/runtime.php:30
+Stack trace:
+#0 /home2/colibrip/public_html/config/runtime.php(30): PDO->__construct('mysql:host=;dbn...', '', Object(SensitiveParameterValue), Array)
+#1 /home2/colibrip/public_html/index.php(7): db()
+#2 {main}
+  thrown in /home2/colibrip/public_html/config/runtime.php on line 30
+[26-Sep-2026 05:33:55 America/Mexico_City] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in /home2/colibrip/public_html/config/config.php on line 40
+[26-Sep-2026 05:34:29 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function cp_db() in /home2/colibrip/public_html/solicitar_impresion.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/solicitar_impresion.php on line 5
+[26-Sep-2026 05:34:32 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to undefined function cp_db() in /home2/colibrip/public_html/solicitar_impresion.php:5
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/solicitar_impresion.php on line 5
+[26-Sep-2026 08:31:07 America/Chihuahua] PHP Fatal error:  Uncaught Error: Call to undefined function cp_meta() in /home2/colibrip/public_html/contacto.php:1
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/contacto.php on line 1
+[26-Sep-2026 16:47:07 America/Mexico_City] PHP Warning:  require(/home2/colibrip/public_html/config.php): Failed to open stream: No such file or directory in /home2/colibrip/public_html/bootstrap.php on line 4
+[26-Sep-2026 16:47:07 America/Mexico_City] PHP Warning:  require(/home2/colibrip/public_html/config.php): Failed to open stream: No such file or directory in /home2/colibrip/public_html/bootstrap.php on line 4
+[26-Sep-2026 16:47:07 America/Mexico_City] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/colibrip/public_html/config.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home2/colibrip/public_html/bootstrap.php:4
+Stack trace:
+#0 /home2/colibrip/public_html/index.php(3): require()
+#1 {main}
+  thrown in /home2/colibrip/public_html/bootstrap.php on line 4
+[26-Sep-2026 16:47:10 America/Mexico_City] PHP Warning:  require(/home2/colibrip/public_html/config.php): Failed to open stream: No such file or directory in /home2/colibrip/public_html/bootstrap.php on line 4
+[26-Sep-2026 16:47:10 America/Mexico_City] PHP Warning:  require(/home2/colibrip/public_html/config.php): Failed to open stream: No such file or directory in /home2/colibrip/public_html/bootstrap.php on line 4
+[26-Sep-2026 16:47:10 America/Mexico_City] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/colibrip/public_html/config.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home2/colibrip/public_html/bootstrap.php:4
+Stack trace:
+#0 /home2/colibrip/public_html/index.php(3): require()
+#1 {main}
+  thrown in /home2/colibrip/public_html/bootstrap.php on line 4
+[26-Sep-2026 16:47:15 America/Mexico_City] PHP Warning:  require(/home2/colibrip/public_html/config.php): Failed to open stream: No such file or directory in /home2/colibrip/public_html/bootstrap.php on line 4
+[26-Sep-2026 16:47:15 America/Mexico_City] PHP Warning:  require(/home2/colibrip/public_html/config.php): Failed to open stream: No such file or directory in /home2/colibrip/public_html/bootstrap.php on line 4
+[26-Sep-2026 16:47:15 America/Mexico_City] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/colibrip/public_html/config.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home2/colibrip/public_html/bootstrap.php:4
+Stack trace:
+#0 /home2/colibrip/public_html/index.php(3): require()
+#1 {main}
+  thrown in /home2/colibrip/public_html/bootstrap.php on line 4
+[26-Sep-2026 16:47:22 America/Mexico_City] PHP Warning:  require(/home2/colibrip/public_html/config.php): Failed to open stream: No such file or directory in /home2/colibrip/public_html/bootstrap.php on line 4
+[26-Sep-2026 16:47:22 America/Mexico_City] PHP Warning:  require(/home2/colibrip/public_html/config.php): Failed to open stream: No such file or directory in /home2/colibrip/public_html/bootstrap.php on line 4
+[26-Sep-2026 16:47:22 America/Mexico_City] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/colibrip/public_html/config.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home2/colibrip/public_html/bootstrap.php:4
+Stack trace:
+#0 /home2/colibrip/public_html/index.php(3): require()
+#1 {main}
+  thrown in /home2/colibrip/public_html/bootstrap.php on line 4
+[26-Sep-2026 16:47:22 America/Mexico_City] PHP Warning:  require(/home2/colibrip/public_html/config.php): Failed to open stream: No such file or directory in /home2/colibrip/public_html/bootstrap.php on line 4
+[26-Sep-2026 16:47:22 America/Mexico_City] PHP Warning:  require(/home2/colibrip/public_html/config.php): Failed to open stream: No such file or directory in /home2/colibrip/public_html/bootstrap.php on line 4
+[26-Sep-2026 16:47:22 America/Mexico_City] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/colibrip/public_html/config.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home2/colibrip/public_html/bootstrap.php:4
+Stack trace:
+#0 /home2/colibrip/public_html/index.php(3): require()
+#1 {main}
+  thrown in /home2/colibrip/public_html/bootstrap.php on line 4
+[26-Sep-2026 16:48:01 America/Chihuahua] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1045] Access denied for user 'TU_USUARIO_DB'@'localhost' (using password: YES) in /home2/colibrip/public_html/bootstrap.php:13
+Stack trace:
+#0 /home2/colibrip/public_html/bootstrap.php(13): PDO->__construct('mysql:host=loca...', 'TU_USUARIO_DB', Object(SensitiveParameterValue), Array)
+#1 /home2/colibrip/public_html/index.php(4): db()
+#2 {main}
+  thrown in /home2/colibrip/public_html/bootstrap.php on line 13
+[26-Sep-2026 16:48:04 America/Chihuahua] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1045] Access denied for user 'TU_USUARIO_DB'@'localhost' (using password: YES) in /home2/colibrip/public_html/bootstrap.php:13
+Stack trace:
+#0 /home2/colibrip/public_html/bootstrap.php(13): PDO->__construct('mysql:host=loca...', 'TU_USUARIO_DB', Object(SensitiveParameterValue), Array)
+#1 /home2/colibrip/public_html/index.php(4): db()
+#2 {main}
+  thrown in /home2/colibrip/public_html/bootstrap.php on line 13
+[26-Sep-2026 16:48:06 America/Chihuahua] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1045] Access denied for user 'TU_USUARIO_DB'@'localhost' (using password: YES) in /home2/colibrip/public_html/bootstrap.php:13
+Stack trace:
+#0 /home2/colibrip/public_html/bootstrap.php(13): PDO->__construct('mysql:host=loca...', 'TU_USUARIO_DB', Object(SensitiveParameterValue), Array)
+#1 /home2/colibrip/public_html/index.php(4): db()
+#2 {main}
+  thrown in /home2/colibrip/public_html/bootstrap.php on line 13
+[26-Sep-2026 16:48:06 America/Chihuahua] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1045] Access denied for user 'TU_USUARIO_DB'@'localhost' (using password: YES) in /home2/colibrip/public_html/bootstrap.php:13
+Stack trace:
+#0 /home2/colibrip/public_html/bootstrap.php(13): PDO->__construct('mysql:host=loca...', 'TU_USUARIO_DB', Object(SensitiveParameterValue), Array)
+#1 /home2/colibrip/public_html/index.php(4): db()
+#2 {main}
+  thrown in /home2/colibrip/public_html/bootstrap.php on line 13
+[26-Sep-2026 16:48:07 America/Chihuahua] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1045] Access denied for user 'TU_USUARIO_DB'@'localhost' (using password: YES) in /home2/colibrip/public_html/bootstrap.php:13
+Stack trace:
+#0 /home2/colibrip/public_html/bootstrap.php(13): PDO->__construct('mysql:host=loca...', 'TU_USUARIO_DB', Object(SensitiveParameterValue), Array)
+#1 /home2/colibrip/public_html/index.php(4): db()
+#2 {main}
+  thrown in /home2/colibrip/public_html/bootstrap.php on line 13
+[26-Sep-2026 16:48:25 America/Chihuahua] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1045] Access denied for user 'TU_USUARIO_DB'@'localhost' (using password: YES) in /home2/colibrip/public_html/bootstrap.php:13
+Stack trace:
+#0 /home2/colibrip/public_html/bootstrap.php(13): PDO->__construct('mysql:host=loca...', 'TU_USUARIO_DB', Object(SensitiveParameterValue), Array)
+#1 /home2/colibrip/public_html/index.php(4): db()
+#2 {main}
+  thrown in /home2/colibrip/public_html/bootstrap.php on line 13
+[27-Sep-2026 07:15:08 America/Chihuahua] PHP Warning:  require_once(/home2/colibrip/public_html/includes/public_header.php): Failed to open stream: No such file or directory in /home2/colibrip/public_html/index.php on line 247
+[27-Sep-2026 07:15:08 America/Chihuahua] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/colibrip/public_html/includes/public_header.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home2/colibrip/public_html/index.php:247
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/index.php on line 247
+[28-Sep-2026 16:38:32 America/Chihuahua] PHP Fatal error:  Uncaught Error: Call to undefined function tracking_cfdi_for_order() in /home2/colibrip/public_html/seguimiento.php:23
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/seguimiento.php on line 23
+[28-Sep-2026 16:38:37 America/Chihuahua] PHP Fatal error:  Uncaught Error: Call to undefined function tracking_cfdi_for_order() in /home2/colibrip/public_html/seguimiento.php:23
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/seguimiento.php on line 23
+[28-Sep-2026 16:51:23 America/Chihuahua] PHP Fatal error:  Uncaught Error: Call to undefined function tracking_cfdi_for_order() in /home2/colibrip/public_html/seguimiento.php:23
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/seguimiento.php on line 23
+[28-Sep-2026 16:51:25 America/Chihuahua] PHP Fatal error:  Uncaught Error: Call to undefined function tracking_cfdi_for_order() in /home2/colibrip/public_html/seguimiento.php:23
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/seguimiento.php on line 23
+[28-Sep-2026 16:51:27 America/Chihuahua] PHP Fatal error:  Uncaught Error: Call to undefined function tracking_cfdi_for_order() in /home2/colibrip/public_html/seguimiento.php:23
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/seguimiento.php on line 23
+[28-Sep-2026 16:53:20 America/Chihuahua] PHP Fatal error:  Uncaught Error: Call to undefined function tracking_cfdi_for_order() in /home2/colibrip/public_html/seguimiento.php:23
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/seguimiento.php on line 23
+[28-Sep-2026 16:53:37 America/Chihuahua] PHP Fatal error:  Uncaught Error: Call to undefined function tracking_cfdi_for_order() in /home2/colibrip/public_html/seguimiento.php:23
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/seguimiento.php on line 23
+[28-Sep-2026 16:53:44 America/Chihuahua] PHP Fatal error:  Uncaught Error: Call to undefined function tracking_cfdi_for_order() in /home2/colibrip/public_html/seguimiento.php:23
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/seguimiento.php on line 23
+[28-Sep-2026 17:02:11 America/Chihuahua] PHP Fatal error:  Uncaught Error: Call to undefined function tracking_cfdi_for_order() in /home2/colibrip/public_html/seguimiento.php:23
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/seguimiento.php on line 23
+[28-Sep-2026 17:02:13 America/Chihuahua] PHP Fatal error:  Uncaught Error: Call to undefined function tracking_cfdi_for_order() in /home2/colibrip/public_html/seguimiento.php:23
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/seguimiento.php on line 23
+[28-Sep-2026 17:02:15 America/Chihuahua] PHP Fatal error:  Uncaught Error: Call to undefined function tracking_cfdi_for_order() in /home2/colibrip/public_html/seguimiento.php:23
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/seguimiento.php on line 23
+[28-Sep-2026 17:02:18 America/Chihuahua] PHP Fatal error:  Uncaught Error: Call to undefined function tracking_cfdi_for_order() in /home2/colibrip/public_html/seguimiento.php:23
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/seguimiento.php on line 23
+[28-Sep-2026 17:02:22 America/Chihuahua] PHP Fatal error:  Uncaught Error: Call to undefined function tracking_cfdi_for_order() in /home2/colibrip/public_html/seguimiento.php:23
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/seguimiento.php on line 23
+[28-Sep-2026 17:02:58 America/Chihuahua] PHP Fatal error:  Uncaught Error: Call to undefined function tracking_cfdi_for_order() in /home2/colibrip/public_html/seguimiento.php:23
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/seguimiento.php on line 23
+[28-Sep-2026 17:03:00 America/Chihuahua] PHP Fatal error:  Uncaught Error: Call to undefined function tracking_cfdi_for_order() in /home2/colibrip/public_html/seguimiento.php:23
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/seguimiento.php on line 23
+[28-Sep-2026 17:03:01 America/Chihuahua] PHP Fatal error:  Uncaught Error: Call to undefined function tracking_cfdi_for_order() in /home2/colibrip/public_html/seguimiento.php:23
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/seguimiento.php on line 23
+[01-Oct-2026 13:01:40 America/Chihuahua] PHP Fatal error:  Uncaught Error: Call to undefined function cp_meta() in /home2/colibrip/public_html/contacto.php:1
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/contacto.php on line 1
+[01-Oct-2026 13:01:59 America/Chihuahua] PHP Fatal error:  Uncaught Error: Call to undefined function cp_meta() in /home2/colibrip/public_html/contacto.php:1
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/contacto.php on line 1

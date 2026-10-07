@@ -1,0 +1,209 @@
+
+/*
+ * Colibrí Print México · Legibilidad V1
+ * Override seguro sobre home-v4.css
+ * Objetivo: lectura cómoda en PC, tablet y móvil sin cambiar la identidad visual.
+ */
+
+html{font-size:16px}
+
+.v4-topbar-inner{font-size:12px}
+.v4-top-right{font-size:11px}
+
+.v4-brand-copy strong{font-size:20px}
+.v4-brand-copy small{font-size:9px}
+
+.v4-main-nav{font-size:13px}
+.v4-main-nav a{padding:9px 0}
+.v4-nav-cta{font-size:13px;padding:14px 18px}
+
+.v4-kicker{font-size:12px;letter-spacing:.16em}
+.v4-lead{font-size:17px;line-height:1.72}
+.v4-btn{font-size:14px;padding:14px 19px}
+.v4-trust-row{font-size:11px;line-height:1.4}
+
+.v4-art-caption small{font-size:9px}
+.v4-art-caption strong{font-size:14px}
+.v4-badge{font-size:10px}
+.v4-badge b{font-size:12px}
+
+.v4-heading>div>p:not(.v4-kicker){font-size:16px;line-height:1.72}
+.v4-link{font-size:13px}
+.v4-link span{font-size:19px}
+
+.v4-service-note b{font-size:10px}
+.v4-service-note span{font-size:13px}
+.v4-service-card h3{font-size:21px;line-height:1.12}
+.v4-service-card p{font-size:14px;line-height:1.72}
+.v4-service-card a{font-size:12px}
+
+.v4-category-card strong{font-size:19px}
+.v4-category-card span{font-size:12px;line-height:1.45}
+
+.v4-product-body>small{font-size:10px}
+.v4-product-body h3{font-size:21px;line-height:1.12}
+.v4-product-body p{font-size:13px;line-height:1.65}
+.v4-product-bottom strong{font-size:14px}
+.v4-product-bottom a{font-size:11px}
+
+.v4-promo-body small{font-size:10px}
+.v4-promo-body h3{font-size:20px}
+.v4-promo-body p{font-size:13px;line-height:1.65}
+.v4-promo-body strong{font-size:21px}
+
+.v4-process-copy>p:not(.v4-kicker){font-size:16px;line-height:1.72}
+.v4-step strong{font-size:18px}
+.v4-step span{font-size:12px;line-height:1.45}
+.v4-step>b{font-size:34px}
+
+.v4-about p:not(.v4-kicker){font-size:16px;line-height:1.72}
+.v4-about-list b{font-size:11px}
+.v4-about-list span{font-size:12px;line-height:1.45}
+
+.v4-contact p:not(.v4-kicker){font-size:16px;line-height:1.65}
+
+.v4-footer-brand p{font-size:12px;line-height:1.75}
+.v4-footer h3{font-size:12px}
+.v4-footer>div>div>a,.v4-footer p{font-size:12px;line-height:1.9}
+.v4-footer-bottom{font-size:11px}
+
+/* 1080 px: keep the nav readable before switching to the mobile menu. */
+@media (max-width:1080px){
+  .v4-main-nav a{font-size:12px}
+  .v4-main-nav{gap:18px}
+}
+
+/* 820 px: mobile/tablet header. */
+@media (max-width:820px){
+  .v4-top-right{display:none}
+  .v4-topbar-inner{min-height:38px}
+  .v4-top-left{gap:15px;font-size:11px}
+  .v4-top-left a{font-size:11px}
+
+  .v4-nav{min-height:78px}
+  .v4-brand-logo{width:152px;height:54px}
+
+  .v4-menu{font-size:13px;padding:11px 14px}
+
+  .v4-main-nav{gap:4px}
+  .v4-main-nav a{font-size:14px;padding:13px 10px;line-height:1.2}
+  .v4-nav-cta{font-size:14px;padding:14px 16px}
+
+  .v4-hero-inner{padding-top:40px;padding-bottom:34px}
+  .v4-kicker{font-size:12px}
+  .v4-lead{font-size:17px;line-height:1.7}
+  .v4-btn{font-size:14px;padding:14px 18px}
+  .v4-trust-row{font-size:10px}
+
+  .v4-heading>div>p:not(.v4-kicker){font-size:15px}
+  .v4-service-card h3{font-size:20px}
+  .v4-service-card p{font-size:13.5px}
+  .v4-service-card a{font-size:12px}
+  .v4-category-card strong{font-size:18px}
+  .v4-category-card span{font-size:12px}
+  .v4-product-body h3{font-size:20px}
+  .v4-product-body p{font-size:13px}
+  .v4-step strong{font-size:17px}
+  .v4-step span{font-size:12px}
+}
+
+/* 560 px: phone-first readability. */
+@media (max-width:560px){
+  .v4-container{width:min(100% - 28px,1180px)}
+
+  .v4-topbar-inner{
+    justify-content:flex-start;
+    padding-inline:0;
+  }
+  .v4-top-left{
+    gap:12px;
+    font-size:11px;
+    white-space:nowrap;
+    overflow:hidden;
+  }
+  .v4-top-left a{font-size:11px}
+  .v4-top-left a:nth-child(2){display:none}
+  .v4-top-left span{display:none}
+
+  .v4-nav{min-height:72px}
+  .v4-brand-logo{width:142px;height:50px}
+  .v4-menu{font-size:12px;padding:10px 13px}
+
+  .v4-main-nav a{
+    font-size:15px;
+    padding:14px 10px;
+  }
+  .v4-nav-cta{
+    font-size:15px;
+    padding:14px 16px;
+  }
+
+  .v4-hero{padding-bottom:18px}
+  .v4-hero-inner{padding-top:36px}
+  .v4-kicker{font-size:11.5px;line-height:1.35}
+  .v4-hero h1 span{font-size:clamp(30px,8.5vw,42px)}
+  .v4-hero h1 strong{font-size:clamp(67px,18vw,96px)}
+  .v4-hero h1 small{font-size:clamp(24px,7vw,33px)}
+  .v4-lead{font-size:16px;line-height:1.72;margin-top:20px}
+  .v4-actions{gap:10px}
+  .v4-btn{min-height:48px;font-size:14px;padding:13px 17px}
+  .v4-trust-row{gap:11px 14px;font-size:10px}
+
+  .v4-section{padding:72px 0}
+  .v4-heading{margin-bottom:28px}
+  .v4-heading h2{font-size:clamp(40px,11vw,56px)}
+  .v4-heading>div>p:not(.v4-kicker){font-size:15px;line-height:1.72}
+  .v4-link{font-size:13px}
+
+  .v4-service-card h3{font-size:20px}
+  .v4-service-card p{font-size:14px;line-height:1.7}
+  .v4-service-card a{font-size:12px}
+
+  .v4-category-card{grid-template-columns:100px 1fr;min-height:128px}
+  .v4-category-card>div:last-child{padding:18px}
+  .v4-category-card strong{font-size:18px}
+  .v4-category-card span{font-size:12px}
+
+  .v4-product-image{height:245px}
+  .v4-product-body{padding:17px}
+  .v4-product-body h3{font-size:20px}
+  .v4-product-body p{font-size:13px;line-height:1.65}
+  .v4-product-bottom strong{font-size:14px}
+  .v4-product-bottom a{font-size:11px}
+
+  .v4-promo-body{padding:18px}
+  .v4-promo-body h3{font-size:20px}
+  .v4-promo-body p{font-size:13px}
+
+  .v4-process-grid{gap:32px}
+  .v4-process-copy h2{font-size:clamp(40px,11vw,55px)}
+  .v4-process-copy>p:not(.v4-kicker){font-size:15px}
+  .v4-step{grid-template-columns:44px 1fr auto;padding:17px}
+  .v4-step>b{font-size:29px}
+  .v4-step strong{font-size:17px}
+  .v4-step span{font-size:12px}
+
+  .v4-about h2{font-size:clamp(40px,11vw,55px)}
+  .v4-about p:not(.v4-kicker){font-size:15px}
+  .v4-about-list b{font-size:11px}
+  .v4-about-list span{font-size:12px}
+
+  .v4-contact h2{font-size:clamp(46px,12vw,64px)}
+  .v4-contact p:not(.v4-kicker){font-size:15px}
+
+  .v4-footer-grid{gap:26px}
+  .v4-footer-brand p{font-size:12px}
+  .v4-footer h3{font-size:12px}
+  .v4-footer>div>div>a,.v4-footer p{font-size:12px}
+  .v4-footer-bottom{font-size:11px;line-height:1.5}
+}
+
+/* Respect enlarged text settings / zoom. */
+@media (min-width:1400px){
+  .v4-main-nav{font-size:13px}
+  .v4-heading>div>p:not(.v4-kicker){font-size:16px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important}
+}

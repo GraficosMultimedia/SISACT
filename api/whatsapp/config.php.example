@@ -1,0 +1,35 @@
+<?php
+declare(strict_types=1);
+
+/*
+ * Copia este archivo como config.php y completa los valores.
+ * NO publiques este archivo si contiene credenciales reales.
+ */
+
+return [
+    'app' => [
+        'name' => 'Colibrí Print México',
+        'short_name' => 'Colibrí Print',
+        'base_url' => '',
+        'timezone' => 'America/Chihuahua',
+    ],
+
+    'db' => [
+        'host' => 'localhost',
+        'name' => 'colibrip_abcsistema',
+        'user' => 'colibrip_siscar',
+        'pass' => '',
+        'charset' => 'utf8mb4',
+    ],
+
+    'whapi' => [
+        'base_url' => 'https://gate.whapi.cloud',
+        'token' => 'PEGA_AQUI_TU_TOKEN_WHAPI',
+        'channel_id' => 'PEGA_AQUI_TU_CHANNEL_ID',
+        'timeout' => 15,
+    ],
+
+    'security' => [
+        'session_name' => 'colibri_admin',
+    ],
+];

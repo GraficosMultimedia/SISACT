@@ -1,0 +1,329 @@
+
+/* ============================================================
+   Colibrí Print · Control de metraje · Reorganización V1
+   Base exacta: backup19062026-657 / main
+   Solo presentación. No modifica cálculos, datos ni acciones.
+   ============================================================ */
+
+/* Base original de impresiones.css */
+.meter-toolbar{display:flex;justify-content:space-between;gap:20px;margin-bottom:22px}
+.meter-toolbar h2{margin:6px 0}
+.meter-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}
+.meter-kpi{padding:18px;border:1px solid var(--border);border-radius:14px;background:rgba(16,39,63,.62)}
+.meter-kpi span{display:block;color:#c8d7e7;font-size:12px}
+.meter-kpi strong{display:block;font-size:28px;margin-top:7px}
+.meter-kpi small{display:block;color:var(--muted);margin-top:5px}
+.meter-kpi.good strong{color:#75edc9}
+.meter-kpi.waste strong{color:#ffba74}
+.meter-grid-top{display:grid;grid-template-columns:minmax(320px,.8fr) minmax(420px,1.2fr);gap:18px;margin-bottom:18px}
+.meter-roll-card,.meter-register-card,.meter-history-card{min-width:0}
+.meter-balance{font-size:26px;font-weight:800;color:#75edc9}
+.meter-progress{height:10px;border-radius:10px;background:rgba(255,255,255,.08);overflow:hidden;margin:20px 0 10px}
+.meter-progress span{display:block;height:100%;background:#53d8ff;border-radius:10px}
+.meter-roll-form,.meter-form-grid{display:grid;gap:12px}
+.meter-roll-form{grid-template-columns:1fr 160px auto;align-items:end;margin-top:18px}
+.meter-form-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.field-wide{grid-column:span 2}
+.meter-preview{margin:16px 0;padding:15px;border-radius:12px;background:rgba(87,221,255,.07);border:1px solid rgba(87,221,255,.2)}
+.meter-preview span{display:block;font-size:11px;letter-spacing:.12em;color:#57ddff;text-transform:uppercase;font-weight:800}
+.meter-preview strong{display:block;font-size:30px;margin-top:4px}
+.meter-preview small{color:var(--muted);display:block;margin-top:4px}
+.table-wrap{overflow:auto}
+.meter-table{width:100%;border-collapse:collapse}
+.meter-table th,.meter-table td{padding:12px 10px;border-bottom:1px solid rgba(255,255,255,.08);text-align:left}
+.meter-table th{font-size:11px;letter-spacing:.08em;color:#92b7d3;text-transform:uppercase}
+.meter-status{display:inline-flex;align-items:center;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:800}
+.meter-status-good{background:rgba(117,237,201,.12);color:#75edc9}
+.meter-status-test{background:rgba(255,214,102,.12);color:#ffd666}
+.meter-status-cancelled{background:rgba(255,110,110,.12);color:#ff8c8c}
+.meter-status-damaged_jam{background:rgba(255,136,74,.12);color:#ffad78}
+.meter-status-reprint{background:rgba(144,122,255,.12);color:#c2b6ff}
+.empty{text-align:center;color:var(--muted);padding:28px!important}
+
+/* ============================================================
+   Jerarquía operativa
+   ============================================================ */
+
+body:has(.meter-grid-top) .content{
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:0;
+  min-width:0;
+}
+
+/* El header global de la plataforma queda primero. */
+body:has(.meter-grid-top) .content > .topbar{order:1}
+
+/* Orden de trabajo. */
+body:has(.meter-grid-top) .content > .meter-toolbar{order:10}
+body:has(.meter-grid-top) .content > .notice{order:20}
+body:has(.meter-grid-top) .content > .capture-launchbar{order:30}
+body:has(.meter-grid-top) .content > .meter-kpis{order:40}
+body:has(.meter-grid-top) .content > .meter-grid-top{order:50}
+body:has(.meter-grid-top) .content > .meter-analytics-grid{order:60}
+body:has(.meter-grid-top) .content > .meter-summary-card{order:70}
+body:has(.meter-grid-top) .content > .meter-history-card{order:80}
+
+/* Separación visual consistente. */
+body:has(.meter-grid-top) .meter-toolbar{margin-bottom:18px}
+body:has(.meter-grid-top) .meter-kpis{margin-bottom:18px}
+body:has(.meter-grid-top) .meter-grid-top{margin-bottom:18px}
+body:has(.meter-grid-top) .meter-summary-card{margin-bottom:18px}
+
+/* ============================================================
+   Zona de captura
+   ============================================================ */
+
+body:has(.meter-grid-top) .capture-launchbar{
+  position:relative;
+  min-height:82px;
+  padding:17px 19px;
+  margin:0 0 18px;
+  border:1px solid #2d6688;
+  border-radius:16px;
+  background:
+    radial-gradient(circle at 100% 0,rgba(34,213,255,.10),transparent 34%),
+    linear-gradient(110deg,#0a1725,#0d253b);
+  box-shadow:0 14px 34px rgba(0,0,0,.16);
+}
+
+body:has(.meter-grid-top) .capture-launchbar .eyebrow{
+  color:#57ddff;
+}
+
+body:has(.meter-grid-top) .capture-launchbar strong{
+  font-size:16px;
+}
+
+body:has(.meter-grid-top) .capture-open-btn{
+  min-height:46px;
+  padding-inline:20px;
+  box-shadow:0 10px 24px rgba(18,145,233,.18);
+}
+
+/* El rollo activo pasa a ser la estación de trabajo principal. */
+body:has(.meter-grid-top) .meter-grid-top{
+  grid-template-columns:minmax(0,1fr);
+  display:grid;
+}
+
+body:has(.meter-grid-top) .meter-roll-card{
+  border-color:#2b6385;
+  background:
+    radial-gradient(circle at 100% 0,rgba(34,213,255,.08),transparent 30%),
+    rgba(13,28,48,.94);
+  box-shadow:0 14px 34px rgba(0,0,0,.14);
+}
+
+body:has(.meter-grid-top) .meter-roll-card .section-heading{
+  align-items:flex-start;
+}
+
+body:has(.meter-grid-top) .meter-roll-card .section-heading h3{
+  font-size:20px;
+}
+
+body:has(.meter-grid-top) .meter-progress{
+  height:12px;
+  margin:18px 0 11px;
+}
+
+/* ============================================================
+   KPI: lectura rápida
+   ============================================================ */
+
+body:has(.meter-grid-top) .meter-kpi{
+  min-height:112px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+body:has(.meter-grid-top) .meter-kpi strong{
+  font-size:29px;
+}
+
+/* ============================================================
+   Análisis: disponibilidad + agotamiento
+   ============================================================ */
+
+body:has(.meter-grid-top) .meter-analytics-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(330px,.85fr);
+  grid-template-areas:
+    "inventory rolls"
+    "alert alert";
+  gap:18px;
+  margin-bottom:18px;
+  align-items:stretch;
+}
+
+body:has(.meter-grid-top) .meter-analytics-grid > :nth-child(1){
+  grid-area:inventory;
+}
+
+body:has(.meter-grid-top) .meter-analytics-grid > :nth-child(2){
+  grid-area:alert;
+}
+
+body:has(.meter-grid-top) .meter-analytics-grid > :nth-child(3){
+  grid-area:rolls;
+}
+
+/* Los dos análisis principales ocupan el mismo nivel visual. */
+body:has(.meter-grid-top) .meter-analytics-card{
+  height:100%;
+}
+
+body:has(.meter-grid-top) .meter-analytics-card .section-heading{
+  align-items:flex-start;
+}
+
+body:has(.meter-grid-top) .meter-analytics-card h3{
+  font-size:18px;
+}
+
+/* Alerta como decisión operativa */
+body:has(.meter-grid-top) .material-alert{
+  margin:0;
+  min-height:58px;
+  align-items:center;
+  border-radius:14px;
+  padding:13px 17px;
+}
+
+body:has(.meter-grid-top) .material-alert p{
+  font-size:10px;
+}
+
+/* ============================================================
+   Resumen: de referencia a lectura ejecutiva
+   ============================================================ */
+
+body:has(.meter-grid-top) .meter-summary-card{
+  border-color:#2a4e6d;
+}
+
+body:has(.meter-grid-top) .meter-summary-grid > div{
+  min-height:104px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+/* ============================================================
+   Historial
+   ============================================================ */
+
+body:has(.meter-grid-top) .meter-history-card{
+  overflow:hidden;
+}
+
+body:has(.meter-grid-top) .meter-history-card .section-heading{
+  margin-bottom:12px;
+}
+
+body:has(.meter-grid-top) .meter-table{
+  min-width:900px;
+}
+
+body:has(.meter-grid-top) .meter-table tbody tr:hover td{
+  background:rgba(22,57,86,.26);
+}
+
+/* El ID del movimiento debe ser visible como comprobante operativo. */
+body:has(.meter-grid-top) .meter-log-id{
+  min-width:46px;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+
+@media(max-width:1100px){
+  body:has(.meter-grid-top) .meter-kpis{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  body:has(.meter-grid-top) .meter-analytics-grid{
+    grid-template-columns:1fr;
+    grid-template-areas:
+      "inventory"
+      "rolls"
+      "alert";
+  }
+}
+
+@media(max-width:720px){
+  body:has(.meter-grid-top) .capture-launchbar{
+    padding:15px;
+  }
+
+  body:has(.meter-grid-top) .capture-launchbar strong{
+    font-size:15px;
+  }
+
+  body:has(.meter-grid-top) .capture-open-btn{
+    width:100%;
+  }
+
+  body:has(.meter-grid-top) .meter-kpis{
+    grid-template-columns:1fr;
+  }
+
+  body:has(.meter-grid-top) .meter-kpi{
+    min-height:96px;
+  }
+
+  body:has(.meter-grid-top) .material-alert{
+    align-items:flex-start;
+  }
+
+  body:has(.meter-grid-top) .meter-summary-grid{
+    grid-template-columns:1fr;
+  }
+
+  body:has(.meter-grid-top) .meter-summary-grid > div{
+    min-height:86px;
+    border-right:0!important;
+    border-bottom:1px solid rgba(255,255,255,.07);
+  }
+
+  body:has(.meter-grid-top) .meter-summary-grid > div:last-child{
+    border-bottom:0;
+  }
+
+  body:has(.meter-grid-top) .meter-roll-form{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:650px){
+  body:has(.meter-grid-top) .meter-toolbar{
+    margin-bottom:14px;
+  }
+
+  body:has(.meter-grid-top) .meter-toolbar h2{
+    font-size:23px;
+  }
+
+  body:has(.meter-grid-top) .meter-roll-card{
+    padding:16px;
+  }
+
+  body:has(.meter-grid-top) .meter-balance{
+    font-size:22px;
+  }
+
+  body:has(.meter-grid-top) .meter-table{
+    min-width:900px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  body:has(.meter-grid-top) .capture-launchbar,
+  body:has(.meter-grid-top) .meter-roll-card{
+    transition:none!important;
+  }
+}

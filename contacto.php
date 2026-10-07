@@ -1,0 +1,8 @@
+<?php require __DIR__.'/includes/seo.php'; ?><!doctype html><html lang="es-MX"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><?php cp_meta('Contacto y cotizaciones | Colibrí Print México','Contacta a Colibrí Print México para solicitar información o una cotización de impresión, publicidad y personalización.','contacto.php'); ?><link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="/assets/css/public-header-unified-v1.css?v=20260927-1">
+<script src="/assets/js/public-header-unified-v1.js?v=20260927-1" defer></script>
+</head><body>
+<?php require_once __DIR__ . '/includes/public_header.php'; cp_public_header('contacto'); ?>
+<section class="section"><p class="eyebrow pink">CONTACTO</p><h1>Cuéntanos qué necesitas.</h1><p>Colibrí Print México · Parral, Chihuahua · Atención en todo México.</p></section>
+<section class="contact"><div><p class="eyebrow pink">COTIZACIÓN</p><h2>Prepara tu proyecto.</h2><p>Indica qué necesitas, cantidades, medidas o cualquier detalle útil. La conexión con el sistema de cotizaciones existente se integrará sin sustituirlo.</p></div><form id="formulario" method="get" action="contacto.php"><label>Nombre<input name="nombre" required></label><label>Empresa<input name="empresa"></label><label>Proyecto<textarea name="proyecto" required rows="5"></textarea></label><button class="primary">Solicitar cotización →</button></form></section>
+<footer><b>Colibrí Print</b> · MÉXICO</footer></body></html>

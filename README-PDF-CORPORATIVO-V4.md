@@ -1,0 +1,1 @@
+V4: un solo archivo orden_pdf.php. El renderer está incluido dentro del mismo PHP para evitar confusiones de subida. No usa mbstring. Reemplazar únicamente public_html/orden_pdf.php. El archivo logo-pdf.jpg es opcional.

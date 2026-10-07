@@ -1,0 +1,89 @@
+
+/* Colibrí Print · Centro de cotizaciones web · V1 */
+.cpq-dashboard{max-width:1320px;margin:0 auto}
+.cpq-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-end;margin-bottom:22px}
+.cpq-head h2{margin:6px 0 8px;font-size:32px}
+.cpq-head p{margin:0;color:#95a7b8;max-width:760px}
+.cpq-head-actions{display:flex;gap:8px;flex-wrap:wrap}
+.cpq-btn{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:9px 13px;border:1px solid #2b4a67;border-radius:9px;background:#0d1e31;color:#e7f0fa;text-decoration:none;font-size:11px;font-weight:800;cursor:pointer}
+.cpq-btn:hover{background:#14304b;color:#fff}
+.cpq-btn-primary{border-color:#22a9ed;background:linear-gradient(90deg,#198ce8,#1bc4ea);color:#fff}
+.cpq-btn-whatsapp{border-color:#14845c;background:#0c382b;color:#73ecc3}
+.cpq-alert{padding:12px 14px;border:1px solid #2a5a80;border-radius:12px;background:#0d2136;color:#dcecff;margin-bottom:16px}
+.cpq-alert-danger{border-color:#87445a;background:#351520}
+.cpq-kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.cpq-kpis article{padding:15px;border:1px solid #24445f;border-radius:13px;background:#0c1b2d;min-width:0}
+.cpq-kpis span{display:block;color:#8fa7bd;font-size:9px;text-transform:uppercase;letter-spacing:.10em;font-weight:900}
+.cpq-kpis strong{display:block;margin-top:7px;color:#fff;font-size:27px;line-height:1}
+.cpq-kpis small{display:block;margin-top:7px;color:#718ba2;font-size:9px}
+.cpq-kpis .is-new strong{color:#ffd15b}.cpq-kpis .is-review strong{color:#49c9ff}.cpq-kpis .is-quoted strong{color:#69e8bd}
+.cpq-overview{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;margin-bottom:16px}
+.cpq-panel{border:1px solid #24445f;border-radius:15px;background:#0b192a;padding:17px}
+.cpq-panel-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:14px}
+.cpq-panel-head h3{margin:5px 0 0;color:#fff;font-size:18px}
+.cpq-panel-head p{margin:4px 0 0;color:#718ba2;font-size:10px}
+.cpq-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.cpq-flow a{padding:12px;border:1px solid #203e58;border-radius:11px;text-decoration:none;background:#0f2235;transition:.2s}
+.cpq-flow a:hover,.cpq-flow a.active{border-color:#37b8ee;background:#12314b}
+.cpq-flow b{display:block;color:#fff;font-size:25px}.cpq-flow span{color:#8da6ba;font-size:9px}
+.cpq-service-bars{display:grid;gap:9px}
+.cpq-service-bars>div>div{display:flex;justify-content:space-between;gap:10px;font-size:10px;color:#aac0d3}
+.cpq-service-bars b{color:#fff}
+.cpq-service-bars i{display:block;height:7px;margin-top:4px;border-radius:999px;background:#162d43;overflow:hidden}
+.cpq-service-bars em{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#ff1f63,#ffb91d)}
+.cpq-list-panel{padding:0;overflow:hidden}
+.cpq-list-head{padding:18px 18px 12px;margin:0;border-bottom:1px solid #1c3852;align-items:flex-end}
+.cpq-filters{display:grid;grid-template-columns:minmax(180px,1fr) 150px auto auto;gap:7px;align-items:center}
+.cpq-filters input,.cpq-filters select,.cpq-status-form select{min-height:40px;padding:9px 11px;border:1px solid #2c4d6a;border-radius:9px;background:#091726;color:#eef7ff;font-size:11px}
+.cpq-list{display:grid;gap:10px;padding:14px}
+.cpq-request{border:1px solid #213f59;border-radius:13px;background:#0c1c2d;padding:15px}
+.cpq-request:hover{border-color:#315c7e}
+.cpq-request-top{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}
+.cpq-ref{display:inline-block;color:#52cfff;font-size:9px;font-weight:900;letter-spacing:.13em}
+.cpq-request h4{margin:3px 0 5px;color:#fff;font-size:17px}
+.cpq-request-meta{display:flex;gap:8px;flex-wrap:wrap;color:#829cb2;font-size:9px}
+.cpq-status-pill{display:inline-flex;padding:6px 9px;border-radius:999px;background:#15283b;color:#cfe4f5;font-size:9px;font-weight:900}
+.cpq-status-new .cpq-status-pill{background:#46380d;color:#ffd561}.cpq-status-reviewing .cpq-status-pill{background:#10374b;color:#54d0ff}.cpq-status-quoted .cpq-status-pill{background:#123a31;color:#69e8bd}.cpq-status-closed .cpq-status-pill{background:#1b2733;color:#94a6b6}.cpq-status-spam .cpq-status-pill{background:#411727;color:#ff7692}
+.cpq-request-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:11px;margin-top:13px}
+.cpq-request-data{border:1px solid #1f3b55;border-radius:10px;overflow:hidden}
+.cpq-data-row{display:flex;justify-content:space-between;gap:12px;padding:10px 11px;border-bottom:1px solid #1a344d}
+.cpq-data-row:last-child{border-bottom:0}
+.cpq-data-row span{color:#7892a8;font-size:9px}.cpq-data-row strong{color:#eff8ff;font-size:9px;text-align:right;max-width:60%;overflow:hidden;text-overflow:ellipsis}
+.cpq-request-preview{border:1px solid #1f3b55;border-radius:10px;background:#071320;overflow:hidden}
+.cpq-request-preview>span{display:block;padding:10px 11px;border-bottom:1px solid #1b344b;color:#57ddff;font-size:9px;font-weight:900;letter-spacing:.12em}
+.cpq-request-preview pre{margin:0;padding:11px;max-height:170px;overflow:auto;white-space:pre-wrap;color:#a6b9ca;font:500 9px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace}
+.cpq-request-actions{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:11px}
+.cpq-status-form{margin-left:auto;display:flex;gap:6px;align-items:center}
+.cpq-status-form select{min-width:130px}
+.cpq-empty-state{padding:40px 20px;text-align:center;color:#7d96ac;font-size:11px}
+.cpq-pagination{display:flex;justify-content:center;align-items:center;gap:12px;padding:16px;border-top:1px solid #1b344b;color:#7f98ad;font-size:10px}
+
+@media(max-width:1100px){
+ .cpq-kpis{grid-template-columns:repeat(3,1fr)}
+ .cpq-overview{grid-template-columns:1fr}
+ .cpq-filters{grid-template-columns:1fr 160px auto}
+ .cpq-filters .cpq-btn:last-child{display:none}
+}
+@media(max-width:780px){
+ .cpq-head{align-items:flex-start;flex-direction:column}
+ .cpq-head h2{font-size:26px}
+ .cpq-kpis{grid-template-columns:repeat(2,1fr)}
+ .cpq-flow{grid-template-columns:repeat(2,1fr)}
+ .cpq-filters{grid-template-columns:1fr 1fr}
+ .cpq-filters input{grid-column:1/-1}
+ .cpq-request-top{align-items:flex-start;flex-direction:column}
+ .cpq-request-grid{grid-template-columns:1fr}
+ .cpq-status-form{margin-left:0;width:100%}
+ .cpq-status-form select{flex:1;min-width:0}
+}
+@media(max-width:480px){
+ .cpq-dashboard{padding:0 2px}
+ .cpq-kpis{grid-template-columns:1fr 1fr;gap:7px}
+ .cpq-kpis article{padding:12px}
+ .cpq-kpis strong{font-size:22px}
+ .cpq-filters{grid-template-columns:1fr}
+ .cpq-filters input{grid-column:auto}
+ .cpq-flow{grid-template-columns:1fr 1fr}
+ .cpq-request-actions .cpq-btn{flex:1}
+ .cpq-status-form{display:grid;grid-template-columns:1fr auto}
+}

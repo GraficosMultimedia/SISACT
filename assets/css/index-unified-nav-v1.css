@@ -1,0 +1,97 @@
+/* ==========================================================
+   Colibrí Print · Navegación pública unificada V1
+   Capa adicional. No reemplaza home-v5.css ni home-v5.js.
+   ========================================================== */
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.header .nav-row{
+  position:relative;
+}
+
+.header .nav a.nav-quote{
+  color:#fff;
+}
+
+.header .nav a.nav-quote::before{
+  content:"";
+  position:absolute;
+  inset:22px -12px 18px;
+  border:1px solid rgba(255,191,25,.35);
+  border-radius:999px;
+  opacity:0;
+  transform:scale(.96);
+  pointer-events:none;
+  transition:opacity .22s,transform .22s;
+}
+
+.header .nav a.nav-quote:hover::before,
+.header .nav a.nav-quote:focus-visible::before{
+  opacity:1;
+  transform:scale(1);
+}
+
+.header .nav-cta{
+  white-space:nowrap;
+}
+
+html{
+  scroll-padding-top:92px;
+}
+
+#proceso,
+#servicios,
+#promociones,
+#nosotros,
+#contacto,
+#categorias,
+#productos{
+  scroll-margin-top:92px;
+}
+
+/* Menú móvil: reutiliza el comportamiento de home-v5.js */
+@media(max-width:930px){
+  .header .nav{
+    z-index:1002;
+    max-height:calc(100vh - 100px);
+    overflow:auto;
+    overscroll-behavior:contain;
+  }
+
+  .header .nav a.nav-quote{
+    background:rgba(255,23,79,.10);
+    border:1px solid rgba(255,23,79,.25);
+    border-radius:10px;
+    margin:4px 0;
+  }
+
+  .header .nav a.nav-quote::before{
+    display:none;
+  }
+}
+
+@media(max-width:640px){
+  html{
+    scroll-padding-top:78px;
+  }
+
+  #proceso,
+  #servicios,
+  #promociones,
+  #nosotros,
+  #contacto,
+  #categorias,
+  #productos{
+    scroll-margin-top:78px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .header .nav a.nav-quote::before{
+    transition:none;
+  }
+}

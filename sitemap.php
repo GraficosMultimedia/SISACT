@@ -1,0 +1,3 @@
+<?php
+declare(strict_types=1);
+require_once __DIR__.'/includes/web_common.php';header('Content-Type: application/xml; charset=utf-8');$urls=[cp_web_absolute('/')];$pdo=db();foreach($pdo->query('SELECT id FROM cp_products WHERE enabled=1 AND visible_web=1 ORDER BY id') as $r)$urls[]=cp_web_absolute('/producto.php',['id'=>(int)$r['id']]);foreach($pdo->query("SELECT id FROM cp_categories WHERE enabled=1 AND type='product' ORDER BY id") as $r)$urls[]=cp_web_absolute('/categoria.php',['id'=>(int)$r['id']]);$x='<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';foreach(array_unique($urls) as $u)$x.='<url><loc>'.htmlspecialchars($u,ENT_XML1).'</loc></url>';$x.='</urlset>';echo$x;

@@ -1,0 +1,18 @@
+
+.cpq-files-v1{position:relative;display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:12px;align-items:center;padding:15px 16px;margin:10px 0;border:1px dashed #b8c0c8;border-radius:15px;background:linear-gradient(145deg,#fbfaf7,#f2f0eb);cursor:pointer;transition:.24s ease}
+.cpq-files-v1:hover,.cpq-files-v1.is-drag{border-color:#ff2161;transform:translateY(-1px);box-shadow:0 12px 30px rgba(15,22,29,.10)}
+.cpq-files-v1.has-files{border-style:solid;border-color:#18b8db}
+.cpq-files-v1.is-error{border-color:#d94b54;background:#fff4f4}
+.cpq-files-v1-icon{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:#111b25;color:#fff;font-size:22px}
+.cpq-files-v1-copy strong{display:block;font-size:14px;color:#111820}.cpq-files-v1-copy span{display:block;margin-top:3px;color:#667381;font-size:10px;line-height:1.4}.cpq-files-v1-copy small{display:block;margin-top:5px;color:#98a2ac;font-size:9px}
+.cpq-files-v1-button{min-height:40px;padding:9px 13px;border:0;border-radius:9px;background:#ff1f62;color:#fff;font-weight:900;font-size:10px;cursor:pointer}
+.cpq-files-v1-input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.cpq-files-v1-list{display:grid;gap:6px;margin:8px 0 14px}
+.cpq-files-v1-empty{padding:8px 2px;color:#89939e;font-size:9px}
+.cpq-file-chip{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:8px;align-items:center;padding:9px 10px;border:1px solid #e1e4e6;border-radius:9px;background:#fff}
+.cpq-file-chip i{width:34px;height:28px;display:grid;place-items:center;border-radius:7px;background:#10202d;color:#53d5ff;font-style:normal;font-size:8px;font-weight:1000}
+.cpq-file-chip span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#24303b;font-size:10px;font-weight:800}.cpq-file-chip small{color:#8b969f;font-size:8px}
+.cpq-files-v1-total{color:#73808b;text-align:right;font-size:8px}
+.cpq-files-v1-review{margin-top:10px!important}
+.cpq-files-v1-review>span{display:block;color:#ff1f62!important;font-size:8px!important;font-weight:1000;letter-spacing:.1em}
+@media(max-width:680px){.cpq-files-v1{grid-template-columns:42px minmax(0,1fr);}.cpq-files-v1-button{grid-column:1/-1;width:100%;}.cpq-files-v1-icon{width:42px;height:42px}.cpq-file-chip{grid-template-columns:32px minmax(0,1fr);}.cpq-file-chip small{grid-column:2}}
