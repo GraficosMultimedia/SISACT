@@ -1,154 +1,124 @@
 SISACT · DESIGN SYSTEM
-PRIMER MÓDULO: DETALLE DE COTIZACIÓN
+MÓDULO 3: ÓRDENES WORKSPACE
 Colibrí Print México
 
-OBJETIVO
-========
-Corregir y profesionalizar la experiencia visual de admin/cotizacion.php,
-especialmente en teléfonos, sin modificar funciones, consultas, base de datos,
-conexiones, estados, PDF, WhatsApp ni órdenes.
+REVISIÓN DEL REPOSITORIO
+========================
+Se revisó antes de crear el paquete:
+- admin/ordenes.php actual en GitHub;
+- assets/css/ordenes.css actual;
+- assets/css/sisact-design-system-v1.css actual.
 
-REVISIÓN PREVIA
-===============
-Antes de crear este paquete se revisó el repositorio actual de SISACT.
+Hallazgo principal:
+La tabla actual tiene min-width:1050px y el CSS móvil todavía conserva
+min-width:900px. Por eso en teléfono se comporta como tabla de escritorio
+comprimida/desplazable.
 
-Se detectó una diferencia de versión importante:
-- GitHub ya contiene cambios recientes del editor móvil y Guardar + WhatsApp
-  en cotizacion_nueva.php.
-- La ficha admin/cotizacion.php visible en GitHub todavía corresponde a una
-  versión anterior.
-- La captura del servidor corresponde a la ficha V1.1 que ya incluye:
-  * acción contextual;
-  * historial reciente;
-  * barra inferior móvil;
-  * WhatsApp;
-  * PDF;
-  * rentabilidad.
-
-Para evitar una regresión, este paquete usa como base la misma cotizacion.php
-de la V1.1 instalada en el servidor y solamente añade referencias a hojas CSS.
+Este paquete corrige ese problema sin cambiar el funcionamiento.
 
 ARCHIVOS
 ========
-admin/cotizacion.php
-  Base funcional V1.1 ya utilizada en servidor.
-  ÚNICO CAMBIO: se cargan dos hojas CSS nuevas del Design System.
-
-assets/css/cotizaciones-workspace-v1.css
-  Dependencia actual del Workspace, incluida sin cambios para que el paquete
-  sea autocontenido.
-
-assets/js/cotizaciones-workspace-v1.js
-  Dependencia actual del Workspace, incluida sin cambios.
+admin/ordenes.php
+  Basado en la lógica actual de GitHub.
 
 assets/css/sisact-design-system-v1.css
-  Nuevo.
-  Tokens base del Design System SISACT: colores, escalas, radios, espacios,
-  tipografía, superficies, tamaños táctiles y utilidades futuras.
+  Design System ya aprobado.
 
-assets/css/cotizacion-detail-professional-v1.css
-  Nuevo.
-  Capa específica para la ficha de cotización.
+assets/css/ordenes-workspace-professional-v1.css
+  Nueva capa visual específica del listado de órdenes.
 
-CAMBIOS VISUALES EN MÓVIL
-=========================
-- Textos normales se elevan a tamaños legibles.
-- Jerarquía fuerte para folio, cliente, total y vigencia.
-- Status badge con proporción correcta.
-- Encabezado de empresa reorganizado.
-- Datos del cliente dejan de verse comprimidos.
-- Fecha y vigencia se muestran como bloques claros.
-- Referencia, pago, entrega y lugar se organizan en tarjetas.
-- Conceptos dejan de parecer una tabla de escritorio comprimida.
-- Cantidad, precio e importe usan filas táctiles legibles.
-- Subtotal/descuento/impuestos tienen separación adecuada.
-- Total pasa a jerarquía principal.
-- Condiciones comerciales e información de pago usan texto de lectura real.
-- Select de estado: 52px.
-- Guardar estado: 52px.
-- Rentabilidad: filas de 52px con números claros.
-- Historial reciente: texto y fechas legibles.
-- Barra fija inferior: 52px por control + safe-area.
-- WhatsApp y menú ⋯ tienen áreas táctiles reales.
-- Menú móvil se abre encima de la barra y no debajo de ella.
-- Se protege contra overflow horizontal.
-
-ESCRITORIO
-==========
-También se refinan:
-- espaciado;
-- tamaños;
-- cabecera;
-- documento;
-- panel lateral;
-- timeline;
-- acciones.
-
-NO SE MODIFICA
-==============
-- lógica PHP;
-- funciones;
-- SQL;
-- tablas;
-- sesiones;
+FUNCIONES QUE SE CONSERVAN
+==========================
+- require_auth();
+- búsqueda por orden/cotización/cliente/teléfono;
+- filtro por estado;
+- fecha desde/hasta;
+- límite de 200 registros;
+- conteos por estado;
+- cancelación de orden;
+- transacción de cancelación;
+- historial cp_order_history;
+- log_activity();
 - CSRF;
-- estados;
-- cp_activity_log;
-- cálculo de rentabilidad;
-- creación de orden;
-- WhatsApp;
-- PDF;
-- archivos del cliente;
-- configuración de empresa;
-- impresión.
+- enlace a orden;
+- enlace a cotización;
+- enlace a seguimiento;
+- acceso a Producción;
+- Nueva orden.
+
+ÚNICO DATO VISUAL NUEVO
+=======================
+Una orden activa con due_date anterior a hoy recibe la marca visual
+"Entrega vencida". No se cambia su estado, no se escribe en BD y no se ejecuta
+ninguna acción automática.
+
+DESKTOP
+=======
+- Cabecera profesional.
+- KPIs compactos.
+- Filtros más ordenados.
+- Tabla con mejor densidad y jerarquía.
+- Estado, total y acciones más claros.
+
+MÓVIL
+=====
+La tabla deja de conservar ancho de escritorio.
+Cada <tr> se presenta como tarjeta sin duplicar registros ni consultas.
+
+Cada tarjeta muestra:
+- Orden.
+- Cliente y teléfono.
+- Cotización.
+- Fecha.
+- Entrega.
+- Responsable.
+- Estado.
+- Total.
+- Ver orden.
+- Seguimiento.
+- Cancelar cuando corresponde.
+
+Controles:
+- inputs/selects de 50px;
+- fuente de formulario 16px para evitar zoom automático;
+- botones de 48-50px;
+- sin scroll horizontal de la tabla.
+
+CACHE
+=====
+admin/ordenes.php carga:
+sisact-design-system-v1.css?v=1.0.1
+ordenes-workspace-professional-v1.css?v=1.0.0
 
 INSTALACIÓN
 ===========
-1. Respaldar:
-   admin/cotizacion.php
-   assets/css/cotizaciones-workspace-v1.css
-   assets/js/cotizaciones-workspace-v1.js
+1. Respaldar admin/ordenes.php.
+2. Copiar los archivos respetando la estructura.
+3. Reemplazar admin/ordenes.php.
+4. Copiar/actualizar ambos CSS.
+5. Ctrl+F5 una vez.
 
-2. Copiar la estructura del ZIP en la raíz SISACT.
-
-3. Reemplazar admin/cotizacion.php.
-
-4. Puede reemplazarse cotizaciones-workspace-v1.css y
-   cotizaciones-workspace-v1.js; son copias de la versión actual del
-   Workspace y se incluyen para mantener consistencia.
-
-5. Copiar los dos CSS nuevos.
-
-6. Hacer Ctrl+F5.
-
-PRUEBAS RECOMENDADAS
-====================
-- 360px de ancho.
-- 390px.
-- 430px.
-- tablet.
-- 1366px.
-- 1920px.
-- cotización borrador.
-- cotización enviada.
-- cotización aprobada.
-- cotización vinculada con orden.
-- cotización con archivo del cliente.
-- cotización con varias líneas.
-- condiciones comerciales extensas.
-- información de pago extensa.
-- menú móvil ⋯.
-- WhatsApp.
-- PDF.
-- cambio de estado.
-- impresión del navegador.
+PRUEBAS
+=======
+- escritorio;
+- 360px;
+- 390px;
+- 430px;
+- búsqueda;
+- filtros;
+- fechas;
+- orden pendiente;
+- en proceso;
+- completada;
+- entregada;
+- cancelada;
+- orden con entrega vencida;
+- Ver orden;
+- Seguimiento;
+- Cancelar.
 
 REVERSIÓN
 =========
-Restaurar admin/cotizacion.php.
-Los dos CSS nuevos pueden permanecer en el servidor sin afectar otra pantalla.
-
-SIGUIENTE PASO
-==============
-Una vez aprobada esta ficha, los mismos tokens del Design System se aplicarán
-al siguiente módulo sin introducir cambios globales de golpe.
+Restaurar admin/ordenes.php.
+ordenes-workspace-professional-v1.css puede permanecer sin efecto porque solo
+se carga en esta pantalla.

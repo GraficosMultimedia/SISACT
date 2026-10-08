@@ -7,7 +7,6 @@ require_auth();
 
 $title = 'Órdenes de servicio';
 $error = null;
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'cancel') {
     if (!csrf_check($_POST['_csrf'] ?? null)) {
         $error = 'La sesión del formulario expiró. Recarga la página.';
@@ -45,7 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'cance
         }
     }
 }
-
 $q = trim((string)($_GET['q'] ?? ''));
 $status = (string)($_GET['status'] ?? '');
 $from = trim((string)($_GET['from'] ?? ''));
@@ -55,7 +53,6 @@ $allowedStatuses = order_statuses();
 if ($status !== '' && !array_key_exists($status, $allowedStatuses)) {
     $status = '';
 }
-
 $where = ['1=1'];
 $params = [];
 if ($q !== '') {
@@ -75,7 +72,6 @@ if ($to !== '' && preg_match('/^\d{4}-\d{2}-\d{2}$/', $to)) {
     $where[] = 'o.order_date <= ?';
     $params[] = $to;
 }
-
 $sql = 'SELECT o.id,o.order_number,o.order_date,o.due_date,o.status,o.total,o.quote_id,
                q.quote_number,c.name AS customer_name,c.phone AS customer_phone,
                u.name AS responsible_name
@@ -85,7 +81,6 @@ $sql = 'SELECT o.id,o.order_number,o.order_date,o.due_date,o.status,o.total,o.qu
         LEFT JOIN cp_users u ON u.id=o.responsible_user_id
         WHERE ' . implode(' AND ', $where) . '
         ORDER BY o.id DESC LIMIT 200';
-
 try {
     $st = db()->prepare($sql);
     $st->execute($params);
@@ -94,7 +89,6 @@ try {
     $orders = [];
     $error = $error ?: 'No se pudieron cargar las órdenes. Verifica la estructura de la base de datos.';
 }
-
 $counts = ['total' => 0, 'pending' => 0, 'in_progress' => 0, 'completed' => 0, 'delivered' => 0, 'cancelled' => 0];
 try {
     $rows = db()->query('SELECT status,COUNT(*) AS total FROM cp_orders GROUP BY status')->fetchAll();
@@ -108,35 +102,37 @@ try {
 } catch (Throwable $e) {
     // El listado principal sigue siendo usable aunque el resumen no esté disponible.
 }
-
 require __DIR__ . '/../includes/header.php';
 ?>
 <link rel="stylesheet" href="/assets/css/ordenes.css?v=20260917-stab2">
+<link rel="stylesheet" href="/assets/css/sisact-design-system-v1.css?v=1.0.1">
+<link rel="stylesheet" href="/assets/css/ordenes-workspace-professional-v1.css?v=1.0.0">
 
-<div class="order-toolbar">
+<div class="ow-page">
+<div class="order-toolbar ow-hero">
   <div>
     <span class="eyebrow">GESTIÓN DE ÓRDENES</span>
     <h2>Órdenes de servicio</h2>
     <p class="muted">Controla trabajos, fechas compromiso, responsables y seguimiento del servicio.</p>
   </div>
   <div class="order-toolbar-actions">
-    <a class="btn btn-primary" href="/admin/orden_nueva.php">Nueva orden</a>
-    <a class="btn btn-secondary" href="/admin/produccion.php">Producción</a>
+    <a class="btn btn-primary" href="/admin/orden_nueva.php">＋ Nueva orden</a>
+    <a class="btn btn-secondary" href="/admin/produccion.php">⚙ Producción</a>
   </div>
 </div>
 
 <?php if ($error): ?><div class="notice danger"><?=e($error)?></div><?php endif; ?>
 <?php if (isset($_GET['updated'])): ?><div class="notice"><span class="ok">✓</span> Orden actualizada.</div><?php endif; ?>
 
-<div class="order-summary-grid">
-  <div class="order-summary-card"><span>Total</span><strong><?=number_format($counts['total'])?></strong></div>
-  <div class="order-summary-card"><span>Pendientes</span><strong><?=number_format($counts['pending'])?></strong></div>
-  <div class="order-summary-card"><span>En proceso</span><strong><?=number_format($counts['in_progress'])?></strong></div>
-  <div class="order-summary-card"><span>Completadas</span><strong><?=number_format($counts['completed'])?></strong></div>
-  <div class="order-summary-card"><span>Entregadas</span><strong><?=number_format($counts['delivered'])?></strong></div>
+<div class="order-summary-grid ow-summary">
+  <div class="order-summary-card ow-total"><span>Total</span><strong><?=number_format($counts['total'])?></strong></div>
+  <div class="order-summary-card ow-pending"><span>Pendientes</span><strong><?=number_format($counts['pending'])?></strong></div>
+  <div class="order-summary-card ow-progress"><span>En proceso</span><strong><?=number_format($counts['in_progress'])?></strong></div>
+  <div class="order-summary-card ow-completed"><span>Completadas</span><strong><?=number_format($counts['completed'])?></strong></div>
+  <div class="order-summary-card ow-delivered"><span>Entregadas</span><strong><?=number_format($counts['delivered'])?></strong></div>
 </div>
 
-<div class="card order-filters">
+<div class="card order-filters ow-filters">
 <form method="get">
   <div class="filter-row">
     <div class="field"><label for="orderSearch">Buscar</label><input id="orderSearch" name="q" value="<?=e($q)?>" placeholder="Orden, cotización, cliente o teléfono"></div>
@@ -148,21 +144,48 @@ require __DIR__ . '/../includes/header.php';
 </form>
 </div>
 
-<div class="card order-table-card">
+<div class="card order-table-card ow-list-card">
 <div class="section-heading"><div><span class="eyebrow">REGISTROS</span><h3>Órdenes</h3></div><span class="count-pill"><?=count($orders)?></span></div>
-<div class="table-wrap"><table class="table order-table"><thead><tr><th>Orden</th><th>Cliente</th><th>Cotización</th><th>Fecha</th><th>Entrega</th><th>Responsable</th><th>Estado</th><th>Total</th><th>Acciones</th></tr></thead><tbody>
-<?php if (!$orders): ?><tr><td colspan="9" class="empty">No hay órdenes que coincidan con los filtros actuales.</td></tr>
-<?php else: foreach ($orders as $row): ?>
-<tr>
-<td><a class="order-number" href="/admin/orden.php?id=<?=((int)$row['id'])?>"><?=e($row['order_number'])?></a></td>
-<td><strong><?=e($row['customer_name'] ?: 'Sin cliente')?></strong><?php if (!empty($row['customer_phone'])): ?><small class="table-subtext"><?=e($row['customer_phone'])?></small><?php endif; ?></td>
-<td><?php if (!empty($row['quote_id'])): ?><a href="/admin/cotizacion.php?id=<?=((int)$row['quote_id'])?>"><?=e($row['quote_number'])?></a><?php else: ?>—<?php endif; ?></td>
-<td><?=e(date('d/m/Y', strtotime((string)$row['order_date'])))?></td>
-<td><?=!empty($row['due_date']) ? e(date('d/m/Y', strtotime((string)$row['due_date']))) : '—'?></td>
-<td><?=e($row['responsible_name'] ?: 'Sin asignar')?></td>
-<td><span class="status-badge order-status-<?=e((string)$row['status'])?>"><?=e(order_status_label((string)$row['status']))?></span></td>
-<td class="money-cell"><?=quote_money((float)$row['total'])?></td>
-<td class="actions-cell"><a class="btn btn-sm btn-secondary" href="/admin/orden.php?id=<?=((int)$row['id'])?>">Ver</a><a class="btn btn-sm btn-secondary" href="/admin/orden.php?id=<?=((int)$row['id'])?>#seguimiento">Seguimiento</a><?php if ((string)$row['status'] !== 'delivered' && (string)$row['status'] !== 'cancelled'): ?><form method="post" class="inline-form" onsubmit="return confirm('¿Cancelar esta orden?');"><input type="hidden" name="_csrf" value="<?=e(csrf_token())?>"><input type="hidden" name="action" value="cancel"><input type="hidden" name="id" value="<?=((int)$row['id'])?>"><button class="btn btn-sm btn-danger" type="submit">Cancelar</button></form><?php endif; ?></td>
+<div class="table-wrap">
+<table class="table order-table">
+<thead><tr><th>Orden</th><th>Cliente</th><th>Cotización</th><th>Fecha</th><th>Entrega</th><th>Responsable</th><th>Estado</th><th>Total</th><th>Acciones</th></tr></thead>
+<tbody>
+<?php if (!$orders): ?>
+<tr><td colspan="9" class="empty">No hay órdenes que coincidan con los filtros actuales.</td></tr>
+<?php else: foreach ($orders as $row):
+    $isOverdue = !empty($row['due_date'])
+        && (string)$row['due_date'] < date('Y-m-d')
+        && !in_array((string)$row['status'], ['delivered','cancelled'], true);
+?>
+<tr class="<?=$isOverdue ? 'ow-overdue' : ''?>">
+<td data-label="Orden">
+  <a class="order-number" href="/admin/orden.php?id=<?=((int)$row['id'])?>"><?=e($row['order_number'])?></a>
+  <?php if ($isOverdue): ?><small class="ow-overdue-label">⚠ Entrega vencida</small><?php endif; ?>
+</td>
+<td data-label="Cliente"><strong><?=e($row['customer_name'] ?: 'Sin cliente')?></strong><?php if (!empty($row['customer_phone'])): ?><small class="table-subtext"><?=e($row['customer_phone'])?></small><?php endif; ?></td>
+<td data-label="Cotización"><?php if (!empty($row['quote_id'])): ?><a href="/admin/cotizacion.php?id=<?=((int)$row['quote_id'])?>"><?=e($row['quote_number'])?></a><?php else: ?>—<?php endif; ?></td>
+<td data-label="Fecha"><?=e(date('d/m/Y', strtotime((string)$row['order_date'])))?></td>
+<td data-label="Entrega"><?=!empty($row['due_date']) ? e(date('d/m/Y', strtotime((string)$row['due_date']))) : '—'?></td>
+<td data-label="Responsable"><?=e($row['responsible_name'] ?: 'Sin asignar')?></td>
+<td data-label="Estado"><span class="status-badge order-status-<?=e((string)$row['status'])?>"><?=e(order_status_label((string)$row['status']))?></span></td>
+<td data-label="Total" class="money-cell"><?=quote_money((float)$row['total'])?></td>
+<td data-label="Acciones" class="actions-cell">
+  <a class="btn btn-sm btn-secondary ow-view" href="/admin/orden.php?id=<?=((int)$row['id'])?>">Ver orden</a>
+  <a class="btn btn-sm btn-secondary" href="/admin/orden.php?id=<?=((int)$row['id'])?>#seguimiento">Seguimiento</a>
+  <?php if ((string)$row['status'] !== 'delivered' && (string)$row['status'] !== 'cancelled'): ?>
+    <form method="post" class="inline-form" onsubmit="return confirm('¿Cancelar esta orden?');">
+      <input type="hidden" name="_csrf" value="<?=e(csrf_token())?>">
+      <input type="hidden" name="action" value="cancel">
+      <input type="hidden" name="id" value="<?=((int)$row['id'])?>">
+      <button class="btn btn-sm btn-danger" type="submit">Cancelar</button>
+    </form>
+  <?php endif; ?>
+</td>
 </tr>
-<?php endforeach; endif; ?></tbody></table></div></div>
+<?php endforeach; endif; ?>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 <?php require __DIR__ . '/../includes/footer.php'; ?>

@@ -11,13 +11,11 @@ require_once __DIR__ . '/../includes/quote_order_sync.php';
 require_once __DIR__ . '/../includes/order_media.php';
 require_once __DIR__ . '/../includes/payment_receipts.php';
 require_auth();
-
 $id=(int)($_GET['id'] ?? 0);
 $order=order_get($id);
 if(!$order) redirect('/admin/ordenes.php');
 $title='Orden '.$order['order_number'];
 $error=null;
-
 if($_SERVER['REQUEST_METHOD']==='POST'){
     if(!csrf_check($_POST['_csrf'] ?? null)){
         $error='La sesión del formulario expiró. Recarga la página.';
@@ -112,7 +110,6 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
         }
     }
 }
-
 $order=order_get($id);$items=order_items($id);$history=order_history($id);
 $quoteSync=quote_order_diff((int)$order['quote_id'], $id);
 $financeReady=finance_tables_ready();
@@ -122,7 +119,6 @@ $photos=order_photos($id);
 $trackingUrl=tracking_url_for_order($id);
 $paymentReceipts=payment_receipts_table_ready()?payment_receipts_for_order($id):[];
 $users=db()->query('SELECT id,name FROM cp_users ORDER BY name')->fetchAll();
-
 require __DIR__ . '/../includes/header.php';
 ?>
 <link rel="stylesheet" href="/assets/css/ordenes.css?v=20260917-6">
@@ -130,6 +126,8 @@ require __DIR__ . '/../includes/header.php';
 <link rel="stylesheet" href="/assets/css/order-enhancements.css?v=20260919-1">
 <link rel="stylesheet" href="/assets/css/order-file-library.css?v=20260919-1">
 <link rel="stylesheet" href="/assets/css/payment-receipts.css?v=20260919-1">
+<link rel="stylesheet" href="/assets/css/sisact-design-system-v1.css?v=1.0.1">
+<link rel="stylesheet" href="/assets/css/orden-detail-professional-v1.css?v=1.0.0">
 <div class="order-toolbar no-print"><div><span class="eyebrow">FASE 6 · ORDEN DE SERVICIO</span><h2><?=e($order['order_number'])?></h2><p class="muted">Origen: <a href="/admin/cotizacion.php?id=<?=((int)$order['quote_id'])?>"><?=e($order['quote_number'])?></a></p></div><div class="order-toolbar-actions"><?php if (!empty($order['customer_phone'])): ?><a class="btn btn-secondary" href="/admin/whatsapp.php?source=order&id=<?=((int)$id)?>&template=order_confirmed">💬 WhatsApp</a><?php endif; ?><a class="btn btn-secondary" href="/admin/pagos.php?order_id=<?=((int)$id)?>">💰 Pagos</a><a class="btn btn-secondary" href="/admin/facturacion.php?order_id=<?=((int)$id)?>">🧾 Facturación</a><a class="btn btn-primary" href="<?=e($trackingUrl)?>" target="_blank" rel="noopener">🔗 Ver seguimiento</a>
 <a class="btn btn-primary"
    href="/admin/orden_pdf_2paginas.php?id=<?=((int)$id)?>"
@@ -166,7 +164,6 @@ require __DIR__ . '/../includes/header.php';
 <?php if($order['notes']): ?><div class="document-section"><h4>Notas operativas</h4><p><?=nl2br(e($order['notes']))?></p></div><?php endif; ?>
 <div class="document-footer">Orden generada desde <?=e($order['quote_number'])?> · <?=e($order['order_number'])?></div>
 </article>
-
 <section class="card payment-receipts-admin no-print" id="comprobantes-pago-admin">
   <div class="section-heading">
     <div>
@@ -176,7 +173,6 @@ require __DIR__ . '/../includes/header.php';
     </div>
     <?php if(payment_receipts_table_ready()): ?><span class="count-pill"><?=count($paymentReceipts)?></span><?php endif; ?>
   </div>
-
   <?php if(!payment_receipts_table_ready()): ?>
     <div class="payment-receipt-install-warning">
       <strong>Función pendiente de activación</strong>
@@ -198,11 +194,9 @@ require __DIR__ . '/../includes/header.php';
             </div>
             <span class="receipt-status receipt-status-<?=e((string)$receipt['status'])?>"><?=e(strtoupper((string)$receipt['status']))?></span>
           </div>
-
           <?php if(trim((string)($receipt['note'] ?? ''))!==''): ?>
             <p class="payment-receipt-note"><?=nl2br(e((string)$receipt['note']))?></p>
           <?php endif; ?>
-
           <div class="payment-receipt-review-grid">
             <a class="btn btn-secondary" href="/comprobante_pago.php?t=<?=e($trackingUrl ? preg_replace('/^.*?t=/', '', $trackingUrl) : '')?>&rid=<?=((int)$receipt['id'])?>" target="_blank" rel="noopener">👁 Ver comprobante</a>
             <form method="post">
@@ -231,7 +225,6 @@ require __DIR__ . '/../includes/header.php';
     </div>
   <?php endif; ?>
 </section>
-
 <section class="card order-photos-card no-print" id="archivos-orden">
   <div class="section-heading">
     <div>
@@ -241,7 +234,6 @@ require __DIR__ . '/../includes/header.php';
     </div>
     <span class="count-pill"><?=count($photos)?></span>
   </div>
-
   <?php if(order_photos_table_ready()): ?>
   <form method="post" enctype="multipart/form-data" class="photo-upload-form file-upload-form">
     <input type="hidden" name="_csrf" value="<?=e(csrf_token())?>">
@@ -257,12 +249,10 @@ require __DIR__ . '/../includes/header.php';
         <span>Elegir archivo</span>
       </label>
     </div>
-
     <div class="file-selected" id="orderFileSelected" hidden>
       <span id="orderFileIcon">📎</span>
       <div><strong id="orderFileName">Archivo</strong><small id="orderFileSize">0 KB</small></div>
     </div>
-
     <div class="photo-upload-grid">
       <div class="field">
         <label>Tipo</label>
@@ -277,14 +267,12 @@ require __DIR__ . '/../includes/header.php';
         <input name="file_caption" maxlength="255" placeholder="Ej. medidas, diseño aprobado, lista de cantidades, archivo de corte...">
       </div>
     </div>
-
     <div class="file-upload-actions">
       <button class="btn btn-primary" type="submit">📎 Guardar archivo en la orden</button>
       <small>Máximo 25 MB · almacenamiento interno del expediente.</small>
     </div>
   </form>
   <?php endif; ?>
-
   <?php if($photos): ?>
     <div class="order-file-grid">
       <?php foreach($photos as $file): ?>

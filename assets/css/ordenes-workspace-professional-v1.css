@@ -1,0 +1,121 @@
+/* ============================================================
+   ÓRDENES WORKSPACE V1 · Design System SISACT
+   Colibrí Print México
+   ============================================================ */
+
+.ow-page{min-width:0}
+.ow-page *{box-sizing:border-box}
+.ow-hero{
+position:relative;overflow:hidden;align-items:center;margin-bottom:16px;padding:23px 24px;
+border:1px solid var(--ds-border-soft);border-radius:var(--ds-radius-lg);border-bottom:1px solid var(--ds-border-soft);
+background:radial-gradient(circle at 91% 8%,rgba(240,6,114,.12),transparent 28%),
+radial-gradient(circle at 7% 100%,rgba(36,198,242,.10),transparent 31%),
+linear-gradient(145deg,#0d243c,#091a2c);box-shadow:var(--ds-shadow-sm)}
+.ow-hero h2{margin:5px 0 6px;color:var(--ds-text);font-size:clamp(29px,3vw,39px);line-height:1.08;letter-spacing:-.035em}
+.ow-hero .eyebrow{color:var(--ds-cyan);font-size:10px;font-weight:900;letter-spacing:.14em}
+.ow-hero p{max-width:720px;color:var(--ds-muted);font-size:13px;line-height:1.55}
+.ow-hero .order-toolbar-actions{gap:8px}.ow-hero .btn{min-height:44px;padding:9px 13px;border-radius:10px;font-size:12px;font-weight:850}
+
+/* KPIs */
+.ow-summary{gap:10px;margin-bottom:16px}
+.ow-summary .order-summary-card{
+position:relative;overflow:hidden;min-width:0;padding:15px 16px;border-color:var(--ds-border-soft);
+border-radius:14px;background:linear-gradient(145deg,rgba(15,41,66,.96),rgba(8,27,45,.98));box-shadow:0 8px 20px rgba(0,0,0,.08)}
+.ow-summary .order-summary-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:#537998}
+.ow-summary .ow-pending:before{background:#6fbef3}.ow-summary .ow-progress:before{background:#24c6f2}
+.ow-summary .ow-completed:before,.ow-summary .ow-delivered:before{background:#42d49a}
+.ow-summary .order-summary-card span{color:#8fa7bf;font-size:10px;font-weight:850;letter-spacing:.07em}
+.ow-summary .order-summary-card strong{color:#f4f9fd;font-size:25px;line-height:1.05;font-variant-numeric:tabular-nums}
+
+/* Filtros */
+.ow-filters{margin-bottom:16px;padding:16px;border-color:var(--ds-border-soft);border-radius:15px}
+.ow-filters .filter-row{grid-template-columns:minmax(240px,1fr) 190px 150px 150px auto;gap:10px}
+.ow-filters label{margin-bottom:6px;color:#92a9c0;font-size:11px;font-weight:800}
+.ow-filters input,.ow-filters select{width:100%;min-height:43px;padding:9px 11px;border-radius:10px;font-size:13px}
+.ow-filters .filter-actions{gap:7px}.ow-filters .btn{min-height:43px;align-items:center;justify-content:center;font-size:11px}
+
+/* Listado desktop */
+.ow-list-card{padding:19px;border-color:var(--ds-border-soft);border-radius:var(--ds-radius-lg);overflow:hidden}
+.ow-list-card .section-heading{margin-bottom:14px}.ow-list-card .section-heading h3{color:var(--ds-text);font-size:19px}
+.ow-list-card .count-pill{min-width:36px;min-height:32px;display:grid;place-items:center;padding:5px 9px;font-size:11px}
+.ow-list-card .table-wrap{margin:0 -19px -19px;overflow:auto}
+.ow-list-card .order-table{min-width:1060px;margin:0}
+.ow-list-card .order-table th{padding:11px 12px;color:#7892aa;background:rgba(5,17,29,.30);font-size:9px;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+.ow-list-card .order-table td{padding:13px 12px;color:#cddbe8;font-size:12px;line-height:1.4;vertical-align:middle}
+.ow-list-card .order-table tbody tr{position:relative;transition:background .15s ease}
+.ow-list-card .order-table tbody tr:hover{background:rgba(20,54,80,.23)}
+.ow-list-card .order-number{color:#78d8f6;font-size:12px;font-weight:900}
+.ow-list-card .table-subtext{color:#758fa8;font-size:10px}
+.ow-list-card .money-cell{color:#eaf5fb;font-size:13px;font-weight:900;font-variant-numeric:tabular-nums}
+.ow-list-card .status-badge{min-height:27px;align-items:center;padding:5px 8px;font-size:9px}
+.ow-list-card .actions-cell{display:flex;align-items:center;gap:5px;white-space:nowrap}
+.ow-list-card .actions-cell .btn{min-height:34px;display:inline-flex;align-items:center;justify-content:center;padding:6px 8px;font-size:9px}
+.ow-list-card .inline-form{display:inline-flex}
+.ow-overdue{box-shadow:inset 3px 0 0 #ff7588}
+.ow-overdue-label{display:block;margin-top:4px;color:#ff8ea0;font-size:9px;font-weight:800}
+
+/* ============================================================
+   Tablet
+   ============================================================ */
+@media(max-width:1100px){
+.ow-filters .filter-row{grid-template-columns:1fr 1fr}.ow-filters .filter-actions{grid-column:1/-1}
+.ow-summary{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+
+/* ============================================================
+   Mobile: la tabla se convierte en tarjetas reales
+   ============================================================ */
+@media(max-width:820px){
+.ow-page{width:100%;max-width:100%;overflow-x:clip}
+.ow-hero{display:block;padding:17px;border-radius:16px}.ow-hero h2{font-size:27px}.ow-hero p{font-size:13px}
+.ow-hero .order-toolbar-actions{display:grid;grid-template-columns:1fr 1fr;width:100%;margin-top:15px}
+.ow-hero .order-toolbar-actions .btn{width:100%;min-height:50px;padding:10px;font-size:13px}
+
+.ow-summary{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.ow-summary .order-summary-card{padding:13px 14px}.ow-summary .order-summary-card span{font-size:9px}.ow-summary .order-summary-card strong{font-size:22px}
+
+.ow-filters{padding:14px}.ow-filters .filter-row{grid-template-columns:1fr;gap:11px}
+.ow-filters .filter-actions{grid-column:auto;display:grid;grid-template-columns:1fr 1fr;width:100%}
+.ow-filters label{font-size:13px}.ow-filters input,.ow-filters select{min-height:50px;padding:11px 12px;font-size:16px}
+.ow-filters .btn{min-height:50px;font-size:14px}
+
+.ow-list-card{padding:14px;overflow:visible}.ow-list-card .section-heading{margin-bottom:12px}.ow-list-card .section-heading h3{font-size:19px}
+.ow-list-card .table-wrap{margin:0;overflow:visible}
+.ow-list-card .order-table{display:block;min-width:0;width:100%}.ow-list-card .order-table thead{display:none}
+.ow-list-card .order-table tbody{display:grid;gap:11px;width:100%}
+.ow-list-card .order-table tbody tr{display:block;width:100%;padding:14px;border:1px solid var(--ds-border-soft);border-radius:14px;background:linear-gradient(145deg,#0d2238,#091a2c);box-shadow:0 7px 20px rgba(0,0,0,.08)}
+.ow-list-card .order-table tbody tr.ow-overdue{border-color:rgba(255,117,136,.30);box-shadow:inset 3px 0 0 #ff7588,0 7px 20px rgba(0,0,0,.08)}
+.ow-list-card .order-table td{display:grid;grid-template-columns:104px minmax(0,1fr);gap:10px;align-items:center;min-height:39px;width:100%;padding:7px 0!important;border:0!important;color:#d8e5ef;font-size:14px;text-align:right;white-space:normal;overflow-wrap:anywhere}
+.ow-list-card .order-table td:before{content:attr(data-label);color:#7893ac;font-size:10px;font-weight:900;letter-spacing:.04em;text-align:left;text-transform:uppercase}
+.ow-list-card .order-table td:first-child{display:block;min-height:auto;padding:0 0 12px!important;border-bottom:1px solid rgba(255,255,255,.07)!important;text-align:left}
+.ow-list-card .order-table td:first-child:before{display:block;margin-bottom:4px}
+.ow-list-card .order-number{font-size:16px}.ow-list-card .ow-overdue-label{font-size:11px}
+.ow-list-card .order-table td:nth-child(2){display:block;padding:12px 0!important;border-bottom:1px solid rgba(255,255,255,.055)!important;text-align:left}
+.ow-list-card .order-table td:nth-child(2):before{display:block;margin-bottom:4px}
+.ow-list-card .order-table td:nth-child(2)>strong{display:block;color:#f0f6fb;font-size:15px}
+.ow-list-card .table-subtext{margin-top:4px;font-size:12px}
+.ow-list-card .status-badge{min-height:31px;padding:6px 9px;font-size:10px}
+.ow-list-card .money-cell{color:#63e1af;font-size:17px;font-weight:900}
+.ow-list-card .actions-cell{display:grid!important;grid-template-columns:1fr 1fr;gap:7px;margin-top:9px;padding-top:12px!important;border-top:1px solid rgba(255,255,255,.07)!important}
+.ow-list-card .actions-cell:before{display:none}
+.ow-list-card .actions-cell .btn,.ow-list-card .actions-cell .inline-form,.ow-list-card .actions-cell .inline-form .btn{width:100%;min-height:48px}
+.ow-list-card .actions-cell .btn{padding:9px 10px;font-size:13px;border-radius:10px}
+.ow-list-card .actions-cell .ow-view{grid-column:1/-1;color:#d5f5ff;border-color:rgba(36,198,242,.28);background:rgba(36,198,242,.09)}
+.ow-list-card .actions-cell .inline-form{grid-column:1/-1}
+.ow-list-card .actions-cell .btn-danger{color:#ff9caa;background:rgba(105,23,36,.18)}
+
+.ow-list-card .empty{display:block!important;padding:34px 16px!important;color:#89a1b8!important;text-align:center!important}
+.ow-list-card .empty:before{display:none!important}
+}
+
+@media(max-width:390px){
+.ow-hero,.ow-filters,.ow-list-card{padding-left:13px;padding-right:13px}
+.ow-hero h2{font-size:24px}
+.ow-summary .order-summary-card{padding:12px}.ow-summary .order-summary-card strong{font-size:20px}
+.ow-list-card .order-table tbody tr{padding:13px}
+.ow-list-card .order-table td{grid-template-columns:92px minmax(0,1fr);gap:8px}
+}
+
+@media print{
+.ow-page .ow-filters,.ow-page .ow-summary{display:none!important}
+}

@@ -1,0 +1,201 @@
+/* ============================================================
+   ORDEN DE SERVICIO · DETALLE PROFESIONAL V1
+   Design System SISACT · Colibrí Print México
+   Capa visual: no cambia formularios, rutas, datos ni funciones.
+   ============================================================ */
+
+.order-toolbar,
+.order-view-grid,
+.order-view-grid > main,
+.order-view-grid > aside,
+.order-document,
+.payment-receipts-admin,
+.order-photos-card,
+.history-card {min-width:0}
+
+.order-toolbar{
+margin:0 0 18px;padding:22px 24px;border:1px solid var(--ds-border-soft);border-radius:var(--ds-radius-lg);
+background:radial-gradient(circle at 90% 10%,rgba(240,6,114,.10),transparent 28%),linear-gradient(145deg,#0d243b,#091a2c);
+box-shadow:var(--ds-shadow-sm);align-items:center}
+.order-toolbar h2{margin:5px 0 6px;color:var(--ds-text);font-size:clamp(29px,3vw,40px);line-height:1.08;letter-spacing:-.035em}
+.order-toolbar .eyebrow{color:var(--ds-cyan);font-size:10px;font-weight:900;letter-spacing:.14em}
+.order-toolbar p{font-size:12px}.order-toolbar p a{color:#80d8f5;font-weight:800;text-decoration:none}
+.order-toolbar-actions{justify-content:flex-end;gap:8px}
+.order-toolbar-actions .btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center;padding:9px 12px;border-radius:10px;font-size:11px;font-weight:800}
+
+.order-view-grid{grid-template-columns:minmax(0,1fr) 350px;gap:18px}
+.order-view-grid > main{gap:18px}
+.order-view-grid > aside{display:grid;gap:14px;align-content:start}
+.order-view-grid > aside > .card{position:static!important;margin:0!important;padding:19px;border-color:var(--ds-border-soft);border-radius:var(--ds-radius-lg);box-shadow:var(--ds-shadow-sm)}
+.order-view-grid > aside .eyebrow{font-size:10px}
+.order-view-grid > aside h3{margin:5px 0 15px;color:var(--ds-text);font-size:18px;line-height:1.25}
+
+.order-document{padding:25px;border-color:var(--ds-border-soft);border-radius:var(--ds-radius-lg);box-shadow:var(--ds-shadow-sm)}
+.order-document .document-head{align-items:flex-start;padding-bottom:19px}
+.order-document .document-head h3{margin:5px 0;color:var(--ds-text);font-size:31px;line-height:1.08;letter-spacing:-.03em}
+.order-document .document-head p{font-size:12px;line-height:1.5}
+.order-document .status-badge{min-height:31px;display:inline-flex;align-items:center;padding:6px 10px;font-size:11px}
+
+.order-document .customer-box{margin:3px 0 15px;padding:16px;border:1px solid var(--ds-border-soft);border-radius:13px;background:rgba(7,24,40,.32)}
+.order-document .customer-box span{font-size:10px}.order-document .customer-box strong{font-size:19px;line-height:1.3}
+.order-document .customer-box small{font-size:12px;line-height:1.45;overflow-wrap:anywhere}
+
+.order-document .commercial-box{margin:15px 0;padding:16px;border:1px solid var(--ds-border-soft);border-radius:13px;background:rgba(8,27,45,.34)}
+.order-document .commercial-box>span{color:var(--ds-cyan);font-size:10px;font-weight:900;letter-spacing:.11em}
+.order-document .commercial-grid{gap:10px;margin-top:11px}
+.order-document .commercial-grid>div{min-width:0;padding:11px;border:1px solid rgba(125,164,202,.12);border-radius:10px;background:rgba(4,17,29,.28)}
+.order-document .commercial-grid small{font-size:10px}.order-document .commercial-grid strong{display:block;margin-top:4px;color:var(--ds-text-2);font-size:13px;line-height:1.45;overflow-wrap:anywhere}
+.order-document .commercial-box>p{color:#a9bacb;font-size:13px;line-height:1.7;overflow-wrap:anywhere}
+
+.quote-internal-box{margin:16px 0!important;padding:15px 16px!important;border-color:rgba(255,216,101,.36)!important;border-radius:12px!important;background:rgba(88,67,10,.18)!important;color:#eee5c7!important}
+.quote-internal-head span,.quote-internal-head b{font-size:10px!important}.quote-internal-box p{font-size:13px!important;line-height:1.6!important}.quote-internal-box small{font-size:11px!important;color:#bfae78!important}
+
+.order-document .table{margin-top:17px}
+.order-document .table th{padding:11px;font-size:11px}
+.order-document .table td{padding:12px 11px;color:#dce8f2;font-size:13px;line-height:1.45}
+.order-document .table th:nth-child(n+2),.order-document .table td:nth-child(n+2){text-align:right}
+.order-document .table td:first-child{color:var(--ds-text);font-weight:650}
+.order-document .document-total{width:min(100%,430px);margin-top:20px;font-variant-numeric:tabular-nums}
+.order-document .document-total .grand{min-height:60px;align-items:center;padding-top:15px}
+.order-document .document-total .grand span{font-size:18px;font-weight:700}
+.order-document .document-total .grand strong{font-size:25px}
+.order-document .document-section h4{font-size:16px}.order-document .document-section p{font-size:13px;line-height:1.72;overflow-wrap:anywhere}
+.order-document .document-footer{font-size:10px;line-height:1.55}
+
+/* Secciones principales */
+.payment-receipts-admin,.order-photos-card,.history-card{
+padding:20px;border-color:var(--ds-border-soft)!important;border-radius:var(--ds-radius-lg)!important;box-shadow:var(--ds-shadow-sm)}
+.section-heading{gap:14px}.section-heading h3{color:var(--ds-text);font-size:19px;line-height:1.25}.section-heading .muted{font-size:12px;line-height:1.55}
+.count-pill{min-width:36px;min-height:32px;display:inline-grid;place-items:center;padding:6px 9px;font-size:11px}
+
+/* Comprobantes: unifica el tema oscuro del admin */
+.payment-receipt-install-warning,.payment-receipt-empty{
+padding:15px!important;border-color:var(--ds-border)!important;background:rgba(7,24,40,.36)!important;color:var(--ds-muted)!important}
+.payment-receipt-install-warning strong,.payment-receipt-empty strong{color:var(--ds-text)!important;font-size:13px}
+.payment-receipt-install-warning span,.payment-receipt-empty span{font-size:12px!important;line-height:1.5}
+.payment-receipt-admin-item{padding:14px!important;border-color:var(--ds-border-soft)!important;background:rgba(7,24,40,.38)!important}
+.payment-receipt-admin-head strong{color:var(--ds-text)!important;font-size:13px!important;overflow-wrap:anywhere}
+.payment-receipt-admin-head small{color:var(--ds-muted)!important;font-size:11px!important;line-height:1.45}
+.receipt-status{font-size:9px!important;padding:6px 8px!important}
+.payment-receipt-note{color:#aabccd!important;font-size:12px!important;line-height:1.55!important}
+.payment-receipt-review-grid .btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center;font-size:12px}
+.payment-receipt-review-grid select,.payment-receipt-review-grid input{
+min-height:44px!important;padding:9px 10px!important;border-color:#31506e!important;color:var(--ds-text)!important;background:#081a2c!important;font-size:12px!important}
+
+/* Expediente */
+.file-drop-zone{grid-template-columns:54px minmax(0,1fr) auto!important;gap:14px!important;padding:15px!important;border-color:#3a6384!important;border-radius:14px!important}
+.file-drop-icon{width:48px!important;height:48px!important;font-size:22px!important}
+.file-drop-zone strong{font-size:13px!important}.file-drop-zone>div span{font-size:11px!important;line-height:1.5!important}
+.file-choose span{min-height:44px!important;align-items:center!important;padding:10px 13px!important;font-size:12px!important}
+.file-selected{padding:11px 12px!important}.file-selected strong{font-size:12px!important}.file-selected small{font-size:10px!important}
+.photo-upload-grid .field label{font-size:12px}.photo-upload-grid input,.photo-upload-grid select{min-height:44px;font-size:13px}
+.file-upload-actions small{font-size:11px!important;line-height:1.45!important}
+.file-upload-actions .btn{min-height:44px;font-size:12px}
+.order-file-card{grid-template-columns:112px minmax(0,1fr)!important;border-color:var(--ds-border-soft)!important;border-radius:14px!important}
+.order-file-preview{min-height:112px!important}.order-file-preview img{height:112px!important}
+.order-file-preview .order-file-icon{font-size:31px!important}.order-file-preview b{font-size:9px!important}
+.order-file-meta{padding:12px!important}.order-file-main strong{font-size:12px!important}.order-file-main span{font-size:9px!important}
+.order-file-meta p{font-size:11px!important;line-height:1.5!important}.order-file-meta>small{font-size:10px!important;line-height:1.45!important}
+.order-file-actions .btn{min-height:38px;padding:8px 9px!important;font-size:10px!important}
+
+/* Historial */
+.history-item{padding:15px 0}.history-item>div{align-items:flex-start}.history-item strong{color:var(--ds-text-2);font-size:13px}
+.history-item small{font-size:10px;line-height:1.4}.history-item p{font-size:12px;line-height:1.55}
+
+/* Sidebar: formularios */
+.order-view-grid > aside select,.order-view-grid > aside input,.order-view-grid > aside textarea{
+width:100%;min-height:45px;border-radius:10px;font-size:13px}
+.order-view-grid > aside textarea{min-height:86px;line-height:1.5}
+.order-view-grid > aside label{font-size:11px}
+.order-view-grid > aside .btn.full{min-height:45px;margin-top:8px;font-size:12px}
+.order-view-grid > aside .help-text{font-size:11px;line-height:1.55}
+.sync-tags{gap:6px}.sync-tags span{font-size:10px}
+
+.finance-mini-grid{gap:8px}.finance-mini-grid>div{padding:11px;border-color:var(--ds-border-soft)}
+.finance-mini-grid span{font-size:10px}.finance-mini-grid strong{font-size:16px;font-variant-numeric:tabular-nums}
+.quick-payment-form label{font-size:11px}.recent-payments>strong{font-size:12px}.recent-payments>div{min-height:37px;align-items:center;font-size:11px}
+.finance-order-card .actions{display:grid;grid-template-columns:1fr 1fr;gap:7px}.finance-order-card .actions .btn{min-height:40px;justify-content:center;font-size:10px}
+.internal-card>small{display:block;margin-top:12px;color:var(--ds-muted);font-size:10px;line-height:1.5}
+
+/* ============================================================ MOBILE */
+@media(max-width:820px){
+.order-toolbar,.order-view-grid,.order-view-grid>main,.order-view-grid>aside,.order-document{width:100%;max-width:100%}
+.order-toolbar{display:block;margin-bottom:13px;padding:17px;border-radius:16px;overflow:hidden}
+.order-toolbar h2{font-size:27px;overflow-wrap:anywhere}.order-toolbar .eyebrow{font-size:10px}.order-toolbar p{font-size:13px}
+.order-toolbar-actions{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;width:100%;margin-top:15px}
+.order-toolbar-actions .btn{width:100%;min-height:50px;padding:10px 8px;font-size:12px;line-height:1.2;text-align:center;white-space:normal}
+.order-view-grid{grid-template-columns:1fr!important;gap:13px!important}
+.order-view-grid>main{gap:13px!important}.order-view-grid>aside{grid-template-columns:1fr!important;gap:13px!important}
+.order-document,.payment-receipts-admin,.order-photos-card,.history-card,.order-view-grid>aside>.card{padding:16px!important;border-radius:15px!important}
+
+/* Orden */
+.order-document .document-head{display:grid!important;grid-template-columns:minmax(0,1fr) auto;gap:10px;padding-bottom:16px}
+.order-document .document-head h3{font-size:25px;overflow-wrap:anywhere}
+.order-document .document-head p{font-size:12px;line-height:1.5}
+.order-document .status-badge{max-width:42vw;min-height:32px;font-size:10px;text-align:center;white-space:normal}
+.order-document .customer-box{padding:14px}.order-document .customer-box strong{font-size:18px}
+.order-document .customer-box small{padding:3px 0;font-size:13px;line-height:1.5;overflow-wrap:anywhere}
+.order-document .commercial-grid{grid-template-columns:1fr!important}.order-document .commercial-grid>div{padding:11px}
+.order-document .commercial-grid strong{font-size:13px}.order-document .commercial-box>p{font-size:14px;line-height:1.68}
+.quote-internal-head{gap:7px!important}.quote-internal-box p{font-size:14px!important}
+
+/* Tabla -> tarjetas sin tocar HTML */
+.order-document .table,.order-document .table tbody,.order-document .table tr,.order-document .table td{display:block;width:100%}
+.order-document .table thead{display:none}
+.order-document .table tr{margin-bottom:10px;padding:12px;border:1px solid var(--ds-border-soft);border-radius:12px;background:rgba(7,24,40,.30)}
+.order-document .table td{display:grid;grid-template-columns:105px minmax(0,1fr);gap:10px;align-items:center;min-height:40px;padding:8px 0!important;border:0!important;font-size:14px;text-align:right!important;overflow-wrap:anywhere}
+.order-document .table td:before{color:#7f99b2;font-size:10px;font-weight:900;text-align:left;text-transform:uppercase;letter-spacing:.04em}
+.order-document .table td:nth-child(1):before{content:"Descripción"}.order-document .table td:nth-child(2):before{content:"Cantidad"}.order-document .table td:nth-child(3):before{content:"Precio"}.order-document .table td:nth-child(4):before{content:"Importe"}
+.order-document .table td:first-child{display:block;min-height:auto;padding-bottom:12px!important;border-bottom:1px solid rgba(255,255,255,.07)!important;font-size:15px;text-align:left!important}
+.order-document .table td:first-child:before{display:block;margin-bottom:5px}
+.order-document .document-total{width:100%;margin-top:14px}.order-document .document-total .grand{min-height:64px}.order-document .document-total .grand span{font-size:18px}.order-document .document-total .grand strong{font-size:24px}
+.order-document .document-section h4{font-size:17px}.order-document .document-section p{font-size:14px;line-height:1.7}.order-document .document-footer{font-size:10px}
+
+/* Secciones */
+.section-heading{align-items:flex-start}.section-heading h3{font-size:19px}.section-heading .muted{font-size:13px;line-height:1.55}
+.count-pill{flex:0 0 auto;min-width:38px;min-height:34px;font-size:11px}
+.payment-receipt-admin-head{gap:9px}.payment-receipt-admin-head strong{font-size:14px!important}.payment-receipt-admin-head small{font-size:11px!important}
+.payment-receipt-review-grid{display:grid!important;grid-template-columns:1fr!important;gap:9px!important}
+.payment-receipt-review-grid>a{width:100%}
+.payment-receipt-review-grid form{display:grid!important;grid-template-columns:1fr!important;gap:9px!important;width:100%!important;min-width:0!important}
+.payment-receipt-review-grid select,.payment-receipt-review-grid input,.payment-receipt-review-grid button{grid-column:auto!important;width:100%!important;min-height:50px!important;font-size:16px!important}
+.payment-receipt-review-grid .btn{font-size:14px!important}
+
+.file-drop-zone{grid-template-columns:48px minmax(0,1fr)!important;gap:12px!important;padding:13px!important}
+.file-drop-zone strong{font-size:14px!important}.file-drop-zone>div span{font-size:12px!important}
+.file-choose{grid-column:1/-1!important;width:100%}.file-choose span{width:100%;min-height:50px!important;justify-content:center;font-size:14px!important}
+.file-selected strong{max-width:70vw;font-size:13px!important}.file-selected small{font-size:11px!important}
+.photo-upload-grid{grid-template-columns:1fr!important}.photo-upload-grid input,.photo-upload-grid select{min-height:50px!important;font-size:16px!important}
+.photo-upload-grid .field label{font-size:13px}
+.file-upload-actions{align-items:stretch!important;flex-direction:column!important}.file-upload-actions .btn{width:100%;min-height:50px;font-size:14px}.file-upload-actions small{font-size:12px!important}
+.order-file-grid{grid-template-columns:1fr!important}
+.order-file-card{grid-template-columns:92px minmax(0,1fr)!important}.order-file-preview{min-height:104px!important}.order-file-preview img{height:104px!important}
+.order-file-main strong{font-size:13px!important}.order-file-main span{font-size:10px!important}.order-file-meta p{font-size:12px!important}.order-file-meta>small{font-size:10px!important}
+.order-file-actions{display:grid!important;grid-template-columns:1fr 1fr!important;gap:7px!important}.order-file-actions form:last-child{grid-column:1/-1!important}.order-file-actions .btn,.order-file-actions form{width:100%!important}.order-file-actions .btn{min-height:44px!important;font-size:12px!important;justify-content:center}
+
+/* Historial */
+.history-item>div{display:grid!important;gap:4px!important}.history-item strong{font-size:14px}.history-item small{font-size:11px}.history-item p{font-size:13px;line-height:1.55}
+
+/* Sidebar: tamaño táctil y evita zoom automático */
+.order-view-grid>aside .eyebrow{font-size:10px}.order-view-grid>aside h3{font-size:19px}
+.order-view-grid>aside label{font-size:13px}
+.order-view-grid>aside select,.order-view-grid>aside input,.order-view-grid>aside textarea{min-height:50px!important;padding:11px 12px!important;font-size:16px!important}
+.order-view-grid>aside textarea{min-height:96px!important}
+.order-view-grid>aside .btn.full{min-height:50px!important;font-size:14px!important}
+.order-view-grid>aside .help-text{font-size:13px!important}
+.finance-mini-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}.finance-mini-grid>div{min-width:0;padding:10px 8px}.finance-mini-grid span{font-size:9px}.finance-mini-grid strong{overflow:hidden;font-size:14px;text-overflow:ellipsis;white-space:nowrap}
+.quick-payment-form .field{margin-bottom:11px}.quick-payment-form label{font-size:13px}
+.recent-payments>strong{font-size:13px}.recent-payments>div{min-height:42px;font-size:12px}
+.finance-order-card .actions{grid-template-columns:1fr!important}.finance-order-card .actions .btn{min-height:48px;font-size:13px}
+.internal-card>small{font-size:12px;line-height:1.55}
+}
+
+@media(max-width:390px){
+.order-toolbar,.order-document,.payment-receipts-admin,.order-photos-card,.history-card,.order-view-grid>aside>.card{padding-left:14px!important;padding-right:14px!important}
+.order-toolbar h2{font-size:24px}.order-toolbar-actions{grid-template-columns:1fr 1fr!important}
+.order-document .document-head{grid-template-columns:minmax(0,1fr) auto}.order-document .document-head h3{font-size:23px}
+.order-document .table td{grid-template-columns:94px minmax(0,1fr)}
+.finance-mini-grid{grid-template-columns:1fr!important}.finance-mini-grid>div{padding:11px}.finance-mini-grid span{font-size:10px}.finance-mini-grid strong{font-size:16px}
+.order-file-card{grid-template-columns:82px minmax(0,1fr)!important}
+}
+@media print{.order-toolbar{display:none!important}}
