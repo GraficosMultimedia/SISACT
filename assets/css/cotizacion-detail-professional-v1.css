@@ -1,0 +1,1019 @@
+/* ============================================================
+   COTIZACIÓN · DETALLE PROFESIONAL V1
+   Design System SISACT
+   ------------------------------------------------------------
+   Objetivo:
+   - corregir escala móvil;
+   - mejorar jerarquía y lectura;
+   - mantener estructura y funciones existentes;
+   - no modificar impresión/PDF.
+   ============================================================ */
+
+/* ---------- Contenedor y cabecera ---------- */
+
+.qwd-page {
+    color: var(--ds-text);
+}
+
+.qwd-head {
+    padding: 22px 24px;
+    border-color: var(--ds-border-soft);
+    border-radius: var(--ds-radius-lg);
+    box-shadow: var(--ds-shadow-sm);
+}
+
+.qwd-back {
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 8px;
+    color: #8edcf5;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.qwd-title-row {
+    gap: 14px;
+}
+
+.qwd-title-row h2 {
+    font-size: clamp(30px, 3vw, 40px);
+    line-height: 1.05;
+}
+
+.qwd-head .status-badge {
+    min-height: 30px;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 11px;
+    font-size: 11px;
+}
+
+.qwd-summary-line {
+    gap: 9px;
+    margin-top: 10px;
+    color: var(--ds-muted);
+    font-size: 13px;
+}
+
+.qwd-summary-line strong {
+    color: var(--ds-text-2);
+    font-size: 13px;
+}
+
+.qwd-actions {
+    gap: 9px;
+}
+
+.qwd-primary-action,
+.qwd-icon-action {
+    min-height: 44px;
+    padding: 9px 13px;
+    border-radius: 11px;
+    font-size: 12px;
+}
+
+.qwd-icon-action {
+    border-color: var(--ds-border);
+}
+
+/* ---------- Documento principal ---------- */
+
+.qwd-grid {
+    align-items: start;
+}
+
+.qwd-document {
+    padding: 26px;
+    border-color: var(--ds-border-soft);
+    border-radius: var(--ds-radius-lg);
+    box-shadow: var(--ds-shadow-sm);
+}
+
+.qwd-document .formal-company-head {
+    gap: 28px;
+    padding-bottom: 22px;
+}
+
+.qwd-document .formal-company-brand img {
+    max-width: 150px;
+}
+
+.qwd-document .formal-company-brand strong {
+    font-size: 21px;
+}
+
+.qwd-document .formal-company-brand small,
+.qwd-document .formal-company-data {
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.qwd-document .formal-document-title {
+    padding: 23px 0 17px;
+}
+
+.qwd-document .formal-document-title h3 {
+    font-size: 31px;
+}
+
+.qwd-document .formal-meta {
+    gap: 25px;
+}
+
+.qwd-document .formal-meta span,
+.qwd-document .formal-reference-grid span {
+    font-size: 10px;
+}
+
+.qwd-document .formal-meta strong,
+.qwd-document .formal-reference-grid strong {
+    color: var(--ds-text-2);
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+.qwd-document .formal-customer {
+    margin: 4px 0 14px;
+    padding: 16px;
+    border: 1px solid var(--ds-border-soft);
+    border-radius: 13px;
+    background: rgba(9, 27, 45, .42);
+}
+
+.qwd-document .formal-customer > div:first-child > span {
+    font-size: 10px;
+}
+
+.qwd-document .formal-customer > div:first-child > strong {
+    margin-top: 2px;
+    color: var(--ds-text);
+    font-size: 19px;
+}
+
+.qwd-document .customer-data-grid {
+    gap: 7px 20px;
+    margin-top: 11px;
+}
+
+.qwd-document .customer-data-grid small {
+    color: #a9bfd2;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.qwd-document .formal-reference-grid {
+    gap: 12px;
+    padding: 15px 0;
+}
+
+.qwd-document .formal-reference-grid > div {
+    min-width: 0;
+}
+
+/* ---------- Conceptos ---------- */
+
+.qwd-items {
+    margin-top: 18px;
+}
+
+.qwd-items th {
+    padding: 12px 11px;
+    font-size: 11px;
+}
+
+.qwd-items td {
+    padding: 13px 11px;
+    color: #dce8f2;
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+.qwd-items th:nth-child(n+2),
+.qwd-items td:nth-child(n+2) {
+    text-align: right;
+}
+
+.qwd-items td:first-child {
+    color: var(--ds-text);
+    font-weight: 650;
+}
+
+/* ---------- Totales ---------- */
+
+.qwd-document .document-total {
+    width: min(100%, 430px);
+    margin-top: 24px;
+    font-variant-numeric: tabular-nums;
+}
+
+.qwd-document .document-total > div {
+    min-height: 42px;
+    align-items: center;
+    padding: 10px 3px;
+}
+
+.qwd-document .document-total > div span {
+    color: #a4b8ca;
+    font-size: 13px;
+}
+
+.qwd-document .document-total > div strong {
+    color: var(--ds-text-2);
+    font-size: 14px;
+}
+
+.qwd-document .document-total .grand {
+    min-height: 58px;
+    margin-top: 8px;
+    padding-top: 15px;
+    font-size: 18px;
+}
+
+.qwd-document .document-total .grand span {
+    color: var(--ds-text);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.qwd-document .document-total .grand strong {
+    color: #60e2af;
+    font-size: 25px;
+}
+
+/* ---------- Condiciones / pago ---------- */
+
+.qwd-document .document-section {
+    margin-top: 26px;
+    padding-top: 21px;
+}
+
+.qwd-document .document-section h4 {
+    margin-bottom: 10px;
+    color: var(--ds-text);
+    font-size: 16px;
+}
+
+.qwd-document .document-section p {
+    margin: 0;
+    color: #a9bacb;
+    font-size: 13px;
+    line-height: 1.75;
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+.qwd-document .document-footer {
+    margin-top: 30px;
+    padding-top: 16px;
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+/* ---------- Panel lateral ---------- */
+
+.qwd-side {
+    gap: 15px;
+}
+
+.qwd-side-card {
+    padding: 20px;
+    border-color: var(--ds-border-soft);
+    border-radius: var(--ds-radius-lg);
+    box-shadow: var(--ds-shadow-sm);
+}
+
+.qwd-side-card .qws-eyebrow {
+    font-size: 10px;
+}
+
+.qwd-side-card h3 {
+    margin: 6px 0 16px;
+    color: var(--ds-text);
+    font-size: 18px;
+}
+
+.qwd-side-card select {
+    min-height: 46px;
+    padding: 10px 12px;
+    font-size: 13px;
+}
+
+.qwd-side-card .btn.full {
+    width: 100%;
+    min-height: 44px;
+    margin-top: 9px;
+    font-size: 12px;
+}
+
+.qwd-side-card .help-text {
+    display: block;
+    margin-top: 12px;
+    color: #90a7bc;
+    font-size: 11px;
+    line-height: 1.55;
+}
+
+.qwd-side-card .internal-number {
+    min-height: 45px;
+    align-items: center;
+    padding: 11px 0;
+}
+
+.qwd-side-card .internal-number span {
+    color: #a8bacb;
+    font-size: 12px;
+}
+
+.qwd-side-card .internal-number strong {
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+}
+
+.qwd-side-card .cost-list h4 {
+    font-size: 13px;
+}
+
+.qwd-side-card .cost-list div {
+    gap: 10px;
+    font-size: 12px;
+}
+
+.qwd-side-card.internal-card > small {
+    margin-top: 15px;
+    font-size: 10px;
+}
+
+/* ---------- Timeline ---------- */
+
+.qwd-activity {
+    padding-bottom: 18px;
+}
+
+.qwd-event {
+    grid-template-columns: 15px minmax(0,1fr);
+    gap: 11px;
+    padding-bottom: 17px;
+}
+
+.qwd-event > span {
+    width: 10px;
+    height: 10px;
+    margin-top: 4px;
+}
+
+.qwd-event strong {
+    color: #dce8f2;
+    font-size: 11px;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+}
+
+.qwd-event small {
+    margin-top: 4px;
+    color: #8098af;
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+/* ---------- Menús ---------- */
+
+.qwd-page .qws-menu > summary {
+    min-width: 42px;
+    min-height: 42px;
+}
+
+.qwd-page .qws-menu-pop {
+    border-color: var(--ds-border);
+    border-radius: 13px;
+    background: #081a2b;
+}
+
+.qwd-page .qws-menu-pop a,
+.qwd-page .qws-menu-pop button {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    padding: 11px 13px;
+    font-size: 12px;
+}
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 1100px) and (min-width: 821px) {
+    .qwd-side {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .qwd-side-card {
+        min-height: 100%;
+    }
+}
+
+/* ============================================================
+   MOBILE FIRST DETAIL
+   ============================================================ */
+
+@media (max-width: 820px) {
+    .qwd-page {
+        width: 100%;
+        max-width: 100%;
+        padding-bottom: calc(94px + env(safe-area-inset-bottom));
+        overflow-x: clip;
+    }
+
+    /* Cabecera compacta pero legible */
+    .qwd-head {
+        gap: 15px;
+        margin-bottom: 13px;
+        padding: 17px;
+        border-radius: 16px;
+    }
+
+    .qwd-back {
+        min-height: 36px;
+        margin: -4px 0 3px;
+        font-size: 13px;
+    }
+
+    .qwd-title-row {
+        width: 100%;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .qwd-title-row > div {
+        min-width: 0;
+        flex: 1;
+    }
+
+    .qwd-title-row h2 {
+        max-width: 100%;
+        margin-top: 5px;
+        font-size: 27px;
+        line-height: 1.08;
+        overflow-wrap: anywhere;
+    }
+
+    .qwd-head .qws-eyebrow {
+        font-size: 10px;
+    }
+
+    .qwd-head .status-badge {
+        flex: 0 0 auto;
+        min-height: 32px;
+        max-width: 44%;
+        padding: 7px 10px;
+        font-size: 11px;
+        text-align: center;
+        white-space: normal;
+    }
+
+    .qwd-summary-line {
+        display: grid;
+        grid-template-columns: minmax(0,1fr) auto;
+        gap: 7px 12px;
+        width: 100%;
+        margin-top: 9px;
+        padding-top: 11px;
+        border-top: 1px solid rgba(255,255,255,.07);
+        font-size: 13px;
+    }
+
+    .qwd-summary-line > span {
+        display: none;
+    }
+
+    .qwd-summary-line > strong:first-child {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .qwd-summary-line > strong:nth-of-type(2) {
+        color: #64e3b2;
+        font-size: 17px;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .qwd-summary-line small {
+        grid-column: 1 / -1;
+        color: #8da5bb;
+        font-size: 11px;
+    }
+
+    /* Documento */
+    .qwd-document {
+        width: 100%;
+        padding: 16px;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .qwd-document .formal-company-head {
+        display: grid;
+        gap: 14px;
+        padding-bottom: 16px;
+    }
+
+    .qwd-document .formal-company-brand {
+        display: grid;
+        grid-template-columns: auto minmax(0,1fr);
+        align-items: center;
+        gap: 12px;
+    }
+
+    .qwd-document .formal-company-brand img {
+        width: 96px;
+        max-height: 62px;
+        object-fit: contain;
+    }
+
+    .qwd-document .formal-company-brand strong {
+        font-size: 17px;
+        line-height: 1.2;
+    }
+
+    .qwd-document .formal-company-brand small {
+        margin-top: 3px;
+        font-size: 11px;
+        line-height: 1.35;
+    }
+
+    .qwd-document .formal-company-data {
+        max-width: none;
+        padding: 11px 12px;
+        border-radius: 10px;
+        color: #9fb3c6;
+        background: rgba(7,23,38,.35);
+        font-size: 12px;
+        line-height: 1.55;
+        text-align: left;
+        overflow-wrap: anywhere;
+    }
+
+    .qwd-document .formal-document-title {
+        display: grid;
+        gap: 12px;
+        padding: 18px 0 14px;
+    }
+
+    .qwd-document .formal-document-title h3 {
+        margin-top: 4px;
+        font-size: 25px;
+        line-height: 1.08;
+        overflow-wrap: anywhere;
+    }
+
+    .qwd-document .formal-meta {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0,1fr));
+        gap: 8px;
+        text-align: left;
+    }
+
+    .qwd-document .formal-meta > div {
+        min-height: 60px;
+        padding: 10px 11px;
+        border: 1px solid var(--ds-border-soft);
+        border-radius: 10px;
+        background: rgba(6,21,35,.30);
+    }
+
+    .qwd-document .formal-meta span {
+        font-size: 10px;
+    }
+
+    .qwd-document .formal-meta strong {
+        margin-top: 3px;
+        font-size: 14px;
+    }
+
+    /* Cliente */
+    .qwd-document .formal-customer {
+        margin: 2px 0 14px;
+        padding: 14px;
+    }
+
+    .qwd-document .formal-customer > div:first-child > strong {
+        font-size: 18px;
+        line-height: 1.3;
+        overflow-wrap: anywhere;
+    }
+
+    .qwd-document .customer-data-grid {
+        grid-template-columns: 1fr;
+        gap: 7px;
+        margin-top: 12px;
+    }
+
+    .qwd-document .customer-data-grid small {
+        display: block;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255,255,255,.055);
+        color: #b3c5d5;
+        font-size: 13px;
+        line-height: 1.5;
+        overflow-wrap: anywhere;
+    }
+
+    .qwd-document .customer-data-grid small:last-child {
+        border-bottom: 0;
+    }
+
+    /* Referencias comerciales */
+    .qwd-document .formal-reference-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 12px 0;
+    }
+
+    .qwd-document .formal-reference-grid > div {
+        min-height: 58px;
+        padding: 10px 11px;
+        border: 1px solid var(--ds-border-soft);
+        border-radius: 10px;
+        background: rgba(6,21,35,.28);
+    }
+
+    .qwd-document .formal-reference-grid span {
+        font-size: 10px;
+    }
+
+    .qwd-document .formal-reference-grid strong {
+        margin-top: 3px;
+        font-size: 13px;
+        line-height: 1.45;
+        overflow-wrap: anywhere;
+    }
+
+    /* Tabla -> tarjetas */
+    .qwd-items {
+        margin-top: 16px;
+    }
+
+    .qwd-items,
+    .qwd-items tbody,
+    .qwd-items tr,
+    .qwd-items td {
+        display: block;
+        width: 100%;
+    }
+
+    .qwd-items thead {
+        display: none;
+    }
+
+    .qwd-items tr {
+        margin-bottom: 11px;
+        padding: 13px;
+        border: 1px solid var(--ds-border-soft);
+        border-radius: 12px;
+        background: rgba(7, 24, 40, .32);
+    }
+
+    .qwd-items td {
+        display: grid;
+        grid-template-columns: minmax(105px,.8fr) minmax(0,1.2fr);
+        gap: 12px;
+        align-items: center;
+        min-height: 41px;
+        padding: 8px 0 !important;
+        border: 0 !important;
+        color: #dce7f0;
+        font-size: 14px;
+        line-height: 1.4;
+        text-align: right !important;
+        overflow-wrap: anywhere;
+    }
+
+    .qwd-items td::before {
+        content: attr(data-label);
+        color: #809ab3;
+        font-size: 11px;
+        font-weight: 800;
+        text-align: left;
+        text-transform: uppercase;
+        letter-spacing: .04em;
+    }
+
+    .qwd-items td:first-child {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 1px !important;
+        padding-bottom: 12px !important;
+        border-bottom: 1px solid rgba(255,255,255,.07) !important;
+        color: var(--ds-text);
+        font-size: 15px;
+        font-weight: 750;
+        text-align: left !important;
+    }
+
+    .qwd-items td:first-child::before {
+        margin-bottom: 3px;
+    }
+
+    /* Totales */
+    .qwd-document .document-total {
+        width: 100%;
+        margin-top: 17px;
+        padding: 5px 0 0;
+    }
+
+    .qwd-document .document-total > div {
+        min-height: 47px;
+        padding: 11px 2px;
+    }
+
+    .qwd-document .document-total > div span {
+        font-size: 14px;
+    }
+
+    .qwd-document .document-total > div strong {
+        font-size: 15px;
+    }
+
+    .qwd-document .document-total .grand {
+        min-height: 66px;
+        margin-top: 5px;
+        padding-top: 16px;
+    }
+
+    .qwd-document .document-total .grand span {
+        font-size: 19px;
+    }
+
+    .qwd-document .document-total .grand strong {
+        font-size: 25px;
+    }
+
+    /* Texto comercial */
+    .qwd-document .document-section {
+        margin-top: 23px;
+        padding-top: 19px;
+    }
+
+    .qwd-document .document-section h4 {
+        margin-bottom: 10px;
+        font-size: 17px;
+        line-height: 1.3;
+    }
+
+    .qwd-document .document-section p {
+        color: #afc0d0;
+        font-size: 14px;
+        line-height: 1.72;
+        overflow-wrap: anywhere;
+        white-space: normal;
+    }
+
+    .qwd-document .document-footer {
+        margin-top: 25px;
+        padding-top: 15px;
+        font-size: 10px;
+        line-height: 1.55;
+    }
+
+    /* Archivo del cliente */
+    .qwd-document .quote-client-file {
+        margin: 14px 0;
+    }
+
+    .qwd-document .quote-client-file-heading h4 {
+        font-size: 15px;
+    }
+
+    .qwd-document .quote-client-file-heading p,
+    .qwd-document .quote-client-file-data,
+    .qwd-document .quote-client-file-data span {
+        font-size: 12px;
+    }
+
+    .qwd-document .quote-client-file-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .qwd-document .quote-client-file-actions .btn {
+        min-height: 48px;
+        font-size: 13px;
+    }
+
+    /* Panel lateral -> bloques de ancho completo */
+    .qwd-side {
+        grid-template-columns: 1fr !important;
+        gap: 13px;
+    }
+
+    .qwd-side-card {
+        width: 100%;
+        padding: 17px;
+        border-radius: 15px;
+    }
+
+    .qwd-side-card .qws-eyebrow {
+        font-size: 10px;
+    }
+
+    .qwd-side-card h3 {
+        margin: 5px 0 15px;
+        font-size: 19px;
+        line-height: 1.25;
+    }
+
+    /* Estado */
+    .qwd-side-card form {
+        width: 100%;
+    }
+
+    .qwd-side-card select {
+        width: 100%;
+        min-height: 52px;
+        padding: 12px 13px;
+        border-radius: 11px;
+        font-size: 15px;
+    }
+
+    .qwd-side-card .btn.full {
+        width: 100%;
+        min-height: 52px;
+        margin-top: 9px;
+        border-radius: 11px;
+        font-size: 14px;
+    }
+
+    .qwd-side-card .help-text {
+        margin-top: 13px;
+        font-size: 13px;
+        line-height: 1.55;
+    }
+
+    /* Rentabilidad */
+    .qwd-side-card .internal-number {
+        min-height: 52px;
+        padding: 12px 0;
+    }
+
+    .qwd-side-card .internal-number span {
+        font-size: 14px;
+    }
+
+    .qwd-side-card .internal-number strong {
+        color: #65e0af;
+        font-size: 16px;
+    }
+
+    .qwd-side-card .cost-list {
+        margin-top: 16px;
+    }
+
+    .qwd-side-card .cost-list h4 {
+        font-size: 14px;
+    }
+
+    .qwd-side-card .cost-list div {
+        min-height: 42px;
+        align-items: center;
+        font-size: 13px;
+    }
+
+    .qwd-side-card.internal-card > small {
+        margin-top: 15px;
+        color: #c9af6f;
+        font-size: 12px;
+        line-height: 1.55;
+    }
+
+    /* Historial */
+    .qwd-activity {
+        padding-bottom: 17px;
+    }
+
+    .qwd-event {
+        grid-template-columns: 16px minmax(0,1fr);
+        gap: 11px;
+        padding-bottom: 18px;
+    }
+
+    .qwd-event > span {
+        width: 11px;
+        height: 11px;
+        margin-top: 4px;
+    }
+
+    .qwd-event strong {
+        color: #dfeaf3;
+        font-size: 13px;
+        line-height: 1.45;
+    }
+
+    .qwd-event small {
+        margin-top: 4px;
+        color: #829bb2;
+        font-size: 11px;
+        line-height: 1.45;
+    }
+
+    /* Barra inferior: principal, WhatsApp y menú */
+    .qwd-mobile-bar {
+        left: 8px;
+        right: 8px;
+        bottom: calc(8px + env(safe-area-inset-bottom));
+        grid-template-columns: minmax(0,1fr) 52px 52px;
+        gap: 8px;
+        min-height: 66px;
+        padding: 7px;
+        border-color: var(--ds-border);
+        border-radius: 16px;
+        background: rgba(6, 22, 38, .975);
+        box-shadow: var(--ds-shadow-float);
+    }
+
+    .qwd-mobile-primary,
+    .qwd-mobile-icon,
+    .qwd-mobile-more > summary {
+        min-height: 52px;
+        height: 52px;
+        border-radius: 11px;
+    }
+
+    .qwd-mobile-primary {
+        padding: 9px 12px;
+        font-size: 13px;
+        line-height: 1.25;
+    }
+
+    .qwd-mobile-icon {
+        font-size: 20px;
+    }
+
+    .qwd-mobile-more > summary {
+        width: 52px;
+        font-size: 24px;
+    }
+
+    .qwd-mobile-more .qws-menu-pop {
+        left: 10px;
+        right: 10px;
+        bottom: calc(84px + env(safe-area-inset-bottom));
+        width: auto;
+        border-radius: 16px;
+    }
+
+    .qwd-mobile-more .qws-menu-pop a,
+    .qwd-mobile-more .qws-menu-pop button {
+        min-height: 52px;
+        padding: 14px 16px;
+        font-size: 14px;
+    }
+}
+
+/* ============================================================
+   MÓVILES COMPACTOS
+   ============================================================ */
+
+@media (max-width: 390px) {
+    .qwd-head,
+    .qwd-document,
+    .qwd-side-card {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .qwd-title-row h2 {
+        font-size: 24px;
+    }
+
+    .qwd-head .status-badge {
+        max-width: 46%;
+        font-size: 10px;
+    }
+
+    .qwd-document .formal-company-brand {
+        grid-template-columns: 82px minmax(0,1fr);
+    }
+
+    .qwd-document .formal-company-brand img {
+        width: 82px;
+    }
+
+    .qwd-items td {
+        grid-template-columns: 94px minmax(0,1fr);
+        gap: 8px;
+    }
+
+    .qwd-mobile-bar {
+        grid-template-columns: minmax(0,1fr) 50px 50px;
+    }
+}
+
+/* La impresión conserva cotizaciones.css como fuente principal. */
+@media print {
+    .qwd-page {
+        padding-bottom: 0 !important;
+    }
+}

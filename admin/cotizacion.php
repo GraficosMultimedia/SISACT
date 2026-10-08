@@ -253,6 +253,8 @@ require __DIR__ . '/../includes/header.php';
 <link rel="stylesheet" href="/assets/css/cotizaciones.css?v=20260917-7">
 <link rel="stylesheet" href="/assets/css/quote-client-file-v2.css?v=20260920-2">
 <link rel="stylesheet" href="/assets/css/cotizaciones-workspace-v1.css?v=1.0.0">
+<link rel="stylesheet" href="/assets/css/sisact-design-system-v1.css?v=1.0.0">
+<link rel="stylesheet" href="/assets/css/cotizacion-detail-professional-v1.css?v=1.0.0">
 
 <div class="qwd-page">
     <header class="qwd-head no-print">
