@@ -20,7 +20,7 @@ box-shadow:var(--ds-shadow-sm);align-items:center}
 .order-toolbar h2{margin:5px 0 6px;color:var(--ds-text);font-size:clamp(29px,3vw,40px);line-height:1.08;letter-spacing:-.035em}
 .order-toolbar .eyebrow{color:var(--ds-cyan);font-size:10px;font-weight:900;letter-spacing:.14em}
 .order-toolbar p{font-size:12px}.order-toolbar p a{color:#80d8f5;font-weight:800;text-decoration:none}
-.order-toolbar-actions{justify-content:flex-end;gap:8px}
+.order-toolbar-actions{justify-content:flex-end;gap:8px;flex-wrap:wrap}
 .order-toolbar-actions .btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center;padding:9px 12px;border-radius:10px;font-size:11px;font-weight:800}
 
 .order-view-grid{grid-template-columns:minmax(0,1fr) 350px;gap:18px}

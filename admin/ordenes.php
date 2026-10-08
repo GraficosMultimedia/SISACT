@@ -171,6 +171,9 @@ require __DIR__ . '/../includes/header.php';
 <td data-label="Total" class="money-cell"><?=quote_money((float)$row['total'])?></td>
 <td data-label="Acciones" class="actions-cell">
   <a class="btn btn-sm btn-secondary ow-view" href="/admin/orden.php?id=<?=((int)$row['id'])?>">Ver orden</a>
+  <?php if (in_array((string)$row['status'], ['pending','in_progress'], true)): ?>
+    <a class="btn btn-sm btn-primary" href="/admin/orden_editar.php?id=<?=((int)$row['id'])?>">Editar</a>
+  <?php endif; ?>
   <a class="btn btn-sm btn-secondary" href="/admin/orden.php?id=<?=((int)$row['id'])?>#seguimiento">Seguimiento</a>
   <?php if ((string)$row['status'] !== 'delivered' && (string)$row['status'] !== 'cancelled'): ?>
     <form method="post" class="inline-form" onsubmit="return confirm('¿Cancelar esta orden?');">
