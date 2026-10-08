@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 07, 2026 at 11:16 AM
+-- Generation Time: Oct 07, 2026 at 12:23 PM
 -- Server version: 5.7.44-48
 -- PHP Version: 8.4.25
 
@@ -1037,7 +1037,18 @@ INSERT INTO `cp_activity_log` (`id`, `user_id`, `action`, `module`, `description
 (1185, 1, 'update', 'production', 'Etapa actualizada para orden #58', '177.239.83.23', '2026-10-07 10:00:58'),
 (1186, 1, 'login', 'auth', 'Inicio de sesión', '200.68.165.114', '2026-10-07 10:51:17'),
 (1187, 1, 'create', 'customers', 'Cliente #1302 creado', '200.68.165.114', '2026-10-07 10:52:56'),
-(1188, 1, 'create', 'quotes', 'Cotización creada #90', '200.68.165.114', '2026-10-07 10:54:17');
+(1188, 1, 'create', 'quotes', 'Cotización creada #90', '200.68.165.114', '2026-10-07 10:54:17'),
+(1189, 1, 'login', 'auth', 'Inicio de sesión', '177.239.83.23', '2026-10-07 11:48:08'),
+(1190, 1, 'logout', 'auth', 'Cierre de sesión', '177.239.83.23', '2026-10-07 11:48:14'),
+(1191, 1, 'login', 'auth', 'Inicio de sesión', '177.239.83.23', '2026-10-07 11:58:56'),
+(1192, 1, 'update', 'production', 'Etapa actualizada para orden #58', '177.239.83.23', '2026-10-07 12:00:39'),
+(1193, 1, 'logout', 'auth', 'Cierre de sesión', '177.239.83.23', '2026-10-07 12:00:58'),
+(1194, 1, 'login', 'auth', 'Inicio de sesión', '177.239.83.23', '2026-10-07 12:01:18'),
+(1195, 1, 'login', 'auth', 'Inicio de sesión', '200.68.165.114', '2026-10-07 12:02:46'),
+(1196, 1, 'create', 'customers', 'Cliente #1303 creado', '200.68.165.114', '2026-10-07 12:03:10'),
+(1197, 1, 'create', 'quotes', 'Cotización creada #91', '200.68.165.114', '2026-10-07 12:04:27'),
+(1198, 1, 'update', 'production', 'Etapa actualizada para orden #55', '177.239.83.23', '2026-10-07 12:10:21'),
+(1199, 1, 'update', 'settings', 'Datos de empresa actualizados', '177.239.83.23', '2026-10-07 12:21:18');
 
 -- --------------------------------------------------------
 
@@ -2365,7 +2376,8 @@ INSERT INTO `cp_customers` (`id`, `source_type`, `source_id`, `name`, `email`, `
 (1299, 'local', NULL, 'Marisol Polanco', NULL, NULL, '+52 627 105 8566', NULL, NULL, NULL, NULL, 'MX', NULL, 1, '2026-10-06 10:07:39', '2026-10-06 10:07:39'),
 (1300, 'local', NULL, 'Luis Ariel Domínguez Sáenz', NULL, NULL, '+52 649 107 0392', NULL, NULL, NULL, NULL, 'MX', NULL, 1, '2026-10-06 13:15:49', '2026-10-06 13:15:49'),
 (1301, 'local', NULL, 'ODIN LEDEZMA', NULL, NULL, '+52 627 123 3824', NULL, NULL, NULL, NULL, 'MX', NULL, 1, '2026-10-06 19:12:57', '2026-10-06 19:12:57'),
-(1302, 'local', NULL, 'Presidencia Municipal de Parral', 'wmaster1ro@gmail.com', NULL, '6275274700', 'Francisco Miranda y República de Cuba s/n, América, 33880', 'HIDALGO DEL PARRAL', '33820', 'CHIHUAHUA', 'MX', NULL, 1, '2026-10-07 10:52:56', '2026-10-07 10:52:56');
+(1302, 'local', NULL, 'Presidencia Municipal de Parral', 'wmaster1ro@gmail.com', NULL, '6275274700', 'Francisco Miranda y República de Cuba s/n, América, 33880', 'HIDALGO DEL PARRAL', '33820', 'CHIHUAHUA', 'MX', NULL, 1, '2026-10-07 10:52:56', '2026-10-07 10:52:56'),
+(1303, 'local', NULL, 'Lorena', NULL, NULL, '+52 627 147 5353', NULL, NULL, NULL, NULL, 'MX', NULL, 1, '2026-10-07 12:03:10', '2026-10-07 12:03:10');
 
 -- --------------------------------------------------------
 
@@ -3745,6 +3757,32 @@ INSERT INTO `cp_customer_merge_map` (`old_customer_id`, `canonical_customer_id`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cp_expenses`
+--
+
+CREATE TABLE `cp_expenses` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `expense_date` date NOT NULL,
+  `due_date` date DEFAULT NULL,
+  `category` varchar(80) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Otros',
+  `supplier` varchar(190) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `amount` decimal(15,2) NOT NULL DEFAULT '0.00',
+  `payment_method` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'other',
+  `reference` varchar(190) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `receipt_reference` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_id` int(10) UNSIGNED DEFAULT NULL,
+  `status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'paid',
+  `notes` text COLLATE utf8mb4_unicode_ci,
+  `created_by` int(10) UNSIGNED DEFAULT NULL,
+  `updated_by` int(10) UNSIGNED DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `cp_invoices`
 --
 
@@ -3927,10 +3965,10 @@ INSERT INTO `cp_orders` (`id`, `order_number`, `quote_id`, `customer_id`, `statu
 (52, 'OS-2026-00042', 72, 1292, 'delivered', '2026-10-01', '2026-10-01', 1, 80.00, '', '', 1, 1, '2026-10-01 17:52:26', '2026-10-01 17:55:50'),
 (53, 'OS-2026-00043', 74, 227, 'delivered', '2026-10-02', '2026-10-02', 1, 150.00, '', '', 1, 1, '2026-10-02 10:16:45', '2026-10-04 08:43:49'),
 (54, 'OS-2026-00044', 73, 1280, 'in_progress', '2026-10-02', '2026-10-10', 1, 2046.24, '', '', 1, 1, '2026-10-02 16:32:22', '2026-10-06 15:36:13'),
-(55, 'OS-2026-00045', 76, 1294, 'pending', '2026-10-03', '2026-10-05', 1, 391.00, '', '', 1, 1, '2026-10-03 13:50:26', '2026-10-03 13:51:28'),
+(55, 'OS-2026-00045', 76, 1294, 'in_progress', '2026-10-03', '2026-10-05', 1, 391.00, '', '', 1, 1, '2026-10-03 13:50:26', '2026-10-07 12:10:21'),
 (56, 'OS-2026-00046', 77, 1295, 'pending', '2026-10-03', '2026-10-18', 1, 391.00, '', '', 1, 1, '2026-10-03 13:53:34', '2026-10-03 13:53:57'),
 (57, 'OS-2026-00047', 78, 544, 'in_progress', '2026-10-03', '2026-10-17', 1, 6020.40, '', '', 1, 1, '2026-10-03 15:29:03', '2026-10-03 20:33:47'),
-(58, 'OS-2026-00048', 79, 1296, 'in_progress', '2026-10-04', '2026-10-19', 1, 240.00, '', '', 1, 1, '2026-10-04 14:45:32', '2026-10-07 10:00:58'),
+(58, 'OS-2026-00048', 79, 1296, 'delivered', '2026-10-04', '2026-10-19', 1, 240.00, '', '', 1, 1, '2026-10-04 14:45:32', '2026-10-07 12:00:39'),
 (59, 'OS-2026-00049', 80, 1284, 'delivered', '2026-10-05', '2026-10-05', 1, 290.00, '', '', 1, 1, '2026-10-05 09:57:55', '2026-10-06 12:08:24'),
 (60, 'OS-2026-00050', 81, 1297, 'in_progress', '2026-10-05', '2026-10-20', 1, 1925.00, '', '', 1, 1, '2026-10-05 16:34:04', '2026-10-05 16:35:36'),
 (61, 'OS-2026-00051', 82, 1298, 'delivered', '2026-10-05', '2026-10-06', 1, 395.00, '', '', 1, 1, '2026-10-05 17:56:27', '2026-10-07 00:21:29'),
@@ -4363,7 +4401,9 @@ INSERT INTO `cp_order_history` (`id`, `order_id`, `old_status`, `new_status`, `n
 (445, 23, 'ready', 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-07 09:54:22'),
 (446, 58, 'printing', 'production', 'Tu pedido se encuentra en producción. Nuestro equipo está realizando el proceso de fabricación y acabado.', 1, '2026-10-07 10:00:52'),
 (447, 58, 'production', 'quality', 'Tu pedido se encuentra en revisión de calidad. Estamos verificando que el trabajo cumpla con los requisitos antes de entregarlo.', 1, '2026-10-07 10:00:55'),
-(448, 58, 'quality', 'ready', 'Tu pedido está terminado y listo para entrega. Te informaremos las indicaciones correspondientes para recibirlo.', 1, '2026-10-07 10:00:58');
+(448, 58, 'quality', 'ready', 'Tu pedido está terminado y listo para entrega. Te informaremos las indicaciones correspondientes para recibirlo.', 1, '2026-10-07 10:00:58'),
+(449, 58, 'ready', 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-07 12:00:39'),
+(450, 55, 'pending', 'design', 'Tu pedido se encuentra en etapa de diseño. Estamos preparando y revisando los detalles necesarios antes de continuar.', 1, '2026-10-07 12:10:21');
 
 -- --------------------------------------------------------
 
@@ -4675,11 +4715,12 @@ INSERT INTO `cp_order_status` (`id`, `order_id`, `stage`, `note`, `updated_by`, 
 (51, 52, 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-01 17:53:50', '2026-10-01 17:55:50'),
 (52, 57, 'ready', 'Tu pedido está terminado y listo para entrega. Te informaremos las indicaciones correspondientes para recibirlo.', 1, '2026-10-03 20:33:29', '2026-10-03 20:33:47'),
 (53, 53, 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-04 08:43:32', '2026-10-04 08:43:49'),
-(54, 58, 'ready', 'Tu pedido está terminado y listo para entrega. Te informaremos las indicaciones correspondientes para recibirlo.', 1, '2026-10-04 14:54:11', '2026-10-07 10:00:58'),
+(54, 58, 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-04 14:54:11', '2026-10-07 12:00:39'),
 (55, 54, 'production', 'Tu pedido se encuentra en producción. Nuestro equipo está realizando el proceso de fabricación y acabado.', 1, '2026-10-06 09:57:27', '2026-10-06 15:36:13'),
 (56, 59, 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-06 12:08:09', '2026-10-06 12:08:24'),
 (57, 61, 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-07 00:21:29', '2026-10-07 00:21:29'),
-(58, 63, 'quality', 'Tu pedido se encuentra en revisión de calidad. Estamos verificando que el trabajo cumpla con los requisitos antes de entregarlo.', 1, '2026-10-07 00:22:13', '2026-10-07 00:22:26');
+(58, 63, 'quality', 'Tu pedido se encuentra en revisión de calidad. Estamos verificando que el trabajo cumpla con los requisitos antes de entregarlo.', 1, '2026-10-07 00:22:13', '2026-10-07 00:22:26'),
+(59, 55, 'design', 'Tu pedido se encuentra en etapa de diseño. Estamos preparando y revisando los detalles necesarios antes de continuar.', 1, '2026-10-07 12:10:21', '2026-10-07 12:10:21');
 
 -- --------------------------------------------------------
 
@@ -5448,6 +5489,8 @@ INSERT INTO `cp_quotes` (`id`, `quote_number`, `customer_id`, `status`, `client_
 (88, 'CP-2026-00066', 1280, 'approved', NULL, NULL, '2026-10-02', '2026-10-09', NULL, '50% de anticipo y 50% contra entrega, salvo acuerdo distinto por escrito.', 'Tiempo estimado según proyecto y disponibilidad de materiales.', 'Hidalgo del Parral, Chihuahua / domicilio acordado con el cliente.', '', 'Cotización sujeta a disponibilidad de materiales, aprobación del cliente y cambios de alcance. Los tiempos pueden variar según materiales, producción y carga de trabajo. Cualquier modificación al proyecto puede generar ajustes de precio y entrega.', '', NULL, NULL, 1, 1, '2026-10-06 16:02:27', '2026-10-06 16:02:38'),
 (89, 'CP-2026-00067', 1301, 'draft', NULL, NULL, '2026-10-06', '2026-10-09', NULL, '50% de anticipo y 50% contra entrega, salvo acuerdo distinto por escrito.', 'Tiempo estimado según proyecto y disponibilidad de materiales.', 'Hidalgo del Parral, Chihuahua / domicilio acordado con el cliente.', '', 'Cotización sujeta a disponibilidad de materiales, aprobación del cliente y cambios de alcance. Los tiempos pueden variar según materiales, producción y carga de trabajo. Cualquier modificación al proyecto puede generar ajustes de precio y entrega.', '', NULL, NULL, 1, 1, '2026-10-06 19:13:51', '2026-10-06 19:13:51'),
 (90, 'CP-2026-00068', 1302, 'draft', NULL, NULL, '2026-10-07', '2026-10-12', NULL, '50% de anticipo y 50% contra entrega, salvo acuerdo distinto por escrito.', 'Tiempo estimado según proyecto y disponibilidad de materiales.', 'Hidalgo del Parral, Chihuahua / domicilio acordado con el cliente.', '', 'Cotización sujeta a disponibilidad de materiales, aprobación del cliente y cambios de alcance. Los tiempos pueden variar según materiales, producción y carga de trabajo. Cualquier modificación al proyecto puede generar ajustes de precio y entrega.', '', NULL, NULL, 1, 1, '2026-10-07 10:54:17', '2026-10-07 10:54:17');
+INSERT INTO `cp_quotes` (`id`, `quote_number`, `customer_id`, `status`, `client_approved_at`, `client_approval_ip`, `issue_date`, `valid_until`, `client_reference`, `payment_terms`, `delivery_time`, `delivery_place`, `notes`, `terms`, `internal_notes`, `source_calculator`, `source_data`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(91, 'CP-2026-00069', 1303, 'draft', NULL, NULL, '2026-10-07', '2026-10-09', NULL, '50% de anticipo y 50% contra entrega, salvo acuerdo distinto por escrito.', 'Tiempo estimado según proyecto y disponibilidad de materiales.', 'Hidalgo del Parral, Chihuahua / domicilio acordado con el cliente.', '', 'Cotización sujeta a disponibilidad de materiales, aprobación del cliente y cambios de alcance. Los tiempos pueden variar según materiales, producción y carga de trabajo. Cualquier modificación al proyecto puede generar ajustes de precio y entrega.', '', NULL, NULL, 1, 1, '2026-10-07 12:04:27', '2026-10-07 12:04:27');
 
 -- --------------------------------------------------------
 
@@ -5633,7 +5676,9 @@ INSERT INTO `cp_quote_items` (`id`, `quote_id`, `description`, `quantity`, `unit
 (237, 89, 'Impresión de lona 1.50m x 1m', 9.000, 200.00, 1800.00, NULL, 0, '2026-10-06 19:13:51', '2026-10-06 19:13:51'),
 (238, 87, 'Centro de mesa 18cm', 12.000, 20.00, 240.00, NULL, 0, '2026-10-07 00:30:16', '2026-10-07 00:30:16'),
 (239, 87, 'Figura decorativa vinil y coroplast  con base 50cm', 1.000, 200.00, 200.00, NULL, 1, '2026-10-07 00:30:16', '2026-10-07 00:30:16'),
-(240, 90, 'IMPRESION DE CREDENCIALES PVC', 127.000, 39.00, 4953.00, NULL, 0, '2026-10-07 10:54:17', '2026-10-07 10:54:17');
+(240, 90, 'IMPRESION DE CREDENCIALES PVC', 127.000, 39.00, 4953.00, NULL, 0, '2026-10-07 10:54:17', '2026-10-07 10:54:17'),
+(241, 91, 'Playera polo personalizado tamaño corazón', 1.000, 230.00, 230.00, NULL, 0, '2026-10-07 12:04:27', '2026-10-07 12:04:27'),
+(242, 91, 'Pluma metálica personalizada grabado láser', 1.000, 100.00, 100.00, NULL, 1, '2026-10-07 12:04:27', '2026-10-07 12:04:27');
 
 -- --------------------------------------------------------
 
@@ -5686,7 +5731,8 @@ INSERT INTO `cp_quote_public_tokens` (`id`, `quote_id`, `token`, `active`, `crea
 (40, 86, '4b5dd4296f87f205f52a1a497d0760598763f4fa755e3fcbac1240b624e420e6', 1, '2026-10-06 13:21:19', '2026-10-06 13:26:45'),
 (41, 87, '3a7da2221d610f76066805a4837a87f835fe5df1cdd9794fccea5d680dbf8a94', 1, '2026-10-06 14:33:09', '2026-10-06 19:10:16'),
 (42, 89, '01e3bab241e09c8f241919316a71eecf3cea3affc729cc2e7e512cdde2537381', 1, '2026-10-06 19:13:53', '2026-10-06 19:14:08'),
-(43, 90, '96f22fc36674f4e8af233fae944038eb42a0cce5e482590a4f1a380f93acc1ce', 1, '2026-10-07 10:54:25', '2026-10-07 11:01:28');
+(43, 90, '96f22fc36674f4e8af233fae944038eb42a0cce5e482590a4f1a380f93acc1ce', 1, '2026-10-07 10:54:25', '2026-10-07 11:01:28'),
+(44, 91, '347446993462e39d3641881ed83b300324f24172fe3042faae6b0a112b611eb4', 1, '2026-10-07 12:04:29', '2026-10-07 12:11:44');
 
 -- --------------------------------------------------------
 
@@ -5780,7 +5826,8 @@ INSERT INTO `cp_quote_totals` (`id`, `quote_id`, `subtotal`, `discount`, `tax`, 
 (138, 88, 1029.00, 0.00, 164.64, 1193.64, 0.00, 1193.64, 100.000, '2026-10-06 16:02:27', '2026-10-06 16:02:27'),
 (139, 89, 1800.00, 450.00, 0.00, 1350.00, 0.00, 1350.00, 100.000, '2026-10-06 19:13:51', '2026-10-06 19:13:51'),
 (140, 87, 440.00, 0.00, 0.00, 440.00, 0.00, 440.00, 100.000, '2026-10-07 00:30:16', '2026-10-07 00:30:16'),
-(141, 90, 4953.00, 0.00, 792.48, 5745.48, 0.00, 5745.48, 100.000, '2026-10-07 10:54:17', '2026-10-07 10:54:17');
+(141, 90, 4953.00, 0.00, 792.48, 5745.48, 0.00, 5745.48, 100.000, '2026-10-07 10:54:17', '2026-10-07 10:54:17'),
+(142, 91, 330.00, 0.00, 0.00, 330.00, 0.00, 330.00, 100.000, '2026-10-07 12:04:27', '2026-10-07 12:04:27');
 
 -- --------------------------------------------------------
 
@@ -5824,7 +5871,7 @@ CREATE TABLE `cp_settings` (
 INSERT INTO `cp_settings` (`id`, `setting_key`, `setting_value`, `created_at`, `updated_at`) VALUES
 (1, 'app.name', 'Colibrí Print México', '2026-09-16 22:35:58', '2026-09-16 22:35:58'),
 (2, 'company.name', 'Colibrí Print México', '2026-09-16 22:35:58', '2026-09-16 22:35:58'),
-(3, 'company.country', 'MX', '2026-09-16 22:35:58', '2026-09-19 15:42:53'),
+(3, 'company.country', 'MX', '2026-09-16 22:35:58', '2026-10-07 12:21:18'),
 (4, 'company.currency', 'MXN', '2026-09-16 22:35:58', '2026-09-16 22:35:58'),
 (5, 'akaunting.database', 'colibrip_akau488', '2026-09-16 22:35:58', '2026-09-16 22:35:58'),
 (6, 'setup.version', '1.0.0', '2026-09-16 22:35:58', '2026-09-16 22:35:58'),
@@ -5839,21 +5886,21 @@ INSERT INTO `cp_settings` (`id`, `setting_key`, `setting_value`, `created_at`, `
 (15, 'calculator.cnc.labor_hour', '120.0000', '2026-09-17 00:11:27', '2026-09-17 00:30:36'),
 (16, 'calculator.cnc.consumption_pct', '10.0000', '2026-09-17 00:11:27', '2026-09-17 00:30:36'),
 (17, 'calculator.cnc.margin_pct', '35.0000', '2026-09-17 00:11:27', '2026-09-17 00:30:36'),
-(40, 'company.legal_name', 'Colibrí Print México', '2026-09-17 11:40:28', '2026-09-19 15:42:53'),
-(41, 'company.trade_name', 'Colibrí Print', '2026-09-17 11:40:28', '2026-09-19 15:42:53'),
-(42, 'company.rfc', 'BUAE8208274R5', '2026-09-17 11:40:28', '2026-09-19 15:42:53'),
-(43, 'company.tax_regime', 'Régimen Simplificado de Confianza', '2026-09-17 11:40:28', '2026-09-19 15:42:53'),
-(44, 'company.address', 'Calle Alemania 87', '2026-09-17 11:40:28', '2026-09-19 15:42:53'),
-(45, 'company.neighborhood', 'LOMA LINDA', '2026-09-17 11:40:28', '2026-09-19 15:42:53'),
-(46, 'company.city', 'HIDALGO DEL PARRAL', '2026-09-17 11:40:28', '2026-09-19 15:42:53'),
-(47, 'company.state', 'CHIHUAHUA', '2026-09-17 11:40:28', '2026-09-19 15:42:53'),
-(48, 'company.postal_code', '33820', '2026-09-17 11:40:28', '2026-09-19 15:42:53'),
-(50, 'company.phone', '6271074512', '2026-09-17 11:40:28', '2026-09-19 15:42:53'),
-(51, 'company.email', 'ventas@colibriprint.com.mx', '2026-09-17 11:40:28', '2026-09-19 15:42:53'),
-(52, 'company.website', 'https://colibriprint.com.mx', '2026-09-17 11:40:28', '2026-09-19 15:42:53'),
-(53, 'company.logo_path', '/assets/img/company/logo-20260919150648-7ed8a8e2.png', '2026-09-17 11:40:28', '2026-09-19 15:42:53'),
-(54, 'company.quote_footer', 'Este documento es una cotización comercial y no sustituye un comprobante fiscal digital (CFDI).', '2026-09-17 11:40:28', '2026-09-19 15:42:53'),
-(55, 'company.payment_info', '012162004867143744\r\n BANCOMER\r\n\r\nErika Elizabeth Bustillos Aguirre \r\nColibrí Print México \r\nC. Alemania #87\r\n Col. Loma Linda\r\n\r\nEn el concepto  poner su nombre', '2026-09-17 11:40:28', '2026-09-19 15:42:53'),
+(40, 'company.legal_name', 'Colibrí Print México', '2026-09-17 11:40:28', '2026-10-07 12:21:18'),
+(41, 'company.trade_name', 'Colibrí Print', '2026-09-17 11:40:28', '2026-10-07 12:21:18'),
+(42, 'company.rfc', 'BUAE8208274R5', '2026-09-17 11:40:28', '2026-10-07 12:21:18'),
+(43, 'company.tax_regime', 'Régimen Simplificado de Confianza', '2026-09-17 11:40:28', '2026-10-07 12:21:18'),
+(44, 'company.address', 'Calle Alemania 87', '2026-09-17 11:40:28', '2026-10-07 12:21:18'),
+(45, 'company.neighborhood', 'LOMA LINDA', '2026-09-17 11:40:28', '2026-10-07 12:21:18'),
+(46, 'company.city', 'HIDALGO DEL PARRAL', '2026-09-17 11:40:28', '2026-10-07 12:21:18'),
+(47, 'company.state', 'CHIHUAHUA', '2026-09-17 11:40:28', '2026-10-07 12:21:18'),
+(48, 'company.postal_code', '33820', '2026-09-17 11:40:28', '2026-10-07 12:21:18'),
+(50, 'company.phone', '6271074512', '2026-09-17 11:40:28', '2026-10-07 12:21:18'),
+(51, 'company.email', 'ventas@colibriprint.com.mx', '2026-09-17 11:40:28', '2026-10-07 12:21:18'),
+(52, 'company.website', 'https://colibriprint.com.mx', '2026-09-17 11:40:28', '2026-10-07 12:21:18'),
+(53, 'company.logo_path', '/assets/img/company/logo-20260919150648-7ed8a8e2.png', '2026-09-17 11:40:28', '2026-10-07 12:21:18'),
+(54, 'company.quote_footer', 'Este documento es una cotización comercial y no sustituye un comprobante fiscal digital (CFDI).', '2026-09-17 11:40:28', '2026-10-07 12:21:18'),
+(55, 'company.payment_info', '012162004867143744\r\n BANCOMER\r\n\r\nErika Elizabeth Bustillos Aguirre \r\nColibrí Print México \r\nC. Alemania #87\r\n Col. Loma Linda\r\n\r\nEn el concepto  poner su nombre por favor. Gracias.', '2026-09-17 11:40:28', '2026-10-07 12:21:18'),
 (56, 'analytics.ga4_measurement_id', '', '2026-09-19 08:06:31', '2026-09-19 08:06:31'),
 (57, 'facebook.enabled', '1', '2026-09-19 10:28:46', '2026-09-25 23:42:01'),
 (58, 'facebook.auto_publish', '1', '2026-09-19 10:28:46', '2026-09-25 23:42:01'),
@@ -6030,7 +6077,7 @@ CREATE TABLE `cp_users` (
 --
 
 INSERT INTO `cp_users` (`id`, `role_id`, `name`, `email`, `password_hash`, `enabled`, `last_login_at`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Administrador', 'ventas@colibriprint.com.mx', '$2y$10$exXwwyuOSJwdgJYWHR3tDO.C.BtOprMV5iLIhonCJsWI4AZGgLqk2', 1, '2026-10-07 10:51:17', '2026-09-16 22:35:58', '2026-09-16 22:35:58');
+(1, 1, 'Administrador', 'ventas@colibriprint.com.mx', '$2y$10$exXwwyuOSJwdgJYWHR3tDO.C.BtOprMV5iLIhonCJsWI4AZGgLqk2', 1, '2026-10-07 12:02:46', '2026-09-16 22:35:58', '2026-09-16 22:35:58');
 
 -- --------------------------------------------------------
 
@@ -6473,6 +6520,18 @@ ALTER TABLE `cp_customers_backup_20260927_070420`
 ALTER TABLE `cp_customer_merge_map`
   ADD PRIMARY KEY (`old_customer_id`),
   ADD KEY `idx_cp_customer_merge_canonical` (`canonical_customer_id`);
+
+--
+-- Indexes for table `cp_expenses`
+--
+ALTER TABLE `cp_expenses`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_cp_expenses_date` (`expense_date`),
+  ADD KEY `idx_cp_expenses_due_date` (`due_date`),
+  ADD KEY `idx_cp_expenses_status` (`status`),
+  ADD KEY `idx_cp_expenses_category` (`category`),
+  ADD KEY `idx_cp_expenses_order` (`order_id`),
+  ADD KEY `idx_cp_expenses_created_by` (`created_by`);
 
 --
 -- Indexes for table `cp_invoices`
@@ -6942,7 +7001,7 @@ ALTER TABLE `cp_whatsapp_templates`
 -- AUTO_INCREMENT for table `cp_activity_log`
 --
 ALTER TABLE `cp_activity_log`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1189;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1200;
 
 --
 -- AUTO_INCREMENT for table `cp_categories`
@@ -6954,13 +7013,19 @@ ALTER TABLE `cp_categories`
 -- AUTO_INCREMENT for table `cp_customers`
 --
 ALTER TABLE `cp_customers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1303;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1304;
 
 --
 -- AUTO_INCREMENT for table `cp_customers_backup_20260927_070420`
 --
 ALTER TABLE `cp_customers_backup_20260927_070420`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1283;
+
+--
+-- AUTO_INCREMENT for table `cp_expenses`
+--
+ALTER TABLE `cp_expenses`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `cp_invoices`
@@ -6990,7 +7055,7 @@ ALTER TABLE `cp_orders`
 -- AUTO_INCREMENT for table `cp_order_history`
 --
 ALTER TABLE `cp_order_history`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=449;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=451;
 
 --
 -- AUTO_INCREMENT for table `cp_order_items`
@@ -7020,7 +7085,7 @@ ALTER TABLE `cp_order_production_checklist`
 -- AUTO_INCREMENT for table `cp_order_status`
 --
 ALTER TABLE `cp_order_status`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `cp_payments`
@@ -7140,7 +7205,7 @@ ALTER TABLE `cp_promotion_products`
 -- AUTO_INCREMENT for table `cp_quotes`
 --
 ALTER TABLE `cp_quotes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT for table `cp_quote_condition_templates`
@@ -7158,19 +7223,19 @@ ALTER TABLE `cp_quote_costs`
 -- AUTO_INCREMENT for table `cp_quote_items`
 --
 ALTER TABLE `cp_quote_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=241;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=243;
 
 --
 -- AUTO_INCREMENT for table `cp_quote_public_tokens`
 --
 ALTER TABLE `cp_quote_public_tokens`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `cp_quote_totals`
 --
 ALTER TABLE `cp_quote_totals`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
 
 --
 -- AUTO_INCREMENT for table `cp_roles`
@@ -7182,7 +7247,7 @@ ALTER TABLE `cp_roles`
 -- AUTO_INCREMENT for table `cp_settings`
 --
 ALTER TABLE `cp_settings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
 
 --
 -- AUTO_INCREMENT for table `cp_shipping_methods`

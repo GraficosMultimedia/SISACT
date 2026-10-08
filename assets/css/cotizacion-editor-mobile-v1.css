@@ -1,0 +1,52 @@
+/* Colibrí Print México · Editor de Cotización Mobile First V1 */
+.qe-page{--qe-border:rgba(126,164,201,.20);--qe-text:#f3f8fd;--qe-muted:#8fa6bd;--qe-cyan:#1dc4f1;--qe-pink:#f00672;--qe-green:#35cf8a;padding-bottom:10px}
+.qe-editor-head{display:flex;justify-content:space-between;align-items:center;gap:22px;margin-bottom:13px;padding:20px 22px;border:1px solid var(--qe-border);border-radius:18px;background:radial-gradient(circle at 92% 8%,rgba(240,6,114,.11),transparent 28%),linear-gradient(145deg,#0d243b,#091a2c)}
+.qe-back-link{display:inline-block;margin-bottom:7px;color:#7fd1ed;font-size:10px;font-weight:850;text-decoration:none}.qe-eyebrow{display:block;color:#69c7ec;font-size:10px;font-weight:900;letter-spacing:.14em}.qe-editor-head h2{margin:4px 0 5px;color:var(--qe-text);font-size:clamp(27px,3vw,38px);letter-spacing:-.035em}.qe-editor-head p{margin:0;color:var(--qe-muted);font-size:13px}.qe-head-status{min-width:160px;display:grid;justify-items:end;gap:5px}.qe-head-status>span{color:#d7e5f1;font-size:13px;font-weight:850}.qe-head-status>b:not(.status-badge){color:#7f98b0;font-size:10px}
+.qe-progress{position:sticky;top:8px;z-index:35;display:flex;gap:6px;margin-bottom:15px;padding:6px;overflow-x:auto;border:1px solid var(--qe-border);border-radius:13px;background:rgba(7,23,38,.93);backdrop-filter:blur(16px);scrollbar-width:none}.qe-progress::-webkit-scrollbar{display:none}.qe-progress a,.qe-progress button{flex:0 0 auto;min-height:34px;display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border:0;border-radius:9px;color:#9db2c7;background:transparent;font:inherit;font-size:10px;font-weight:800;text-decoration:none;cursor:pointer}.qe-progress a:hover,.qe-progress button:hover{color:#eef8fd;background:#102f49}.qe-progress span{width:20px;height:20px;display:grid;place-items:center;border-radius:6px;color:#8fdcf5;background:rgba(29,196,241,.10);font-size:9px}
+.qe-form-grid{gap:16px}.qe-main-column{gap:16px!important}.qe-section{scroll-margin-top:64px;padding:19px;border-color:var(--qe-border)}.qe-section-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:16px}.qe-section-head h3{margin:4px 0 4px;color:#f0f7fd;font-size:18px}.qe-section-head p{margin:0;color:#819ab2;font-size:11px;line-height:1.45}.qe-section-actions{display:flex;align-items:center;gap:7px}.qe-section-toggle{display:none;min-height:34px;padding:6px 9px;border:1px solid var(--qe-border);border-radius:9px;color:#a9bdd0;background:#0b2034;font:inherit;font-size:10px;font-weight:800;cursor:pointer}.qe-customer-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:8px}.qe-items-footer{justify-content:space-between}
+.qe-summary{border-color:rgba(41,166,208,.26);background:radial-gradient(circle at 100% 0%,rgba(240,6,114,.07),transparent 32%),linear-gradient(145deg,#102941,#091d31)}.qe-summary-head{display:flex;justify-content:space-between;gap:10px}.qe-summary-head h3{margin-top:5px}.qe-summary-close{display:none;width:34px;height:34px;border:1px solid var(--qe-border);border-radius:9px;color:#d4e1eb;background:#0a1c2e;font-size:22px;cursor:pointer}.qe-mobile-savebar{display:none}
+@media(max-width:820px){
+.qe-page{padding-bottom:92px}.qe-editor-head{align-items:flex-start;flex-direction:column;padding:17px}.qe-editor-head p{font-size:12px}.qe-head-status{min-width:0;width:100%;grid-template-columns:auto 1fr;align-items:center;justify-items:start}.qe-progress{top:6px;margin-left:-2px;margin-right:-2px}.qe-section{padding:15px;border-radius:14px}.qe-section-head{align-items:center;margin-bottom:12px}.qe-section-head h3{font-size:16px}.qe-section-toggle{display:inline-flex;align-items:center;justify-content:center}.qe-section.is-collapsed .qe-section-body{display:none}.qe-section.is-collapsed .qe-section-head{margin-bottom:0}.qe-section-actions .btn{display:none}.qe-customer-actions{align-items:stretch;flex-direction:column}.qe-customer-actions .btn{width:100%}
+.customer-results{position:fixed!important;left:12px!important;right:12px!important;top:auto!important;bottom:90px!important;max-height:48vh;overflow-y:auto;border-radius:14px!important;z-index:1000!important}.customer-result{min-height:54px;padding:12px 13px!important}
+.quote-item-row{position:relative;grid-template-columns:1fr 1fr!important;gap:10px!important;margin-bottom:12px;padding:42px 12px 12px!important;border:1px solid rgba(126,164,201,.17)!important;border-radius:13px;background:rgba(5,19,32,.28)}.quote-item-row:before{content:"Concepto " attr(data-item-index);position:absolute;left:12px;top:12px;color:#7fcfed;font-size:10px;font-weight:900;letter-spacing:.06em;text-transform:uppercase}.quote-item-row>.field:first-child{grid-column:1/-1!important}.quote-item-row .field input{min-height:46px}.quote-item-row .item-amount{min-height:52px;display:flex;flex-direction:column;justify-content:center}.quote-item-row .item-remove{position:absolute;right:9px;top:7px;width:34px;height:34px;border-radius:9px;font-size:19px}.qe-items-footer{align-items:stretch;flex-direction:column}.qe-items-footer .btn{min-height:45px}
+.condition-picker{padding:12px!important}.condition-picker-row{gap:8px}.condition-picker-row select,.condition-picker-row .btn{min-height:44px}.qe-form input,.qe-form select,.qe-form textarea{font-size:16px}
+.qe-summary{display:none;position:fixed!important;left:8px;right:8px;top:auto!important;bottom:8px;z-index:1200;max-height:82svh;overflow-y:auto;margin:0!important;padding:18px;border-radius:18px;box-shadow:0 20px 70px rgba(0,0,0,.58)}.qe-summary.is-mobile-open{display:block}.qe-summary-close{display:grid;place-items:center}.qe-summary .form-actions-stack{margin-bottom:2px}
+.qe-mobile-savebar{position:fixed;left:8px;right:8px;bottom:8px;z-index:900;display:grid;grid-template-columns:minmax(0,.82fr) minmax(150px,1.18fr);gap:7px;padding:7px;border:1px solid rgba(126,164,201,.24);border-radius:15px;background:rgba(6,22,38,.96);box-shadow:0 15px 50px rgba(0,0,0,.48);backdrop-filter:blur(18px)}.qe-mobile-total{min-width:0;display:grid;justify-items:start;align-content:center;padding:4px 8px;border:0;color:#fff;background:transparent;text-align:left;cursor:pointer}.qe-mobile-total span,.qe-mobile-total small,.qe-mobile-total strong{display:block;max-width:100%}.qe-mobile-total span{color:#7892aa;font-size:8px;font-weight:800;text-transform:uppercase}.qe-mobile-total strong{overflow:hidden;margin:1px 0;color:#6ce7b4;font-size:17px;text-overflow:ellipsis;white-space:nowrap}.qe-mobile-total small{color:#7892aa;font-size:8px}.qe-mobile-save{min-height:50px;border:1px solid rgba(255,100,171,.56);border-radius:11px;color:#fff;background:linear-gradient(90deg,#e8086c,#f00672);font:inherit;font-size:12px;font-weight:900;cursor:pointer}.qe-mobile-save:disabled{opacity:.72}
+body.qe-summary-open:before{content:"";position:fixed;inset:0;z-index:1100;background:rgba(0,0,0,.50);backdrop-filter:blur(2px)}
+}
+@media(max-width:460px){.qe-progress a,.qe-progress button{padding-left:8px;padding-right:8px;font-size:9px}.qe-section-head p{display:none}.quote-item-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}}
+
+/* ------------------------------------------------------------
+   V1.1 · Guardar y abrir WhatsApp
+   ------------------------------------------------------------ */
+.qe-save-actions .qe-whatsapp-save{
+    width:100%;
+    min-height:44px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    border:1px solid rgba(37,211,102,.48);
+    border-radius:10px;
+    color:#eafff1;
+    background:linear-gradient(135deg,#128c4b,#19a85c);
+    box-shadow:0 10px 22px rgba(18,140,75,.13);
+    font-weight:900;
+    cursor:pointer;
+}
+.qe-save-actions .qe-whatsapp-save:hover{filter:brightness(1.06)}
+.qe-save-actions .qe-whatsapp-save:disabled{opacity:.68;cursor:wait}
+.qe-whatsapp-note{display:block;margin-top:7px;color:#7892aa;font-size:9px;line-height:1.45;text-align:center}
+
+@media(max-width:820px){
+    .qe-mobile-savebar{grid-template-columns:minmax(0,.66fr) minmax(205px,1.34fr)}
+    .qe-mobile-actions{display:grid;grid-template-columns:minmax(82px,.72fr) minmax(118px,1.28fr);gap:7px;min-width:0}
+    .qe-mobile-whatsapp{min-height:50px;border:1px solid rgba(37,211,102,.52);border-radius:11px;color:#fff;background:linear-gradient(135deg,#128c4b,#19a85c);font:inherit;font-size:11px;font-weight:900;cursor:pointer;white-space:nowrap}
+    .qe-mobile-whatsapp:disabled{opacity:.68;cursor:wait}
+}
+
+@media(max-width:390px){
+    .qe-mobile-savebar{grid-template-columns:minmax(0,.62fr) minmax(196px,1.38fr)}
+    .qe-mobile-actions{grid-template-columns:74px minmax(112px,1fr)}
+    .qe-mobile-save,.qe-mobile-whatsapp{font-size:10px}
+}

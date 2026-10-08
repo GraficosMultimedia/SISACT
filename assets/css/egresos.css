@@ -1,0 +1,100 @@
+/* Egresos — Dashboard Intelligence V1 */
+
+.eg-head {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:18px;
+    margin-bottom:18px;
+    padding:24px;
+    border:1px solid rgba(117,157,199,.18);
+    border-radius:18px;
+    background:linear-gradient(145deg,#0d223b,#0a192c);
+}
+.eg-eyebrow { color:#6fc9ef;font-size:10px;font-weight:900;letter-spacing:.15em; }
+.eg-head h2,.eg-card h3,.eg-install h3 { margin:5px 0; color:#f3f8fd; }
+.eg-head p,.eg-install p { margin:0;color:#91a9c1;font-size:13px;line-height:1.5; }
+.eg-back {
+    padding:10px 12px;border:1px solid #2c587c;border-radius:10px;
+    color:#bfe6fb;text-decoration:none;font-size:11px;font-weight:800;white-space:nowrap;
+}
+
+.eg-install {
+    display:grid;
+    grid-template-columns:58px 1fr;
+    gap:18px;
+    padding:24px;
+    border:1px solid rgba(255,212,0,.25);
+    border-radius:17px;
+    background:rgba(255,212,0,.05);
+}
+.eg-install-icon {
+    width:54px;height:54px;display:grid;place-items:center;border-radius:15px;
+    background:rgba(255,212,0,.12);color:#ffe34e;font-size:25px;font-weight:900;
+}
+.eg-install code { display:inline-block;margin:10px 0;padding:7px 10px;border-radius:7px;background:#081725;color:#8ed8f7; }
+
+.eg-message { margin-bottom:14px;padding:12px 14px;border-radius:11px;font-size:12px; }
+.eg-message.success { border:1px solid rgba(45,200,121,.25);background:rgba(45,200,121,.07);color:#82e7b8; }
+.eg-message.error { border:1px solid rgba(255,93,115,.25);background:rgba(255,93,115,.07);color:#ff9ba9; }
+
+.eg-stats {
+    display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px;
+}
+.eg-stats article {
+    padding:17px;border:1px solid rgba(117,157,199,.17);border-radius:14px;
+    background:linear-gradient(145deg,#102943,#0a1d32);
+}
+.eg-stats span,.eg-stats small { display:block;color:#8fa7bf;font-size:10px; }
+.eg-stats strong { display:block;margin:7px 0;color:#f4f8fd;font-size:24px; }
+
+.eg-grid { display:grid;grid-template-columns:minmax(360px,.72fr) minmax(0,1.28fr);gap:18px; }
+.eg-card {
+    min-width:0;padding:20px;border:1px solid rgba(117,157,199,.17);border-radius:17px;
+    background:linear-gradient(145deg,#102943,#0a1d32);
+}
+.eg-card-head { margin-bottom:16px; }
+.eg-card-head h3 { font-size:18px; }
+.eg-form-grid { display:grid;grid-template-columns:1fr 1fr;gap:12px; }
+.eg-form label { display:grid;gap:6px; }
+.eg-form label.wide { grid-column:1/-1; }
+.eg-form label span { color:#9bb0c7;font-size:10px;font-weight:800; }
+.eg-form input,.eg-form select,.eg-form textarea,.eg-filter input {
+    width:100%;padding:9px 10px;border:1px solid #294866;border-radius:9px;
+    background:#08192b;color:#e7f0fa;font:inherit;font-size:12px;outline:none;
+}
+.eg-form input:focus,.eg-form select:focus,.eg-form textarea:focus { border-color:#14bdf1;box-shadow:0 0 0 3px rgba(20,189,241,.08); }
+.eg-submit {
+    width:100%;margin-top:14px;padding:11px;border:0;border-radius:10px;
+    background:linear-gradient(90deg,#e7076b,#f00672);color:#fff;font-weight:900;cursor:pointer;
+}
+
+.eg-filter-head { display:flex;justify-content:space-between;align-items:end;gap:12px; }
+.eg-filter { display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end; }
+.eg-filter input { width:auto; }
+.eg-filter button {
+    padding:8px 10px;border:0;border-radius:8px;background:#166da7;color:#fff;font-size:11px;font-weight:800;cursor:pointer;
+}
+
+.eg-table-wrap { overflow:auto; }
+.eg-table { width:100%;border-collapse:collapse;font-size:11px; }
+.eg-table th { padding:9px;text-align:left;color:#7590aa;font-size:9px;text-transform:uppercase;border-bottom:1px solid rgba(129,163,196,.18); }
+.eg-table td { padding:10px 9px;color:#bfd0e1;border-bottom:1px solid rgba(129,163,196,.09);vertical-align:top; }
+.eg-table td strong { color:#edf5fc; }
+.eg-table td small { display:block;margin-top:2px;color:#768fa7; }
+.eg-status { display:inline-block;padding:4px 6px;border-radius:6px;font-size:9px;font-weight:900;text-transform:uppercase; }
+.eg-status.paid { color:#66e2a7;background:rgba(45,200,121,.10); }
+.eg-status.pending { color:#ffe06a;background:rgba(255,212,0,.09); }
+.eg-status.cancelled { color:#ff8798;background:rgba(255,93,115,.09); }
+.eg-cancel { border:0;background:transparent;color:#ff8194;font-size:9px;cursor:pointer; }
+.eg-empty { padding:20px;border:1px dashed rgba(129,163,196,.18);border-radius:10px;text-align:center;color:#7892aa;font-size:12px; }
+
+@media(max-width:1100px){ .eg-grid{grid-template-columns:1fr;} }
+@media(max-width:700px){
+    .eg-head{align-items:flex-start;flex-direction:column;}
+    .eg-stats{grid-template-columns:1fr;}
+    .eg-form-grid{grid-template-columns:1fr;}
+    .eg-form label.wide{grid-column:auto;}
+    .eg-filter-head{align-items:flex-start;flex-direction:column;}
+    .eg-filter{justify-content:flex-start;}
+}
