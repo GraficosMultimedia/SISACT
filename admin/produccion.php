@@ -52,7 +52,7 @@ require __DIR__ . '/../includes/header.php';
 ?>
 <link rel="stylesheet" href="/assets/css/produccion.css?v=20260917-11">
 <link rel="stylesheet" href="/assets/css/sisact-design-system-v1.css?v=1.0.1">
-<link rel="stylesheet" href="/assets/css/produccion-workspace-professional-v1.css?v=1.0.0">
+<link rel="stylesheet" href="/assets/css/produccion-workspace-professional-v1.css?v=1.0.1">
 
 <div class="pw-page">
 <div class="production-toolbar pw-hero">
@@ -165,6 +165,13 @@ require __DIR__ . '/../includes/header.php';
             <strong><?=e($o['responsible_name'] ?: 'Sin asignar')?></strong>
           </div>
         </div>
+
+        <?php if(trim((string)($o['internal_notes'] ?? '')) !== ''): ?>
+          <div class="pw-production-instruction">
+            <span>⚙ INSTRUCCIÓN DE PRODUCCIÓN</span>
+            <strong><?=nl2br(e((string)$o['internal_notes']))?></strong>
+          </div>
+        <?php endif; ?>
 
         <?php if($o['due_date']): ?>
           <div class="due-line<?=$isOverdue?' overdue':''?>">

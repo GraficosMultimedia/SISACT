@@ -1,132 +1,115 @@
-SISACT · DESIGN SYSTEM
-MÓDULO 4: PRODUCCIÓN WORKSPACE / KANBAN
+SISACT · PARCHE PRODUCCIÓN V1
+NOTA INTERNA EN KANBAN
 Colibrí Print México
 
-REVISIÓN PREVIA DEL REPOSITORIO
-===============================
-Se revisaron antes de crear este paquete:
-- admin/produccion.php
-- assets/css/produccion.css
-- includes/produccion.php
+OBJETIVO
+========
+Mostrar la nota interna de la Orden de Servicio directamente en la tarjeta
+del Kanban para que producción pueda identificar de inmediato la instrucción,
+máquina o proceso requerido.
 
-ESTADO ACTUAL
-=============
-El Kanban usa siete etapas activas:
-Pendiente, Diseño, Aprobación, Impresión, Producción, Calidad y Listo.
+Ejemplo:
+  ⚙ INSTRUCCIÓN DE PRODUCCIÓN
+  GRABADO LÁSER - VASO YETI
 
-La lógica de etapas vive en includes/produccion.php y production_set_stage():
-- actualiza cp_order_status;
-- genera historial cuando corresponde;
-- sincroniza el estado general de cp_orders;
-- usa transacción.
-
-ESTA LÓGICA NO SE MODIFICA.
-
-HALLAZGO VISUAL
+REVISIÓN PREVIA
 ===============
-En móvil, el CSS original reduce las columnas a 220-240 px y mantiene textos
-de aproximadamente 10-12 px. Funciona, pero las tarjetas quedan demasiado
-pequeñas para operación diaria.
+Se revisaron en GitHub antes de generar este parche:
+- includes/produccion.php
+- admin/produccion.php
+- assets/css/produccion-workspace-professional-v1.css
 
-QUÉ CAMBIA
-==========
+El problema confirmado era que production_orders() no seleccionaba
+cp_orders.internal_notes, por lo tanto Kanban no tenía acceso a ese dato.
+
+ARCHIVOS A REEMPLAZAR
+=====================
+includes/produccion.php
 admin/produccion.php
-- conserva toda la lógica actual;
-- carga el Design System;
-- muestra en cada tarjeta:
-  * total;
-  * responsable;
-  * fecha de entrega;
-  * indicador de vencida;
-- añade resumen por etapas;
-- añade la ayuda visual "Desliza entre etapas".
-
-assets/css/sisact-design-system-v1.css
-- base aprobada del Design System.
-
 assets/css/produccion-workspace-professional-v1.css
-- nueva capa visual específica.
 
-NO SE MODIFICA
-==============
-- production_set_stage();
-- production_orders();
-- production_stages();
-- cp_order_status;
-- cp_order_history;
-- cp_orders;
-- transacciones;
-- búsqueda;
-- filtro por etapa;
-- CSRF;
-- log_activity();
-- historial de finalizadas;
-- detalle de producción;
-- base de datos;
-- conexiones.
+CAMBIO 1
+========
+includes/produccion.php
 
-MÓVIL
-=====
-- Kanban horizontal con scroll-snap.
-- Cada etapa ocupa aproximadamente 86% de la pantalla, máximo 360px.
-- Ya no usa columnas diminutas de 220px.
-- Título de etapa 15px.
-- Folio de orden 16px.
-- Cliente 15px.
-- Total 17px.
-- Responsable 13px.
-- Fecha 13px.
-- Botón Abrir orden 50px.
-- Inputs/selects 50px y 16px para evitar zoom automático.
-- Resumen de etapas desplazable.
-- Indicador de entrega vencida.
-- Scrollbar horizontal oculto visualmente en móvil.
+production_orders() ahora incluye:
+  o.internal_notes
 
-ESCRITORIO / TABLET
-===================
-- Se conserva el concepto Kanban.
-- Tarjetas con mejor jerarquía.
-- En tablet se activa Kanban horizontal de 300px por columna.
-- Escritorio conserva las siete columnas.
+No cambia joins, filtros, estados, ordenamiento ni límite de registros.
+
+CAMBIO 2
+========
+admin/produccion.php
+
+Si internal_notes contiene texto, la tarjeta muestra:
+
+  ⚙ INSTRUCCIÓN DE PRODUCCIÓN
+  [contenido de Notas internas]
+
+El contenido se escapa con e() y conserva saltos de línea mediante nl2br().
+
+Si la orden NO tiene nota interna, no se muestra ningún bloque adicional.
+
+CAMBIO 3
+========
+assets/css/produccion-workspace-professional-v1.css
+
+Se añade un bloque visual diferenciado para la instrucción de producción:
+- tono amarillo discreto;
+- borde lateral;
+- texto legible;
+- 14px en móvil;
+- salto de línea y palabras largas controlados.
 
 CACHE
 =====
-admin/produccion.php carga:
-  sisact-design-system-v1.css?v=1.0.1
+admin/produccion.php cambia:
   produccion-workspace-professional-v1.css?v=1.0.0
+a:
+  produccion-workspace-professional-v1.css?v=1.0.1
+
+NO SE MODIFICA
+==============
+- base de datos;
+- tablas;
+- SQL de migración;
+- production_set_stage();
+- historial;
+- estados;
+- cp_order_status;
+- cp_order_history;
+- cp_orders.internal_notes;
+- editor de órdenes;
+- responsable;
+- vencimiento;
+- búsqueda;
+- filtros;
+- PDF;
+- WhatsApp.
 
 INSTALACIÓN
 ===========
-1. Respaldar admin/produccion.php.
-2. Copiar el ZIP respetando carpetas.
-3. Reemplazar admin/produccion.php.
-4. Copiar/actualizar ambos CSS.
-5. Hacer Ctrl+F5 una vez.
+1. Respaldar los tres archivos indicados.
+2. Copiar el contenido del ZIP en la raíz de SISACT.
+3. Reemplazar:
+   includes/produccion.php
+   admin/produccion.php
+   assets/css/produccion-workspace-professional-v1.css
+4. Abrir Producción y hacer Ctrl+F5 una vez.
 
-PRUEBAS
-=======
-- 360px
-- 390px
-- 430px
-- tablet
-- escritorio
-- buscar por orden
-- buscar por cliente
-- filtrar cada etapa
-- orden con responsable
-- orden sin responsable
-- orden con fecha
-- orden sin fecha
-- orden vencida
-- abrir detalle de producción
-- historial finalizadas
+PRUEBA
+======
+1. Abre una orden y escribe en Notas internas:
+   GRABADO LÁSER - VASO YETI
+2. Guarda la orden.
+3. Regresa a Producción.
+4. La tarjeta debe mostrar la instrucción antes de la fecha de entrega.
+5. Prueba una orden sin nota interna: la tarjeta debe permanecer igual.
 
 REVERSIÓN
 =========
-Restaurar admin/produccion.php.
-El CSS nuevo puede permanecer en el servidor sin afectar otros módulos porque
-solo se carga desde esta pantalla.
+Restaurar los tres archivos respaldados.
 
-SIGUIENTE MÓDULO RECOMENDADO
-============================
-Clientes Workspace / listado y ficha de cliente.
+SIN MIGRACIÓN SQL
+=================
+Este parche reutiliza cp_orders.internal_notes, que ya existe.

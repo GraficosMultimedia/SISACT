@@ -2,7 +2,6 @@
 declare(strict_types=1);
 require_once __DIR__ . '/../config/runtime.php';
 require_once __DIR__ . '/ordenes.php';
-
 function production_stages(): array {
     return [
         'pending' => ['label'=>'Pendiente','icon'=>'📥'],
@@ -34,7 +33,6 @@ function production_set_stage(int $orderId,string $newStage,string $note=''): vo
     $uid=(int)(current_user()['id'] ?? 0);
     $old=production_get_stage($orderId);
     $cleanNote=trim($note);
-
     // La etapa operativa es la fuente de verdad para producción y debe
     // mantener sincronizado el estado general de la orden.
     $orderStatusMap=[
@@ -49,7 +47,6 @@ function production_set_stage(int $orderId,string $newStage,string $note=''): vo
         'cancelled'=>'cancelled',
     ];
     $syncedStatus=$orderStatusMap[$newStage];
-
     $pdo->beginTransaction();
     try {
         $exists=$pdo->prepare('SELECT id FROM cp_order_status WHERE order_id=? LIMIT 1');
@@ -61,17 +58,14 @@ function production_set_stage(int $orderId,string $newStage,string $note=''): vo
             $pdo->prepare('INSERT INTO cp_order_status(order_id,stage,note,updated_by,created_at,updated_at) VALUES(?,?,?,?,NOW(),NOW())')
                 ->execute([$orderId,$newStage,$cleanNote,$uid?:null]);
         }
-
         // Solo generamos un movimiento cuando realmente cambió la etapa
         // o cuando el operador dejó una nota nueva.
         if($old!==$newStage || $cleanNote!=='') {
             $pdo->prepare('INSERT INTO cp_order_history(order_id,old_status,new_status,note,changed_by,created_at) VALUES(?,?,?,?,?,NOW())')
                 ->execute([$orderId,$old,$newStage,$cleanNote,$uid?:null]);
         }
-
         $pdo->prepare('UPDATE cp_orders SET status=?,updated_by=?,updated_at=NOW() WHERE id=?')
             ->execute([$syncedStatus,$uid?:null,$orderId]);
-
         $pdo->commit();
     } catch(Throwable $e) {
         if($pdo->inTransaction()) $pdo->rollBack();
@@ -79,7 +73,7 @@ function production_set_stage(int $orderId,string $newStage,string $note=''): vo
     }
 }
 function production_orders(string $search='',string $stage=''): array {
-    $sql="SELECT o.id,o.order_number,o.order_date,o.due_date,o.total,o.quote_id,
+    $sql="SELECT o.id,o.order_number,o.order_date,o.due_date,o.total,o.internal_notes,o.quote_id,
                  q.quote_number,c.name AS customer_name,u.name AS responsible_name,
                  COALESCE(s.stage,'pending') AS production_stage,
                  COALESCE(s.updated_at,o.updated_at) AS stage_updated_at
