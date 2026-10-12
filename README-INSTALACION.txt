@@ -1,160 +1,84 @@
-SISACT · EDITOR DE ÓRDENES V1
+SISACT · ARCHIVOS FALTANTES PARA GITHUB · V1
 Colibrí Print México
 
 OBJETIVO
 ========
-Agregar edición real de órdenes ya generadas sin cambiar el folio ni romper
-la relación con su cotización de origen.
+Este ZIP reúne únicamente los archivos que faltaban o estaban pendientes de
+sincronización en el repositorio principal de SISACT, conservando exactamente
+sus carpetas y rutas.
 
-REVISIÓN PREVIA
-===============
-Se revisaron en GitHub antes de crear este paquete:
-- admin/orden.php
-- admin/ordenes.php
-- admin/orden_nueva.php
-- includes/ordenes.php
-- includes/quote_order_sync.php
-- includes/finanzas.php
+ESTRUCTURA DEL ZIP
+==================
+/
+├── seguimiento_comprobante.php
+├── includes/
+│   ├── order_pdf_professional_2pages.php
+│   └── expense_cfdi.php
+└── database/
+    └── sql/
+        └── 022_expense_cfdi_documents.sql
 
-La orden actual ya permite estado, archivos, pagos, responsables y notas, pero
-no tiene un editor para cliente/conceptos/precios/total.
+RUTAS DESTINO EN SISACT / GITHUB
+================================
+1. seguimiento_comprobante.php
+   Ruta:
+   /seguimiento_comprobante.php
 
-ARCHIVOS
-========
-NUEVOS:
-- admin/orden_editar.php
-- assets/css/orden-editor-v1.css
-- assets/js/orden-editor-v1.js
+   Función:
+   - Endpoint público del PDF de seguimiento por token.
+   - Valida el token público.
+   - Resuelve la orden.
+   - Utiliza el renderer profesional compartido de dos páginas.
 
-REEMPLAZAR:
-- admin/orden.php
-- admin/ordenes.php
-- assets/css/orden-detail-professional-v1.css
+2. includes/order_pdf_professional_2pages.php
+   Ruta:
+   /includes/order_pdf_professional_2pages.php
 
-QUÉ SE PUEDE EDITAR
-===================
-- Cliente.
-- Fecha de orden.
-- Fecha compromiso.
-- Responsable.
-- Descripciones.
-- Cantidades.
-- Precios unitarios.
-- Agregar conceptos.
-- Eliminar conceptos.
-- Notas operativas.
-- Notas internas.
+   Función:
+   - Renderer profesional compartido entre:
+     /admin/orden_pdf_2paginas.php
+     /seguimiento_comprobante.php
+   - Muestra Subtotal, Descuento (%), IVA (%) y Total cuando corresponda.
 
-El total NO llega confiado desde JavaScript.
-PHP vuelve a calcular cada subtotal y el total antes de guardar.
+3. includes/expense_cfdi.php
+   Ruta:
+   /includes/expense_cfdi.php
 
-QUÉ NO CAMBIA
-=============
-- Folio OS-...
-- quote_id / cotización de origen.
-- Estado de la orden.
-- Producción.
-- Archivos.
-- Comprobantes.
-- Historial existente.
-- Pagos.
-- WhatsApp.
-- Seguimiento.
-- PDF.
-- Base de datos.
-- Esquema SQL.
+   Función:
+   - Lógica de importación y gestión de CFDI XML para Egresos.
+   - Es dependencia directa de /admin/egresos.php.
 
-ESTADOS EDITABLES
-=================
-Solo:
-- pending / Pendiente
-- in_progress / En proceso
+4. database/sql/022_expense_cfdi_documents.sql
+   Ruta:
+   /database/sql/022_expense_cfdi_documents.sql
 
-Completada, Entregada y Cancelada quedan bloqueadas como histórico.
+   Función:
+   - Migración para la tabla documental de CFDI de egresos.
+   - Debe ejecutarse en la base de datos del servidor si aún no existe la tabla.
 
-IMPORTANTE SOBRE "LISTO"
-========================
-La etapa de producción "Listo" normalmente sigue perteneciendo a una orden
-general "En proceso", por lo que puede editarse mientras cp_orders.status sea
-in_progress.
+INSTALACIÓN / SUBIDA A GITHUB
+=============================
+Extraer el ZIP en la raíz del proyecto SISACT conservando carpetas.
 
-PROTECCIONES FINANCIERAS
-========================
-Si existen pagos confirmados:
-- el nuevo total no puede quedar por debajo de lo ya pagado.
+Después, en GitHub, deben aparecer exactamente estas rutas:
 
-Si existen pagos o facturas:
-- no se permite cambiar de cliente desde este editor.
+seguimiento_comprobante.php
+includes/order_pdf_professional_2pages.php
+includes/expense_cfdi.php
+database/sql/022_expense_cfdi_documents.sql
 
-Si existe una factura con status=issued:
-- no se permite cambiar el total hasta corregir/cancelar esa factura.
-
-Esto evita dejar datos financieros inconsistentes.
-
-TRAZABILIDAD
-============
-Cada guardado agrega una entrada en cp_order_history con el mismo estado
-anterior/nuevo y la nota "Orden editada manualmente...".
-También se registra log_activity().
-
-COTIZACIÓN VINCULADA
-====================
-La orden conserva quote_id.
-
-Después de una edición manual, quote_order_diff() puede indicar que cliente,
-conceptos, total o fecha difieren de la cotización.
-
-ATENCIÓN:
-El botón "Sincronizar desde cotización" de la ficha mantiene su comportamiento
-actual. Si se usa posteriormente, volverá a copiar desde la cotización:
-- cliente;
-- total;
-- fecha compromiso;
-- conceptos.
-
-INSTALACIÓN
-===========
-1. Respaldar:
-   admin/orden.php
-   admin/ordenes.php
-   assets/css/orden-detail-professional-v1.css
-
-2. Copiar este ZIP en la raíz de SISACT respetando carpetas.
-
-3. Reemplazar los tres archivos indicados.
-
-4. Copiar:
-   admin/orden_editar.php
-   assets/css/orden-editor-v1.css
-   assets/js/orden-editor-v1.js
-
-5. Ctrl+F5 una vez.
-
-NO HAY SQL
+IMPORTANTE
 ==========
-No requiere migración.
+- No incluye instaladores temporales.
+- No incluye archivos .bak.
+- No reemplaza seguimiento.php, porque la versión V2 ya fue confirmada como
+  instalada y funcionando.
+- No reemplaza admin/orden_pdf_2paginas.php, porque el controlador ya está
+  presente y referencia el renderer compartido.
+- La migración 022 solo debe ejecutarse una vez y únicamente si la tabla aún
+  no existe.
 
-PRUEBA URGENTE RECOMENDADA
-==========================
-Primero usa una orden Pendiente o En proceso.
-
-1. Abrir Orden.
-2. Pulsar "Editar orden".
-3. Cambiar una descripción.
-4. Cambiar cantidad o precio.
-5. Confirmar que el total cambia en pantalla.
-6. Guardar.
-7. Verificar en la ficha:
-   - conceptos;
-   - total;
-   - historial;
-   - PDF.
-8. Volver a editar y agregar un concepto.
-9. Volver a editar y eliminar un concepto.
-
-Luego probar una orden con pagos para confirmar las protecciones.
-
-REVERSIÓN
-=========
-Restaurar los tres archivos respaldados.
-Los archivos nuevos orden_editar.php / CSS / JS pueden eliminarse.
+VALIDACIÓN
+==========
+Los archivos PHP incluidos se validan con php -l antes de empaquetar.
+El ZIP se verifica después de crearse.
