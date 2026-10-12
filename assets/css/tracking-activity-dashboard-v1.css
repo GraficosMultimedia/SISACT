@@ -1,0 +1,276 @@
+/* ============================================================
+   SISACT · Tracking Activity Dashboard V1
+   ============================================================ */
+
+.ta-dashboard-panel{
+    display:grid;
+    gap:10px;
+    margin-bottom:4px;
+    padding:12px;
+    border:1px solid rgba(18,191,243,.22);
+    border-radius:13px;
+    background:
+        radial-gradient(circle at 100% 0,rgba(18,191,243,.08),transparent 34%),
+        rgba(5,20,36,.42);
+}
+
+.ta-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:12px;
+}
+
+.ta-head>div:first-child span{
+    display:block;
+    color:#79c9ef;
+    font-size:9px;
+    font-weight:900;
+    letter-spacing:.11em;
+}
+
+.ta-head>div:first-child strong{
+    display:block;
+    margin-top:3px;
+    color:#eef7fd;
+    font-size:13px;
+}
+
+.ta-head-actions{
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+.ta-head-actions b{
+    padding:5px 7px;
+    border-radius:999px;
+    color:#fff2b0;
+    background:rgba(255,212,0,.11);
+    font-size:9px;
+    white-space:nowrap;
+}
+
+.ta-head-actions button{
+    min-height:30px;
+    padding:5px 8px;
+    border:1px solid rgba(121,201,239,.22);
+    border-radius:8px;
+    color:#9dd8f2;
+    background:#0a2035;
+    font:inherit;
+    font-size:9px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.ta-list{
+    display:grid;
+    gap:6px;
+}
+
+.ta-event{
+    display:grid;
+    grid-template-columns:34px minmax(0,1fr) auto;
+    gap:9px;
+    align-items:center;
+    padding:9px 10px;
+    border:1px solid rgba(117,157,199,.13);
+    border-radius:10px;
+    color:inherit;
+    background:rgba(4,16,29,.32);
+    text-decoration:none;
+}
+
+.ta-event:hover{
+    border-color:rgba(18,191,243,.30);
+    background:rgba(12,42,65,.42);
+}
+
+.ta-icon{
+    width:32px;
+    height:32px;
+    display:grid;
+    place-items:center;
+    border-radius:9px;
+    background:rgba(18,191,243,.08);
+    font-size:15px;
+}
+
+.ta-event-body{
+    min-width:0;
+}
+
+.ta-event-body strong,
+.ta-event-body span,
+.ta-event-body small{
+    display:block;
+}
+
+.ta-event-body strong{
+    overflow:hidden;
+    color:#edf6fd;
+    font-size:11px;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.ta-event-body span{
+    margin-top:2px;
+    color:#a8bbce;
+    font-size:10px;
+}
+
+.ta-event-body small{
+    margin-top:3px;
+    overflow:hidden;
+    color:#708ba5;
+    font-size:9px;
+    line-height:1.35;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.ta-event>b{
+    color:#72c9ed;
+    font-size:13px;
+}
+
+.ta-empty{
+    padding:12px;
+    border:1px dashed rgba(117,157,199,.18);
+    border-radius:10px;
+    color:#7892aa;
+    font-size:10px;
+    line-height:1.45;
+    text-align:center;
+}
+
+/* Notificación flotante de actividad nueva */
+.ta-toast-stack{
+    position:fixed;
+    z-index:1000;
+    top:78px;
+    right:16px;
+    width:min(360px,calc(100vw - 24px));
+    display:grid;
+    gap:8px;
+    pointer-events:none;
+}
+
+.ta-toast{
+    display:grid;
+    grid-template-columns:42px minmax(0,1fr);
+    gap:10px;
+    align-items:center;
+    padding:12px;
+    border:1px solid rgba(18,191,243,.30);
+    border-radius:14px;
+    color:#fff;
+    background:rgba(7,25,43,.97);
+    box-shadow:0 18px 46px rgba(0,0,0,.38);
+    text-decoration:none;
+    pointer-events:auto;
+    animation:ta-in .24s ease-out;
+}
+
+.ta-toast.is-leaving{
+    opacity:0;
+    transform:translateY(-8px);
+    transition:.3s ease;
+}
+
+.ta-toast-icon{
+    width:42px;
+    height:42px;
+    display:grid;
+    place-items:center;
+    border-radius:11px;
+    background:rgba(18,191,243,.10);
+    font-size:19px;
+}
+
+.ta-toast>span:last-child{
+    min-width:0;
+}
+
+.ta-toast strong,
+.ta-toast b,
+.ta-toast small{
+    display:block;
+}
+
+.ta-toast strong{
+    overflow:hidden;
+    font-size:13px;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.ta-toast b{
+    margin-top:2px;
+    color:#93dbf6;
+    font-size:11px;
+}
+
+.ta-toast small{
+    margin-top:3px;
+    overflow:hidden;
+    color:#819bb4;
+    font-size:9px;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+@keyframes ta-in{
+    from{opacity:0;transform:translateY(-8px) scale(.98)}
+    to{opacity:1;transform:none}
+}
+
+@media(max-width:720px){
+    .ta-head{
+        display:grid;
+    }
+
+    .ta-head-actions{
+        justify-content:space-between;
+    }
+
+    .ta-head-actions button{
+        min-height:38px;
+        padding:8px 10px;
+        font-size:10px;
+    }
+
+    .ta-event{
+        grid-template-columns:38px minmax(0,1fr) auto;
+        min-height:58px;
+        padding:10px;
+    }
+
+    .ta-icon{
+        width:36px;
+        height:36px;
+        font-size:17px;
+    }
+
+    .ta-event-body strong{
+        font-size:12px;
+    }
+
+    .ta-event-body span{
+        font-size:11px;
+    }
+
+    .ta-event-body small{
+        font-size:10px;
+    }
+
+    .ta-toast-stack{
+        top:auto;
+        right:8px;
+        left:8px;
+        bottom:12px;
+        width:auto;
+    }
+}

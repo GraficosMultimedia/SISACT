@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../config/runtime.php';
 require_once __DIR__ . '/cfdi.php';
+require_once __DIR__ . '/tracking_activity.php';
 
 function tracking_cfdi_table_ready(): bool {
     try {
@@ -13,8 +14,11 @@ function tracking_cfdi_table_ready(): bool {
 }
 
 function tracking_cfdi_for_order(int $orderId): array {
-    if ($orderId <= 0 || !tracking_cfdi_table_ready()) return [];
+    // seguimiento.php llama esta función una vez por visita válida.
+    // El registrador filtra HEAD, previews y bots conocidos.
+    tracking_activity_log_tracking_view($orderId);
 
+    if ($orderId <= 0 || !tracking_cfdi_table_ready()) return [];
     $st = db()->prepare(
         'SELECT
             d.id AS document_id,
@@ -59,6 +63,7 @@ function tracking_cfdi_public_get(int $documentId, string $token): ?array {
             i.status AS invoice_status,
             o.order_number,
             o.id AS linked_order_id,
+            o.customer_id,
             c.name AS customer_name
          FROM cp_invoice_documents d
          INNER JOIN cp_invoices i ON i.id=d.invoice_id
@@ -72,8 +77,35 @@ function tracking_cfdi_public_get(int $documentId, string $token): ?array {
          LIMIT 1'
     );
     $st->execute([$token, $documentId]);
-
     return $st->fetch() ?: null;
+}
+
+function tracking_cfdi_public_stream(array $doc, string $kind): never {
+    $key = $kind === 'pdf' ? 'pdf_path' : 'xml_path';
+    $path = (string)($doc[$key] ?? '');
+
+    if ($path === '') {
+        http_response_code(404);
+        exit('Documento no disponible.');
+    }
+
+    $full = dirname(__DIR__) . '/' . ltrim($path, '/');
+    if (!is_file($full)) {
+        http_response_code(404);
+        exit('Archivo no encontrado.');
+    }
+
+    $mime = $kind === 'pdf' ? 'application/pdf' : 'application/xml';
+    $safeName = preg_replace('/[^A-Za-z0-9._-]+/', '_', basename($full));
+    $disposition = $kind === 'pdf' ? 'inline' : 'attachment';
+
+    header('Content-Type: ' . $mime);
+    header('Content-Length: ' . (string)filesize($full));
+    header('Content-Disposition: ' . $disposition . '; filename="' . $safeName . '"');
+    header('X-Content-Type-Options: nosniff');
+
+    readfile($full);
+    exit;
 }
 
 function tracking_cfdi_download(int $documentId, string $token, string $kind): void {
@@ -84,6 +116,17 @@ function tracking_cfdi_download(int $documentId, string $token, string $kind): v
     }
 
     $kind = $kind === 'pdf' ? 'pdf' : 'xml';
-    cfdi_stream_file($doc, $kind);
+
+    tracking_activity_log(
+        $kind === 'pdf' ? 'cfdi_pdf_opened' : 'cfdi_xml_downloaded',
+        (int)$doc['linked_order_id'],
+        (int)($doc['customer_id'] ?? 0) ?: null,
+        $documentId,
+        (int)($doc['invoice_id'] ?? 0) ?: null,
+        null,
+        $token
+    );
+
+    tracking_cfdi_public_stream($doc, $kind);
 }
 ?>
