@@ -5,20 +5,21 @@ require_once __DIR__ . '/../config/runtime.php';
 require_once __DIR__ . '/cotizaciones.php';
 
 /**
- * Devuelve el desglose comercial de la cotización SOLO cuando la orden
- * todavía coincide con los conceptos y el total de esa cotización.
+ * Desglose comercial para PDFs de Orden y Seguimiento.
  *
- * Esto evita imprimir IVA/descuento obsoleto después de una edición manual
- * de la orden de servicio.
+ * FUENTE:
+ * cp_orders.quote_id -> quote_totals($quoteId)
+ *
+ * Es el mismo origen utilizado por admin/cotizacion_pdf_2paginas.php:
+ * subtotal, discount, tax y total.
  */
 function order_commercial_breakdown(
     int $orderId,
-    ?array $orderItems = null,
-    ?float $orderTotal = null
+    ?array $unusedItems = null,
+    ?float $unusedOrderTotal = null
 ): array {
     $empty = [
         'available' => false,
-        'aligned' => false,
         'quote_id' => 0,
         'subtotal' => 0.0,
         'discount' => 0.0,
@@ -27,7 +28,7 @@ function order_commercial_breakdown(
         'tax' => 0.0,
         'tax_pct' => 0.0,
         'tax_label' => '',
-        'total' => 0.0,
+        'quote_total' => 0.0,
         'has_discount' => false,
         'has_tax' => false,
     ];
@@ -35,45 +36,29 @@ function order_commercial_breakdown(
     if ($orderId <= 0) return $empty;
 
     try {
-        $st = db()->prepare('SELECT quote_id,total FROM cp_orders WHERE id=? LIMIT 1');
+        $st = db()->prepare('SELECT quote_id FROM cp_orders WHERE id=? LIMIT 1');
         $st->execute([$orderId]);
-        $order = $st->fetch(PDO::FETCH_ASSOC);
-        if (!$order) return $empty;
-
-        $quoteId = (int)($order['quote_id'] ?? 0);
+        $quoteId = (int)($st->fetchColumn() ?: 0);
         if ($quoteId <= 0) return $empty;
 
-        $orderTotal = $orderTotal ?? (float)($order['total'] ?? 0);
-        $orderItems = $orderItems ?? order_commercial_order_items($orderId);
+        $totals = quote_totals($quoteId);
 
-        $qTotals = quote_totals($quoteId);
-        $qItems = quote_items($quoteId);
+        $subtotal = round((float)($totals['subtotal'] ?? 0), 2);
+        $discount = round((float)($totals['discount'] ?? 0), 2);
+        $tax = round((float)($totals['tax'] ?? 0), 2);
+        $quoteTotal = round((float)($totals['total'] ?? 0), 2);
 
-        $subtotal = round((float)($qTotals['subtotal'] ?? 0), 2);
-        $discount = round((float)($qTotals['discount'] ?? 0), 2);
-        $tax = round((float)($qTotals['tax'] ?? 0), 2);
-        $quoteTotal = round((float)($qTotals['total'] ?? 0), 2);
-
-        $aligned = order_commercial_items_match($qItems, $orderItems)
-            && abs(round($orderTotal, 2) - $quoteTotal) <= 0.01;
-
-        if (!$aligned) {
-            $empty['quote_id'] = $quoteId;
-            return $empty;
-        }
-
-        $discountPct = ($discount > 0.0 && $subtotal > 0.0)
+        $discountPct = ($subtotal > 0 && $discount > 0)
             ? ($discount / $subtotal) * 100
             : 0.0;
 
         $taxBase = max(0.0, $subtotal - $discount);
-        $taxPct = ($tax > 0.0 && $taxBase > 0.0)
+        $taxPct = ($taxBase > 0 && $tax > 0)
             ? ($tax / $taxBase) * 100
             : 0.0;
 
         return [
             'available' => true,
-            'aligned' => true,
             'quote_id' => $quoteId,
             'subtotal' => $subtotal,
             'discount' => $discount,
@@ -82,60 +67,19 @@ function order_commercial_breakdown(
             'tax' => $tax,
             'tax_pct' => $taxPct,
             'tax_label' => order_commercial_percent_label($taxPct),
-            'total' => $quoteTotal,
+            'quote_total' => $quoteTotal,
             'has_discount' => $discount > 0.009,
             'has_tax' => $tax > 0.009,
         ];
     } catch (Throwable $e) {
-        error_log('[SISACT][order_commercial_breakdown] ' . $e->getMessage());
+        error_log('[SISACT][order_commercial_breakdown_v2] ' . $e->getMessage());
         return $empty;
     }
-}
-
-function order_commercial_order_items(int $orderId): array
-{
-    $st = db()->prepare(
-        'SELECT description,quantity,unit_price,subtotal
-         FROM cp_order_items
-         WHERE order_id=?
-         ORDER BY sort_order,id'
-    );
-    $st->execute([$orderId]);
-    return $st->fetchAll(PDO::FETCH_ASSOC) ?: [];
-}
-
-function order_commercial_items_match(array $quoteItems, array $orderItems): bool
-{
-    if (count($quoteItems) !== count($orderItems)) return false;
-
-    foreach ($quoteItems as $i => $q) {
-        $o = $orderItems[$i] ?? null;
-        if (!$o) return false;
-
-        if (trim((string)($q['description'] ?? '')) !== trim((string)($o['description'] ?? ''))) {
-            return false;
-        }
-
-        if (abs((float)($q['quantity'] ?? 0) - (float)($o['quantity'] ?? 0)) > 0.0005) {
-            return false;
-        }
-
-        if (abs((float)($q['unit_price'] ?? 0) - (float)($o['unit_price'] ?? 0)) > 0.01) {
-            return false;
-        }
-
-        if (abs((float)($q['subtotal'] ?? 0) - (float)($o['subtotal'] ?? 0)) > 0.01) {
-            return false;
-        }
-    }
-
-    return true;
 }
 
 function order_commercial_percent_label(float $pct): string
 {
     if ($pct <= 0) return '';
     $formatted = number_format($pct, 2, '.', '');
-    $formatted = rtrim(rtrim($formatted, '0'), '.');
-    return $formatted . '%';
+    return rtrim(rtrim($formatted, '0'), '.') . '%';
 }

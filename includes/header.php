@@ -47,11 +47,18 @@ $navGroups = [
             ['/admin/productos.php', 'Productos', '□'],
             ['/admin/categorias.php', 'Categorías', '◫'],
             ['/admin/promociones.php', 'Promociones', '%'],
+            ['/admin/cotizadores.php', 'Cotizadores', '∑'],
+            ['/admin/impresiones.php', 'Impresiones', '▣'],
+        ],
+    ],
+        'balance' => [
+        'label' => 'Balance',
+        'icon' => '$',
+        'items' => [
             ['/admin/pagos.php', 'Pagos', '$'],
             ['/admin/facturacion.php', 'Facturación', '▤'],
             ['/admin/reportes.php', 'Reportes', '▥'],
-            ['/admin/cotizadores.php', 'Cotizadores', '∑'],
-            ['/admin/impresiones.php', 'Impresiones', '▣'],
+            ['/admin//egresos.php', 'Egresos', '▥'],
         ],
     ],
     'sistema' => [
