@@ -1,0 +1,37 @@
+/* ============================================================
+   SISACT · Control Administrativo V1
+   Complemento de reportes.css
+   ============================================================ */
+.ca-shell{margin:0 0 22px;padding:20px;border:1px solid rgba(18,191,243,.18);border-radius:18px;background:radial-gradient(circle at 100% 0,rgba(18,191,243,.07),transparent 30%),linear-gradient(145deg,rgba(11,34,56,.68),rgba(6,22,38,.74))}
+.ca-heading{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:15px}
+.ca-heading h2{margin:4px 0 5px;font-size:24px}.ca-heading p{margin:0;color:#8ea6bc;font-size:11px;line-height:1.5}
+.ca-period{padding:7px 9px;border:1px solid rgba(117,157,199,.16);border-radius:999px;color:#9fcce1;font-size:10px;white-space:nowrap}
+.ca-install{padding:13px;border:1px solid rgba(255,212,0,.21);border-radius:10px;color:#d8c57f;background:rgba(255,212,0,.04);font-size:11px;line-height:1.5}.ca-install.compact{margin:5px 0 12px}.ca-install code{color:#8ed8f7}
+.ca-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.ca-kpis article{min-width:0;padding:15px;border:1px solid rgba(117,157,199,.15);border-radius:13px;background:rgba(5,18,30,.32)}
+.ca-kpis span,.ca-kpis strong,.ca-kpis small{display:block}.ca-kpis span{color:#849eb6;font-size:9px;font-weight:900;text-transform:uppercase}.ca-kpis strong{margin:6px 0;color:#eef8ff;font-size:22px;overflow-wrap:anywhere}.ca-kpis small{color:#728aa1;font-size:9px;line-height:1.35}
+.ca-kpis article.positive strong{color:#67dfaa}.ca-kpis article.negative strong{color:#ff8999}
+.ca-secondary-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:9px 0 14px}
+.ca-secondary-kpis>div{padding:10px 12px;border:1px solid rgba(117,157,199,.11);border-radius:10px;background:rgba(4,15,27,.25)}
+.ca-secondary-kpis span,.ca-secondary-kpis strong,.ca-secondary-kpis small{display:block}.ca-secondary-kpis span{color:#7690a8;font-size:8px;text-transform:uppercase;font-weight:900}.ca-secondary-kpis strong{margin:4px 0;color:#dceaf6;font-size:15px}.ca-secondary-kpis small{color:#687f94;font-size:8px}
+.ca-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:12px;margin-top:12px}.ca-card{min-width:0;background:rgba(7,24,40,.55)}
+.ca-cash-chart{display:grid;gap:9px}.ca-cash-row{display:grid;grid-template-columns:55px minmax(0,1fr);gap:9px;align-items:start}.ca-cash-row>strong{padding-top:4px;color:#819bb1;font-size:9px}
+.ca-double-bars{display:grid;gap:5px}.ca-double-bars>div{position:relative;min-height:20px;display:grid;grid-template-columns:54px minmax(0,1fr) 96px;gap:6px;align-items:center}.ca-double-bars span{color:#7690a8;font-size:8px}.ca-double-bars i{display:block;height:9px;min-width:2px;border-radius:999px;background:linear-gradient(90deg,#18bdf1,#63e0b0)}.ca-double-bars .expense i{background:linear-gradient(90deg,#f00672,#ff8b74)}.ca-double-bars b{text-align:right;color:#b8ccdc;font-size:9px;white-space:nowrap}
+.ca-category-list{display:grid;gap:10px}.ca-category>div:first-child{display:flex;justify-content:space-between;gap:10px}.ca-category strong{color:#dbe8f4;font-size:10px}.ca-category span{color:#93b0c7;font-size:9px}.ca-category small{display:block;margin-top:4px;color:#70889e;font-size:8px}
+.ca-track{height:8px;margin-top:5px;border-radius:999px;background:rgba(255,255,255,.06);overflow:hidden}.ca-track i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#2ea8ff,#5de2c2)}
+.ca-table{min-width:0}.ca-cfdi-score{padding:11px;border:1px solid rgba(45,200,121,.15);border-radius:11px;background:rgba(45,200,121,.035)}.ca-cfdi-score>strong{display:block;color:#6de0aa;font-size:26px}.ca-cfdi-score>span,.ca-cfdi-score>small{display:block;color:#8098ad;font-size:9px}.ca-cfdi-score>span{margin-top:3px}.ca-cfdi-score>small{margin-top:5px}
+.ca-period-compare{display:grid;gap:7px;margin-top:11px;padding:11px;border:1px solid rgba(117,157,199,.13);border-radius:11px;background:rgba(4,15,27,.25)}.ca-period-compare>span{color:#7d97ad;font-size:8px;text-transform:uppercase}.ca-period-compare>strong{color:#c9dbe9;font-size:10px}.ca-period-compare>div{display:flex;justify-content:space-between;gap:10px;color:#8da4b8;font-size:9px}.ca-period-compare>div b{color:#9fb7ca}
+@media(max-width:1050px){.ca-kpis,.ca-secondary-kpis{grid-template-columns:repeat(2,1fr)}.ca-grid{grid-template-columns:1fr}}
+@media(max-width:620px){
+    .ca-shell{padding:14px}.ca-heading{display:block}.ca-period{display:inline-block;margin-top:10px}.ca-heading h2{font-size:21px}.ca-heading p{font-size:12px}
+    .ca-kpis,.ca-secondary-kpis{grid-template-columns:1fr 1fr}.ca-kpis article{padding:13px}.ca-kpis strong{font-size:20px}
+    .ca-double-bars>div{grid-template-columns:50px minmax(0,1fr);}.ca-double-bars b{grid-column:2;text-align:left}.ca-cash-row{grid-template-columns:42px minmax(0,1fr)}
+}
+@media(max-width:420px){.ca-kpis,.ca-secondary-kpis{grid-template-columns:1fr}}
+@media print{
+    .ca-shell{background:#fff!important;color:#111!important;border:1px solid #bbb!important;padding:10px!important}
+    .ca-kpis,.ca-secondary-kpis{grid-template-columns:repeat(4,1fr)!important}
+    .ca-grid{grid-template-columns:1fr 1fr!important}
+    .ca-kpis article,.ca-secondary-kpis>div,.ca-card,.ca-cfdi-score,.ca-period-compare{background:#fff!important;color:#111!important;border-color:#ccc!important}
+    .ca-kpis strong,.ca-secondary-kpis strong,.ca-card strong,.ca-card b{color:#111!important}
+}

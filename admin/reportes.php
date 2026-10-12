@@ -75,6 +75,32 @@ function report_rows2(PDO $pdo, string $sql, array $params, array &$issues): arr
     }
 }
 
+function report_table_exists2(PDO $pdo, string $table): bool
+{
+    try {
+        $st = $pdo->prepare(
+            'SELECT COUNT(*) FROM information_schema.tables
+             WHERE table_schema=DATABASE() AND table_name=?'
+        );
+        $st->execute([$table]);
+        return (int)$st->fetchColumn() > 0;
+    } catch (Throwable $e) {
+        return false;
+    }
+}
+
+function report_change_pct2(float $current, float $previous): ?float
+{
+    if (abs($previous) < 0.00001) return null;
+    return (($current - $previous) / abs($previous)) * 100;
+}
+
+function report_change_label2(?float $pct): string
+{
+    if ($pct === null) return 'Sin base comparable';
+    return ($pct >= 0 ? '+' : '') . number_format($pct, 1, '.', ',') . '% vs periodo anterior';
+}
+
 $today = new DateTimeImmutable('today');
 $defaultFrom = $today->modify('first day of this month')->format('Y-m-d');
 $from = trim((string)($_GET['from'] ?? $defaultFrom));
@@ -84,6 +110,8 @@ if (!report_date_valid2($to)) $to = $today->format('Y-m-d');
 if ($from > $to) [$from, $to] = [$to, $from];
 
 $issues = [];
+$expensesReady = report_table_exists2($pdo, 'cp_expenses');
+$expenseCfdiReady = report_table_exists2($pdo, 'cp_expense_documents');
 
 if ((string)($_GET['export'] ?? '') === 'csv') {
     $rows = report_rows2($pdo,
@@ -124,7 +152,6 @@ $ordersCount = (int)report_scalar2($pdo,
 $cancelledOrders = (int)report_scalar2($pdo,
     "SELECT COUNT(*) FROM cp_orders o WHERE o.order_date BETWEEN ? AND ? AND o.status = 'cancelled'",
     [$from,$to], $issues);
-
 $quotesCount = (int)report_scalar2($pdo,
     'SELECT COUNT(*) FROM cp_quotes WHERE issue_date BETWEEN ? AND ?', [$from,$to], $issues);
 $approvedQuotesCount = (int)report_scalar2($pdo,
@@ -134,9 +161,8 @@ $approvedQuoteValue = report_scalar2($pdo,
     "SELECT COALESCE(SUM(COALESCE(t.total,0)),0)
      FROM cp_quotes q
      LEFT JOIN cp_quote_totals t ON t.quote_id=q.id
-     WHERE q.issue_date BETWEEN ? AND ? AND q.status='approved'",
+     WHERE q.issue_date BETWEEN ? AND ? AND status='approved'",
     [$from,$to], $issues);
-
 $collected = report_scalar2($pdo,
     "SELECT COALESCE(SUM(p.amount),0) FROM cp_payments p WHERE p.payment_date BETWEEN ? AND ? AND p.status='confirmed'",
     [$from,$to], $issues);
@@ -207,6 +233,182 @@ $activePromotions = (int)report_scalar2($pdo,
     "SELECT COUNT(*) FROM cp_promotions WHERE status='active' AND start_date <= CURDATE() AND (end_date IS NULL OR end_date >= CURDATE())",
     [], $issues);
 
+/* ============================================================
+   CONTROL ADMINISTRATIVO DE CAJA
+   ============================================================ */
+$expensesPaid = 0.0;
+$expensesPending = 0.0;
+$expensePaidCount = 0;
+$expensePendingCount = 0;
+$expenseCategories = [];
+$topSuppliers = [];
+$cashSeries = [];
+$cfdiExpenseCount = 0;
+$cfdiExpenseAmount = 0.0;
+
+if ($expensesReady) {
+    $expensesPaid = report_scalar2($pdo,
+        "SELECT COALESCE(SUM(amount),0) FROM cp_expenses
+         WHERE expense_date BETWEEN ? AND ? AND status='paid'",
+        [$from,$to], $issues);
+
+    $expensesPending = report_scalar2($pdo,
+        "SELECT COALESCE(SUM(amount),0) FROM cp_expenses
+         WHERE expense_date BETWEEN ? AND ? AND status='pending'",
+        [$from,$to], $issues);
+
+    $expensePaidCount = (int)report_scalar2($pdo,
+        "SELECT COUNT(*) FROM cp_expenses
+         WHERE expense_date BETWEEN ? AND ? AND status='paid'",
+        [$from,$to], $issues);
+
+    $expensePendingCount = (int)report_scalar2($pdo,
+        "SELECT COUNT(*) FROM cp_expenses
+         WHERE expense_date BETWEEN ? AND ? AND status='pending'",
+        [$from,$to], $issues);
+
+    $expenseCategories = report_rows2($pdo,
+        "SELECT category,COUNT(*) AS expense_count,COALESCE(SUM(amount),0) AS total
+         FROM cp_expenses
+         WHERE expense_date BETWEEN ? AND ? AND status='paid'
+         GROUP BY category
+         ORDER BY total DESC",
+        [$from,$to], $issues);
+
+    $topSuppliers = report_rows2($pdo,
+        "SELECT COALESCE(NULLIF(supplier,''),'Sin proveedor') AS supplier,
+                COUNT(*) AS expense_count,
+                COALESCE(SUM(amount),0) AS total
+         FROM cp_expenses
+         WHERE expense_date BETWEEN ? AND ? AND status='paid'
+         GROUP BY COALESCE(NULLIF(supplier,''),'Sin proveedor')
+         ORDER BY total DESC
+         LIMIT 8",
+        [$from,$to], $issues);
+
+    $rangeStart = new DateTimeImmutable($from);
+    $rangeEnd = new DateTimeImmutable($to);
+    $rangeDays = ((int)$rangeStart->diff($rangeEnd)->format('%a')) + 1;
+    $bucketFormat = $rangeDays <= 62 ? '%Y-%m-%d' : '%Y-%m';
+
+    $cashSeries = report_rows2($pdo,
+        "SELECT bucket,SUM(income) AS income,SUM(expense) AS expense
+         FROM (
+             SELECT DATE_FORMAT(payment_date,'{$bucketFormat}') AS bucket,
+                    COALESCE(SUM(amount),0) AS income,0 AS expense
+             FROM cp_payments
+             WHERE payment_date BETWEEN ? AND ? AND status='confirmed'
+             GROUP BY DATE_FORMAT(payment_date,'{$bucketFormat}')
+             UNION ALL
+             SELECT DATE_FORMAT(expense_date,'{$bucketFormat}') AS bucket,
+                    0 AS income,COALESCE(SUM(amount),0) AS expense
+             FROM cp_expenses
+             WHERE expense_date BETWEEN ? AND ? AND status='paid'
+             GROUP BY DATE_FORMAT(expense_date,'{$bucketFormat}')
+         ) t
+         GROUP BY bucket
+         ORDER BY bucket ASC",
+        [$from,$to,$from,$to], $issues);
+
+    if ($expenseCfdiReady) {
+        $cfdiExpenseCount = (int)report_scalar2($pdo,
+            "SELECT COUNT(*) FROM cp_expenses e
+             WHERE e.expense_date BETWEEN ? AND ? AND e.status='paid'
+               AND EXISTS(SELECT 1 FROM cp_expense_documents d WHERE d.expense_id=e.id)",
+            [$from,$to], $issues);
+
+        $cfdiExpenseAmount = report_scalar2($pdo,
+            "SELECT COALESCE(SUM(e.amount),0) FROM cp_expenses e
+             WHERE e.expense_date BETWEEN ? AND ? AND e.status='paid'
+               AND EXISTS(SELECT 1 FROM cp_expense_documents d WHERE d.expense_id=e.id)",
+            [$from,$to], $issues);
+    }
+}
+
+$cashFlowNet = $collected - $expensesPaid;
+$cashAfterCommitments = $cashFlowNet - $expensesPending;
+$expenseRatio = $collected > 0 ? ($expensesPaid / $collected) * 100 : 0.0;
+$cashMargin = $collected > 0 ? ($cashFlowNet / $collected) * 100 : 0.0;
+$cfdiCoveragePct = $expensePaidCount > 0 ? ($cfdiExpenseCount / $expensePaidCount) * 100 : 0.0;
+
+$periodStart = new DateTimeImmutable($from);
+$periodEnd = new DateTimeImmutable($to);
+$daysInPeriod = ((int)$periodStart->diff($periodEnd)->format('%a')) + 1;
+$previousTo = $periodStart->modify('-1 day');
+$previousFrom = $previousTo->modify('-' . max(0, $daysInPeriod - 1) . ' days');
+$prevFrom = $previousFrom->format('Y-m-d');
+$prevTo = $previousTo->format('Y-m-d');
+
+$previousCollected = report_scalar2($pdo,
+    "SELECT COALESCE(SUM(amount),0) FROM cp_payments
+     WHERE payment_date BETWEEN ? AND ? AND status='confirmed'",
+    [$prevFrom,$prevTo], $issues);
+
+$previousExpensesPaid = $expensesReady ? report_scalar2($pdo,
+    "SELECT COALESCE(SUM(amount),0) FROM cp_expenses
+     WHERE expense_date BETWEEN ? AND ? AND status='paid'",
+    [$prevFrom,$prevTo], $issues) : 0.0;
+
+$previousNet = $previousCollected - $previousExpensesPaid;
+$incomeChange = report_change_pct2($collected, $previousCollected);
+$expenseChange = report_change_pct2($expensesPaid, $previousExpensesPaid);
+$netChange = report_change_pct2($cashFlowNet, $previousNet);
+
+$maxCashSeries = 0.0;
+foreach ($cashSeries as $row) {
+    $maxCashSeries = max($maxCashSeries, (float)$row['income'], (float)$row['expense']);
+}
+
+$maxExpenseCategory = 0.0;
+foreach ($expenseCategories as $row) {
+    $maxExpenseCategory = max($maxExpenseCategory, (float)$row['total']);
+}
+
+if ((string)($_GET['export'] ?? '') === 'administrative_csv') {
+    header('Content-Type: text/csv; charset=UTF-8');
+    header('Content-Disposition: attachment; filename="control_administrativo_' . $from . '_' . $to . '.csv"');
+    echo "\xEF\xBB\xBF";
+    $out = fopen('php://output', 'wb');
+
+    fputcsv($out, ['CONTROL ADMINISTRATIVO COLIBRÍ PRINT'], ';');
+    fputcsv($out, ['Periodo', $from . ' al ' . $to], ';');
+    fputcsv($out, [], ';');
+    fputcsv($out, ['Indicador','Importe'], ';');
+    fputcsv($out, ['Ingresos cobrados', number_format($collected,2,'.','')], ';');
+    fputcsv($out, ['Egresos pagados', number_format($expensesPaid,2,'.','')], ';');
+    fputcsv($out, ['Flujo neto', number_format($cashFlowNet,2,'.','')], ';');
+    fputcsv($out, ['Egresos pendientes', number_format($expensesPending,2,'.','')], ';');
+    fputcsv($out, ['Flujo después de compromisos', number_format($cashAfterCommitments,2,'.','')], ';');
+    fputcsv($out, ['Cuentas por cobrar órdenes del periodo', number_format($balanceOrdersPeriod,2,'.','')], ';');
+    fputcsv($out, ['Egresos / ingresos %', number_format($expenseRatio,1,'.','')], ';');
+    fputcsv($out, ['Margen de caja %', number_format($cashMargin,1,'.','')], ';');
+    fputcsv($out, [], ';');
+
+    fputcsv($out, ['EGRESOS POR CATEGORÍA'], ';');
+    fputcsv($out, ['Categoría','Movimientos','Total'], ';');
+    foreach ($expenseCategories as $row) {
+        fputcsv($out, [
+            $row['category'] ?? '',
+            $row['expense_count'] ?? 0,
+            number_format((float)($row['total'] ?? 0),2,'.',''),
+        ], ';');
+    }
+
+    fputcsv($out, [], ';');
+    fputcsv($out, ['TOP PROVEEDORES'], ';');
+    fputcsv($out, ['Proveedor','Movimientos','Total'], ';');
+    foreach ($topSuppliers as $row) {
+        fputcsv($out, [
+            $row['supplier'] ?? '',
+            $row['expense_count'] ?? 0,
+            number_format((float)($row['total'] ?? 0),2,'.',''),
+        ], ';');
+    }
+
+    fclose($out);
+    exit;
+}
+
 $maxMonthly = 0.0;
 foreach ($monthly as $row) $maxMonthly = max($maxMonthly, (float)$row['sales_total']);
 $periodLabel = date('d/m/Y', strtotime($from)) . ' al ' . date('d/m/Y', strtotime($to));
@@ -214,11 +416,18 @@ $periodLabel = date('d/m/Y', strtotime($from)) . ' al ' . date('d/m/Y', strtotim
 require __DIR__ . '/../includes/header.php';
 ?>
 <link rel="stylesheet" href="/assets/css/reportes.css?v=20260917-2">
+<link rel="stylesheet" href="/assets/css/control-administrativo-v1.css?v=1.0.0">
 
 <div class="report-toolbar no-print">
-  <div><span class="eyebrow">FASE 12 · REPORTES Y ADMINISTRACIÓN</span><h2>Reportes</h2><p class="muted">Resumen comercial, operativo y financiero de Colibrí Print.</p></div>
+  <div>
+    <span class="eyebrow">FASE 12 · REPORTES Y ADMINISTRACIÓN</span>
+    <h2>Reportes</h2>
+    <p class="muted">Resumen comercial, operativo y financiero de Colibrí Print.</p>
+  </div>
   <div class="toolbar-actions">
-    <a class="btn btn-secondary" href="/admin/reportes.php?from=<?=report_escape($from)?>&to=<?=report_escape($to)?>&export=csv">⬇️ Exportar CSV</a>
+    <a class="btn btn-secondary" href="/admin/egresos.php">Egresos / XML</a>
+    <a class="btn btn-secondary" href="/admin/reportes.php?from=<?=report_escape($from)?>&to=<?=report_escape($to)?>&export=administrative_csv">⬇️ Control administrativo CSV</a>
+    <a class="btn btn-secondary" href="/admin/reportes.php?from=<?=report_escape($from)?>&to=<?=report_escape($to)?>&export=csv">⬇️ Órdenes CSV</a>
     <button class="btn btn-secondary" type="button" onclick="window.print()">🖨️ Imprimir</button>
   </div>
 </div>
@@ -238,6 +447,155 @@ require __DIR__ . '/../includes/header.php';
     <div class="filter-actions"><button class="btn btn-primary" type="submit">Actualizar reporte</button><a class="btn btn-secondary" href="/admin/reportes.php">Este mes</a></div>
   </form>
   <div class="report-period">Periodo: <strong><?=report_escape($periodLabel)?></strong></div>
+</section>
+
+<section id="control-administrativo" class="ca-shell">
+    <div class="ca-heading">
+        <div>
+            <span class="eyebrow">CONTROL ADMINISTRATIVO DE CAJA</span>
+            <h2>Ingresos vs egresos</h2>
+            <p>Flujo real basado en pagos confirmados y egresos registrados. No representa utilidad fiscal o contable.</p>
+        </div>
+        <span class="ca-period"><?=report_escape($periodLabel)?></span>
+    </div>
+
+    <?php if (!$expensesReady): ?>
+        <div class="ca-install">
+            El módulo de egresos todavía no está instalado. Ejecuta <code>sql/dashboard_intelligence_v1_expenses.sql</code>.
+        </div>
+    <?php else: ?>
+
+    <div class="ca-kpis">
+        <article>
+            <span>Ingresos cobrados</span>
+            <strong><?=report_escape(report_money2($collected))?></strong>
+            <small><?=report_escape(report_change_label2($incomeChange))?></small>
+        </article>
+        <article>
+            <span>Egresos pagados</span>
+            <strong><?=report_escape(report_money2($expensesPaid))?></strong>
+            <small><?=report_escape(report_change_label2($expenseChange))?></small>
+        </article>
+        <article class="<?=($cashFlowNet < 0 ? 'negative' : 'positive')?>">
+            <span>Flujo neto</span>
+            <strong><?=report_escape(report_money2($cashFlowNet))?></strong>
+            <small><?=report_escape(report_change_label2($netChange))?></small>
+        </article>
+        <article class="<?=($cashAfterCommitments < 0 ? 'negative' : '')?>">
+            <span>Después de compromisos</span>
+            <strong><?=report_escape(report_money2($cashAfterCommitments))?></strong>
+            <small>Resta <?=report_escape(report_money2($expensesPending))?> pendientes</small>
+        </article>
+    </div>
+
+    <div class="ca-secondary-kpis">
+        <div><span>Cuentas por cobrar</span><strong><?=report_escape(report_money2($balanceOrdersPeriod))?></strong><small>Órdenes del periodo</small></div>
+        <div><span>Egresos / ingresos</span><strong><?=report_escape(report_pct2($expenseRatio))?></strong><small>Presión de gasto</small></div>
+        <div><span>Margen de caja</span><strong><?=report_escape(report_pct2($cashMargin))?></strong><small>Flujo neto / ingresos</small></div>
+        <div><span>Egresos pendientes</span><strong><?=report_escape(report_money2($expensesPending))?></strong><small><?=report_escape((string)$expensePendingCount)?> movimiento(s)</small></div>
+    </div>
+
+    <div class="ca-grid">
+        <article class="card ca-card">
+            <div class="section-heading">
+                <div><span class="eyebrow">FLUJO</span><h3>Ingresos vs egresos</h3></div>
+                <span class="count-pill"><?=count($cashSeries)?></span>
+            </div>
+            <?php if (!$cashSeries): ?>
+                <p class="empty">No hay movimientos de caja para el periodo.</p>
+            <?php else: ?>
+                <div class="ca-cash-chart">
+                    <?php foreach ($cashSeries as $row):
+                        $income = (float)$row['income'];
+                        $expense = (float)$row['expense'];
+                        $iw = $maxCashSeries > 0 ? ($income / $maxCashSeries) * 100 : 0;
+                        $ew = $maxCashSeries > 0 ? ($expense / $maxCashSeries) * 100 : 0;
+                        $bucket = (string)$row['bucket'];
+                        $label = strlen($bucket) === 10 ? date('d/m', strtotime($bucket)) : date('m/Y', strtotime($bucket . '-01'));
+                    ?>
+                    <div class="ca-cash-row">
+                        <strong><?=report_escape($label)?></strong>
+                        <div class="ca-double-bars">
+                            <div><span>Ingresos</span><i style="width:<?=report_escape(number_format($iw,2,'.',''))?>%"></i><b><?=report_escape(report_money2($income))?></b></div>
+                            <div class="expense"><span>Egresos</span><i style="width:<?=report_escape(number_format($ew,2,'.',''))?>%"></i><b><?=report_escape(report_money2($expense))?></b></div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+        </article>
+
+        <article class="card ca-card">
+            <div class="section-heading">
+                <div><span class="eyebrow">EGRESOS</span><h3>Distribución por categoría</h3></div>
+                <span class="count-pill"><?=count($expenseCategories)?></span>
+            </div>
+            <?php if (!$expenseCategories): ?>
+                <p class="empty">No hay egresos pagados para distribuir.</p>
+            <?php else: ?>
+                <div class="ca-category-list">
+                    <?php foreach ($expenseCategories as $row):
+                        $value = (float)$row['total'];
+                        $width = $maxExpenseCategory > 0 ? ($value / $maxExpenseCategory) * 100 : 0;
+                        $pct = $expensesPaid > 0 ? ($value / $expensesPaid) * 100 : 0;
+                    ?>
+                    <div class="ca-category">
+                        <div><strong><?=report_escape($row['category'])?></strong><span><?=report_escape(report_pct2($pct))?></span></div>
+                        <div class="ca-track"><i style="width:<?=report_escape(number_format($width,2,'.',''))?>%"></i></div>
+                        <small><?=report_escape((string)$row['expense_count'])?> movimiento(s) · <?=report_escape(report_money2($value))?></small>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+        </article>
+    </div>
+
+    <div class="ca-grid">
+        <article class="card ca-card">
+            <div class="section-heading"><div><span class="eyebrow">PROVEEDORES</span><h3>Principales proveedores</h3></div></div>
+            <?php if (!$topSuppliers): ?>
+                <p class="empty">No hay proveedores en el periodo.</p>
+            <?php else: ?>
+                <div class="report-table-wrap">
+                    <table class="report-table ca-table">
+                        <thead><tr><th>Proveedor</th><th>Mov.</th><th>Total</th></tr></thead>
+                        <tbody>
+                        <?php foreach ($topSuppliers as $row): ?>
+                            <tr>
+                                <td><?=report_escape($row['supplier'])?></td>
+                                <td><?=report_escape((string)$row['expense_count'])?></td>
+                                <td><?=report_escape(report_money2((float)$row['total']))?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php endif; ?>
+        </article>
+
+        <article class="card ca-card">
+            <div class="section-heading"><div><span class="eyebrow">CONTROL FISCAL</span><h3>Cobertura CFDI de egresos</h3></div></div>
+            <?php if (!$expenseCfdiReady): ?>
+                <div class="ca-install compact">Ejecuta la migración 022 para medir egresos respaldados por XML.</div>
+            <?php else: ?>
+                <div class="ca-cfdi-score">
+                    <strong><?=report_escape(report_pct2($cfdiCoveragePct))?></strong>
+                    <span><?=report_escape((string)$cfdiExpenseCount)?> de <?=report_escape((string)$expensePaidCount)?> egresos pagados con XML</span>
+                    <div class="ca-track"><i style="width:<?=report_escape(number_format(min(100,$cfdiCoveragePct),2,'.',''))?>%"></i></div>
+                    <small><?=report_escape(report_money2($cfdiExpenseAmount))?> respaldados por CFDI</small>
+                </div>
+            <?php endif; ?>
+
+            <div class="ca-period-compare">
+                <span>Periodo anterior</span>
+                <strong><?=report_escape(date('d/m/Y', strtotime($prevFrom)))?> — <?=report_escape(date('d/m/Y', strtotime($prevTo)))?></strong>
+                <div><b>Ingresos</b><span><?=report_escape(report_money2($previousCollected))?></span></div>
+                <div><b>Egresos</b><span><?=report_escape(report_money2($previousExpensesPaid))?></span></div>
+                <div><b>Flujo neto</b><span><?=report_escape(report_money2($previousNet))?></span></div>
+            </div>
+        </article>
+    </div>
+    <?php endif; ?>
 </section>
 
 <section class="report-stats">
@@ -280,7 +638,7 @@ require __DIR__ . '/../includes/header.php';
 
 <section class="report-admin-grid">
   <article class="card report-card compact-card"><span class="eyebrow">ADMINISTRACIÓN</span><h3>Indicadores de control</h3><div class="admin-checks"><div><strong><?=report_escape((string)$cancelledOrders)?></strong><span>Órdenes canceladas en periodo</span></div><div><strong><?=report_escape((string)$activePromotions)?></strong><span>Promociones activas hoy</span></div><div><strong><?=report_escape(report_money2($approvedQuoteValue))?></strong><span>Valor de cotizaciones aprobadas</span></div></div></article>
-  <article class="card report-card compact-card print-note"><span class="eyebrow">DEFINICIONES</span><h3>Cómo leer este reporte</h3><p>Ventas usa la fecha de la orden y excluye órdenes canceladas. Cobrado usa la fecha del pago y solo considera pagos confirmados. El saldo usa el total de cada orden menos sus pagos confirmados registrados.</p></article>
+  <article class="card report-card compact-card print-note"><span class="eyebrow">DEFINICIONES</span><h3>Cómo leer este reporte</h3><p>Ventas usa la fecha de la orden y excluye órdenes canceladas. Cobrado usa la fecha del pago y solo considera pagos confirmados. Egresos pagados usan la fecha del egreso. Flujo neto = ingresos cobrados − egresos pagados. No equivale a utilidad contable o fiscal.</p></article>
 </section>
 
 <?php require __DIR__ . '/../includes/footer.php'; ?>

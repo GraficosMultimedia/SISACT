@@ -2,6 +2,8 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../config/runtime.php';
+require_once __DIR__ . '/../includes/expense_cfdi.php';
+require_once __DIR__ . '/../includes/company.php';
 require_auth();
 
 $title = 'Egresos';
@@ -10,6 +12,7 @@ $user = current_user();
 $issues = [];
 $message = null;
 $error = null;
+$importResult = null;
 
 function cpe_table_exists(PDO $pdo, string $table): bool
 {
@@ -30,13 +33,46 @@ function cpe_money(float $value): string
     return '$' . number_format($value, 2, '.', ',');
 }
 
+$categories = expense_cfdi_categories();
 $installed = cpe_table_exists($pdo, 'cp_expenses');
+$cfdiInstalled = $installed && expense_cfdi_tables_ready();
+$company = company_profile();
+$companyRfc = strtoupper(trim((string)($company['rfc'] ?? '')));
 
 if ($installed && $_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!csrf_check($_POST['_csrf'] ?? null)) {
         $error = 'Sesión inválida. Recarga la página.';
     } else {
         $action = trim((string)($_POST['action'] ?? ''));
+
+        if ($action === 'import_cfdi') {
+            if (!$cfdiInstalled) {
+                $error = 'Primero ejecuta database/sql/022_expense_cfdi_documents.sql.';
+            } else {
+                try {
+                    $categoryOverride = trim((string)($_POST['import_category'] ?? ''));
+                    if ($categoryOverride === 'auto') $categoryOverride = '';
+
+                    $importResult = expense_cfdi_import_batch(
+                        is_array($_FILES['cfdi_xml'] ?? null) ? $_FILES['cfdi_xml'] : [],
+                        (int)($user['id'] ?? 0),
+                        $companyRfc,
+                        isset($_POST['allow_rfc_mismatch']),
+                        $categoryOverride
+                    );
+
+                    if ((int)$importResult['imported'] > 0) {
+                        $message =
+                            (int)$importResult['imported'] . ' egreso(s) CFDI registrado(s) · ' .
+                            cpe_money((float)$importResult['total']) . ' importados.';
+                    } elseif ((int)$importResult['duplicates'] > 0 && (int)$importResult['errors'] === 0) {
+                        $message = 'Los XML seleccionados ya estaban registrados. No se duplicaron egresos.';
+                    }
+                } catch (Throwable $e) {
+                    $error = 'No se pudieron procesar los XML. ' . $e->getMessage();
+                }
+            }
+        }
 
         if ($action === 'create') {
             $expenseDate = trim((string)($_POST['expense_date'] ?? ''));
@@ -128,20 +164,39 @@ $rows = [];
 $totalPaid = 0.0;
 $totalPending = 0.0;
 $orders = [];
+$cfdiCount = 0;
 
 if ($installed) {
     try {
-        $st = $pdo->prepare(
-            "SELECT e.*,
-                    o.order_number
-             FROM cp_expenses e
-             LEFT JOIN cp_orders o ON o.id=e.order_id
-             WHERE e.expense_date BETWEEN ? AND ?
-             ORDER BY e.expense_date DESC,e.id DESC
-             LIMIT 250"
-        );
+        if ($cfdiInstalled) {
+            $st = $pdo->prepare(
+                "SELECT e.*,o.order_number,
+                        d.id AS cfdi_document_id,d.uuid AS cfdi_uuid,d.issuer_rfc,d.receiver_rfc,d.total AS cfdi_total
+                 FROM cp_expenses e
+                 LEFT JOIN cp_orders o ON o.id=e.order_id
+                 LEFT JOIN cp_expense_documents d
+                   ON d.id=(SELECT MAX(d2.id) FROM cp_expense_documents d2 WHERE d2.expense_id=e.id)
+                 WHERE e.expense_date BETWEEN ? AND ?
+                 ORDER BY e.expense_date DESC,e.id DESC
+                 LIMIT 250"
+            );
+        } else {
+            $st = $pdo->prepare(
+                "SELECT e.*,o.order_number,
+                        NULL AS cfdi_document_id,NULL AS cfdi_uuid,NULL AS issuer_rfc,NULL AS receiver_rfc,NULL AS cfdi_total
+                 FROM cp_expenses e
+                 LEFT JOIN cp_orders o ON o.id=e.order_id
+                 WHERE e.expense_date BETWEEN ? AND ?
+                 ORDER BY e.expense_date DESC,e.id DESC
+                 LIMIT 250"
+            );
+        }
         $st->execute([$from, $to]);
         $rows = $st->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($rows as $row) {
+            if (!empty($row['cfdi_document_id'])) $cfdiCount++;
+        }
 
         $st = $pdo->prepare(
             "SELECT
@@ -167,30 +222,21 @@ if ($installed) {
     }
 }
 
-$categories = [
-    'Materiales',
-    'Nómina',
-    'Servicios',
-    'Renta',
-    'Publicidad',
-    'Mantenimiento',
-    'Transporte',
-    'Impuestos',
-    'Equipo',
-    'Otros',
-];
-
 require __DIR__ . '/../includes/header.php';
 ?>
 <link rel="stylesheet" href="/assets/css/egresos.css?v=1.0.0">
+<link rel="stylesheet" href="/assets/css/egresos-cfdi-v1.css?v=1.0.0">
 
 <section class="eg-head">
     <div>
         <span class="eg-eyebrow">CONTROL DE CAJA</span>
         <h2>Egresos</h2>
-        <p>Registra salidas reales y compromisos de pago sin modificar el módulo de pagos de clientes.</p>
+        <p>Registra salidas reales, compromisos de pago y facturas XML de proveedores.</p>
     </div>
-    <a class="eg-back" href="/admin/dashboard.php">← Dashboard Intelligence</a>
+    <div class="eg-head-actions">
+        <a class="eg-back" href="/admin/reportes.php#control-administrativo">Balance administrativo</a>
+        <a class="eg-back" href="/admin/dashboard.php">← Dashboard Intelligence</a>
+    </div>
 </section>
 
 <?php if (!$installed): ?>
@@ -208,17 +254,110 @@ require __DIR__ . '/../includes/header.php';
 <?php if ($message): ?><div class="eg-message success"><?=e($message)?></div><?php endif; ?>
 <?php if ($error): ?><div class="eg-message error"><?=e($error)?></div><?php endif; ?>
 
-<section class="eg-stats">
+<?php if ($importResult): ?>
+<section class="eg-import-result">
+    <div class="eg-import-summary">
+        <div><span>Importados</span><strong><?=number_format((int)$importResult['imported'])?></strong></div>
+        <div><span>Duplicados</span><strong><?=number_format((int)$importResult['duplicates'])?></strong></div>
+        <div><span>Errores</span><strong><?=number_format((int)$importResult['errors'])?></strong></div>
+        <div><span>Total registrado</span><strong><?=e(cpe_money((float)$importResult['total']))?></strong></div>
+    </div>
+    <div class="eg-import-items">
+        <?php foreach (($importResult['items'] ?? []) as $item): ?>
+            <div class="eg-import-item <?=e((string)($item['status'] ?? 'error'))?>">
+                <span><?=($item['status'] ?? '') === 'imported' ? '✓' : (($item['status'] ?? '') === 'duplicate' ? '⚠' : '✕')?></span>
+                <div>
+                    <strong><?=e((string)($item['file'] ?? 'XML'))?></strong>
+                    <small><?=e((string)($item['message'] ?? ''))?>
+                        <?php if (isset($item['amount'])): ?> · <?=e(cpe_money((float)$item['amount']))?><?php endif; ?>
+                        <?php if (!empty($item['category'])): ?> · <?=e((string)$item['category'])?><?php endif; ?>
+                    </small>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</section>
+<?php endif; ?>
+
+<section class="eg-stats eg-stats-v1">
     <article><span>Pagado en periodo</span><strong><?=e(cpe_money($totalPaid))?></strong><small>Impacta flujo neto</small></article>
     <article><span>Pendiente</span><strong><?=e(cpe_money($totalPending))?></strong><small>Compromisos registrados</small></article>
     <article><span>Movimientos</span><strong><?=number_format(count($rows))?></strong><small>Máximo 250 visibles</small></article>
+    <article><span>Con CFDI XML</span><strong><?=number_format($cfdiCount)?></strong><small>En el listado visible</small></article>
+</section>
+
+<section class="eg-cfdi-import-card">
+    <div class="eg-card-head">
+        <span class="eg-eyebrow">IMPORTACIÓN FISCAL</span>
+        <h3>Registrar egresos desde XML CFDI</h3>
+        <p>Selecciona varias facturas. SISACT obtiene proveedor, fecha, conceptos, forma de pago y <strong>Total</strong> del XML.</p>
+    </div>
+
+    <?php if (!$cfdiInstalled): ?>
+        <div class="eg-cfdi-install">
+            <strong>Falta activar el expediente XML de egresos.</strong>
+            <span>Ejecuta <code>database/sql/022_expense_cfdi_documents.sql</code> y vuelve a cargar esta página.</span>
+        </div>
+    <?php else: ?>
+    <form method="post" enctype="multipart/form-data" class="eg-cfdi-form">
+        <input type="hidden" name="_csrf" value="<?=e(csrf_token())?>">
+        <input type="hidden" name="action" value="import_cfdi">
+
+        <label class="eg-upload-box">
+            <span class="eg-upload-icon">XML</span>
+            <span>
+                <strong>Seleccionar facturas XML</strong>
+                <small>CFDI 4.0 · máximo 30 archivos por operación · hasta 5 MB por XML</small>
+            </span>
+            <input type="file" name="cfdi_xml[]" accept=".xml,application/xml,text/xml" multiple required>
+        </label>
+
+        <div class="eg-cfdi-options">
+            <label>
+                <span>Categoría</span>
+                <select name="import_category">
+                    <option value="auto">Automática según concepto</option>
+                    <?php foreach ($categories as $category): ?>
+                        <option value="<?=e($category)?>"><?=e($category)?></option>
+                    <?php endforeach; ?>
+                </select>
+            </label>
+
+            <div class="eg-rfc-box">
+                <span>RFC configurado</span>
+                <strong><?=e($companyRfc !== '' ? $companyRfc : 'NO CONFIGURADO')?></strong>
+                <small>
+                    <?php if ($companyRfc === ''): ?>
+                        Configúralo en Datos de empresa para validar el receptor del XML.
+                    <?php else: ?>
+                        SISACT comparará este RFC contra el receptor de cada factura.
+                    <?php endif; ?>
+                </small>
+            </div>
+        </div>
+
+        <label class="eg-check">
+            <input type="checkbox" name="allow_rfc_mismatch" value="1">
+            <span>Permitir importar XML cuyo RFC receptor sea diferente al configurado en SISACT.</span>
+        </label>
+
+        <div class="eg-cfdi-help">
+            <span><b>PUE</b> → egreso Pagado</span>
+            <span><b>PPD</b> → egreso Pendiente</span>
+            <span><b>01</b> Efectivo · <b>03</b> Transferencia · <b>04/28/29</b> Tarjeta</span>
+            <span>UUID y SHA-256 impiden duplicar una factura.</span>
+        </div>
+
+        <button class="eg-submit eg-import-submit" type="submit">Importar XML como egresos</button>
+    </form>
+    <?php endif; ?>
 </section>
 
 <section class="eg-grid">
     <article class="eg-card">
         <div class="eg-card-head">
             <span class="eg-eyebrow">NUEVO MOVIMIENTO</span>
-            <h3>Registrar egreso</h3>
+            <h3>Registrar egreso manual</h3>
         </div>
 
         <form method="post" class="eg-form">
@@ -325,7 +464,7 @@ require __DIR__ . '/../includes/header.php';
             <div class="eg-empty">No hay egresos en el periodo seleccionado.</div>
         <?php else: ?>
             <div class="eg-table-wrap">
-                <table class="eg-table">
+                <table class="eg-table eg-table-v1">
                     <thead>
                         <tr>
                             <th>Fecha</th>
@@ -334,33 +473,44 @@ require __DIR__ . '/../includes/header.php';
                             <th>Orden</th>
                             <th>Estado</th>
                             <th>Importe</th>
+                            <th>Fiscal</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($rows as $row): ?>
-                            <tr>
-                                <td><?=e(date('d/m/Y', strtotime((string)$row['expense_date'])))?></td>
-                                <td>
-                                    <strong><?=e((string)$row['description'])?></strong>
-                                    <?php if (!empty($row['supplier'])): ?><small><?=e((string)$row['supplier'])?></small><?php endif; ?>
-                                </td>
-                                <td><?=e((string)$row['category'])?></td>
-                                <td><?=e((string)($row['order_number'] ?? '—'))?></td>
-                                <td><span class="eg-status <?=e((string)$row['status'])?>"><?=e((string)$row['status'])?></span></td>
-                                <td><strong><?=e(cpe_money((float)$row['amount']))?></strong></td>
-                                <td>
-                                    <?php if (($row['status'] ?? '') !== 'cancelled'): ?>
-                                        <form method="post" onsubmit="return confirm('¿Cancelar este egreso? El registro se conservará para auditoría.');">
-                                            <input type="hidden" name="_csrf" value="<?=e(csrf_token())?>">
-                                            <input type="hidden" name="action" value="cancel">
-                                            <input type="hidden" name="id" value="<?=e((string)$row['id'])?>">
-                                            <button class="eg-cancel" type="submit">Cancelar</button>
-                                        </form>
-                                    <?php endif; ?>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
+                    <?php foreach ($rows as $row): ?>
+                        <tr>
+                            <td data-label="Fecha"><?=e(date('d/m/Y', strtotime((string)$row['expense_date'])))?></td>
+                            <td data-label="Concepto">
+                                <strong><?=e((string)$row['description'])?></strong>
+                                <?php if (!empty($row['supplier'])): ?><small><?=e((string)$row['supplier'])?></small><?php endif; ?>
+                                <?php if (!empty($row['cfdi_uuid'])): ?>
+                                    <small class="eg-uuid">UUID <?=e((string)$row['cfdi_uuid'])?></small>
+                                <?php endif; ?>
+                            </td>
+                            <td data-label="Categoría"><?=e((string)$row['category'])?></td>
+                            <td data-label="Orden"><?=e((string)($row['order_number'] ?? '—'))?></td>
+                            <td data-label="Estado"><span class="eg-status <?=e((string)$row['status'])?>"><?=e((string)$row['status'])?></span></td>
+                            <td data-label="Importe"><strong><?=e(cpe_money((float)$row['amount']))?></strong></td>
+                            <td data-label="Fiscal">
+                                <?php if (!empty($row['cfdi_document_id'])): ?>
+                                    <a class="eg-cfdi-link" href="/admin/egreso_cfdi.php?id=<?=((int)$row['cfdi_document_id'])?>">🧾 XML</a>
+                                <?php else: ?>
+                                    <span class="eg-no-cfdi">Sin XML</span>
+                                <?php endif; ?>
+                            </td>
+                            <td data-label="Acción">
+                                <?php if (($row['status'] ?? '') !== 'cancelled'): ?>
+                                    <form method="post" onsubmit="return confirm('¿Cancelar este egreso? El registro se conservará para auditoría.');">
+                                        <input type="hidden" name="_csrf" value="<?=e(csrf_token())?>">
+                                        <input type="hidden" name="action" value="cancel">
+                                        <input type="hidden" name="id" value="<?=e((string)$row['id'])?>">
+                                        <button class="eg-cancel" type="submit">Cancelar</button>
+                                    </form>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

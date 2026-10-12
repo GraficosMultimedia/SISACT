@@ -1,0 +1,78 @@
+/* ============================================================
+   SISACT · Egresos CFDI V1
+   Complemento de /assets/css/egresos.css
+   ============================================================ */
+.eg-head-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.eg-stats-v1{grid-template-columns:repeat(4,1fr)}
+.eg-cfdi-import-card{
+    margin-bottom:18px;
+    padding:20px;
+    border:1px solid rgba(18,191,243,.20);
+    border-radius:17px;
+    background:
+        radial-gradient(circle at 100% 0,rgba(18,191,243,.08),transparent 32%),
+        linear-gradient(145deg,#102943,#0a1d32);
+}
+.eg-cfdi-import-card .eg-card-head p{margin:6px 0 0;color:#8ea7be;font-size:12px;line-height:1.5}
+.eg-cfdi-install{display:grid;gap:5px;padding:14px;border:1px solid rgba(255,212,0,.22);border-radius:11px;background:rgba(255,212,0,.05)}
+.eg-cfdi-install strong{color:#ffe178}.eg-cfdi-install span{color:#a9b7c5;font-size:11px}
+.eg-cfdi-install code{color:#8ed8f7}
+.eg-cfdi-form{display:grid;gap:13px}
+.eg-upload-box{
+    position:relative;
+    display:grid;
+    grid-template-columns:54px minmax(0,1fr);
+    gap:13px;
+    align-items:center;
+    padding:15px;
+    border:1px dashed #356786;
+    border-radius:13px;
+    background:rgba(3,18,31,.32);
+    cursor:pointer;
+}
+.eg-upload-box:hover{border-color:#14bdf1;background:rgba(18,191,243,.04)}
+.eg-upload-box input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.eg-upload-icon{width:50px;height:50px;display:grid;place-items:center;border-radius:12px;background:rgba(45,200,121,.10);color:#72e5ad;font-size:12px;font-weight:900}
+.eg-upload-box strong,.eg-upload-box small{display:block}.eg-upload-box strong{color:#edf6fd;font-size:13px}.eg-upload-box small{margin-top:4px;color:#809ab1;font-size:10px;line-height:1.45}
+.eg-cfdi-options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.eg-cfdi-options label,.eg-rfc-box{display:grid;gap:6px}
+.eg-cfdi-options label>span,.eg-rfc-box>span{color:#9bb0c7;font-size:10px;font-weight:800}
+.eg-cfdi-options select{width:100%;min-height:42px;padding:9px 10px;border:1px solid #294866;border-radius:9px;background:#08192b;color:#e7f0fa;font:inherit;font-size:12px}
+.eg-rfc-box{padding:10px 12px;border:1px solid rgba(117,157,199,.15);border-radius:9px;background:rgba(5,18,30,.26)}
+.eg-rfc-box strong{color:#dff5ff;font-size:13px}.eg-rfc-box small{color:#7892a9;font-size:9px;line-height:1.4}
+.eg-check{display:flex;gap:9px;align-items:flex-start;color:#99aec1;font-size:10px;line-height:1.45}.eg-check input{margin-top:2px}
+.eg-cfdi-help{display:flex;gap:8px;flex-wrap:wrap}.eg-cfdi-help span{padding:6px 8px;border:1px solid rgba(117,157,199,.13);border-radius:8px;color:#8199af;background:rgba(4,17,29,.24);font-size:9px}
+.eg-import-submit{max-width:360px}
+.eg-import-result{margin-bottom:16px;padding:15px;border:1px solid rgba(117,157,199,.18);border-radius:14px;background:#0b2035}
+.eg-import-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.eg-import-summary>div{padding:10px;border:1px solid rgba(117,157,199,.11);border-radius:9px;background:rgba(5,17,29,.28)}
+.eg-import-summary span,.eg-import-summary strong{display:block}.eg-import-summary span{color:#7f99b1;font-size:9px;text-transform:uppercase}.eg-import-summary strong{margin-top:4px;color:#eef7fd;font-size:17px}
+.eg-import-items{display:grid;gap:6px;margin-top:10px}
+.eg-import-item{display:grid;grid-template-columns:24px minmax(0,1fr);gap:8px;align-items:start;padding:8px 10px;border-radius:8px;background:rgba(5,17,29,.24)}
+.eg-import-item>span{font-weight:900}.eg-import-item.imported>span{color:#62dba1}.eg-import-item.duplicate>span{color:#ffe06a}.eg-import-item.error>span{color:#ff8798}
+.eg-import-item strong,.eg-import-item small{display:block}.eg-import-item strong{color:#dce9f5;font-size:10px}.eg-import-item small{margin-top:2px;color:#7890a6;font-size:9px;line-height:1.4}
+.eg-cfdi-link{display:inline-flex;padding:5px 7px;border:1px solid rgba(45,200,121,.20);border-radius:7px;color:#75e1ad;background:rgba(45,200,121,.06);font-size:9px;font-weight:900;text-decoration:none;white-space:nowrap}
+.eg-no-cfdi{color:#6f879c;font-size:9px}.eg-uuid{overflow-wrap:anywhere;color:#6ca9c5!important}
+
+@media(max-width:1100px){
+    .eg-stats-v1{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:700px){
+    .eg-head-actions{width:100%;display:grid;grid-template-columns:1fr}.eg-head-actions .eg-back{text-align:center;min-height:44px;display:grid;place-items:center}
+    .eg-stats-v1{grid-template-columns:1fr}
+    .eg-cfdi-import-card{padding:15px}
+    .eg-cfdi-options{grid-template-columns:1fr}
+    .eg-import-summary{grid-template-columns:1fr 1fr}
+    .eg-import-submit{max-width:none;min-height:50px;font-size:14px}
+    .eg-upload-box{grid-template-columns:46px minmax(0,1fr);padding:13px}.eg-upload-icon{width:44px;height:44px}
+    .eg-upload-box strong{font-size:14px}.eg-upload-box small{font-size:11px}
+    .eg-cfdi-options select{min-height:50px;font-size:16px}
+    .eg-check{font-size:12px}
+    .eg-table-v1 thead{display:none}
+    .eg-table-v1,.eg-table-v1 tbody,.eg-table-v1 tr,.eg-table-v1 td{display:block;width:100%}
+    .eg-table-v1 tr{margin-bottom:10px;padding:11px;border:1px solid rgba(117,157,199,.14);border-radius:11px;background:rgba(5,18,30,.24)}
+    .eg-table-v1 td{display:grid;grid-template-columns:100px minmax(0,1fr);gap:8px;padding:7px 0;border:0!important;font-size:12px}
+    .eg-table-v1 td:before{content:attr(data-label);color:#718ca4;font-size:9px;font-weight:900;text-transform:uppercase}
+    .eg-table-v1 td strong{font-size:13px}
+    .eg-cfdi-link{min-height:36px;align-items:center;justify-content:center;font-size:11px}
+}
