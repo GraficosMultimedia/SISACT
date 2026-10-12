@@ -2,6 +2,7 @@
 declare(strict_types=1);
 require_once __DIR__ . '/includes/seguimiento.php';
 require_once __DIR__ . '/includes/seguimiento_cfdi.php';
+require_once __DIR__ . '/includes/cotizaciones.php';
 require_once __DIR__ . '/includes/company.php';
 
 $company = company_profile();
@@ -22,6 +23,79 @@ $finance = $order ? tracking_payment_summary((int)$order['id']) : ['order_total'
 $payments = $order ? tracking_confirmed_payments((int)$order['id']) : [];
 $paymentReceipts = $order ? tracking_payment_receipts((int)$order['id']) : [];
 $trackingCfdis = $order ? tracking_cfdi_for_order((int)$order['id']) : [];
+
+/* SISACT_TRACKING_BREAKDOWN_V2 */
+$commercialSubtotal = 0.0;
+$commercialDiscount = 0.0;
+$commercialTax = 0.0;
+$commercialTotal = 0.0;
+$commercialDiscountPct = 0.0;
+$commercialTaxPct = 0.0;
+$commercialDiscountLabel = '';
+$commercialTaxLabel = '';
+$commercialHasBreakdown = false;
+
+if ($order) {
+    try {
+        $commercialQuoteId = (int)($order['quote_id'] ?? 0);
+
+        // En caso de que tracking_order_by_token() no traiga quote_id,
+        // lo resolvemos directamente desde cp_orders.
+        if ($commercialQuoteId <= 0) {
+            $commercialQuoteStmt = db()->prepare(
+                'SELECT quote_id FROM cp_orders WHERE id=? LIMIT 1'
+            );
+            $commercialQuoteStmt->execute([(int)$order['id']]);
+            $commercialQuoteId = (int)($commercialQuoteStmt->fetchColumn() ?: 0);
+        }
+
+        if ($commercialQuoteId > 0) {
+            $commercialTotals = quote_totals($commercialQuoteId);
+
+            $commercialSubtotal = round((float)($commercialTotals['subtotal'] ?? 0), 2);
+            $commercialDiscount = round((float)($commercialTotals['discount'] ?? 0), 2);
+            $commercialTax = round((float)($commercialTotals['tax'] ?? 0), 2);
+            $commercialTotal = round((float)($commercialTotals['total'] ?? 0), 2);
+
+            if ($commercialSubtotal > 0 && $commercialDiscount > 0) {
+                $commercialDiscountPct =
+                    ($commercialDiscount / $commercialSubtotal) * 100;
+            }
+
+            $commercialTaxBase = max(
+                0.0,
+                $commercialSubtotal - $commercialDiscount
+            );
+
+            if ($commercialTaxBase > 0 && $commercialTax > 0) {
+                $commercialTaxPct =
+                    ($commercialTax / $commercialTaxBase) * 100;
+            }
+
+            $formatCommercialPct = static function(float $value): string {
+                if ($value <= 0) return '';
+                $formatted = number_format($value, 2, '.', '');
+                return rtrim(rtrim($formatted, '0'), '.') . '%';
+            };
+
+            $commercialDiscountLabel =
+                $formatCommercialPct($commercialDiscountPct);
+
+            $commercialTaxLabel =
+                $formatCommercialPct($commercialTaxPct);
+
+            $commercialHasBreakdown =
+                $commercialSubtotal > 0.009 ||
+                $commercialDiscount > 0.009 ||
+                $commercialTax > 0.009;
+        }
+    } catch (Throwable $e) {
+        error_log(
+            '[SISACT][seguimiento_desglose_comercial_v2] ' .
+            $e->getMessage()
+        );
+    }
+}
 
 function track_e(?string $value): string { return htmlspecialchars((string)$value, ENT_QUOTES, 'UTF-8'); }
 function track_money(float $value): string { return '$' . number_format($value, 2, '.', ','); }
@@ -108,6 +182,65 @@ a{color:inherit}
 .receipt-kpis strong{display:block;color:var(--navy);font-size:23px;margin-top:5px}
 .receipt-kpis .paid strong{color:var(--green)}
 .receipt-kpis .balance strong{color:#e26b38}
+
+/* SISACT · Seguimiento · Desglose comercial V2 */
+.receipt-breakdown{
+  margin:0 0 18px;
+  border:1px solid #dce8f5;
+  border-radius:13px;
+  overflow:hidden;
+  background:#fbfdff
+}
+.receipt-breakdown-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+  padding:12px 15px;
+  background:#f2f7fd;
+  border-bottom:1px solid #dce8f5
+}
+.receipt-breakdown-head span{
+  display:block;
+  color:#5b7699;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.07em;
+  text-transform:uppercase
+}
+.receipt-breakdown-head strong{
+  display:block;
+  margin-top:3px;
+  color:var(--navy);
+  font-size:13px
+}
+.receipt-breakdown-rows{padding:4px 15px}
+.receipt-breakdown-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  padding:9px 0;
+  border-bottom:1px solid var(--line);
+  font-size:12px
+}
+.receipt-breakdown-row:last-child{border-bottom:0}
+.receipt-breakdown-row span{color:var(--muted)}
+.receipt-breakdown-row strong{color:var(--navy)}
+.receipt-breakdown-row.discount strong{color:#d20b42}
+.receipt-breakdown-row.tax strong{color:#087c70}
+.receipt-breakdown-row.total{
+  margin:0 -15px;
+  padding:11px 15px;
+  background:#f7faff;
+  border-top:1px solid #dce8f5;
+  font-weight:800
+}
+.receipt-breakdown-row.total span,
+.receipt-breakdown-row.total strong{
+  color:var(--navy);
+  font-size:13px
+}
 .receipt-service{border-top:1px solid var(--line);padding-top:16px}
 .receipt-service h3{margin:3px 0 12px;font-size:14px;color:var(--navy)}
 .receipt-items{border:1px solid var(--line);border-radius:12px;overflow:hidden}
@@ -415,7 +548,58 @@ footer strong{color:var(--navy)}
     <div class="balance"><span>Saldo pendiente</span><strong><?=track_money((float)$finance['balance'])?></strong></div>
   </div>
 
-  <div class="receipt-service">
+  <?php if ($commercialHasBreakdown): ?>
+  <div class="receipt-breakdown">
+    <div class="receipt-breakdown-head">
+      <div>
+        <span>DESGLOSE DEL SERVICIO</span>
+        <strong>Detalle comercial de tu pedido</strong>
+      </div>
+    </div>
+
+    <div class="receipt-breakdown-rows">
+      <div class="receipt-breakdown-row">
+        <span>Subtotal</span>
+        <strong><?=track_money($commercialSubtotal)?></strong>
+      </div>
+
+      <?php if ($commercialDiscount > 0.009): ?>
+      <div class="receipt-breakdown-row discount">
+        <span>
+          Descuento<?= $commercialDiscountLabel !== ''
+            ? ' (' . track_e($commercialDiscountLabel) . ')'
+            : '' ?>
+        </span>
+        <strong>-<?=track_money($commercialDiscount)?></strong>
+      </div>
+      <?php endif; ?>
+
+      <?php if ($commercialTax > 0.009): ?>
+      <div class="receipt-breakdown-row tax">
+        <span>
+          IVA<?= $commercialTaxLabel !== ''
+            ? ' (' . track_e($commercialTaxLabel) . ')'
+            : '' ?>
+        </span>
+        <strong><?=track_money($commercialTax)?></strong>
+      </div>
+      <?php endif; ?>
+
+      <div class="receipt-breakdown-row total">
+        <span>Total comercial</span>
+        <strong>
+          <?=track_money(
+            $commercialTotal > 0
+              ? $commercialTotal
+              : (float)$finance['order_total']
+          )?>
+        </strong>
+      </div>
+    </div>
+  </div>
+  <?php endif; ?>
+
+<div class="receipt-service">
     <span class="eyebrow">SERVICIOS CONTRATADOS</span>
     <h3>Conceptos de la orden</h3>
     <?php if (!$items): ?>

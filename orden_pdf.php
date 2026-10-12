@@ -5,6 +5,7 @@ require_once __DIR__ . '/includes/company.php';
 require_once __DIR__ . '/includes/actions.php';
 require_once __DIR__ . '/includes/ordenes.php';
 require_once __DIR__ . '/includes/cotizaciones.php';
+require_once __DIR__ . '/includes/order_commercial_breakdown.php';
 require_once __DIR__ . '/includes/finanzas.php';
 require_once __DIR__ . '/includes/produccion.php';
 require_auth();
@@ -114,7 +115,7 @@ function cstatus(string $s):array{
   return $map[$s]??['En proceso',[.08,.55,.84]];
 }
 
-function generate_order_pdf(array $order,array $customer,array $quote,array $items,array $finance,array $payments,array $history,array $company, string $logoPath='', int $photoCount=0):string{
+function generate_order_pdf(array $order,array $customer,array $quote,array $items,array $finance,array $payments,array $history,array $company, string $logoPath='', int $photoCount=0, array $commercial=[]):string{
   $pdf=new CorporateOrderPdf();
   $navy=[.035,.075,.115];$red=[1,.06,.30];$yellow=[1,.70,.06];$cyan=[.08,.60,.92];$green=[.05,.70,.47];$slate=[.34,.39,.45];$light=[.955,.97,.98];$border=[.82,.85,.89];$soft=[.985,.99,.995];
   $brand=trim((string)($company['trade_name']?:$company['legal_name']?:'Colibrí Print México'));
@@ -197,10 +198,33 @@ function generate_order_pdf(array $order,array $customer,array $quote,array $ite
     $pdf->setStroke(...$border);$pdf->line(38,$y-$rowH+5,557,$y-$rowH+5);$y-=$rowH;
   }
 
-  // totals/payment summary
-  $y-=8;$pdf->setFill(...$light);$pdf->fillRect(319,$y-120,238,120);$pdf->setStroke(...$border);$pdf->rect(319,$y-120,238,120);
+  // totals/payment summary · V2 igual a la fuente financiera de cotizacion_pdf_2paginas.php
+  $y-=8;
+  $summaryRows=[];
+  if(($commercial['available']??false)===true){
+      $summaryRows[]=['Subtotal',(float)$commercial['subtotal'],$navy,false];
+      if(($commercial['has_discount']??false)===true){
+          $summaryRows[]=['Descuento ('.(string)$commercial['discount_label'].')',-(float)$commercial['discount'],$red,false];
+      }
+      if(($commercial['has_tax']??false)===true){
+          $summaryRows[]=['IVA ('.(string)$commercial['tax_label'].')',(float)$commercial['tax'],$cyan,false];
+      }
+  }
+  $summaryRows[]=['Total del servicio',(float)$finance['order_total'],$navy,true];
+  $summaryRows[]=['Pagado / anticipo',(float)$finance['paid_total'],$green,false];
+  $summaryRows[]=['Saldo pendiente',(float)$finance['balance'],$yellow,true];
+
+  $boxH=max(120,38+(count($summaryRows)*15));
+  $pdf->setFill(...$light);$pdf->fillRect(319,$y-$boxH,238,$boxH);
+  $pdf->setStroke(...$border);$pdf->rect(319,$y-$boxH,238,$boxH);
   $pdf->setFill(...$red);$pdf->text('RESUMEN FINANCIERO',7.8,335,$y-18,true);
-  $rows=[['Total del servicio',(float)$finance['order_total'],$navy],['Pagado / anticipo',(float)$finance['paid_total'],$green],['Saldo pendiente',(float)$finance['balance'],$yellow]];$ty=$y-43;foreach($rows as $r){$pdf->setFill(...$slate);$pdf->text($r[0],8,335,$ty,false);$pdf->setFill(...$r[2]);$pdf->textRight(cmoney($r[1]),11,540,$ty,true);$ty-=23;}
+
+  $ty=$y-40;
+  foreach($summaryRows as $r){
+      $pdf->setFill(...$slate);$pdf->text($r[0],7.4,335,$ty,(bool)$r[3]);
+      $pdf->setFill(...$r[2]);$pdf->textRight(cmoney((float)$r[1]),(bool)$r[3]?9.7:8.5,540,$ty,true);
+      $ty-=15;
+  }
   $pdf->setFill(...$slate);$first=$finance['first_payment']??null;if($first){$pdf->text('Primer pago: '.cdate((string)$first['payment_date']),7.1,50,$y-24,false);$pdf->text('Método: '.(string)$first['method_label'],7.1,50,$y-36,false);if(!empty($first['reference']))$pdf->text('Referencia: '.(string)$first['reference'],7.1,50,$y-48,false);}else{$pdf->text('No hay anticipo confirmado registrado.',7.1,50,$y-24,false);}
   $footer($pdf->pageNo());
 
@@ -297,6 +321,7 @@ $items=order_items($id);
 $history=order_history($id);
 $payments=finance_payment_list($id);
 $finance=finance_order_summary($id);
+$commercial=order_commercial_breakdown($id,$items,(float)($finance['order_total']??0));
 $order['production_stage']=production_stage_label(production_get_stage($id));
 
 $photoCount=0;
@@ -318,7 +343,7 @@ foreach([$preferred,'/assets/img/company/logo-pdf.jpg'] as $candidate){
 }
 
 try{
-    $data=generate_order_pdf($order,$customer,$quote,$items,$finance,$payments,$history,$company,$logoPath,$photoCount);
+    $data=generate_order_pdf($order,$customer,$quote,$items,$finance,$payments,$history,$company,$logoPath,$photoCount,$commercial);
 }catch(Throwable $e){
     http_response_code(500);
     header('Content-Type: text/plain; charset=UTF-8');
