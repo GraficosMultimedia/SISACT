@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 12, 2026 at 01:08 AM
+-- Generation Time: Oct 12, 2026 at 04:39 PM
 -- Server version: 5.7.44-48
 -- PHP Version: 8.4.26
 
@@ -1392,7 +1392,89 @@ INSERT INTO `cp_activity_log` (`id`, `user_id`, `action`, `module`, `description
 (1540, 1, 'update', 'production', 'Etapa actualizada para orden #44', '177.239.83.23', '2026-10-12 00:04:25'),
 (1541, 1, 'update', 'production', 'Etapa actualizada para orden #44', '177.239.83.23', '2026-10-12 00:04:27'),
 (1542, 1, 'create', 'payments', 'Pago registrado #56', '177.239.83.23', '2026-10-12 00:04:42'),
-(1543, 1, 'create', 'payments', 'Pago registrado #57', '177.239.83.23', '2026-10-12 01:06:48');
+(1543, 1, 'create', 'payments', 'Pago registrado #57', '177.239.83.23', '2026-10-12 01:06:48'),
+(1544, 1, 'create', 'expenses', 'Egreso CFDI importado #1 · Magna · $300.00', '177.239.83.23', '2026-10-12 01:37:10'),
+(1545, 1, 'create', 'expenses', 'Egreso CFDI importado #2 · Magna · $450.00', '177.239.83.23', '2026-10-12 01:37:18'),
+(1546, 1, 'login', 'auth', 'Inicio de sesión', '177.239.83.23', '2026-10-12 07:11:59'),
+(1547, 1, 'update', 'production', 'Etapa actualizada para orden #41', '177.239.83.23', '2026-10-12 07:23:36'),
+(1548, 1, 'update', 'production', 'Etapa actualizada para orden #63', '177.239.83.23', '2026-10-12 07:23:46'),
+(1549, 1, 'update', 'production', 'Etapa actualizada para orden #54', '177.239.83.23', '2026-10-12 07:23:59'),
+(1550, 1, 'update', 'production', 'Etapa actualizada para orden #64', '177.239.83.23', '2026-10-12 07:24:07'),
+(1551, 1, 'update', 'production', 'Etapa actualizada para orden #64', '177.239.83.23', '2026-10-12 07:24:08'),
+(1552, 1, 'login', 'auth', 'Inicio de sesión', '177.239.83.23', '2026-10-12 08:06:16'),
+(1553, 1, 'update', 'production', 'Etapa actualizada para orden #74', '177.239.83.23', '2026-10-12 09:04:21'),
+(1554, 1, 'update', 'production', 'Etapa actualizada para orden #54', '177.239.83.23', '2026-10-12 09:04:44'),
+(1555, 1, 'update', 'production', 'Etapa actualizada para orden #54', '177.239.83.23', '2026-10-12 09:04:52'),
+(1556, 1, 'login', 'auth', 'Inicio de sesión', '200.68.141.145', '2026-10-12 09:15:18'),
+(1557, 1, 'create', 'quotes', 'Cotización creada #114', '200.68.141.145', '2026-10-12 09:39:29'),
+(1558, 1, 'update', 'quotes', 'Estado de cotización actualizado #114 a draft', '200.68.141.145', '2026-10-12 09:39:46'),
+(1559, 1, 'update', 'quotes', 'Estado de cotización actualizado #114 a approved', '200.68.141.145', '2026-10-12 09:39:54'),
+(1560, 1, 'create', 'orders', 'Orden creada OS-2026-00074 desde cotización #114', '200.68.141.145', '2026-10-12 09:40:07'),
+(1561, 1, 'update', 'production', 'Etapa actualizada para orden #84', '177.239.83.23', '2026-10-12 09:41:19'),
+(1562, 1, 'update', 'production', 'Etapa actualizada para orden #84', '177.239.83.23', '2026-10-12 09:41:21'),
+(1563, 1, 'update', 'production', 'Etapa actualizada para orden #84', '177.239.83.23', '2026-10-12 09:41:24'),
+(1564, 1, 'update', 'production', 'Etapa actualizada para orden #84', '177.239.83.23', '2026-10-12 09:41:26'),
+(1565, 1, 'update', 'production', 'Etapa actualizada para orden #84', '177.239.83.23', '2026-10-12 09:41:30'),
+(1566, 1, 'update', 'quotes', 'Cotización actualizada #106', '177.239.83.23', '2026-10-12 09:51:44'),
+(1567, 1, 'whatsapp', 'quotes', 'WhatsApp preparado al guardar cotización #106', '177.239.83.23', '2026-10-12 09:51:44'),
+(1568, 1, 'update', 'quotes', 'Estado de cotización actualizado #106 a approved', '177.239.83.23', '2026-10-12 09:53:24'),
+(1569, 1, 'create', 'orders', 'Orden creada OS-2026-00075 desde cotización #106', '177.239.83.23', '2026-10-12 09:53:43'),
+(1570, 1, 'update', 'production', 'Etapa actualizada para orden #85', '177.239.83.23', '2026-10-12 09:54:03'),
+(1571, 1, 'update', 'quotes', 'Estado de cotización actualizado #115 a approved', '177.239.83.23', '2026-10-12 09:59:10'),
+(1572, 1, 'create', 'orders', 'Orden creada OS-2026-00076 desde cotización #115', '177.239.83.23', '2026-10-12 09:59:15'),
+(1573, 1, 'create', 'orders', 'Archivo agregado a orden #86', '177.239.83.23', '2026-10-12 10:01:52'),
+(1574, 1, 'update', 'production', 'Etapa actualizada para orden #86', '177.239.83.23', '2026-10-12 10:17:35'),
+(1575, 1, 'update', 'production', 'Etapa actualizada para orden #86', '177.239.83.23', '2026-10-12 10:17:38'),
+(1576, 1, 'login', 'auth', 'Inicio de sesión', '200.68.141.145', '2026-10-12 10:18:44'),
+(1577, 1, 'update', 'production', 'Etapa actualizada para orden #86', '177.239.83.23', '2026-10-12 10:19:06'),
+(1578, 1, 'update', 'production', 'Etapa actualizada para orden #86', '177.239.83.23', '2026-10-12 10:19:08'),
+(1579, 1, 'update', 'production', 'Etapa actualizada para orden #86', '177.239.83.23', '2026-10-12 10:19:10'),
+(1580, 1, 'update', 'production', 'Etapa actualizada para orden #85', '177.239.83.23', '2026-10-12 10:19:25'),
+(1581, 1, 'update', 'production', 'Etapa actualizada para orden #85', '177.239.83.23', '2026-10-12 10:19:27'),
+(1582, 1, 'create', 'customers', 'Cliente #1316 creado', '200.68.141.145', '2026-10-12 10:19:40'),
+(1583, 1, 'create', 'quotes', 'Cotización creada #116', '200.68.141.145', '2026-10-12 10:22:56'),
+(1584, 1, 'update', 'quotes', 'Estado de cotización actualizado #116 a approved', '200.68.141.145', '2026-10-12 10:23:06'),
+(1585, 1, 'update', 'quotes', 'Cotización actualizada #116', '200.68.141.145', '2026-10-12 10:27:09'),
+(1586, 1, 'update', 'quotes', 'Cotización actualizada #116', '177.239.83.23', '2026-10-12 10:28:59'),
+(1587, 1, 'create', 'orders', 'Orden creada OS-2026-00077 desde cotización #116', '177.239.83.23', '2026-10-12 10:29:26'),
+(1588, 1, 'update', 'production', 'Etapa actualizada para orden #87', '177.239.83.23', '2026-10-12 10:30:49'),
+(1589, 1, 'update', 'production', 'Etapa actualizada para orden #60', '177.239.83.23', '2026-10-12 10:35:36'),
+(1590, 1, 'update', 'production', 'Etapa actualizada para orden #60', '177.239.83.23', '2026-10-12 10:35:39'),
+(1591, 1, 'update', 'production', 'Etapa actualizada para orden #60', '177.239.83.23', '2026-10-12 10:35:41'),
+(1592, 1, 'update', 'production', 'Etapa actualizada para orden #60', '177.239.83.23', '2026-10-12 10:35:43'),
+(1593, 1, 'login', 'auth', 'Inicio de sesión', '200.68.141.145', '2026-10-12 11:20:48'),
+(1594, 1, 'create', 'quotes', 'Cotización creada #117', '200.68.141.145', '2026-10-12 11:22:01'),
+(1595, 1, 'update', 'quotes', 'Estado de cotización actualizado #117 a draft', '200.68.141.145', '2026-10-12 11:22:08'),
+(1596, 1, 'update', 'quotes', 'Estado de cotización actualizado #117 a approved', '200.68.141.145', '2026-10-12 11:22:15'),
+(1597, 1, 'update', 'quotes', 'Cotización actualizada #117', '200.68.141.145', '2026-10-12 11:22:51'),
+(1598, 1, 'create', 'orders', 'Orden creada OS-2026-00078 desde cotización #117', '200.68.141.145', '2026-10-12 11:22:59'),
+(1599, 1, 'create', 'payments', 'Anticipo registrado para orden #88 por $200.00', '200.68.141.145', '2026-10-12 11:23:20'),
+(1600, 1, 'update', 'quotes', 'Cotización actualizada #116', '177.239.83.23', '2026-10-12 11:23:25'),
+(1601, 1, 'update', 'production', 'Etapa actualizada para orden #67', '177.239.83.23', '2026-10-12 11:33:42'),
+(1602, 1, 'create', 'payments', 'Pago registrado #59', '177.239.83.23', '2026-10-12 11:34:09'),
+(1603, 1, 'create', 'expenses', 'Egreso registrado: ALMA CALMA PLAYERAS POLO Y CUELLO REDONDO BLANCAS · $1,840.00', '177.239.83.23', '2026-10-12 11:35:47'),
+(1604, 1, 'update', 'production', 'Etapa actualizada para orden #86', '177.239.83.23', '2026-10-12 11:44:00'),
+(1605, 1, 'update', 'orders', 'Orden editada OS-2026-00076 · total $25.00', '177.239.83.23', '2026-10-12 11:46:02'),
+(1606, 1, 'update', 'production', 'Etapa actualizada para orden #88', '177.239.83.23', '2026-10-12 11:46:50'),
+(1607, 1, 'update', 'production', 'Etapa actualizada para orden #88', '177.239.83.23', '2026-10-12 11:46:53'),
+(1608, 1, 'update', 'production', 'Etapa actualizada para orden #88', '177.239.83.23', '2026-10-12 11:46:55'),
+(1609, 1, 'update', 'production', 'Etapa actualizada para orden #85', '177.239.83.23', '2026-10-12 12:42:44'),
+(1610, 1, 'create', 'payments', 'Pago registrado #60', '177.239.83.23', '2026-10-12 12:43:22'),
+(1611, 1, 'create', 'quotes', 'Cotización creada #118', '177.239.83.23', '2026-10-12 12:50:16'),
+(1612, 1, 'update', 'quotes', 'Estado de cotización actualizado #118 a sent', '177.239.83.23', '2026-10-12 12:50:19'),
+(1613, 1, 'update', 'quotes', 'Estado de cotización actualizado #118 a approved', '177.239.83.23', '2026-10-12 12:50:22'),
+(1614, 1, 'create', 'orders', 'Orden creada OS-2026-00079 desde cotización #118', '177.239.83.23', '2026-10-12 12:50:33'),
+(1615, 1, 'update', 'orders', 'Orden editada OS-2026-00079 · total $580.00', '177.239.83.23', '2026-10-12 12:50:41'),
+(1616, 1, 'create', 'invoices', 'Factura + CFDI registrados #11 · UUID CF358C0E-E7EF-45DC-986F-10B4FDFD775A', '177.239.83.23', '2026-10-12 12:58:14'),
+(1617, 1, 'login', 'auth', 'Inicio de sesión', '177.239.83.23', '2026-10-12 14:42:31'),
+(1618, 1, 'update', 'quotes', 'Estado de cotización actualizado #119 a approved', '177.239.83.23', '2026-10-12 14:43:20'),
+(1619, 1, 'create', 'orders', 'Orden creada OS-2026-00080 desde cotización #119', '177.239.83.23', '2026-10-12 14:43:40'),
+(1620, 1, 'update', 'orders', 'Orden editada OS-2026-00080 · total $0.00', '177.239.83.23', '2026-10-12 14:43:48'),
+(1621, 1, 'update', 'production', 'Etapa actualizada para orden #89', '177.239.83.23', '2026-10-12 14:45:49'),
+(1622, 1, 'update', 'production', 'Etapa actualizada para orden #90', '177.239.83.23', '2026-10-12 16:31:07'),
+(1623, 1, 'update', 'orders', 'Orden editada OS-2026-00076 · total $50.00', '177.239.83.23', '2026-10-12 16:31:49'),
+(1624, 1, 'create', 'payments', 'Pago registrado #61', '177.239.83.23', '2026-10-12 16:31:56'),
+(1625, 1, 'update', 'production', 'Etapa actualizada para orden #86', '177.239.83.23', '2026-10-12 16:32:13');
 
 -- --------------------------------------------------------
 
@@ -2734,7 +2816,8 @@ INSERT INTO `cp_customers` (`id`, `source_type`, `source_id`, `name`, `email`, `
 (1312, 'local', NULL, 'Polet', NULL, NULL, '+52 55 3448 6963', NULL, NULL, NULL, NULL, 'MX', NULL, 1, '2026-10-09 14:09:33', '2026-10-09 14:09:33'),
 (1313, 'local', NULL, 'Salma', NULL, NULL, '+52 627 173 5363', NULL, NULL, NULL, NULL, 'MX', NULL, 1, '2026-10-10 18:29:52', '2026-10-10 18:29:52'),
 (1314, 'local', NULL, 'Crece con Vales Parral', NULL, NULL, '+526271120983', NULL, NULL, NULL, NULL, 'MX', NULL, 1, '2026-10-10 19:56:25', '2026-10-10 19:56:25'),
-(1315, 'local', NULL, 'Yazmin', NULL, NULL, '+52 627 177 3303', NULL, NULL, NULL, NULL, 'MX', NULL, 1, '2026-10-11 10:53:56', '2026-10-11 10:53:56');
+(1315, 'local', NULL, 'Yazmin', NULL, NULL, '+52 627 177 3303', NULL, NULL, NULL, NULL, 'MX', NULL, 1, '2026-10-11 10:53:56', '2026-10-11 10:53:56'),
+(1316, 'local', NULL, 'Olga Zulema Ramírez', NULL, NULL, '+52 635 293 0579', NULL, NULL, NULL, NULL, 'MX', NULL, 1, '2026-10-12 10:19:40', '2026-10-12 10:19:40');
 
 -- --------------------------------------------------------
 
@@ -4137,6 +4220,54 @@ CREATE TABLE `cp_expenses` (
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `cp_expenses`
+--
+
+INSERT INTO `cp_expenses` (`id`, `expense_date`, `due_date`, `category`, `supplier`, `description`, `amount`, `payment_method`, `reference`, `receipt_reference`, `order_id`, `status`, `notes`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, '2026-10-09', NULL, 'Transporte', 'JOSE LUIS MARTINEZ ESTRADA', 'Magna', 300.00, 'cash', 'WEBOL-2125', 'CFDI XML · 7A2CC27D-AC70-48F5-8007-E2E4BE1A2E4D', NULL, 'paid', 'Importado desde CFDI 4.0 · UUID 7A2CC27D-AC70-48F5-8007-E2E4BE1A2E4D · Receptor RFC BUAE8208274R5', 1, 1, '2026-10-12 01:37:10', '2026-10-12 01:37:10'),
+(2, '2026-10-11', NULL, 'Transporte', 'JOSE LUIS MARTINEZ ESTRADA', 'Magna', 450.00, 'cash', 'WEBOL-2130', 'CFDI XML · 0D8EDC65-2F5F-481F-9648-F45BC631F171', NULL, 'paid', 'Importado desde CFDI 4.0 · UUID 0D8EDC65-2F5F-481F-9648-F45BC631F171 · Receptor RFC BUAE8208274R5', 1, 1, '2026-10-12 01:37:18', '2026-10-12 01:37:18'),
+(3, '2026-10-12', '2026-10-12', 'Otros', 'ALMA CALMA', 'ALMA CALMA PLAYERAS POLO Y CUELLO REDONDO BLANCAS', 1840.00, 'cash', NULL, NULL, 67, 'paid', 'ALMA CALMA PLAYERAS POLO Y CUELLO REDONDO BLANCAS', 1, 1, '2026-10-12 11:35:47', '2026-10-12 11:35:47');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cp_expense_documents`
+--
+
+CREATE TABLE `cp_expense_documents` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `expense_id` bigint(20) UNSIGNED NOT NULL,
+  `uuid` varchar(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `xml_sha256` char(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `version` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `serie` varchar(40) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `folio` varchar(80) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `issued_at` varchar(40) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `currency` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'MXN',
+  `tipo_comprobante` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `issuer_rfc` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `issuer_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `receiver_rfc` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `receiver_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `subtotal` decimal(15,2) NOT NULL DEFAULT '0.00',
+  `tax` decimal(15,2) NOT NULL DEFAULT '0.00',
+  `total` decimal(15,2) NOT NULL DEFAULT '0.00',
+  `payment_form` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `payment_method` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `xml_path` varchar(700) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_by` int(10) UNSIGNED DEFAULT NULL,
+  `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `cp_expense_documents`
+--
+
+INSERT INTO `cp_expense_documents` (`id`, `expense_id`, `uuid`, `xml_sha256`, `version`, `serie`, `folio`, `issued_at`, `currency`, `tipo_comprobante`, `issuer_rfc`, `issuer_name`, `receiver_rfc`, `receiver_name`, `subtotal`, `tax`, `total`, `payment_form`, `payment_method`, `xml_path`, `created_by`, `created_at`) VALUES
+(1, 1, '7A2CC27D-AC70-48F5-8007-E2E4BE1A2E4D', '841da955fd1552e0a99b2a7937aaf8160c3e115e2fc43aef94aaa187dc3af25c', '4.0', 'WEBOL', '2125', '2026-10-09T11:39:17', 'MXN', 'I', 'MAEL780127CJ8', 'JOSE LUIS MARTINEZ ESTRADA', 'BUAE8208274R5', 'ERIKA ELIZABETH BUSTILLOS AGUIRRE', 259.68, 40.32, 300.00, '01', 'PUE', 'storage/expenses/2026/7A2CC27D-AC70-48F5-8007-E2E4BE1A2E4D.xml', 1, '2026-10-12 01:37:10'),
+(2, 2, '0D8EDC65-2F5F-481F-9648-F45BC631F171', 'c6d30c96d31dfc8ca7f0562f81d1641f20129b18a7a2997ba9e66bb99174c913', '4.0', 'WEBOL', '2130', '2026-10-11T22:48:29', 'MXN', 'I', 'MAEL780127CJ8', 'JOSE LUIS MARTINEZ ESTRADA', 'BUAE8208274R5', 'ERIKA ELIZABETH BUSTILLOS AGUIRRE', 389.51, 60.49, 450.00, '01', 'PUE', 'storage/expenses/2026/0D8EDC65-2F5F-481F-9648-F45BC631F171.xml', 1, '2026-10-12 01:37:18');
+
 -- --------------------------------------------------------
 
 --
@@ -4172,7 +4303,8 @@ INSERT INTO `cp_invoices` (`id`, `order_id`, `customer_id`, `invoice_number`, `i
 (7, 54, 1280, '58410FEB-3049-4490-A2D8-EC860A3D5125', '2026-10-09', 1764.00, 282.24, 2046.24, 'issued', '58410FEB-3049-4490-A2D8-EC860A3D5125', NULL, 1, 1, '2026-10-09 11:44:11', '2026-10-09 11:44:11'),
 (8, 63, 1280, '9DB64F87-AF71-4D90-AF65-5FA4A337CE8E', '2026-10-09', 1029.00, 164.64, 1193.64, 'issued', '9DB64F87-AF71-4D90-AF65-5FA4A337CE8E', NULL, 1, 1, '2026-10-09 11:49:49', '2026-10-09 11:49:49'),
 (9, 41, 1280, 'CE37B6FD-FD35-4FF4-AD12-39775C230C17', '2026-10-09', 6174.00, 987.84, 7161.84, 'issued', 'CE37B6FD-FD35-4FF4-AD12-39775C230C17', NULL, 1, 1, '2026-10-09 11:51:19', '2026-10-09 11:51:19'),
-(10, 83, 544, '400E0989-9CFA-4511-8D2A-EDD9796FD3AA', '2026-10-11', 4500.00, 720.00, 5220.00, 'issued', '400E0989-9CFA-4511-8D2A-EDD9796FD3AA', 'PAGO DIFERIDO', 1, 1, '2026-10-11 23:54:06', '2026-10-11 23:54:06');
+(10, 83, 544, '400E0989-9CFA-4511-8D2A-EDD9796FD3AA', '2026-10-11', 4500.00, 720.00, 5220.00, 'issued', '400E0989-9CFA-4511-8D2A-EDD9796FD3AA', 'PAGO DIFERIDO', 1, 1, '2026-10-11 23:54:06', '2026-10-11 23:54:06'),
+(11, 85, 883, 'CF358C0E-E7EF-45DC-986F-10B4FDFD775A', '2026-10-12', 5352.00, 856.32, 6208.32, 'issued', 'CF358C0E-E7EF-45DC-986F-10B4FDFD775A', NULL, 1, 1, '2026-10-12 12:58:14', '2026-10-12 12:58:14');
 
 -- --------------------------------------------------------
 
@@ -4221,7 +4353,8 @@ INSERT INTO `cp_invoice_documents` (`id`, `invoice_id`, `order_id`, `uuid`, `ver
 (4, 7, 54, '58410FEB-3049-4490-A2D8-EC860A3D5125', '4.0', 'ORD', '80', '2026-10-09 11:40:52', 'MXN', 'BUAE8208274R5', 'ERIKA ELIZABETH BUSTILLOS AGUIRRE', 'FAM850125G44', 'FERRETERIA AMAYA', 1764.00, 282.24, 2046.24, '03', 'PUE', '00001000000705250068', '00001000000713224032', 'I+7Y+kyM4+X6hl2rfk568Tc4C68y2d9+Ao4KCJdsmD4I8sd38h5eUMes6eaYxlvZHWFSB8JrlUm9IbL2997N1mX1hH/UqAwvs2MpaJ8vChgyIuEw9BjgHHSeRBoaFJXNd0W7/wvTBi2EABaPSjjfXQZdS6CdKRg1vJRuYH0qQ0ARfAqBRrK+iRgjzrxXQbs5q1/lzWm8mCsfhKEs1fD7Z41wLhzpoS11rq0U+ff0FuaYSJt/YbPvQr0yk7h/2HoVr8yGcB9G4rvOcxJmR+aQLm7FbEPjzC/oxDoB9N2jRj9iG6nEqe8xyDIs6zAblx7mTwFHmcg6cvBFwTDJdV0Hyg==', 'LKxg47K9mEUZAPbleiH21OsG4ld+0UHJgFkAYvLkUIjPNpJv6a/jkuxTXeuRpnY3FqYYCZDpwVSzAUPN9oNungoFPTP4pTlukZxQBovs6WHqft+l5xXuys54xYrCuGg6UI0mc2AqtZVpqEuJfhSl2zgFLUDyoghrIi/ccp24lYnSlpApvwXsDqIjQnmd8rJ4Hf4BfGt7mJoBrKH7AWp6/j70PYSiF7cx4sMoZoMF4cfqv6lx4vSvZwf67iZ17VHK+7mS1lhUNsHTR41Zf3cxb1ROqKfMbfGAOZteSG85rhKt4Pv3j/zylVZIRmU69nQH8aA97IO4AOAzirNpyIHDVQ==', 'storage/cfdi/2026/58410FEB-3049-4490-A2D8-EC860A3D5125.xml', 'storage/cfdi/2026/58410FEB-3049-4490-A2D8-EC860A3D5125.pdf', '308fcf4f2c0d73266a71bc0ae8138a67e34828bbed77dedf228a59452a12f719', 1, '2026-10-09 11:44:11'),
 (5, 8, 63, '9DB64F87-AF71-4D90-AF65-5FA4A337CE8E', '4.0', 'ORD', '80', '2026-10-09 11:48:07', 'MXN', 'BUAE8208274R5', 'ERIKA ELIZABETH BUSTILLOS AGUIRRE', 'FAM850125G44', 'FERRETERIA AMAYA', 1029.00, 164.64, 1193.64, '03', 'PUE', '00001000000705250068', '00001000000713224032', 'kOqHgnbXDK1ZR+1pCKLgkh0FqBm2AVedS/hwIhiWi6etbbHDgwl932NMqTsXlIU7moQU1K6KiA7C0lvAIvaSx8GAwE6v1+rSi+PYkk1xHdbOsATIVvr3rr/PGfw7LFOBlGdEaZK9bcKBm3ATihaqPo8LMZqDG/8moaYNldTdksnzu1+uovuAJnczE2ea+FTrri+stsywsVUTgqimy5Rl/T3MYMuinBez9c1NVOvAxz+0Q6BN5wUGMY4LVYl8TGff4AnB0pLtZWja2Npx5R/IFrc9TlaZ8NB5a0cikQjgoh45KIPTuY8bGMLf7v4YurHE6YkA1h/s7sFYl+2RYzz1VQ==', 'CdVa9bcdRQCoed7WbCQMB2bIDtqwr+jwaPPjmBi5tf73xBi0kHspQ+nHLpG6NqDPZamqR+MC04+1dr0YCR1hOeT+8pP9X7RI/gmNyiagBCK1VMmqADq8Sflv/Vl+wa1u+i/GQsL9SLGk2sCCWb+S/rJ6nv0tObA5NlWPPy/J74Dxm/QnOqsubblBKs/48+YmtROEcdMFyOfIJGmlj3guveWp3YB8penv3sB8928btbvtLls1erXgGE7WKvrdYRjap3rv5Gsh58jA7tUYoJzMy7cRUbNdzlS01HMbCBlbsARb8NMtMnaT/O81ECp9i+2Ptmx4zNvSeedFhlZ6TA+YOw==', 'storage/cfdi/2026/9DB64F87-AF71-4D90-AF65-5FA4A337CE8E.xml', 'storage/cfdi/2026/9DB64F87-AF71-4D90-AF65-5FA4A337CE8E.pdf', '8afb3b3f683463c9d4d4f0f8209f16e39bd3ee976c496bbc0f4b2a76a2470a27', 1, '2026-10-09 11:49:49'),
 (6, 9, 41, 'CE37B6FD-FD35-4FF4-AD12-39775C230C17', '4.0', 'ORD', '80', '2026-10-09 11:50:18', 'MXN', 'BUAE8208274R5', 'ERIKA ELIZABETH BUSTILLOS AGUIRRE', 'FAM850125G44', 'FERRETERIA AMAYA', 6174.00, 987.84, 7161.84, '03', 'PUE', '00001000000705250068', '00001000000713224032', 'g/HDtMFr8uMAGpxfovkpzpHpVVwZIwbNiPGqtZ6YeNYuTe6yeHiNonAU5IrVbl/puiCI6+dkm2j41G3oDsNtDFWcp9IsjEmUoGyjNZMdcqQ2cXqE6QGfx29nwb2SrSFIAGS1EiLaI3wVu0zpsY76bER5K96WZj+h8g+XoEeqlVeUGFa8BqLeVIbonhiDlR0GVV8xBrkfEUhEoOVlfszCk/NtJ+VHm4nWGLq6GNE5cEec5NRspEttaSYW7b1qmTJ2ce2QTlFew0jcxabUKqc2Z+xhM4/mA6UuVORKfB0SU+htn9ucwVCbaWaejRRXnGZK1qEmMe0ESefsIgymNZwr6w==', 'T9X/7TC81E1DizPfAPv8nCzkvCt0RNTnWrDM7zAx+Y7v0ABMgybGMuKCY1RCdSOUEHLkBYErSFaWBBqZR7PMtjNfhfLLOKMoXCNU569hzY2GNXuOIBNj/85zBd/GxhWAQPaf3oOM8ee35d+5Or07cgaly56Xm8jJ9rL704genzBptwuX25MTz0noVJ/ihPsLhvq9hvg42Uorp73X+5qhNrbgFiTMCPGXkeKGhan2pAn3oogy7zC2GzOm4TlPBOltVTXE2mKhH5Xgeomy1lt7jn6txWgGhpJrHkkHhcTPg12TzbFo0N1fl0a1FBLIPvO+ul/fWaOZewPFPOA8uswZug==', 'storage/cfdi/2026/CE37B6FD-FD35-4FF4-AD12-39775C230C17.xml', 'storage/cfdi/2026/CE37B6FD-FD35-4FF4-AD12-39775C230C17.pdf', '07d5c9c3947c7c18d41145f021b18045a55ce1deafe1e4760b44bae3e297296f', 1, '2026-10-09 11:51:19'),
-(7, 10, 83, '400E0989-9CFA-4511-8D2A-EDD9796FD3AA', '4.0', NULL, NULL, '2026-10-11 23:47:51', 'MXN', 'BUAE8208274R5', 'ERIKA ELIZABETH BUSTILLOS AGUIRRE', 'IMM8505281U0', 'INDUSTRIAL MINERA MEXICO', 4500.00, 720.00, 5220.00, '03', 'PUE', '00001000000705250068', '00001000000713224032', 'p+WdgeMLxoBRd4bfnOcs5zBZabNEzrwN2cBcsJHbP9BD+c5jGOKzWLQ2q2gIn8HZ+h8/KtJoX8uBZ8ar8YCoTGiVJEAJuaY1yHL+wyGNZki4QW5FFI6y8kH0gy2Vv44KQNTlfSOnDR1jW5tNkg9LEPGAYe/ZkffkKe8npgr9dcyYv27fcRNG43/pz3SWOm0jdU3mSpa3jhfvmZVDcZC5mNqEZEM9TwqRUOIPyL39IBE5wa4s+mpGfhXrI2EyopxcUuiV35Msyln3/Oz2kFlKneHONxBqKLhklnPklD7v0SaLZd0sxvkotfwlXSYQOcJiFD2xHdbbzLsJ7zLwZ4UV1A==', 'gG20T+p9hIwRdyl3yiAtvRctMSF1L2SfWAVxGN/iIFlmNtZW5okZ5QYx5T93KEbxeUPCuAuaZbtYUm0/+2W7HcqAB6h6MxZftlLYZ4sWFI3sYHs6V/guzZRsUy1Jd8w/QFrvBKAFZHCyX3UpRaTZc2ep5/g6fY15iWImuc96f10tFhQdvSA3MnYUmTC2ureUR/8RMuUsYUZIPlqyPLfvTVzuIrPxzqDOXD+FhqZmPzz73MzV8qFDxze0wvtorNiRLdhD2bBMw8KXTiNJ6I4fx+T8Yx+v9tPF7/dxq4vPwR8Q9tgZvgJ0ecf5g+iVT+/OtIP0UpD7PGbNnhUD9yaoAg==', 'storage/cfdi/2026/400E0989-9CFA-4511-8D2A-EDD9796FD3AA.xml', 'storage/cfdi/2026/400E0989-9CFA-4511-8D2A-EDD9796FD3AA.pdf', '6df453fb189bfce1c61230e71e053e84d1d6476b6b177d7c5da729d74dac4b29', 1, '2026-10-11 23:54:06');
+(7, 10, 83, '400E0989-9CFA-4511-8D2A-EDD9796FD3AA', '4.0', NULL, NULL, '2026-10-11 23:47:51', 'MXN', 'BUAE8208274R5', 'ERIKA ELIZABETH BUSTILLOS AGUIRRE', 'IMM8505281U0', 'INDUSTRIAL MINERA MEXICO', 4500.00, 720.00, 5220.00, '03', 'PUE', '00001000000705250068', '00001000000713224032', 'p+WdgeMLxoBRd4bfnOcs5zBZabNEzrwN2cBcsJHbP9BD+c5jGOKzWLQ2q2gIn8HZ+h8/KtJoX8uBZ8ar8YCoTGiVJEAJuaY1yHL+wyGNZki4QW5FFI6y8kH0gy2Vv44KQNTlfSOnDR1jW5tNkg9LEPGAYe/ZkffkKe8npgr9dcyYv27fcRNG43/pz3SWOm0jdU3mSpa3jhfvmZVDcZC5mNqEZEM9TwqRUOIPyL39IBE5wa4s+mpGfhXrI2EyopxcUuiV35Msyln3/Oz2kFlKneHONxBqKLhklnPklD7v0SaLZd0sxvkotfwlXSYQOcJiFD2xHdbbzLsJ7zLwZ4UV1A==', 'gG20T+p9hIwRdyl3yiAtvRctMSF1L2SfWAVxGN/iIFlmNtZW5okZ5QYx5T93KEbxeUPCuAuaZbtYUm0/+2W7HcqAB6h6MxZftlLYZ4sWFI3sYHs6V/guzZRsUy1Jd8w/QFrvBKAFZHCyX3UpRaTZc2ep5/g6fY15iWImuc96f10tFhQdvSA3MnYUmTC2ureUR/8RMuUsYUZIPlqyPLfvTVzuIrPxzqDOXD+FhqZmPzz73MzV8qFDxze0wvtorNiRLdhD2bBMw8KXTiNJ6I4fx+T8Yx+v9tPF7/dxq4vPwR8Q9tgZvgJ0ecf5g+iVT+/OtIP0UpD7PGbNnhUD9yaoAg==', 'storage/cfdi/2026/400E0989-9CFA-4511-8D2A-EDD9796FD3AA.xml', 'storage/cfdi/2026/400E0989-9CFA-4511-8D2A-EDD9796FD3AA.pdf', '6df453fb189bfce1c61230e71e053e84d1d6476b6b177d7c5da729d74dac4b29', 1, '2026-10-11 23:54:06'),
+(8, 11, 85, 'CF358C0E-E7EF-45DC-986F-10B4FDFD775A', '4.0', 'ORD', '81', '2026-10-12 12:51:15', 'MXN', 'BUAE8208274R5', 'ERIKA ELIZABETH BUSTILLOS AGUIRRE', 'IIE12041684A', 'IEDA INSTALACIONES ELECTRICAS', 5352.00, 856.32, 6208.32, '03', 'PUE', '00001000000705250068', '00001000000713224032', 'hzSpDVeB/6HAtrpFUxj/GSt7JdeOXuiRnRa2lXcBbigEspxj4MXp5OlLfowxtujW/He9b/qJ74XBHQ/SpfmQcHtUUZp4LzrIYSaq5HNFi6m4wtQUIZHUqLfvJAhdqErk0x57/od7oVeM/VWbzURrMt77r7F4ogAJaarYaQfICrjfnMzgqK33pxBM94b2kQpmWM9SipUfAx+ZhJGFq8HUYOsY4v5F5tiGmCGmu8NybMLc6Nxd7IMEwxnsgXWX68DmOxz1eBIzt8OSDULRAUTzNpk3t+oH+OlGxz+3wAdkI1txCeaw5hJLwnIhko82xURNX+UJaaWwvt8qBewxlT6NCg==', 'OxbJfLgGvI61twofeidTWPob5lX/a7Y0w409lO1qoBK0nOqRrpDvk2hrUG/UcoJxz1eGq5XHL+pqkMfRJTeCeLOVyKOFPJABzUw3etI+GHJk7cEsddhhm7rvZvcL/okXxhvJ/tmq3ESxTuLcq1NCMnr8+sxSDBzDNblWaH/pQzDmrRHjP0x+d+p1pBwFq+iaT9fchdCRtTAJaakZ4JuXyH+vy8hEo7Zct+5MTNdbgkwrOC1Ar4+kiAUpqgYT1TS6xxrJ7sunxRNmR0XZWJll8Uzck6b98JSYhw78mzSo5RS92eIZeYsd/Ai/46AkjfCM3O3aNBMBEjW9/IT/WxklLA==', 'storage/cfdi/2026/CF358C0E-E7EF-45DC-986F-10B4FDFD775A.xml', 'storage/cfdi/2026/CF358C0E-E7EF-45DC-986F-10B4FDFD775A.pdf', 'b77812c33e038526c67d0b253ca315f44a4f4aebd5fb04c94f051d93e25978a9', 1, '2026-10-12 12:58:14');
 
 -- --------------------------------------------------------
 
@@ -4259,7 +4392,8 @@ INSERT INTO `cp_invoice_items` (`id`, `document_id`, `clave_prod_serv`, `no_iden
 (8, 4, '73181016', NULL, 4.000000, 'E48', 'Unidad de servicio', 'ELABORACIÓN DE 4 TROFEOS RECONOCIMIENTO', 441.000000, 1764.00, '02', '2026-10-09 11:44:11'),
 (9, 5, '82121503', NULL, 1.000000, 'E48', 'Unidad de servicio', 'IMPRESION DE LONA PUBLICITARIA', 1029.000000, 1029.00, '02', '2026-10-09 11:49:49'),
 (10, 6, '82121503', NULL, 6.000000, 'E48', 'Unidad de servicio', 'IMPRESION DE LONA PUBLICITARIA', 1029.000000, 6174.00, '02', '2026-10-09 11:51:19'),
-(11, 7, '82121500', NULL, 1.000000, 'E48', 'Unidad de servicio', 'IMPRESION DE PUBLICIDAD', 4500.000000, 4500.00, '02', '2026-10-11 23:54:06');
+(11, 7, '82121500', NULL, 1.000000, 'E48', 'Unidad de servicio', 'IMPRESION DE PUBLICIDAD', 4500.000000, 4500.00, '02', '2026-10-11 23:54:06'),
+(12, 8, '82121503', NULL, 18.000000, 'E48', 'Unidad de servicio', 'IMPRESION DE FOLLETO MANUAL TAMAÑO MEDIA CARTA ENGARGOLADO', 297.333333, 5352.00, '02', '2026-10-12 12:58:14');
 
 -- --------------------------------------------------------
 
@@ -4320,7 +4454,7 @@ INSERT INTO `cp_orders` (`id`, `order_number`, `quote_id`, `customer_id`, `statu
 (38, 'OS-2026-00028', 49, 1279, 'delivered', '2026-09-25', '2026-10-10', 1, 320.00, '', '', 1, 1, '2026-09-25 10:22:29', '2026-09-25 10:23:13'),
 (39, 'OS-2026-00029', 54, 1223, 'delivered', '2026-09-25', '2026-09-26', 1, 350.00, 'Serían esos nombres \r\nGERA\r\nIAN\r\nADRIAN\r\nCHUMA Y DOÑA CONCHA\r\ny otra con el nombre de: Luis Pablo \"ñaca ñaca\"', '', 1, 1, '2026-09-25 20:37:16', '2026-09-28 02:07:50'),
 (40, 'OS-2026-00030', 58, 1233, 'cancelled', '2026-09-28', '2026-10-03', 1, 1630.00, '', '', 1, 1, '2026-09-28 12:19:22', '2026-10-07 00:28:14'),
-(41, 'OS-2026-00031', 51, 1280, 'in_progress', '2026-09-28', '2026-09-26', 1, 7161.84, 'Unión a mitad de lienzo', 'lonas', 1, 1, '2026-09-28 17:01:07', '2026-10-12 00:19:41'),
+(41, 'OS-2026-00031', 51, 1280, 'in_progress', '2026-09-28', '2026-09-26', 1, 7161.84, 'Unión a mitad de lienzo', 'lonas', 1, 1, '2026-09-28 17:01:07', '2026-10-12 07:23:36'),
 (42, 'OS-2026-00032', 45, 1209, 'delivered', '2026-09-28', '2026-09-25', 1, 950.04, '', '', 1, 1, '2026-09-28 18:14:57', '2026-09-28 18:15:46'),
 (43, 'OS-2026-00033', 59, 1283, 'delivered', '2026-09-28', '2026-09-30', 1, 900.00, '', '', 1, 1, '2026-09-28 18:38:08', '2026-10-05 16:44:56'),
 (44, 'OS-2026-00034', 63, 1286, 'delivered', '2026-10-06', '2026-10-14', 1, 420.00, '', '', 1, 1, '2026-09-29 11:00:42', '2026-10-12 00:04:27'),
@@ -4333,27 +4467,27 @@ INSERT INTO `cp_orders` (`id`, `order_number`, `quote_id`, `customer_id`, `statu
 (51, 'OS-2026-00041', 71, 459, 'in_progress', '2026-10-01', '2026-10-08', 1, 1040.00, '', 'Sello autoentintable', 1, 1, '2026-10-01 17:49:44', '2026-10-12 00:22:21'),
 (52, 'OS-2026-00042', 72, 1292, 'delivered', '2026-10-01', '2026-10-01', 1, 80.00, '', '', 1, 1, '2026-10-01 17:52:26', '2026-10-01 17:55:50'),
 (53, 'OS-2026-00043', 74, 227, 'delivered', '2026-10-02', '2026-10-02', 1, 150.00, '', '', 1, 1, '2026-10-02 10:16:45', '2026-10-04 08:43:49'),
-(54, 'OS-2026-00044', 73, 1280, 'in_progress', '2026-10-02', '2026-10-10', 1, 2046.24, '', 'lonas', 1, 1, '2026-10-02 16:32:22', '2026-10-12 00:21:45'),
+(54, 'OS-2026-00044', 73, 1280, 'in_progress', '2026-10-02', '2026-10-10', 1, 2046.24, '', 'trofeo', 1, 1, '2026-10-02 16:32:22', '2026-10-12 09:05:02'),
 (55, 'OS-2026-00045', 76, 1294, 'in_progress', '2026-10-03', '2026-10-05', 1, 391.00, '', 'Sello autoentintable', 1, 1, '2026-10-03 13:50:26', '2026-10-12 00:18:37'),
 (56, 'OS-2026-00046', 77, 1295, 'in_progress', '2026-10-03', '2026-10-18', 1, 391.00, '', 'Sello autoentintable', 1, 1, '2026-10-03 13:53:34', '2026-10-12 00:19:16'),
 (57, 'OS-2026-00047', 78, 544, 'in_progress', '2026-10-03', '2026-10-17', 1, 6020.40, '', 'medida 2m x 80cm', 1, 1, '2026-10-03 15:29:03', '2026-10-12 00:24:37'),
 (58, 'OS-2026-00048', 79, 1296, 'delivered', '2026-10-04', '2026-10-19', 1, 240.00, '', '', 1, 1, '2026-10-04 14:45:32', '2026-10-07 12:00:39'),
 (59, 'OS-2026-00049', 80, 1284, 'delivered', '2026-10-05', '2026-10-05', 1, 290.00, '', '', 1, 1, '2026-10-05 09:57:55', '2026-10-06 12:08:24'),
-(60, 'OS-2026-00050', 81, 1297, 'in_progress', '2026-10-05', '2026-10-20', 1, 1925.00, '', 'Cajita madera', 1, 1, '2026-10-05 16:34:04', '2026-10-12 00:17:00'),
+(60, 'OS-2026-00050', 81, 1297, 'in_progress', '2026-10-05', '2026-10-20', 1, 1925.00, '', 'Cajita madera', 1, 1, '2026-10-05 16:34:04', '2026-10-12 10:35:43'),
 (61, 'OS-2026-00051', 82, 1298, 'delivered', '2026-10-05', '2026-10-06', 1, 395.00, '', '', 1, 1, '2026-10-05 17:56:27', '2026-10-07 00:21:29'),
 (62, 'OS-2026-00052', 83, 726, 'in_progress', '2026-10-05', '2026-10-09', 1, 290.00, '', 'GRABADO LÁSER - VASO YETI', 1, 1, '2026-10-05 18:33:42', '2026-10-12 00:05:20'),
-(63, 'OS-2026-00053', 88, 1280, 'in_progress', '2026-10-02', '2026-10-09', 1, 1193.64, 'impresión con union a mitad de lienzo', 'lonas', 1, 1, '2026-10-06 16:03:22', '2026-10-12 00:21:00'),
-(64, 'OS-2026-00054', 87, 890, 'in_progress', '2026-10-07', '2026-10-10', 1, 440.00, '', 'Figura decorativa vinil y coroplast', 1, 1, '2026-10-07 00:30:34', '2026-10-12 00:21:17'),
+(63, 'OS-2026-00053', 88, 1280, 'in_progress', '2026-10-02', '2026-10-09', 1, 1193.64, 'impresión con union a mitad de lienzo', 'lonas', 1, 1, '2026-10-06 16:03:22', '2026-10-12 07:23:46'),
+(64, 'OS-2026-00054', 87, 890, 'in_progress', '2026-10-07', '2026-10-10', 1, 440.00, '', 'Figura decorativa vinil y coroplast', 1, 1, '2026-10-07 00:30:34', '2026-10-12 07:24:08'),
 (65, 'OS-2026-00055', 95, 1298, 'delivered', '2026-10-07', '2026-10-09', 1, 980.00, '', '', 1, 1, '2026-10-07 18:01:20', '2026-10-10 13:02:27'),
 (66, 'OS-2026-00056', 93, 1304, 'delivered', '2026-10-07', '2026-10-07', 1, 360.00, '', '', 1, 1, '2026-10-07 19:29:59', '2026-10-07 19:30:26'),
-(67, 'OS-2026-00057', 94, 1305, 'in_progress', '2026-10-07', '2026-10-10', 1, 1840.00, '', 'Playera polo', 1, 1, '2026-10-07 19:33:46', '2026-10-12 00:22:50'),
+(67, 'OS-2026-00057', 94, 1305, 'delivered', '2026-10-07', '2026-10-10', 1, 1840.00, '', 'Playera polo', 1, 1, '2026-10-07 19:33:46', '2026-10-12 11:33:42'),
 (68, 'OS-2026-00058', 92, 779, 'in_progress', '2026-10-07', '2026-10-09', 1, 660.00, '', 'cuadro fotográfico', 1, 1, '2026-10-07 19:38:57', '2026-10-12 00:22:35'),
 (69, 'OS-2026-00059', 91, 1303, 'pending', '2026-10-07', '2026-10-13', 1, 330.00, '', 'playeras y pluma', 1, 1, '2026-10-07 19:42:25', '2026-10-12 00:16:27'),
 (70, 'OS-2026-00060', 96, 102, 'in_progress', '2026-10-07', '2026-10-10', 1, 250.00, 'impresión y rediseño de imagen', 'Lona para puerta dia de muertos', 1, 1, '2026-10-07 22:31:58', '2026-10-12 00:24:16'),
 (71, 'OS-2026-00061', 97, 1306, 'delivered', '2026-09-29', '2026-10-02', 1, 200.00, '', '', 1, 1, '2026-10-07 22:37:50', '2026-10-09 12:39:38'),
 (72, 'OS-2026-00062', 99, 1308, 'delivered', '2026-10-07', '2026-10-08', 1, 425.00, '', '', 1, 1, '2026-10-07 23:16:55', '2026-10-08 08:21:07'),
 (73, 'OS-2026-00063', 100, 1121, 'in_progress', '2026-10-08', '2026-10-15', 1, 420.00, '', 'impresión de lona 1.5m x 2m', 1, 1, '2026-10-08 00:22:33', '2026-10-12 00:23:19'),
-(74, 'OS-2026-00064', 98, 1307, 'in_progress', '2026-10-08', '2026-10-10', 1, 290.00, '', 'Papel picado', 1, 1, '2026-10-08 09:05:26', '2026-10-12 00:21:30'),
+(74, 'OS-2026-00064', 98, 1307, 'in_progress', '2026-10-08', '2026-10-10', 1, 290.00, '', 'Papel picado', 1, 1, '2026-10-08 09:05:26', '2026-10-12 09:04:21'),
 (75, 'OS-2026-00065', 89, 1301, 'delivered', '2026-10-08', '2026-10-09', 1, 1350.00, '', '', 1, 1, '2026-10-08 10:56:56', '2026-10-10 16:18:12'),
 (76, 'OS-2026-00066', 101, 208, 'in_progress', '2026-10-08', '2026-10-10', 1, 810.00, '', 'Playera polo - rediseñar logo', 1, 1, '2026-10-08 13:21:34', '2026-10-12 00:18:04'),
 (77, 'OS-2026-00067', 103, 1309, 'delivered', '2026-10-06', '2026-10-09', 1, 570.00, '', '', 1, 1, '2026-10-09 09:16:34', '2026-10-10 13:00:58'),
@@ -4362,7 +4496,14 @@ INSERT INTO `cp_orders` (`id`, `order_number`, `quote_id`, `customer_id`, `statu
 (80, 'OS-2026-00070', 112, 696, 'pending', '2026-10-11', '2026-10-15', 1, 290.00, '', 'Kit docente Palabras mágicas', 1, 1, '2026-10-11 09:28:25', '2026-10-12 00:16:42'),
 (81, 'OS-2026-00071', 111, 1314, 'delivered', '2026-10-11', '2026-10-11', 1, 284.20, '', '', 1, 1, '2026-10-11 09:57:55', '2026-10-11 19:54:51'),
 (82, 'OS-2026-00072', 113, 1315, 'in_progress', '2026-10-11', '2026-10-17', 1, 100.00, '', 'Cuadro foto tamaño media carta', 1, 1, '2026-10-11 10:56:02', '2026-10-12 00:18:50'),
-(83, 'OS-2026-00073', 104, 544, 'in_progress', '2026-10-11', '2026-10-12', 1, 9802.00, '', 'publicidad en auto camiones', 1, 1, '2026-10-11 23:52:08', '2026-10-12 00:18:24');
+(83, 'OS-2026-00073', 104, 544, 'in_progress', '2026-10-11', '2026-10-12', 1, 9802.00, '', 'publicidad en auto camiones', 1, 1, '2026-10-11 23:52:08', '2026-10-12 00:18:24'),
+(84, 'OS-2026-00074', 114, 1186, 'in_progress', '2026-10-12', '2026-10-25', 1, 2950.00, '', 'VASOS PERSONALIZADOS AZUL Y DORADO', 1, 1, '2026-10-12 09:40:07', '2026-10-12 10:17:18'),
+(85, 'OS-2026-00075', 106, 883, 'in_progress', '2026-10-12', '2026-10-16', 1, 6208.32, '', 'FOLLETOS BLOCK NOTAS 100', 1, 1, '2026-10-12 09:53:43', '2026-10-12 12:42:44'),
+(86, 'OS-2026-00076', 115, 1292, 'delivered', '2026-10-12', '2026-10-27', 1, 50.00, '', 'IMPRESION SUBLIMACION', 1, 1, '2026-10-12 09:59:15', '2026-10-12 16:32:13'),
+(87, 'OS-2026-00077', 116, 1316, 'in_progress', '2026-10-12', '2026-10-27', 1, 2745.50, '', 'cuadros mtra zulema vx años', 1, 1, '2026-10-12 10:29:26', '2026-10-12 11:23:25'),
+(88, 'OS-2026-00078', 117, 1287, 'in_progress', '2026-10-12', '2026-10-27', 1, 290.00, '', 'cojin personalizdo', 1, 1, '2026-10-12 11:22:59', '2026-10-12 16:32:59'),
+(89, 'OS-2026-00079', 118, 1305, 'in_progress', '2026-10-12', '2026-10-12', 1, 580.00, '', 'KIT DE LAS EMOCIONES', 1, 1, '2026-10-12 12:50:33', '2026-10-12 14:45:49'),
+(90, 'OS-2026-00080', 119, 1292, 'delivered', '2026-10-12', '2026-10-27', 1, 0.00, '', '', 1, 1, '2026-10-12 14:43:40', '2026-10-12 16:31:07');
 
 -- --------------------------------------------------------
 
@@ -4967,7 +5108,60 @@ INSERT INTO `cp_order_history` (`id`, `order_id`, `old_status`, `new_status`, `n
 (623, 44, 'printing', 'production', 'Tu pedido se encuentra en producción. Nuestro equipo está realizando el proceso de fabricación y acabado.', 1, '2026-10-12 00:04:20'),
 (624, 44, 'production', 'quality', 'Tu pedido se encuentra en revisión de calidad. Estamos verificando que el trabajo cumpla con los requisitos antes de entregarlo.', 1, '2026-10-12 00:04:22'),
 (625, 44, 'quality', 'ready', 'Tu pedido está terminado y listo para entrega. Te informaremos las indicaciones correspondientes para recibirlo.', 1, '2026-10-12 00:04:25'),
-(626, 44, 'ready', 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-12 00:04:27');
+(626, 44, 'ready', 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-12 00:04:27'),
+(627, 41, 'quality', 'ready', 'Tu pedido está terminado y listo para entrega. Te informaremos las indicaciones correspondientes para recibirlo.', 1, '2026-10-12 07:23:36'),
+(628, 63, 'quality', 'ready', 'Tu pedido está terminado y listo para entrega. Te informaremos las indicaciones correspondientes para recibirlo.', 1, '2026-10-12 07:23:46'),
+(629, 54, 'quality', 'production', 'Tu pedido se encuentra en producción. Nuestro equipo está realizando el proceso de fabricación y acabado.', 1, '2026-10-12 07:23:59'),
+(630, 64, 'quality', 'ready', 'Tu pedido está terminado y listo para entrega. Te informaremos las indicaciones correspondientes para recibirlo.', 1, '2026-10-12 07:24:07'),
+(631, 64, 'ready', 'ready', 'Tu pedido está terminado y listo para entrega. Te informaremos las indicaciones correspondientes para recibirlo.', 1, '2026-10-12 07:24:08'),
+(632, 74, 'in_progress', 'cancelled', '', 1, '2026-10-12 08:51:40'),
+(633, 74, 'cancelled', 'completed', '', 1, '2026-10-12 08:51:52'),
+(634, 74, 'quality', 'ready', 'Tu pedido está terminado y listo para entrega. Te informaremos las indicaciones correspondientes para recibirlo.', 1, '2026-10-12 09:04:21'),
+(635, 54, 'production', 'quality', 'Tu pedido se encuentra en revisión de calidad. Estamos verificando que el trabajo cumpla con los requisitos antes de entregarlo.', 1, '2026-10-12 09:04:44'),
+(636, 54, 'quality', 'production', 'Tu pedido se encuentra en producción. Nuestro equipo está realizando el proceso de fabricación y acabado.', 1, '2026-10-12 09:04:52'),
+(637, 84, NULL, 'pending', 'Orden creada desde CP-2026-00092', 1, '2026-10-12 09:40:07'),
+(638, 84, 'pending', 'design', 'Tu pedido se encuentra en etapa de diseño. Estamos preparando y revisando los detalles necesarios antes de continuar.', 1, '2026-10-12 09:41:19'),
+(639, 84, 'design', 'approval', 'El diseño de tu pedido está listo para revisión y aprobación. Una vez aprobado, podremos continuar con el proceso.', 1, '2026-10-12 09:41:21'),
+(640, 84, 'approval', 'printing', 'Tu pedido se encuentra en proceso de impresión. Estamos trabajando en la producción de tus piezas.', 1, '2026-10-12 09:41:24'),
+(641, 84, 'printing', 'production', 'Tu pedido se encuentra en producción. Nuestro equipo está realizando el proceso de fabricación y acabado.', 1, '2026-10-12 09:41:26'),
+(642, 84, 'production', 'design', 'Tu pedido se encuentra en etapa de diseño. Estamos preparando y revisando los detalles necesarios antes de continuar.', 1, '2026-10-12 09:41:30'),
+(643, 85, NULL, 'pending', 'Orden creada desde CP-2026-00084', 1, '2026-10-12 09:53:43'),
+(644, 85, 'pending', 'in_progress', '', 1, '2026-10-12 09:53:49'),
+(645, 85, 'pending', 'design', 'Tu pedido se encuentra en etapa de diseño. Estamos preparando y revisando los detalles necesarios antes de continuar.', 1, '2026-10-12 09:54:03'),
+(646, 86, NULL, 'pending', 'Orden creada desde CP-2026-00093', 1, '2026-10-12 09:59:15'),
+(647, 86, 'pending', 'in_progress', '', 1, '2026-10-12 10:01:07'),
+(648, 86, 'pending', 'design', 'Tu pedido se encuentra en etapa de diseño. Estamos preparando y revisando los detalles necesarios antes de continuar.', 1, '2026-10-12 10:17:35'),
+(649, 86, 'design', 'approval', 'El diseño de tu pedido está listo para revisión y aprobación. Una vez aprobado, podremos continuar con el proceso.', 1, '2026-10-12 10:17:38'),
+(650, 86, 'approval', 'printing', 'Tu pedido se encuentra en proceso de impresión. Estamos trabajando en la producción de tus piezas.', 1, '2026-10-12 10:19:06'),
+(651, 86, 'printing', 'production', 'Tu pedido se encuentra en producción. Nuestro equipo está realizando el proceso de fabricación y acabado.', 1, '2026-10-12 10:19:08'),
+(652, 86, 'production', 'quality', 'Tu pedido se encuentra en revisión de calidad. Estamos verificando que el trabajo cumpla con los requisitos antes de entregarlo.', 1, '2026-10-12 10:19:10'),
+(653, 85, 'design', 'approval', 'El diseño de tu pedido está listo para revisión y aprobación. Una vez aprobado, podremos continuar con el proceso.', 1, '2026-10-12 10:19:25'),
+(654, 85, 'approval', 'printing', 'Tu pedido se encuentra en proceso de impresión. Estamos trabajando en la producción de tus piezas.', 1, '2026-10-12 10:19:27'),
+(655, 87, NULL, 'pending', 'Orden creada desde CP-2026-00094', 1, '2026-10-12 10:29:26'),
+(656, 87, 'pending', 'design', 'Tu pedido se encuentra en etapa de diseño. Estamos preparando y revisando los detalles necesarios antes de continuar.', 1, '2026-10-12 10:30:49'),
+(657, 60, 'pending', 'design', 'Tu pedido se encuentra en etapa de diseño. Estamos preparando y revisando los detalles necesarios antes de continuar.', 1, '2026-10-12 10:35:36'),
+(658, 60, 'design', 'approval', 'El diseño de tu pedido está listo para revisión y aprobación. Una vez aprobado, podremos continuar con el proceso.', 1, '2026-10-12 10:35:39'),
+(659, 60, 'approval', 'printing', 'Tu pedido se encuentra en proceso de impresión. Estamos trabajando en la producción de tus piezas.', 1, '2026-10-12 10:35:41'),
+(660, 60, 'printing', 'production', 'Tu pedido se encuentra en producción. Nuestro equipo está realizando el proceso de fabricación y acabado.', 1, '2026-10-12 10:35:43'),
+(661, 88, NULL, 'pending', 'Orden creada desde CP-2026-00095', 1, '2026-10-12 11:22:59'),
+(662, 87, 'in_progress', 'in_progress', 'Actualización automática desde cotización 116', 1, '2026-10-12 11:23:25'),
+(663, 67, 'ready', 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-12 11:33:42'),
+(664, 86, 'quality', 'ready', 'Tu pedido está terminado y listo para entrega. Te informaremos las indicaciones correspondientes para recibirlo.', 1, '2026-10-12 11:44:00'),
+(665, 86, 'in_progress', 'in_progress', 'Orden editada manualmente: total, conceptos/datos operativos', 1, '2026-10-12 11:46:02'),
+(666, 88, 'pending', 'design', 'Tu pedido se encuentra en etapa de diseño. Estamos preparando y revisando los detalles necesarios antes de continuar.', 1, '2026-10-12 11:46:50'),
+(667, 88, 'design', 'approval', 'El diseño de tu pedido está listo para revisión y aprobación. Una vez aprobado, podremos continuar con el proceso.', 1, '2026-10-12 11:46:53'),
+(668, 88, 'approval', 'printing', 'Tu pedido se encuentra en proceso de impresión. Estamos trabajando en la producción de tus piezas.', 1, '2026-10-12 11:46:55'),
+(669, 85, 'printing', 'production', 'Tu pedido se encuentra en producción. Nuestro equipo está realizando el proceso de fabricación y acabado.', 1, '2026-10-12 12:42:44'),
+(670, 89, NULL, 'pending', 'Orden creada desde CP-2026-00096', 1, '2026-10-12 12:50:33'),
+(671, 89, 'pending', 'pending', 'Orden editada manualmente: conceptos/datos operativos', 1, '2026-10-12 12:50:41'),
+(672, 90, NULL, 'pending', 'Orden creada desde CP-2026-00097', 1, '2026-10-12 14:43:40'),
+(673, 90, 'pending', 'pending', 'Orden editada manualmente: fecha compromiso, conceptos/datos operativos', 1, '2026-10-12 14:43:48'),
+(674, 90, 'pending', 'pending', 'Sincronización manual desde cotización CP-2026-00097', 1, '2026-10-12 14:44:48'),
+(675, 90, 'pending', 'in_progress', '', 1, '2026-10-12 14:44:52'),
+(676, 89, 'pending', 'production', 'Tu pedido se encuentra en producción. Nuestro equipo está realizando el proceso de fabricación y acabado.', 1, '2026-10-12 14:45:49'),
+(677, 90, 'pending', 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-12 16:31:07'),
+(678, 86, 'in_progress', 'in_progress', 'Orden editada manualmente: total, conceptos/datos operativos', 1, '2026-10-12 16:31:49'),
+(679, 86, 'ready', 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-12 16:32:13');
 
 -- --------------------------------------------------------
 
@@ -5109,7 +5303,19 @@ INSERT INTO `cp_order_items` (`id`, `order_id`, `quote_item_id`, `description`, 
 (171, 81, 340, 'Impresión de poster publicitario', 1.000, 65.00, 65.00, 0, '2026-10-11 10:01:22', '2026-10-11 10:01:22'),
 (172, 81, 341, 'Impresión tamaño carta ambos lados', 6.000, 30.00, 180.00, 1, '2026-10-11 10:01:22', '2026-10-11 10:01:22'),
 (173, 82, 342, 'Cuadro foto tamaño media carta', 1.000, 100.00, 100.00, 0, '2026-10-11 10:56:02', '2026-10-11 10:56:02'),
-(174, 83, 343, 'Rotulación e instalación de vinil de corte publicidad en auto camiones para un área de de 1.50m x 70cm (imágenes impresas)', 10.000, 845.00, 8450.00, 0, '2026-10-11 23:52:08', '2026-10-11 23:52:08');
+(174, 83, 343, 'Rotulación e instalación de vinil de corte publicidad en auto camiones para un área de de 1.50m x 70cm (imágenes impresas)', 10.000, 845.00, 8450.00, 0, '2026-10-11 23:52:08', '2026-10-11 23:52:08'),
+(175, 84, 344, 'Espejo personalizado', 1.000, 1450.00, 1450.00, 0, '2026-10-12 09:40:07', '2026-10-12 09:40:07'),
+(176, 84, 345, 'Personalizado de Vasos 50pz', 1.000, 750.00, 750.00, 1, '2026-10-12 09:40:07', '2026-10-12 09:40:07'),
+(177, 84, 346, 'Personalizado llavero 50pz', 1.000, 750.00, 750.00, 2, '2026-10-12 09:40:07', '2026-10-12 09:40:07'),
+(178, 85, 347, 'Impresión de folleto manual tamaño media carta, engsrgolado', 18.000, 289.00, 5202.00, 0, '2026-10-12 09:53:43', '2026-10-12 09:53:43'),
+(179, 85, 348, 'Impresión block 100 notas checklist vehículo media carta solo original', 1.000, 150.00, 150.00, 1, '2026-10-12 09:53:43', '2026-10-12 09:53:43'),
+(180, 86, 349, 'impresion', 1.000, 50.00, 50.00, 0, '2026-10-12 09:59:15', '2026-10-12 16:31:49'),
+(184, 88, 360, 'Cojín personalizado 40x40cm', 1.000, 290.00, 290.00, 0, '2026-10-12 11:22:59', '2026-10-12 11:22:59'),
+(185, 87, 361, 'Letrero Bienvenidos a mis XV color blanco, letras en relieve', 1.000, 1150.00, 1150.00, 0, '2026-10-12 11:23:25', '2026-10-12 11:23:25'),
+(186, 87, 362, 'Letrero Siempre en nuestros corazones medida 70x90cm incluye tripié', 1.000, 1290.00, 1290.00, 1, '2026-10-12 11:23:25', '2026-10-12 11:23:25'),
+(187, 87, 363, 'Buzón para sobres personalizado para XV madera de lujo', 1.000, 790.00, 790.00, 2, '2026-10-12 11:23:25', '2026-10-12 11:23:25'),
+(188, 89, 364, 'KIT DE LAS EMOCIONES', 2.000, 290.00, 580.00, 0, '2026-10-12 12:50:33', '2026-10-12 12:50:41'),
+(190, 90, 365, 'impresion', 1.000, 0.00, 0.00, 0, '2026-10-12 14:44:48', '2026-10-12 14:44:48');
 
 -- --------------------------------------------------------
 
@@ -5194,7 +5400,8 @@ INSERT INTO `cp_order_photos` (`id`, `order_id`, `file_path`, `original_name`, `
 (64, 79, '/uploads/orders/79/e8906dddf3d667caa5e2e1909c9605932cc2.png', 'Screenshot_20261010-183330.png', 'image/png', 1151560, 'client_file', 'Nombre Samara', 1, '2026-10-10 18:35:13', '2026-10-10 18:35:13'),
 (66, 79, '/uploads/orders/79/cb5f12f427acc702d1270c6f394e07d38843.png', 'Screenshot_20261010-183332.png', 'image/png', 1707218, 'client_file', 'Imagen de referencia nombre Lupita', 1, '2026-10-10 18:36:00', '2026-10-10 18:36:00'),
 (67, 80, '/uploads/orders/80/b144971f3abf32214120852fbe032020071c.png', 'Screenshot_20261011-092930.png', 'image/png', 1427714, 'client_file', NULL, 1, '2026-10-11 09:30:35', '2026-10-11 09:30:35'),
-(68, 82, '/uploads/orders/82/86dc8f707dfcbcbaac60ef46daa51ed97371.png', 'Screenshot_20261011-105615.png', 'image/png', 1294250, 'client_file', 'Tamaño media carta', 1, '2026-10-11 10:57:33', '2026-10-11 10:57:33');
+(68, 82, '/uploads/orders/82/86dc8f707dfcbcbaac60ef46daa51ed97371.png', 'Screenshot_20261011-105615.png', 'image/png', 1294250, 'client_file', 'Tamaño media carta', 1, '2026-10-11 10:57:33', '2026-10-11 10:57:33'),
+(69, 86, '/uploads/orders/86/8e71a23482a5741ae2cea108b223202610a4.pdf', 'Diseño sin título.pdf', 'application/pdf', 1353221, 'client_file', NULL, 1, '2026-10-12 10:01:52', '2026-10-12 10:01:52');
 
 -- --------------------------------------------------------
 
@@ -5303,7 +5510,7 @@ INSERT INTO `cp_order_status` (`id`, `order_id`, `stage`, `note`, `updated_by`, 
 (37, 32, 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-09-28 02:06:48', '2026-09-28 02:07:20'),
 (38, 39, 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-09-28 02:07:31', '2026-09-28 02:07:50'),
 (39, 42, 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-09-28 18:15:33', '2026-09-28 18:15:46'),
-(40, 41, 'quality', 'Tu pedido se encuentra en revisión de calidad. Estamos verificando que el trabajo cumpla con los requisitos antes de entregarlo.', 1, '2026-09-28 18:39:50', '2026-10-06 09:49:18'),
+(40, 41, 'ready', 'Tu pedido está terminado y listo para entrega. Te informaremos las indicaciones correspondientes para recibirlo.', 1, '2026-09-28 18:39:50', '2026-10-12 07:23:36'),
 (41, 40, 'production', 'Tu pedido se encuentra en producción. Nuestro equipo está realizando el proceso de fabricación y acabado.', 1, '2026-09-29 09:25:57', '2026-09-29 09:29:36'),
 (42, 43, 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-09-29 16:45:27', '2026-10-05 16:44:56'),
 (43, 47, 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-09-29 19:09:31', '2026-10-05 16:45:23'),
@@ -5318,10 +5525,10 @@ INSERT INTO `cp_order_status` (`id`, `order_id`, `stage`, `note`, `updated_by`, 
 (52, 57, 'ready', 'Tu pedido está terminado y listo para entrega. Te informaremos las indicaciones correspondientes para recibirlo.', 1, '2026-10-03 20:33:29', '2026-10-03 20:33:47'),
 (53, 53, 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-04 08:43:32', '2026-10-04 08:43:49'),
 (54, 58, 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-04 14:54:11', '2026-10-07 12:00:39'),
-(55, 54, 'quality', 'Tu pedido se encuentra en revisión de calidad. Estamos verificando que el trabajo cumpla con los requisitos antes de entregarlo.', 1, '2026-10-06 09:57:27', '2026-10-09 12:02:27'),
+(55, 54, 'production', 'Tu pedido se encuentra en producción. Nuestro equipo está realizando el proceso de fabricación y acabado.', 1, '2026-10-06 09:57:27', '2026-10-12 09:04:52'),
 (56, 59, 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-06 12:08:09', '2026-10-06 12:08:24'),
 (57, 61, 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-07 00:21:29', '2026-10-07 00:21:29'),
-(58, 63, 'quality', 'Tu pedido se encuentra en revisión de calidad. Estamos verificando que el trabajo cumpla con los requisitos antes de entregarlo.', 1, '2026-10-07 00:22:13', '2026-10-07 00:22:26'),
+(58, 63, 'ready', 'Tu pedido está terminado y listo para entrega. Te informaremos las indicaciones correspondientes para recibirlo.', 1, '2026-10-07 00:22:13', '2026-10-12 07:23:46'),
 (59, 55, 'production', 'Tu pedido se encuentra en producción. Nuestro equipo está realizando el proceso de fabricación y acabado.', 1, '2026-10-07 12:10:21', '2026-10-09 10:48:58'),
 (60, 66, 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-07 19:30:13', '2026-10-07 19:30:26'),
 (61, 65, 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-07 19:38:01', '2026-10-10 13:02:27'),
@@ -5329,20 +5536,28 @@ INSERT INTO `cp_order_status` (`id`, `order_id`, `stage`, `note`, `updated_by`, 
 (63, 71, 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-08 09:02:32', '2026-10-09 12:39:38'),
 (64, 62, 'approval', 'El diseño de tu pedido está listo para revisión y aprobación. Una vez aprobado, podremos continuar con el proceso.', 1, '2026-10-08 09:04:07', '2026-10-09 11:15:51'),
 (65, 70, 'ready', 'Tu pedido está terminado y listo para entrega. Te informaremos las indicaciones correspondientes para recibirlo.', 1, '2026-10-08 09:04:32', '2026-10-09 11:00:13'),
-(66, 74, 'quality', 'Tu pedido se encuentra en revisión de calidad. Estamos verificando que el trabajo cumpla con los requisitos antes de entregarlo.', 1, '2026-10-08 09:13:39', '2026-10-09 12:09:41'),
+(66, 74, 'ready', 'Tu pedido está terminado y listo para entrega. Te informaremos las indicaciones correspondientes para recibirlo.', 1, '2026-10-08 09:13:39', '2026-10-12 09:04:21'),
 (67, 75, 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-08 11:09:07', '2026-10-10 16:18:12'),
 (68, 77, 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-09 10:50:23', '2026-10-10 13:00:58'),
-(69, 67, 'ready', 'Tu pedido está terminado y listo para entrega. Te informaremos las indicaciones correspondientes para recibirlo.', 1, '2026-10-09 10:51:20', '2026-10-10 18:22:16'),
+(69, 67, 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-09 10:51:20', '2026-10-12 11:33:42'),
 (70, 56, 'production', 'Tu pedido se encuentra en producción. Nuestro equipo está realizando el proceso de fabricación y acabado.', 1, '2026-10-09 10:51:54', '2026-10-09 10:52:01'),
 (71, 73, 'ready', 'Tu pedido está terminado y listo para entrega. Te informaremos las indicaciones correspondientes para recibirlo.', 1, '2026-10-09 10:56:33', '2026-10-10 15:13:37'),
-(72, 64, 'quality', 'Tu pedido se encuentra en revisión de calidad. Estamos verificando que el trabajo cumpla con los requisitos antes de entregarlo.', 1, '2026-10-09 10:59:16', '2026-10-11 19:55:21'),
+(72, 64, 'ready', 'Tu pedido está terminado y listo para entrega. Te informaremos las indicaciones correspondientes para recibirlo.', 1, '2026-10-09 10:59:16', '2026-10-12 07:24:08'),
 (73, 78, 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-09 12:53:11', '2026-10-10 13:35:01'),
 (74, 68, 'ready', 'Tu pedido está terminado y listo para entrega. Te informaremos las indicaciones correspondientes para recibirlo.', 1, '2026-10-10 20:47:42', '2026-10-10 20:47:42'),
 (75, 79, 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-11 05:36:28', '2026-10-11 05:36:43'),
 (76, 81, 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-11 19:54:37', '2026-10-11 19:54:51'),
 (77, 76, 'printing', 'Tu pedido se encuentra en proceso de impresión. Estamos trabajando en la producción de tus piezas.', 1, '2026-10-11 21:15:04', '2026-10-11 21:15:09'),
 (78, 82, 'production', 'Tu pedido se encuentra en producción. Nuestro equipo está realizando el proceso de fabricación y acabado.', 1, '2026-10-11 23:11:22', '2026-10-11 23:11:33'),
-(79, 83, 'printing', 'Tu pedido se encuentra en proceso de impresión. Estamos trabajando en la producción de tus piezas.', 1, '2026-10-11 23:52:56', '2026-10-11 23:53:01');
+(79, 83, 'printing', 'Tu pedido se encuentra en proceso de impresión. Estamos trabajando en la producción de tus piezas.', 1, '2026-10-11 23:52:56', '2026-10-11 23:53:01'),
+(80, 84, 'design', 'Tu pedido se encuentra en etapa de diseño. Estamos preparando y revisando los detalles necesarios antes de continuar.', 1, '2026-10-12 09:41:19', '2026-10-12 09:41:30'),
+(81, 85, 'production', 'Tu pedido se encuentra en producción. Nuestro equipo está realizando el proceso de fabricación y acabado.', 1, '2026-10-12 09:54:03', '2026-10-12 12:42:44'),
+(82, 86, 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-12 10:17:35', '2026-10-12 16:32:13'),
+(83, 87, 'design', 'Tu pedido se encuentra en etapa de diseño. Estamos preparando y revisando los detalles necesarios antes de continuar.', 1, '2026-10-12 10:30:49', '2026-10-12 10:30:49'),
+(84, 60, 'production', 'Tu pedido se encuentra en producción. Nuestro equipo está realizando el proceso de fabricación y acabado.', 1, '2026-10-12 10:35:36', '2026-10-12 10:35:43'),
+(85, 88, 'printing', 'Tu pedido se encuentra en proceso de impresión. Estamos trabajando en la producción de tus piezas.', 1, '2026-10-12 11:46:50', '2026-10-12 11:46:55'),
+(86, 89, 'production', 'Tu pedido se encuentra en producción. Nuestro equipo está realizando el proceso de fabricación y acabado.', 1, '2026-10-12 14:45:49', '2026-10-12 14:45:49'),
+(87, 90, 'delivered', 'Tu pedido ha sido entregado. Gracias por confiar en Colibrí Print México.', 1, '2026-10-12 16:31:07', '2026-10-12 16:31:07');
 
 -- --------------------------------------------------------
 
@@ -5425,7 +5640,11 @@ INSERT INTO `cp_payments` (`id`, `order_id`, `customer_id`, `amount`, `payment_d
 (54, 79, 1313, 460.00, '2026-10-11', 'transfer', NULL, NULL, 'confirmed', 1, 1, '2026-10-11 05:36:55', '2026-10-11 05:36:55'),
 (55, 81, 1314, 284.20, '2026-10-11', 'transfer', NULL, NULL, 'confirmed', 1, 1, '2026-10-11 19:55:07', '2026-10-11 19:55:07'),
 (56, 44, 1286, 200.00, '2026-10-12', 'transfer', NULL, NULL, 'confirmed', 1, 1, '2026-10-12 00:04:42', '2026-10-12 00:04:42'),
-(57, 51, 459, 640.00, '2026-10-12', 'transfer', NULL, NULL, 'confirmed', 1, 1, '2026-10-12 01:06:48', '2026-10-12 01:06:48');
+(57, 51, 459, 640.00, '2026-10-12', 'transfer', NULL, NULL, 'confirmed', 1, 1, '2026-10-12 01:06:48', '2026-10-12 01:06:48'),
+(58, 88, 1287, 200.00, '2026-10-12', 'cash', NULL, 'ANTICIPO', 'confirmed', 1, 1, '2026-10-12 11:23:20', '2026-10-12 11:23:20'),
+(59, 67, 1305, 1840.00, '2026-10-12', 'transfer', NULL, 'PAGO A CUENTA DE SALDO A FAVOR', 'confirmed', 1, 1, '2026-10-12 11:34:09', '2026-10-12 11:34:09'),
+(60, 85, 883, 6208.32, '2026-10-12', 'transfer', '0024370016', 'PAGO POR TRANSFERENCIA', 'confirmed', 1, 1, '2026-10-12 12:43:22', '2026-10-12 12:43:22'),
+(61, 86, 1292, 50.00, '2026-10-12', 'transfer', NULL, NULL, 'confirmed', 1, 1, '2026-10-12 16:31:56', '2026-10-12 16:31:56');
 
 -- --------------------------------------------------------
 
@@ -5482,7 +5701,11 @@ INSERT INTO `cp_payment_receipts` (`id`, `order_id`, `payment_id`, `access_token
 (25, 22, NULL, '8e5e57eb157537639ee40004a55a9b26b22669b2eac0fa60e4672d916f491a69', 'WhatsApp Image 2026-10-07 at 9.50.53 AM.jpeg', '/uploads/payment-receipts/22/8e5e57eb157537639ee40004a55a9b26b22669b2eac0fa60e4672d916f491a69.jpg', 'image/jpeg', 47557, 'pending', '', NULL, NULL, '2026-10-07 09:54:09', '2026-10-07 09:54:09'),
 (26, 23, NULL, '415755c497d6c46c7ea59ce460f77ae7d9bf77f6bd0eb87e3b50bcd05ef9f830', 'WhatsApp Image 2026-10-07 at 9.50.53 AM.jpeg', '/uploads/payment-receipts/23/415755c497d6c46c7ea59ce460f77ae7d9bf77f6bd0eb87e3b50bcd05ef9f830.jpg', 'image/jpeg', 47557, 'pending', 'Transferencia realizada para pago en orden de servicio \r\nOS-2026-00012\r\nOS-2026-00013', NULL, NULL, '2026-10-07 09:55:00', '2026-10-07 09:55:00'),
 (27, 64, NULL, '147f7510e75a9da085d7f0965840c17ee2483dd57f4eadab2b3b8ff970b33c2f', '256e31d4-cf40-496d-86e0-88fcf30682c4g.jpg', '/uploads/payment-receipts/64/147f7510e75a9da085d7f0965840c17ee2483dd57f4eadab2b3b8ff970b33c2f.jpg', 'image/jpeg', 34712, 'confirmed', NULL, 1, '2026-10-09 12:16:10', '2026-10-08 09:12:08', '2026-10-09 12:16:10'),
-(28, 78, NULL, '325a3e3731e1da2d30448e8d9df6c9e373e9885bddda67131b8aa372c5758935', 'WhatsApp Image 2026-10-08 at 2.42.13 PM.jpeg', '/uploads/payment-receipts/78/325a3e3731e1da2d30448e8d9df6c9e373e9885bddda67131b8aa372c5758935.jpg', 'image/jpeg', 39295, 'pending', '', NULL, NULL, '2026-10-09 12:51:52', '2026-10-09 12:51:52');
+(28, 78, NULL, '325a3e3731e1da2d30448e8d9df6c9e373e9885bddda67131b8aa372c5758935', 'WhatsApp Image 2026-10-08 at 2.42.13 PM.jpeg', '/uploads/payment-receipts/78/325a3e3731e1da2d30448e8d9df6c9e373e9885bddda67131b8aa372c5758935.jpg', 'image/jpeg', 39295, 'pending', '', NULL, NULL, '2026-10-09 12:51:52', '2026-10-09 12:51:52'),
+(29, 84, NULL, 'd3d227752e221e40fa2112a944915f867d98980b0eca7d899efc8748e7b9d828', '20261012_120413.jpg', '/uploads/payment-receipts/84/d3d227752e221e40fa2112a944915f867d98980b0eca7d899efc8748e7b9d828.jpg', 'image/jpeg', 3240758, 'pending', '', NULL, NULL, '2026-10-12 12:05:11', '2026-10-12 12:05:11'),
+(30, 84, NULL, 'ef2269879693b4c29a59be75a3f289f153d7e2cb9a4ba87063cf75f48017bfbb', 'Screenshot_20261012_120235_WhatsApp.jpg', '/uploads/payment-receipts/84/ef2269879693b4c29a59be75a3f289f153d7e2cb9a4ba87063cf75f48017bfbb.jpg', 'image/jpeg', 316522, 'pending', '', NULL, NULL, '2026-10-12 12:05:22', '2026-10-12 12:05:22'),
+(31, 85, NULL, '6243c15b34d15ad3c47cd5cb8db968aa6fd77b68b6b2cc701021d5b86f05c623', '57a845e9-3100-4688-a6d2-f5ae9412f3ca.jpg', '/uploads/payment-receipts/85/6243c15b34d15ad3c47cd5cb8db968aa6fd77b68b6b2cc701021d5b86f05c623.jpg', 'image/jpeg', 79392, 'pending', 'PAGO DE ORDEN DE SERVICIO', NULL, NULL, '2026-10-12 12:40:39', '2026-10-12 12:40:39'),
+(32, 86, NULL, '5b3ad88348d90756f1a9ec1d9f70d65957380f47ade8192bc5e4e69bdd64cb24', 'f50e64f6-fb53-4649-979c-fbc5bd5a6ea8.jpeg', '/uploads/payment-receipts/86/5b3ad88348d90756f1a9ec1d9f70d65957380f47ade8192bc5e4e69bdd64cb24.jpg', 'image/jpeg', 60437, 'pending', '', NULL, NULL, '2026-10-12 15:28:07', '2026-10-12 15:28:07');
 
 -- --------------------------------------------------------
 
@@ -5578,7 +5801,8 @@ INSERT INTO `cp_print_materials` (`id`, `name`, `code`, `enabled`, `sort_order`,
 (5, 'Adhesivo', 'adhesivo', 1, 50, '2026-09-26 03:15:10', '2026-09-26 03:15:10', 'hoja'),
 (6, 'Cartulina', 'cartulina', 1, 20, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'hoja'),
 (7, 'Vinil', 'vinil', 1, 40, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'pieza'),
-(14, 'Lona 13oz', 'ln13oz', 1, 0, '2026-09-28 09:32:01', '2026-09-29 07:50:18', '1');
+(14, 'Lona 13oz', 'ln13oz', 1, 0, '2026-09-28 09:32:01', '2026-09-29 07:50:18', '1'),
+(15, 'Papel Sublimación', 'ps001', 1, 0, '2026-10-12 10:08:37', '2026-10-12 10:08:37', '1');
 
 -- --------------------------------------------------------
 
@@ -5652,7 +5876,9 @@ INSERT INTO `cp_print_prices` (`id`, `size_id`, `material_id`, `finish_id`, `col
 (18, 6, 1, 1, 'color', 'per_page', 80.00, 1, 0, '2026-09-26 05:31:31', '2026-09-26 16:32:49'),
 (20, 9, 1, 1, 'color', 'per_page', 80.00, 1, 1, '2026-09-26 08:39:06', '2026-09-26 11:39:52'),
 (23, 9, 1, 1, 'bw', 'per_page', 80.00, 1, 1, '2026-09-28 00:52:15', '2026-09-28 00:52:15'),
-(24, 31, 14, 13, 'color', 'per_page', 140.00, 1, 1, '2026-09-28 10:03:29', '2026-09-28 10:03:29');
+(24, 31, 14, 13, 'color', 'per_page', 140.00, 1, 1, '2026-09-28 10:03:29', '2026-09-28 10:03:29'),
+(25, 1, 15, 1, 'color', 'per_page', 25.00, 1, 1, '2026-10-12 15:19:34', '2026-10-12 15:19:34'),
+(26, 9, 15, 1, 'color', 'per_page', 80.00, 1, 1, '2026-10-12 15:20:01', '2026-10-12 15:20:01');
 
 -- --------------------------------------------------------
 
@@ -5721,7 +5947,10 @@ INSERT INTO `cp_print_requests` (`id`, `customer_name`, `customer_email`, `custo
 (19, 'ERIKA BUSTILLOS', 'wmaster1ro@gmail.com', '+526271074512', 'new', 'active', NULL, NULL, 80.00, '2026-09-27 06:25:16', '2026-09-27 06:25:16'),
 (20, 'ERIKA BUSTILLOS', 'wmaster1ro@gmail.com', '+526271074512', 'new', 'active', NULL, NULL, 800.00, '2026-09-27 08:47:23', '2026-09-27 08:47:23'),
 (21, 'ERIKA BUSTILLOS', 'wmaster1ro@gmail.com', '+526271074512', 'new', 'active', NULL, NULL, 5.00, '2026-09-28 08:24:20', '2026-09-28 08:24:20'),
-(22, 'LUIS MIGUEL GARDEA RODRIGUEZ', 'wmaster1ro@gmail.com', '+526271074512', 'new', 'active', NULL, NULL, 80.00, '2026-09-29 09:00:44', '2026-09-29 09:00:44');
+(22, 'LUIS MIGUEL GARDEA RODRIGUEZ', 'wmaster1ro@gmail.com', '+526271074512', 'new', 'active', NULL, NULL, 80.00, '2026-09-29 09:00:44', '2026-09-29 09:00:44'),
+(23, 'Isis Mabel López', 'mabellopez200320@gmail.com', '6144949218', 'new', 'active', NULL, NULL, 3.00, '2026-10-12 09:26:12', '2026-10-12 09:26:12'),
+(24, 'Isis Mabel López Barahona', 'mabellopez200320@gmail.com', '6144949218', 'new', 'active', NULL, NULL, 5.00, '2026-10-12 13:36:14', '2026-10-12 13:36:14'),
+(25, 'Isis Mabel López', 'mabellopez200320@gmail.com', '6144949218', 'new', 'active', NULL, NULL, 5.00, '2026-10-12 15:21:37', '2026-10-12 15:21:37');
 
 -- --------------------------------------------------------
 
@@ -5761,6 +5990,15 @@ CREATE TABLE `cp_print_request_items` (
   `pricing_mode` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT 'page',
   `quantity` int(10) UNSIGNED NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `cp_print_request_items`
+--
+
+INSERT INTO `cp_print_request_items` (`id`, `request_id`, `file_id`, `service_key`, `size_id`, `size_name`, `width_mm`, `height_mm`, `orientation`, `material_id`, `material_name`, `color_mode`, `finish_id`, `finish_name`, `copies`, `pages`, `price_rule_id`, `unit_price`, `subtotal`, `pricing_status`, `notes`, `created_at`, `updated_at`, `page_count`, `print_sides`, `sheet_count`, `billable_units`, `service_type`, `pricing_mode`, `quantity`) VALUES
+(1, 8, 22, 'document', 3, 'A4', 210.00, 297.00, 'portrait', 1, 'Papel bond', 'color', 1, 'Sin acabado', 1.000, 1.000, NULL, 3.00, 3.00, 'calculated', '', '2026-10-12 09:26:12', '2026-10-12 09:26:12', 1, 'single', 1, 1, 'impresion', 'per_page', 1),
+(2, 9, 23, 'document', 1, 'Carta', 216.00, 279.00, 'portrait', 1, 'Papel bond', 'color', 1, 'Sin acabado', 1.000, 1.000, NULL, 5.00, 5.00, 'calculated', '', '2026-10-12 13:36:14', '2026-10-12 13:36:14', 1, 'single', 1, 1, 'impresion', 'per_page', 1),
+(3, 10, 24, 'document', 1, 'Carta', 216.00, 279.00, 'portrait', 1, 'Papel bond', 'color', 1, 'Sin acabado', 1.000, 1.000, NULL, 5.00, 5.00, 'calculated', '', '2026-10-12 15:21:37', '2026-10-12 15:21:37', 1, 'single', 1, 1, 'impresion', 'per_page', 1);
 
 -- --------------------------------------------------------
 
@@ -6143,14 +6381,21 @@ INSERT INTO `cp_quotes` (`id`, `quote_number`, `customer_id`, `status`, `client_
 (103, 'CP-2026-00081', 1309, 'approved', NULL, NULL, '2026-10-06', '2026-10-09', NULL, '50% de anticipo y 50% contra entrega, salvo acuerdo distinto por escrito.', 'Tiempo estimado según proyecto y disponibilidad de materiales.', 'Hidalgo del Parral, Chihuahua / domicilio acordado con el cliente.', '', 'Cotización sujeta a disponibilidad de materiales, aprobación del cliente y cambios de alcance. Los tiempos pueden variar según materiales, producción y carga de trabajo. Cualquier modificación al proyecto puede generar ajustes de precio y entrega.', '', NULL, NULL, 1, 1, '2026-10-09 09:16:00', '2026-10-09 09:16:16'),
 (104, 'CP-2026-00082', 544, 'approved', NULL, NULL, '2026-10-08', '2026-10-12', NULL, '50% de anticipo y 50% contra entrega, salvo acuerdo distinto por escrito.', 'Tiempo estimado según proyecto y disponibilidad de materiales.', 'Hidalgo del Parral, Chihuahua / domicilio acordado con el cliente.', '', 'Cotización sujeta a disponibilidad de materiales, aprobación del cliente y cambios de alcance. Los tiempos pueden variar según materiales, producción y carga de trabajo. Cualquier modificación al proyecto puede generar ajustes de precio y entrega.', '', NULL, NULL, 1, 1, '2026-10-09 09:43:56', '2026-10-11 23:52:04'),
 (105, 'CP-2026-00083', 544, 'sent', NULL, NULL, '2026-10-07', '2026-10-07', NULL, '50% de anticipo y 50% contra entrega, salvo acuerdo distinto por escrito.', 'Tiempo estimado según proyecto y disponibilidad de materiales.', 'Hidalgo del Parral, Chihuahua / domicilio acordado con el cliente.', '', 'Cotización sujeta a disponibilidad de materiales, aprobación del cliente y cambios de alcance. Los tiempos pueden variar según materiales, producción y carga de trabajo. Cualquier modificación al proyecto puede generar ajustes de precio y entrega.', '', NULL, NULL, 1, 1, '2026-10-09 09:58:51', '2026-10-09 10:00:12'),
-(106, 'CP-2026-00084', 883, 'sent', NULL, NULL, '2026-10-09', '2026-10-16', NULL, '50% de anticipo y 50% contra entrega, salvo acuerdo distinto por escrito.', 'Tiempo estimado según proyecto y disponibilidad de materiales.', 'Hidalgo del Parral, Chihuahua / domicilio acordado con el cliente.', '', 'Cotización sujeta a disponibilidad de materiales, aprobación del cliente y cambios de alcance. Los tiempos pueden variar según materiales, producción y carga de trabajo. Cualquier modificación al proyecto puede generar ajustes de precio y entrega.', '', NULL, NULL, 1, 1, '2026-10-09 10:09:08', '2026-10-11 09:24:34'),
+(106, 'CP-2026-00084', 883, 'approved', NULL, NULL, '2026-10-09', '2026-10-16', NULL, '50% de anticipo y 50% contra entrega, salvo acuerdo distinto por escrito.', 'Tiempo estimado según proyecto y disponibilidad de materiales.', 'Hidalgo del Parral, Chihuahua / domicilio acordado con el cliente.', '', 'Cotización sujeta a disponibilidad de materiales, aprobación del cliente y cambios de alcance. Los tiempos pueden variar según materiales, producción y carga de trabajo. Cualquier modificación al proyecto puede generar ajustes de precio y entrega.', '', NULL, NULL, 1, 1, '2026-10-09 10:09:08', '2026-10-12 09:53:24'),
 (107, 'CP-2026-00085', 680, 'draft', NULL, NULL, '2026-10-09', '2026-10-16', NULL, '50% de anticipo y 50% contra entrega, salvo acuerdo distinto por escrito.', 'Tiempo estimado según proyecto y disponibilidad de materiales.', 'Hidalgo del Parral, Chihuahua / domicilio acordado con el cliente.', '', 'Cotización sujeta a disponibilidad de materiales, aprobación del cliente y cambios de alcance. Los tiempos pueden variar según materiales, producción y carga de trabajo. Cualquier modificación al proyecto puede generar ajustes de precio y entrega.', '', NULL, NULL, 1, 1, '2026-10-09 10:15:13', '2026-10-09 10:15:13'),
 (108, 'CP-2026-00086', 1310, 'approved', NULL, NULL, '2026-10-09', '2026-10-10', NULL, '50% de anticipo y 50% contra entrega, salvo acuerdo distinto por escrito.', 'Tiempo estimado según proyecto y disponibilidad de materiales.', 'Hidalgo del Parral, Chihuahua / domicilio acordado con el cliente.', '', 'Cotización sujeta a disponibilidad de materiales, aprobación del cliente y cambios de alcance. Los tiempos pueden variar según materiales, producción y carga de trabajo. Cualquier modificación al proyecto puede generar ajustes de precio y entrega.', '', NULL, NULL, 1, 1, '2026-10-09 12:50:41', '2026-10-09 12:50:45'),
 (109, 'CP-2026-00087', 1312, 'sent', NULL, NULL, '2026-10-09', '2026-10-24', NULL, '50% de anticipo y 50% contra entrega, salvo acuerdo distinto por escrito.', 'Tiempo estimado según proyecto y disponibilidad de materiales.', 'Hidalgo del Parral, Chihuahua / domicilio acordado con el cliente.', '3M Controltac IJ180C-10  3700-1390\r\nVinil reflejante grado ingeniería avanzado 3M 7300 | Color: 3M Blanco 0550-0240-7300', 'Cotización sujeta a disponibilidad de materiales, aprobación del cliente y cambios de alcance. Los tiempos pueden variar según materiales, producción y carga de trabajo. Cualquier modificación al proyecto puede generar ajustes de precio y entrega.', '', NULL, NULL, 1, 1, '2026-10-09 14:15:06', '2026-10-09 20:46:52'),
 (110, 'CP-2026-00088', 1313, 'approved', NULL, NULL, '2026-10-01', '2026-10-10', 'Figura decorativa para centro de mesa. Corte por contorno medida 18cm', '50% de anticipo y 50% contra entrega, salvo acuerdo distinto por escrito.', 'Tiempo estimado según proyecto y disponibilidad de materiales.', 'Hidalgo del Parral, Chihuahua / domicilio acordado con el cliente.', '', 'Cotización sujeta a disponibilidad de materiales, aprobación del cliente y cambios de alcance. Los tiempos pueden variar según materiales, producción y carga de trabajo. Cualquier modificación al proyecto puede generar ajustes de precio y entrega.', '', NULL, NULL, 1, 1, '2026-10-10 18:31:59', '2026-10-11 09:32:44'),
 (111, 'CP-2026-00089', 1314, 'approved', NULL, NULL, '2026-10-10', '2026-10-11', NULL, '50% de anticipo y 50% contra entrega, salvo acuerdo distinto por escrito.', 'Tiempo estimado según proyecto y disponibilidad de materiales.', 'Hidalgo del Parral, Chihuahua / domicilio acordado con el cliente.', '', 'Cotización sujeta a disponibilidad de materiales, aprobación del cliente y cambios de alcance. Los tiempos pueden variar según materiales, producción y carga de trabajo. Cualquier modificación al proyecto puede generar ajustes de precio y entrega.', '', NULL, NULL, 1, 1, '2026-10-10 19:58:16', '2026-10-11 10:01:22'),
 (112, 'CP-2026-00090', 696, 'approved', NULL, NULL, '2026-10-11', '2026-10-15', NULL, '50% de anticipo y 50% contra entrega, salvo acuerdo distinto por escrito.', 'Tiempo estimado según proyecto y disponibilidad de materiales.', 'Hidalgo del Parral, Chihuahua / domicilio acordado con el cliente.', '', 'Cotización sujeta a disponibilidad de materiales, aprobación del cliente y cambios de alcance. Los tiempos pueden variar según materiales, producción y carga de trabajo. Cualquier modificación al proyecto puede generar ajustes de precio y entrega.', '', NULL, NULL, 1, 1, '2026-10-11 09:27:41', '2026-10-11 09:27:46'),
-(113, 'CP-2026-00091', 1315, 'approved', NULL, NULL, '2026-10-11', '2026-10-17', NULL, '50% de anticipo y 50% contra entrega, salvo acuerdo distinto por escrito.', 'Tiempo estimado según proyecto y disponibilidad de materiales.', 'Hidalgo del Parral, Chihuahua / domicilio acordado con el cliente.', '', 'Cotización sujeta a disponibilidad de materiales, aprobación del cliente y cambios de alcance. Los tiempos pueden variar según materiales, producción y carga de trabajo. Cualquier modificación al proyecto puede generar ajustes de precio y entrega.', '', NULL, NULL, 1, 1, '2026-10-11 10:55:27', '2026-10-11 10:55:40');
+(113, 'CP-2026-00091', 1315, 'approved', NULL, NULL, '2026-10-11', '2026-10-17', NULL, '50% de anticipo y 50% contra entrega, salvo acuerdo distinto por escrito.', 'Tiempo estimado según proyecto y disponibilidad de materiales.', 'Hidalgo del Parral, Chihuahua / domicilio acordado con el cliente.', '', 'Cotización sujeta a disponibilidad de materiales, aprobación del cliente y cambios de alcance. Los tiempos pueden variar según materiales, producción y carga de trabajo. Cualquier modificación al proyecto puede generar ajustes de precio y entrega.', '', NULL, NULL, 1, 1, '2026-10-11 10:55:27', '2026-10-11 10:55:40'),
+(114, 'CP-2026-00092', 1186, 'approved', NULL, NULL, '2026-10-12', '2026-10-25', NULL, '50% de anticipo y 50% contra entrega, salvo acuerdo distinto por escrito.', 'Tiempo estimado según proyecto y disponibilidad de materiales.', 'Hidalgo del Parral, Chihuahua / domicilio acordado con el cliente.', '', 'Cotización sujeta a disponibilidad de materiales, aprobación del cliente y cambios de alcance. Los tiempos pueden variar según materiales, producción y carga de trabajo. Cualquier modificación al proyecto puede generar ajustes de precio y entrega.', '', NULL, NULL, 1, 1, '2026-10-12 09:39:29', '2026-10-12 09:39:54'),
+(115, 'CP-2026-00093', 1292, 'approved', NULL, NULL, '2026-10-12', '2026-10-27', 'Solicitud web CPQ-000008', '50% de anticipo y 50% contra entrega, salvo acuerdo distinto por escrito.', 'Tiempo estimado según proyecto y disponibilidad de materiales.', 'Hidalgo del Parral, Chihuahua / domicilio acordado con el cliente.', 'Solicitud recibida desde la web: CPQ-000008.', 'Cotización sujeta a disponibilidad de materiales, aprobación del cliente y cambios de alcance. Los tiempos pueden variar según materiales, producción y carga de trabajo. Cualquier modificación al proyecto puede generar ajustes de precio y entrega.', 'ORIGEN: Solicitud web CPQ-000008\nSolicitud web ID: 8\nServicio: impresion (impresion)\nCliente capturado: Isis Mabel López\nWhatsApp: 6144949218\nCorreo: mabellopez200320@gmail.com\nFecha solicitada: No indicada\nPAYLOAD WEB: []', 'web', '{\"source\":\"web\",\"title\":\"impresion\",\"input\":[],\"result\":[],\"web_request_id\":8,\"request_token\":\"3ec7e6be352fdb67832bd86393a258224dec8375d78331ac7f537404fbe1e1a7\",\"payload\":[],\"attachment\":[],\"created_at\":\"2026-10-12T09:59:05-06:00\"}', 1, 1, '2026-10-12 09:59:05', '2026-10-12 09:59:10'),
+(116, 'CP-2026-00094', 1316, 'approved', NULL, NULL, '2026-10-12', '2026-10-27', NULL, '50% de anticipo y 50% contra entrega, salvo acuerdo distinto por escrito.', 'Tiempo estimado según proyecto y disponibilidad de materiales.', 'Hidalgo del Parral, Chihuahua / domicilio acordado con el cliente.', '', 'Cotización sujeta a disponibilidad de materiales, aprobación del cliente y cambios de alcance. Los tiempos pueden variar según materiales, producción y carga de trabajo. Cualquier modificación al proyecto puede generar ajustes de precio y entrega.', '', NULL, NULL, 1, 1, '2026-10-12 10:22:56', '2026-10-12 11:23:25'),
+(117, 'CP-2026-00095', 1287, 'approved', NULL, NULL, '2026-10-12', '2026-10-27', NULL, '50% de anticipo y 50% contra entrega, salvo acuerdo distinto por escrito.', 'Tiempo estimado según proyecto y disponibilidad de materiales.', 'Hidalgo del Parral, Chihuahua / domicilio acordado con el cliente.', '', 'Cotización sujeta a disponibilidad de materiales, aprobación del cliente y cambios de alcance. Los tiempos pueden variar según materiales, producción y carga de trabajo. Cualquier modificación al proyecto puede generar ajustes de precio y entrega.', '', NULL, NULL, 1, 1, '2026-10-12 11:22:01', '2026-10-12 11:22:51'),
+(118, 'CP-2026-00096', 1305, 'approved', NULL, NULL, '2026-10-12', '2026-10-12', NULL, '50% de anticipo y 50% contra entrega, salvo acuerdo distinto por escrito.', 'Tiempo estimado según proyecto y disponibilidad de materiales.', 'Hidalgo del Parral, Chihuahua / domicilio acordado con el cliente.', '', 'Cotización sujeta a disponibilidad de materiales, aprobación del cliente y cambios de alcance. Los tiempos pueden variar según materiales, producción y carga de trabajo. Cualquier modificación al proyecto puede generar ajustes de precio y entrega.', '', NULL, NULL, 1, 1, '2026-10-12 12:50:16', '2026-10-12 12:50:22'),
+(119, 'CP-2026-00097', 1292, 'approved', NULL, NULL, '2026-10-12', '2026-10-27', 'Solicitud web CPQ-000009', '50% de anticipo y 50% contra entrega, salvo acuerdo distinto por escrito.', 'Tiempo estimado según proyecto y disponibilidad de materiales.', 'Hidalgo del Parral, Chihuahua / domicilio acordado con el cliente.', 'Solicitud recibida desde la web: CPQ-000009.', 'Cotización sujeta a disponibilidad de materiales, aprobación del cliente y cambios de alcance. Los tiempos pueden variar según materiales, producción y carga de trabajo. Cualquier modificación al proyecto puede generar ajustes de precio y entrega.', 'ORIGEN: Solicitud web CPQ-000009\nSolicitud web ID: 9\nServicio: impresion (impresion)\nCliente capturado: Isis Mabel López Barahona\nWhatsApp: 6144949218\nCorreo: mabellopez200320@gmail.com\nFecha solicitada: No indicada\nPAYLOAD WEB: []', 'web', '{\"source\":\"web\",\"title\":\"impresion\",\"input\":[],\"result\":[],\"web_request_id\":9,\"request_token\":\"dd720faa829d5209820d3a987b3a779dad447621998d3fc594e9c882defa9d19\",\"payload\":[],\"attachment\":[],\"created_at\":\"2026-10-12T14:43:17-06:00\"}', 1, 1, '2026-10-12 14:43:17', '2026-10-12 14:43:20'),
+(120, 'CP-2026-00098', 1292, 'draft', NULL, NULL, '2026-10-12', '2026-10-27', 'Solicitud web CPQ-000010', '50% de anticipo y 50% contra entrega, salvo acuerdo distinto por escrito.', 'Tiempo estimado según proyecto y disponibilidad de materiales.', 'Hidalgo del Parral, Chihuahua / domicilio acordado con el cliente.', 'Solicitud recibida desde la web: CPQ-000010.', 'Cotización sujeta a disponibilidad de materiales, aprobación del cliente y cambios de alcance. Los tiempos pueden variar según materiales, producción y carga de trabajo. Cualquier modificación al proyecto puede generar ajustes de precio y entrega.', 'ORIGEN: Solicitud web CPQ-000010\nSolicitud web ID: 10\nServicio: impresion (impresion)\nCliente capturado: Isis Mabel López\nWhatsApp: 6144949218\nCorreo: mabellopez200320@gmail.com\nFecha solicitada: No indicada\nPAYLOAD WEB: []', 'web', '{\"source\":\"web\",\"title\":\"impresion\",\"input\":[],\"result\":[],\"web_request_id\":10,\"request_token\":\"39bc513c4ba910303c275c03bacd30bc4e41c4026154ae28bf794475cbd482f9\",\"payload\":[],\"attachment\":[],\"created_at\":\"2026-10-12T15:22:50-06:00\"}', 1, 1, '2026-10-12 15:22:50', '2026-10-12 15:22:50');
 
 -- --------------------------------------------------------
 
@@ -6366,14 +6611,25 @@ INSERT INTO `cp_quote_items` (`id`, `quote_id`, `description`, `quantity`, `unit
 (328, 109, 'Rejillas para protección A/C', 4.000, 490.00, 1960.00, NULL, 3, '2026-10-09 20:46:52', '2026-10-09 20:46:52'),
 (329, 109, 'Impresión e intalación de vinil adhesivo para checador', 1.000, 490.00, 490.00, NULL, 4, '2026-10-09 20:46:52', '2026-10-09 20:46:52'),
 (330, 109, 'Rejilla para cpu protección A/C', 1.000, 390.00, 390.00, NULL, 5, '2026-10-09 20:46:52', '2026-10-09 20:46:52'),
-(334, 106, 'Impresión de folleto manual tamaño media carta, engsrgolado', 18.000, 289.00, 5202.00, NULL, 0, '2026-10-11 09:24:34', '2026-10-11 09:24:34'),
-(335, 106, 'Impresión block 100 notas checklist vehículo media carta solo original', 1.000, 150.00, 150.00, NULL, 1, '2026-10-11 09:24:34', '2026-10-11 09:24:34'),
 (336, 112, 'Kit docente Palabras mágicas (5 estrellas en lona y 1 figura coroplast 60x60cm)', 1.000, 290.00, 290.00, NULL, 0, '2026-10-11 09:27:41', '2026-10-11 09:27:41'),
 (337, 110, 'Figura centro de mesa', 16.000, 21.88, 350.08, NULL, 0, '2026-10-11 09:32:44', '2026-10-11 09:32:44'),
 (340, 111, 'Impresión de poster publicitario', 1.000, 65.00, 65.00, NULL, 0, '2026-10-11 10:01:22', '2026-10-11 10:01:22'),
 (341, 111, 'Impresión tamaño carta ambos lados', 6.000, 30.00, 180.00, NULL, 1, '2026-10-11 10:01:22', '2026-10-11 10:01:22'),
 (342, 113, 'Cuadro foto tamaño media carta', 1.000, 100.00, 100.00, NULL, 0, '2026-10-11 10:55:27', '2026-10-11 10:55:27'),
-(343, 104, 'Rotulación e instalación de vinil de corte publicidad en auto camiones para un área de de 1.50m x 70cm (imágenes impresas)', 10.000, 845.00, 8450.00, NULL, 0, '2026-10-11 23:51:56', '2026-10-11 23:51:56');
+(343, 104, 'Rotulación e instalación de vinil de corte publicidad en auto camiones para un área de de 1.50m x 70cm (imágenes impresas)', 10.000, 845.00, 8450.00, NULL, 0, '2026-10-11 23:51:56', '2026-10-11 23:51:56'),
+(344, 114, 'Espejo personalizado', 1.000, 1450.00, 1450.00, NULL, 0, '2026-10-12 09:39:29', '2026-10-12 09:39:29'),
+(345, 114, 'Personalizado de Vasos 50pz', 1.000, 750.00, 750.00, NULL, 1, '2026-10-12 09:39:29', '2026-10-12 09:39:29'),
+(346, 114, 'Personalizado llavero 50pz', 1.000, 750.00, 750.00, NULL, 2, '2026-10-12 09:39:29', '2026-10-12 09:39:29'),
+(347, 106, 'Impresión de folleto manual tamaño media carta, engsrgolado', 18.000, 289.00, 5202.00, NULL, 0, '2026-10-12 09:51:44', '2026-10-12 09:51:44'),
+(348, 106, 'Impresión block 100 notas checklist vehículo media carta solo original', 1.000, 150.00, 150.00, NULL, 1, '2026-10-12 09:51:44', '2026-10-12 09:51:44'),
+(349, 115, 'impresion', 1.000, 0.00, 0.00, 'web', 0, '2026-10-12 09:59:05', '2026-10-12 09:59:05'),
+(360, 117, 'Cojín personalizado 40x40cm', 1.000, 290.00, 290.00, NULL, 0, '2026-10-12 11:22:51', '2026-10-12 11:22:51'),
+(361, 116, 'Letrero Bienvenidos a mis XV color blanco, letras en relieve', 1.000, 1150.00, 1150.00, NULL, 0, '2026-10-12 11:23:25', '2026-10-12 11:23:25'),
+(362, 116, 'Letrero Siempre en nuestros corazones medida 70x90cm incluye tripié', 1.000, 1290.00, 1290.00, NULL, 1, '2026-10-12 11:23:25', '2026-10-12 11:23:25'),
+(363, 116, 'Buzón para sobres personalizado para XV madera de lujo', 1.000, 790.00, 790.00, NULL, 2, '2026-10-12 11:23:25', '2026-10-12 11:23:25'),
+(364, 118, 'KIT DE LAS EMOCIONES', 2.000, 290.00, 580.00, NULL, 0, '2026-10-12 12:50:16', '2026-10-12 12:50:16'),
+(365, 119, 'impresion', 1.000, 0.00, 0.00, 'web', 0, '2026-10-12 14:43:17', '2026-10-12 14:43:17'),
+(366, 120, 'impresion', 1.000, 0.00, 0.00, 'web', 0, '2026-10-12 15:22:50', '2026-10-12 15:22:50');
 
 -- --------------------------------------------------------
 
@@ -6438,11 +6694,15 @@ INSERT INTO `cp_quote_public_tokens` (`id`, `quote_id`, `token`, `active`, `crea
 (52, 102, '0a9d5632f505ae912f1ca0d6c2ebda2257a7ff7bc6749e5af742954878187a7d', 1, '2026-10-08 18:09:45', '2026-10-08 18:44:33'),
 (53, 104, 'a099eb72f2b40a579cc904c715b68d50bd2b2ff8a073ebea96e1aafdf92b9cf4', 1, '2026-10-09 09:49:33', '2026-10-11 23:50:51'),
 (54, 105, 'd0dae7c260f51586b416f84c520bdf866dc2ed1b7b476e77b5c6f12dbb49fa43', 1, '2026-10-09 09:58:57', '2026-10-09 18:26:13'),
-(55, 106, 'c063e1e6653fd0b26afd774ea0c5f01411184d372148dd451ab1b38f8d7704e5', 1, '2026-10-09 10:09:15', '2026-10-11 14:31:39'),
+(55, 106, 'c063e1e6653fd0b26afd774ea0c5f01411184d372148dd451ab1b38f8d7704e5', 1, '2026-10-09 10:09:15', '2026-10-12 09:52:07'),
 (56, 107, '6d4094d1f5c42a4624c8f612df551af4d2343707bc748d3f3bc12e4b9791f850', 1, '2026-10-09 10:15:18', '2026-10-09 11:27:58'),
 (57, 109, 'd6752e0e1a8024a0da1cfebd86ad1bd4bd33a594c28ad405e2e2c7c1f61ffc81', 1, '2026-10-09 14:57:02', '2026-10-10 14:50:18'),
 (58, 111, 'b544ce47f73f9be79222420f1113cac2452922cb18254bc81a78c6643d7a994a', 1, '2026-10-10 19:58:32', '2026-10-11 10:35:08'),
-(59, 110, '50c359ff85e8025036b3fc726e2e8b9c20c53e9465a7a8fb5d5a6e9f637aa457', 1, '2026-10-11 09:32:53', NULL);
+(59, 110, '50c359ff85e8025036b3fc726e2e8b9c20c53e9465a7a8fb5d5a6e9f637aa457', 1, '2026-10-11 09:32:53', NULL),
+(60, 115, 'b6acd8623f615cb32a13f19e637ed79c05ae34b00f93bf0fd7e9da574361914c', 1, '2026-10-12 09:59:05', NULL),
+(61, 116, '7720e694fd67f841072487bed114eb5d22f7f9ea2b1d19f4e3e5e8f763e8ebf0', 1, '2026-10-12 10:23:25', '2026-10-12 10:33:21'),
+(62, 119, '31dce1bef74d473b50ceb22f2862d90b0e736632ec325992ba4c3f01230cbc65', 1, '2026-10-12 14:43:17', NULL),
+(63, 120, '2e03822d2b5ebe1b5b05d783f23ef05444cec5481d28f7cf186c556cade58b60', 1, '2026-10-12 15:22:50', NULL);
 
 -- --------------------------------------------------------
 
@@ -6554,12 +6814,19 @@ INSERT INTO `cp_quote_totals` (`id`, `quote_id`, `subtotal`, `discount`, `tax`, 
 (176, 107, 1470.00, 0.00, 0.00, 1470.00, 0.00, 1470.00, 100.000, '2026-10-09 10:15:13', '2026-10-09 10:15:13'),
 (178, 108, 800.00, 0.00, 0.00, 800.00, 0.00, 800.00, 100.000, '2026-10-09 12:50:41', '2026-10-09 12:50:41'),
 (187, 109, 8530.00, 0.00, 1364.80, 9894.80, 0.00, 9894.80, 100.000, '2026-10-09 20:46:52', '2026-10-09 20:46:52'),
-(190, 106, 5352.00, 0.00, 856.32, 6208.32, 0.00, 6208.32, 100.000, '2026-10-11 09:24:34', '2026-10-11 09:24:34'),
 (191, 112, 290.00, 0.00, 0.00, 290.00, 0.00, 290.00, 100.000, '2026-10-11 09:27:41', '2026-10-11 09:27:41'),
 (192, 110, 350.08, 0.00, 0.00, 350.08, 0.00, 350.08, 100.000, '2026-10-11 09:32:44', '2026-10-11 09:32:44'),
 (194, 111, 245.00, 0.00, 39.20, 284.20, 0.00, 284.20, 100.000, '2026-10-11 10:01:22', '2026-10-11 10:01:22'),
 (195, 113, 100.00, 0.00, 0.00, 100.00, 0.00, 100.00, 100.000, '2026-10-11 10:55:27', '2026-10-11 10:55:27'),
-(196, 104, 8450.00, 0.00, 1352.00, 9802.00, 0.00, 9802.00, 100.000, '2026-10-11 23:51:56', '2026-10-11 23:51:56');
+(196, 104, 8450.00, 0.00, 1352.00, 9802.00, 0.00, 9802.00, 100.000, '2026-10-11 23:51:56', '2026-10-11 23:51:56'),
+(197, 114, 2950.00, 0.00, 0.00, 2950.00, 0.00, 2950.00, 100.000, '2026-10-12 09:39:29', '2026-10-12 09:39:29'),
+(198, 106, 5352.00, 0.00, 856.32, 6208.32, 0.00, 6208.32, 100.000, '2026-10-12 09:51:44', '2026-10-12 09:51:44'),
+(199, 115, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.000, '2026-10-12 09:59:05', '2026-10-12 09:59:05'),
+(204, 117, 290.00, 0.00, 0.00, 290.00, 0.00, 290.00, 100.000, '2026-10-12 11:22:51', '2026-10-12 11:22:51'),
+(205, 116, 3230.00, 484.50, 0.00, 2745.50, 0.00, 2745.50, 100.000, '2026-10-12 11:23:25', '2026-10-12 11:23:25'),
+(206, 118, 580.00, 0.00, 0.00, 580.00, 0.00, 580.00, 100.000, '2026-10-12 12:50:16', '2026-10-12 12:50:16'),
+(207, 119, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.000, '2026-10-12 14:43:17', '2026-10-12 14:43:17'),
+(208, 120, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.000, '2026-10-12 15:22:50', '2026-10-12 15:22:50');
 
 -- --------------------------------------------------------
 
@@ -6730,6 +6997,20 @@ CREATE TABLE `cp_tracking_events` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `cp_tracking_events`
+--
+
+INSERT INTO `cp_tracking_events` (`id`, `order_id`, `customer_id`, `event_type`, `document_id`, `invoice_id`, `receipt_id`, `visitor_hash`, `device_type`, `created_at`) VALUES
+(1, 83, 544, 'cfdi_pdf_opened', 7, 10, NULL, '8df636afead50496098f4e78a9823161f782fb118ae6c75b472d2fb9a5b0f2ed', 'desktop', '2026-10-12 09:36:30'),
+(2, 83, 544, 'cfdi_pdf_opened', 7, 10, NULL, '8df636afead50496098f4e78a9823161f782fb118ae6c75b472d2fb9a5b0f2ed', 'desktop', '2026-10-12 09:36:34'),
+(3, 83, 544, 'cfdi_pdf_opened', 7, 10, NULL, '8df636afead50496098f4e78a9823161f782fb118ae6c75b472d2fb9a5b0f2ed', 'desktop', '2026-10-12 09:36:52'),
+(4, 83, 544, 'cfdi_xml_downloaded', 7, 10, NULL, '8df636afead50496098f4e78a9823161f782fb118ae6c75b472d2fb9a5b0f2ed', 'desktop', '2026-10-12 09:36:59'),
+(5, 84, 1186, 'payment_receipt_uploaded', NULL, NULL, 29, '691c44eaf40a59411fc8f38c939b0a622207447d1e20f1134f51b026b2240ad7', 'mobile', '2026-10-12 12:05:11'),
+(6, 84, 1186, 'payment_receipt_uploaded', NULL, NULL, 30, '691c44eaf40a59411fc8f38c939b0a622207447d1e20f1134f51b026b2240ad7', 'mobile', '2026-10-12 12:05:22'),
+(7, 85, 883, 'payment_receipt_uploaded', NULL, NULL, 31, 'cea3562725848a6ea6ea1fd74107ca7f4614fc3e0e555cc417f674b67ae0c9e4', 'desktop', '2026-10-12 12:40:39'),
+(8, 86, 1292, 'payment_receipt_uploaded', NULL, NULL, 32, '32d4bcd6e727ea098084ab76b1f04fa3dbe861194eb6649c4853c7abaa41c3a9', 'mobile', '2026-10-12 15:28:07');
+
 -- --------------------------------------------------------
 
 --
@@ -6811,20 +7092,20 @@ INSERT INTO `cp_tracking_tokens` (`id`, `order_id`, `token`, `active`, `created_
 (56, 57, '71deb5151ca602ced0f5ca0abd9ddefe5be9f056385f666339ed959edbe79627', 1, '2026-10-03 15:29:03', '2026-10-09 10:05:21'),
 (57, 58, '540733ea0044fe2fbe9919bae375509023a235283496dae79928c6505e410e35', 1, '2026-10-04 14:45:33', '2026-10-07 10:26:28'),
 (58, 59, 'd117191a6495b0a78ca35418209e6919d72b1d4c4314972790f76b8a358998bd', 1, '2026-10-05 09:57:55', NULL),
-(59, 60, '72e7550ab116c5da3426042fe7c83e7b68084bcc71d069bb86b5eed791c36efb', 1, '2026-10-05 16:34:04', '2026-10-05 18:05:54'),
+(59, 60, '72e7550ab116c5da3426042fe7c83e7b68084bcc71d069bb86b5eed791c36efb', 1, '2026-10-05 16:34:04', '2026-10-12 10:36:10'),
 (60, 61, '5a709a118cbce8768e81580c05a0208dcfe5b441db46a47ea809913fe20b211b', 1, '2026-10-05 17:56:27', '2026-10-07 09:00:22'),
 (61, 62, 'b5010a67a8a9bf71af045f666a7789f6ab2014f59638ff4a6e712e74e27f465a', 1, '2026-10-05 18:33:42', '2026-10-06 22:41:59'),
 (62, 63, '5ba77d829dca3494fd24b4530d857431623fa0aa28bc5e7551639b4b70acf624', 1, '2026-10-06 16:03:23', '2026-10-09 11:58:31'),
-(63, 64, '0758084791c8252f461bc700734702b86147fdcde822b537f0a27242fa3bbcb1', 1, '2026-10-07 00:30:34', '2026-10-10 12:22:14'),
+(63, 64, '0758084791c8252f461bc700734702b86147fdcde822b537f0a27242fa3bbcb1', 1, '2026-10-07 00:30:34', '2026-10-12 11:03:57'),
 (64, 65, '23fbcd59918cc1476c6616170be76f9c71bcbf9eefba23778a980953a35b864e', 1, '2026-10-07 18:01:20', '2026-10-10 08:36:16'),
 (65, 66, 'f6bee63ebc968c1e2047f839f787aa2ddca0c9512d118bb2954d3377c4b32376', 1, '2026-10-07 19:30:00', NULL),
-(66, 67, '7e7b7a15ad2fb7f4c2f921a181c86c921a6cb648b9e58f6ae15fab301a295c2b', 1, '2026-10-07 19:33:46', '2026-10-11 00:18:25'),
+(66, 67, '7e7b7a15ad2fb7f4c2f921a181c86c921a6cb648b9e58f6ae15fab301a295c2b', 1, '2026-10-07 19:33:46', '2026-10-12 11:35:03'),
 (67, 68, '36d674a703af84049840c80a166912b2116b6431b8db4823bdd8bf889bc00429', 1, '2026-10-07 19:38:57', NULL),
 (68, 69, '070d1ab720e27c22a829488550f11a1ca54e4751f7991bce992ec7c89d07f5b4', 1, '2026-10-07 19:42:26', NULL),
 (69, 70, '53589eee705cee393f5174e5101fb60c932be58cfc2845a2e75b3184aeba31dc', 1, '2026-10-07 22:31:58', '2026-10-10 12:23:38'),
 (70, 71, '6f108e42976224a818e32e6999029077c3b2d93568988784ab8a17b27fc9408f', 1, '2026-10-07 22:37:51', '2026-10-09 13:39:16'),
 (71, 72, '1a6f90dfba9c06e55b32cedd4fbb79f08e13c1ebae84ecb896d00d601a1725a3', 1, '2026-10-07 23:16:55', '2026-10-09 10:06:01'),
-(72, 73, '6842f80555beee6844ee3cb0992090b107ecea5a5e493bdc66b9dced74828677', 1, '2026-10-08 00:22:33', '2026-10-10 16:30:41'),
+(72, 73, '6842f80555beee6844ee3cb0992090b107ecea5a5e493bdc66b9dced74828677', 1, '2026-10-08 00:22:33', '2026-10-12 08:24:36'),
 (73, 74, '4a4cc374d322374c48ec0f99b126d3eae3548ee0497770613fe52efa869e4a19', 1, '2026-10-08 09:05:26', '2026-10-08 09:13:49'),
 (74, 75, 'c200f10aeac4531f9f016cf3e4462f04f5ebb861189dd22e48836cbd4f725eab', 1, '2026-10-08 10:56:57', '2026-10-10 15:59:20'),
 (75, 76, '547fbfd5f523f7bfd3cf9d54c2b1cf16a1dfa56d3f152619427292c01d53a7f0', 1, '2026-10-08 13:21:35', '2026-10-08 13:23:42'),
@@ -6834,7 +7115,14 @@ INSERT INTO `cp_tracking_tokens` (`id`, `order_id`, `token`, `active`, `created_
 (79, 80, '49d2dd132fb4c75ae000f394f44302e9400246335a17e02552da8e41dc590d20', 1, '2026-10-11 09:28:26', '2026-10-12 00:58:59'),
 (80, 81, '3a6b5bf7f007e393c834cc5c54ff9edc6bf1cfeaea7204216c69f8e55e4b0275', 1, '2026-10-11 09:57:56', NULL),
 (81, 82, 'f1d4ae19aeef0d9a8dca6382b4c73f0b3702946753c22f5fdd66230f241f311e', 1, '2026-10-11 10:56:02', NULL),
-(82, 83, 'a93cddce1f3826788d2374ebf330c3d32226d63d2f24c9a99b0847d926fb0e32', 1, '2026-10-11 23:52:09', '2026-10-12 00:58:24');
+(82, 83, 'a93cddce1f3826788d2374ebf330c3d32226d63d2f24c9a99b0847d926fb0e32', 1, '2026-10-11 23:52:09', '2026-10-12 09:34:27'),
+(83, 84, '9d8c1dbf22ee3566f2e8ab4ea3ef65e87c31dc345c9d50b367c795b4cc847845', 1, '2026-10-12 09:40:07', '2026-10-12 12:05:22'),
+(84, 85, '656b0a7377b9e4e7ead070ebed55fee940a9028bc30c225017b9a3aa6e99ad98', 1, '2026-10-12 09:53:43', '2026-10-12 13:25:07'),
+(85, 86, '155d641729fbb7878b9cc80e30373638740cd75d0c59065083498c6dcda6c32a', 1, '2026-10-12 09:59:15', '2026-10-12 16:08:46'),
+(86, 87, '533e3555063b151569e88d029db94a4408408d2943617ff0bf34c8f61909c496', 1, '2026-10-12 10:29:26', '2026-10-12 16:18:14'),
+(87, 88, '6193719f9b6663d9f741de3c793a29600f96f36b27fb54ecc614b8c9ed882909', 1, '2026-10-12 11:22:59', '2026-10-12 11:46:34'),
+(88, 89, '10b49481b29abe9d55aa9256df8380fcfb91570e681e353be53be96c97f34586', 1, '2026-10-12 12:50:33', '2026-10-12 12:51:10'),
+(89, 90, 'dc7e850441924b42ce315911826d60a99105f43d51085c7c383c99344fe6639b', 1, '2026-10-12 14:43:40', '2026-10-12 15:51:15');
 
 -- --------------------------------------------------------
 
@@ -6859,7 +7147,7 @@ CREATE TABLE `cp_users` (
 --
 
 INSERT INTO `cp_users` (`id`, `role_id`, `name`, `email`, `password_hash`, `enabled`, `last_login_at`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Administrador', 'ventas@colibriprint.com.mx', '$2y$10$exXwwyuOSJwdgJYWHR3tDO.C.BtOprMV5iLIhonCJsWI4AZGgLqk2', 1, '2026-10-11 23:03:40', '2026-09-16 22:35:58', '2026-09-16 22:35:58');
+(1, 1, 'Administrador', 'ventas@colibriprint.com.mx', '$2y$10$exXwwyuOSJwdgJYWHR3tDO.C.BtOprMV5iLIhonCJsWI4AZGgLqk2', 1, '2026-10-12 14:42:31', '2026-09-16 22:35:58', '2026-09-16 22:35:58');
 
 -- --------------------------------------------------------
 
@@ -6933,7 +7221,10 @@ INSERT INTO `cp_web_quote_files` (`id`, `request_id`, `original_name`, `stored_p
 (18, 22, 'capple.jpg', '/uploads/cotizador/impresiones/22/d65df8e656cc7806_capple.jpg', 'image/jpeg', 'jpg', 11525387, '8533bf072614b7b4dfe38280e291d666f353553b26a1ee913e92d4ce02e99383', 'public', NULL, NULL, NULL, '2026-09-27 06:25:16', 1),
 (19, 23, 'repentina.1.pdf', '/uploads/cotizador/impresiones/23/89313261ead9bdfc_repentina.1.pdf', 'application/pdf', 'pdf', 12627230, 'db2ef3d62c3b31a20a861e4b94e26cfe7a43bbcd967246d1f36ea289a38b5dda', 'public', NULL, NULL, NULL, '2026-09-27 08:47:23', 1),
 (20, 24, 'ChatGPT_Image_Aug_31_2026_01_15_25_AM.png', '/uploads/cotizador/impresiones/24/f0be941fe10ac660_ChatGPT_Image_Aug_31_2026_01_15_25_AM.png', 'image/png', 'png', 2066946, 'b98b08d59166bce3827cfe38841917455cfec3b32a1ca6030a6a519a60d9b728', 'public', NULL, NULL, NULL, '2026-09-28 08:24:20', 1),
-(21, 25, 'ChatGPT_Image_Sep_20_2026_05_10_35_PM.png', '/uploads/cotizador/impresiones/25/3edc86b25ec01682_ChatGPT_Image_Sep_20_2026_05_10_35_PM.png', 'image/png', 'png', 2233855, 'cb8dda4065a288f75aa09250a53593f7249a17b8da19e65632cd7757104b64f3', 'public', NULL, NULL, NULL, '2026-09-29 09:00:44', 1);
+(21, 25, 'ChatGPT_Image_Sep_20_2026_05_10_35_PM.png', '/uploads/cotizador/impresiones/25/3edc86b25ec01682_ChatGPT_Image_Sep_20_2026_05_10_35_PM.png', 'image/png', 'png', 2233855, 'cb8dda4065a288f75aa09250a53593f7249a17b8da19e65632cd7757104b64f3', 'public', NULL, NULL, NULL, '2026-09-29 09:00:44', 1),
+(22, 8, 'Sublimacion_.pdf', '/uploads/cotizador/impresiones/8/8784ecd060cca1c4_Sublimacion_.pdf', 'application/pdf', 'pdf', 1353221, '1c3d1ee77af469e5672dfb7ad12b0b946376ce6221141bd7610e5db2fd757e2f', 'public', NULL, NULL, NULL, '2026-10-12 09:26:12', 1),
+(23, 9, 'Dise_o_sin_t_tulo.pdf', '/uploads/cotizador/impresiones/9/e7e71fb9c941bed0_Dise_o_sin_t_tulo.pdf', 'application/pdf', 'pdf', 1571604, '378ac52972f46349b7a13681f3e69daf8948f571966f619c2d6b5d76a194b2f7', 'public', NULL, NULL, NULL, '2026-10-12 13:36:14', 1),
+(24, 10, 'Dise_o_sin_t_tulo.pdf', '/uploads/cotizador/impresiones/10/b9159191efefb10c_Dise_o_sin_t_tulo.pdf', 'application/pdf', 'pdf', 1571604, '378ac52972f46349b7a13681f3e69daf8948f571966f619c2d6b5d76a194b2f7', 'public', NULL, NULL, NULL, '2026-10-12 15:21:37', 1);
 
 -- --------------------------------------------------------
 
@@ -6969,7 +7260,10 @@ INSERT INTO `cp_web_quote_notifications` (`id`, `request_id`, `event_type`, `tit
 (11, 22, 'new_request', 'CPQ-000022 · ERIKA BUSTILLOS', 'Impresión · +526271074512 · 1 archivo(s) · $80.00 MXN', NULL, '2026-09-27 06:25:16'),
 (12, 23, 'new_request', 'CPQ-000023 · ERIKA BUSTILLOS', 'Impresión · +526271074512 · 1 archivo(s) · $800.00 MXN', NULL, '2026-09-27 08:47:23'),
 (13, 24, 'new_request', 'CPQ-000024 · ERIKA BUSTILLOS', 'Impresión · +526271074512 · 1 archivo(s) · $5.00 MXN', NULL, '2026-09-28 08:24:20'),
-(14, 25, 'new_request', 'CPQ-000025 · LUIS MIGUEL GARDEA RODRIGUEZ', 'Impresión · +526271074512 · 1 archivo(s) · $80.00 MXN', NULL, '2026-09-29 09:00:44');
+(14, 25, 'new_request', 'CPQ-000025 · LUIS MIGUEL GARDEA RODRIGUEZ', 'Impresión · +526271074512 · 1 archivo(s) · $80.00 MXN', NULL, '2026-09-29 09:00:44'),
+(15, 8, 'new_request', 'CPQ-000008 · Isis Mabel López', 'Impresión · 6144949218 · 1 archivo(s) · $3.00 MXN', NULL, '2026-10-12 09:26:12'),
+(16, 9, 'new_request', 'CPQ-000009 · Isis Mabel López Barahona', 'Impresión · 6144949218 · 1 archivo(s) · $5.00 MXN', NULL, '2026-10-12 13:36:14'),
+(17, 10, 'new_request', 'CPQ-000010 · Isis Mabel López', 'Impresión · 6144949218 · 1 archivo(s) · $5.00 MXN', NULL, '2026-10-12 15:21:37');
 
 -- --------------------------------------------------------
 
@@ -7002,7 +7296,10 @@ CREATE TABLE `cp_web_quote_requests` (
 
 INSERT INTO `cp_web_quote_requests` (`id`, `request_token`, `customer_id`, `service_key`, `customer_name`, `email`, `phone`, `request_text`, `quantity`, `desired_date`, `attachment_name`, `status`, `converted_quote_id`, `converted_at`, `created_at`, `updated_at`) VALUES
 (6, 'dc16a9fa614f0081ce52617ea2e2eec6abee67c5f6d9e9c9ce66aa67c5a4ce89', NULL, 'vinil', 'PANCHITO', NULL, '6271074512', 'Servicio: Vinil de corte\nquantity: 1\nsurface: Vehículo\nsize: 20x20cm\ncolor: negro\nDiseño: Tengo el diseño final\nAplicación/instalación: No lo sé todavía\nEntrega: Entrega local\nFecha solicitada: 2026-09-21\nNotas: lo quiero para el tanque de una moto\nArchivos recibidos: 1\n\n[CPQ_JSON]\n{\"version\":3,\"service\":{\"key\":\"vinil\",\"name\":\"Vinil de corte\"},\"details\":{\"quantity\":\"1\",\"surface\":\"Vehículo\",\"size\":\"20x20cm\",\"color\":\"negro\"},\"production\":{\"design_status\":\"Tengo el diseño final\",\"application\":\"No lo sé todavía\",\"notes\":\"lo quiero para el tanque de una moto\"},\"delivery\":{\"method\":\"Entrega local\",\"desired_date\":\"2026-09-21\"},\"attachments\":[{\"original_name\":\"ChatGPT Image Aug 12, 2026, 11_51_30 AM.png\",\"relative_path\":\"/uploads/cotizador/dc16a9fa614f0081ce52617ea2e2eec6abee67c5f6d9e9c9ce66aa67c5a4ce89/f3528e00ad7ef942d24613dfb69c4439.png\",\"mime\":\"image/png\",\"size\":865581,\"extension\":\"png\",\"sha256\":\"bd6c3534c3578c81f4de2f65eee01f7b6bac566a1f20d0c271d26f3dfb816317\"}],\"attachment\":{\"original_name\":\"ChatGPT Image Aug 12, 2026, 11_51_30 AM.png\",\"relative_path\":\"/uploads/cotizador/dc16a9fa614f0081ce52617ea2e2eec6abee67c5f6d9e9c9ce66aa67c5a4ce89/f3528e00ad7ef942d24613dfb69c4439.png\",\"mime\":\"image/png\",\"size\":865581,\"extension\":\"png\",\"sha256\":\"bd6c3534c3578c81f4de2f65eee01f7b6bac566a1f20d0c271d26f3dfb816317\"},\"submitted_at\":\"2026-09-20T00:05:17-06:00\",\"source\":\"public_quote_wizard\",\"ip_hash\":\"6e2f47d9c108c37106dd6710e224743a86073951dc4827e3c29f8e7bb6e662c9\"}', '1', '2026-09-21', 'ChatGPT Image Aug 12, 2026, 11_51_30 AM.png', 'reviewing', 28, '2026-09-20 00:07:09', '2026-09-20 00:05:17', '2026-09-20 00:07:09'),
-(7, 'a378b7984cc574c69e83c15d69bb71d687063bf794d6b9f0d96df7712cb0c4d6', 529, 'laser', 'MIGUEL', NULL, '6271074512', 'Servicio: Grabado láser\nquantity: 1\nmaterial: YETI\nsize: \ndetail: LOGO\nDiseño: Solo tengo la idea\nAplicación/instalación: No lo sé todavía\nEntrega: Entrega local\nFecha solicitada: 2026-09-26\nNotas: QUIERO GRABAR UN LOGO EN EL YETI\nArchivos recibidos: 1\n\n[CPQ_JSON]\n{\"version\":3,\"service\":{\"key\":\"laser\",\"name\":\"Grabado láser\"},\"details\":{\"quantity\":\"1\",\"material\":\"YETI\",\"size\":\"\",\"detail\":\"LOGO\"},\"production\":{\"design_status\":\"Solo tengo la idea\",\"application\":\"No lo sé todavía\",\"notes\":\"QUIERO GRABAR UN LOGO EN EL YETI\"},\"delivery\":{\"method\":\"Entrega local\",\"desired_date\":\"2026-09-26\"},\"attachments\":[{\"original_name\":\"Logo 2027.png\",\"relative_path\":\"/uploads/cotizador/a378b7984cc574c69e83c15d69bb71d687063bf794d6b9f0d96df7712cb0c4d6/dc8c622bcedc99bca185c706a292f25f.png\",\"mime\":\"image/png\",\"size\":1222567,\"extension\":\"png\",\"sha256\":\"9dccdc6bdbaa3c9c84bcde4280249629f42032dc2144b11c3804199c2899b506\"}],\"attachment\":{\"original_name\":\"Logo 2027.png\",\"relative_path\":\"/uploads/cotizador/a378b7984cc574c69e83c15d69bb71d687063bf794d6b9f0d96df7712cb0c4d6/dc8c622bcedc99bca185c706a292f25f.png\",\"mime\":\"image/png\",\"size\":1222567,\"extension\":\"png\",\"sha256\":\"9dccdc6bdbaa3c9c84bcde4280249629f42032dc2144b11c3804199c2899b506\"},\"submitted_at\":\"2026-09-20T00:21:07-06:00\",\"source\":\"public_quote_wizard\",\"ip_hash\":\"6e2f47d9c108c37106dd6710e224743a86073951dc4827e3c29f8e7bb6e662c9\"}', '1', '2026-09-26', 'Logo 2027.png', 'closed', 29, '2026-09-20 00:21:58', '2026-09-20 00:21:07', '2026-09-27 07:04:20');
+(7, 'a378b7984cc574c69e83c15d69bb71d687063bf794d6b9f0d96df7712cb0c4d6', 529, 'laser', 'MIGUEL', NULL, '6271074512', 'Servicio: Grabado láser\nquantity: 1\nmaterial: YETI\nsize: \ndetail: LOGO\nDiseño: Solo tengo la idea\nAplicación/instalación: No lo sé todavía\nEntrega: Entrega local\nFecha solicitada: 2026-09-26\nNotas: QUIERO GRABAR UN LOGO EN EL YETI\nArchivos recibidos: 1\n\n[CPQ_JSON]\n{\"version\":3,\"service\":{\"key\":\"laser\",\"name\":\"Grabado láser\"},\"details\":{\"quantity\":\"1\",\"material\":\"YETI\",\"size\":\"\",\"detail\":\"LOGO\"},\"production\":{\"design_status\":\"Solo tengo la idea\",\"application\":\"No lo sé todavía\",\"notes\":\"QUIERO GRABAR UN LOGO EN EL YETI\"},\"delivery\":{\"method\":\"Entrega local\",\"desired_date\":\"2026-09-26\"},\"attachments\":[{\"original_name\":\"Logo 2027.png\",\"relative_path\":\"/uploads/cotizador/a378b7984cc574c69e83c15d69bb71d687063bf794d6b9f0d96df7712cb0c4d6/dc8c622bcedc99bca185c706a292f25f.png\",\"mime\":\"image/png\",\"size\":1222567,\"extension\":\"png\",\"sha256\":\"9dccdc6bdbaa3c9c84bcde4280249629f42032dc2144b11c3804199c2899b506\"}],\"attachment\":{\"original_name\":\"Logo 2027.png\",\"relative_path\":\"/uploads/cotizador/a378b7984cc574c69e83c15d69bb71d687063bf794d6b9f0d96df7712cb0c4d6/dc8c622bcedc99bca185c706a292f25f.png\",\"mime\":\"image/png\",\"size\":1222567,\"extension\":\"png\",\"sha256\":\"9dccdc6bdbaa3c9c84bcde4280249629f42032dc2144b11c3804199c2899b506\"},\"submitted_at\":\"2026-09-20T00:21:07-06:00\",\"source\":\"public_quote_wizard\",\"ip_hash\":\"6e2f47d9c108c37106dd6710e224743a86073951dc4827e3c29f8e7bb6e662c9\"}', '1', '2026-09-26', 'Logo 2027.png', 'closed', 29, '2026-09-20 00:21:58', '2026-09-20 00:21:07', '2026-09-27 07:04:20'),
+(8, '3ec7e6be352fdb67832bd86393a258224dec8375d78331ac7f537404fbe1e1a7', 1292, 'impresion', 'Isis Mabel López', 'mabellopez200320@gmail.com', '6144949218', 'Solicitud de impresión desde la página web\n{\"version\":2,\"service\":\"impresion\",\"items\":[{\"file\":\"Sublimacion_.pdf\",\"pages\":1,\"copies\":1,\"size\":\"A4\",\"material\":\"Papel bond\",\"finish\":\"Sin acabado\",\"color_mode\":\"color\",\"unit_price\":3,\"subtotal\":3}],\"total\":3}', '1', NULL, 'Sublimacion_.pdf', 'closed', 115, '2026-10-12 09:59:05', '2026-10-12 09:26:12', '2026-10-12 09:59:10'),
+(9, 'dd720faa829d5209820d3a987b3a779dad447621998d3fc594e9c882defa9d19', 1292, 'impresion', 'Isis Mabel López Barahona', 'mabellopez200320@gmail.com', '6144949218', 'Solicitud de impresión desde la página web\n{\"version\":2,\"service\":\"impresion\",\"items\":[{\"file\":\"Dise_o_sin_t_tulo.pdf\",\"pages\":1,\"copies\":1,\"size\":\"Carta\",\"material\":\"Papel bond\",\"finish\":\"Sin acabado\",\"color_mode\":\"color\",\"unit_price\":5,\"subtotal\":5}],\"total\":5}', '1', NULL, 'Dise_o_sin_t_tulo.pdf', 'closed', 119, '2026-10-12 14:43:17', '2026-10-12 13:36:14', '2026-10-12 14:43:20'),
+(10, '39bc513c4ba910303c275c03bacd30bc4e41c4026154ae28bf794475cbd482f9', 1292, 'impresion', 'Isis Mabel López', 'mabellopez200320@gmail.com', '6144949218', 'Solicitud de impresión desde la página web\n{\"version\":2,\"service\":\"impresion\",\"items\":[{\"file\":\"Dise_o_sin_t_tulo.pdf\",\"pages\":1,\"copies\":1,\"size\":\"Carta\",\"material\":\"Papel bond\",\"finish\":\"Sin acabado\",\"color_mode\":\"color\",\"unit_price\":5,\"subtotal\":5}],\"total\":5}', '1', NULL, 'Dise_o_sin_t_tulo.pdf', 'reviewing', 120, '2026-10-12 15:22:50', '2026-10-12 15:21:37', '2026-10-12 15:22:50');
 
 -- --------------------------------------------------------
 
@@ -7172,7 +7469,18 @@ INSERT INTO `cp_whatsapp_log` (`id`, `template_key`, `order_id`, `quote_id`, `cu
 (137, 'ready_delivery', 73, NULL, 1121, '526271170819', 'Hola Esc prim Jesús Gonzalez Ortega 👋\n\n🚚 ¡Tu pedido OS-2026-00063 ya está listo para entrega!\n\n📅 Fecha compromiso: 15/10/2026\n\n🔎 Consulta los detalles aquí:\nhttps://colibriprint.com.mx/seguimiento.php?t=6842f80555beee6844ee3cb0992090b107ecea5a5e493bdc66b9dced74828677\n\nGracias por confiar en Colibrí Print.\n\nEste es un mensaje automático y no es necesario responder', 'prepared', 1, '2026-10-10 15:15:01'),
 (138, 'ready_delivery', 73, NULL, 1121, '526271170819', 'Hola Esc prim Jesús Gonzalez Ortega 👋\n\n🚚 ¡Tu pedido OS-2026-00063 ya está listo para entrega!\n\n📅 Fecha compromiso: 15/10/2026\n\n🔎 Consulta los detalles aquí:\nhttps://colibriprint.com.mx/seguimiento.php?t=6842f80555beee6844ee3cb0992090b107ecea5a5e493bdc66b9dced74828677\n\nGracias por confiar en Colibrí Print.\n\nEste es un mensaje automático y no es necesario responder', 'prepared', 1, '2026-10-10 16:30:09'),
 (139, 'ready_delivery', 67, NULL, 1305, '526271040217', 'Hola CENTRO DE INTERVENCION EN CRISIS ALMA CALMA AC 👋\n\n🚚 ¡Tu pedido OS-2026-00057 ya está listo para entrega!\n\n📅 Fecha compromiso: 10/10/2026\n\n🔎 Consulta los detalles aquí:\nhttps://colibriprint.com.mx/seguimiento.php?t=7e7b7a15ad2fb7f4c2f921a181c86c921a6cb648b9e58f6ae15fab301a295c2b\n\nGracias por confiar en Colibrí Print.\n\nEste es un mensaje automático y no es necesario responder', 'prepared', 1, '2026-10-10 18:22:21'),
-(140, 'quote_sent', NULL, 111, 1314, '526271120983', 'Hola Crece con Vales Parral 👋\n\nGracias por confiar en Colibrí Print. Te compartimos la cotización CP-2026-00089.\n\n💰 Total cotizado: $284.20\n📅 Vigencia: 11/10/2026\n\n📄 Ver y descargar tu cotización en PDF:\nhttps://colibriprint.com.mx/cotizacion_pdf_publica.php?t=b544ce47f73f9be79222420f1113cac2452922cb18254bc81a78c6643d7a994a\n\nQuedamos atentos a cualquier duda o ajuste que necesites.\n\nSaludos,\nColibrí Print\n\nEste es un mensaje automático y no es necesario responder', 'prepared', 1, '2026-10-11 10:01:23');
+(140, 'quote_sent', NULL, 111, 1314, '526271120983', 'Hola Crece con Vales Parral 👋\n\nGracias por confiar en Colibrí Print. Te compartimos la cotización CP-2026-00089.\n\n💰 Total cotizado: $284.20\n📅 Vigencia: 11/10/2026\n\n📄 Ver y descargar tu cotización en PDF:\nhttps://colibriprint.com.mx/cotizacion_pdf_publica.php?t=b544ce47f73f9be79222420f1113cac2452922cb18254bc81a78c6643d7a994a\n\nQuedamos atentos a cualquier duda o ajuste que necesites.\n\nSaludos,\nColibrí Print\n\nEste es un mensaje automático y no es necesario responder', 'prepared', 1, '2026-10-11 10:01:23'),
+(141, 'ready_delivery', 73, NULL, 1121, '526271170819', 'Hola Esc prim Jesús Gonzalez Ortega 👋\n\n🚚 ¡Tu pedido OS-2026-00063 ya está listo para entrega!\n\n📅 Fecha compromiso: 15/10/2026\n\n🔎 Consulta los detalles aquí:\nhttps://colibriprint.com.mx/seguimiento.php?t=6842f80555beee6844ee3cb0992090b107ecea5a5e493bdc66b9dced74828677\n\nGracias por confiar en Colibrí Print.\n\nEste es un mensaje automático y no es necesario responder', 'prepared', 1, '2026-10-12 07:24:54'),
+(142, 'ready_delivery', 64, NULL, 890, '526271488352', 'Hola Georgia Unda 👋\n\n🚚 ¡Tu pedido OS-2026-00054 ya está listo para entrega!\n\n📅 Fecha compromiso: 10/10/2026\n\n🔎 Consulta los detalles aquí:\nhttps://colibriprint.com.mx/seguimiento.php?t=0758084791c8252f461bc700734702b86147fdcde822b537f0a27242fa3bbcb1\n\nGracias por confiar en Colibrí Print.\n\nEste es un mensaje automático y no es necesario responder', 'prepared', 1, '2026-10-12 07:25:58'),
+(143, 'design_ready', 84, NULL, 1186, '526271117779', 'Hola Nancy Corral 👋\n\n🎨 El diseño de tu pedido OS-2026-00074 ya está listo para revisión.\n\nPuedes consultar el avance de tu pedido aquí:\nhttps://colibriprint.com.mx/seguimiento.php?t=9d8c1dbf22ee3566f2e8ab4ea3ef65e87c31dc345c9d50b367c795b4cc847845\n\nSi necesitas algún ajuste, respóndenos por este mismo medio.\n\nColibrí Print\n\nEste es un mensaje automático y no es necesario responder', 'prepared', 1, '2026-10-12 09:41:36'),
+(144, 'quote_sent', NULL, 106, 883, '526271137573', 'Hola Energy Industrial & Mining 👋\n\nGracias por confiar en Colibrí Print. Te compartimos la cotización CP-2026-00084.\n\n💰 Total cotizado: $6,208.32\n📅 Vigencia: 16/10/2026\n\n📄 Ver y descargar tu cotización en PDF:\nhttps://colibriprint.com.mx/cotizacion_pdf_publica.php?t=c063e1e6653fd0b26afd774ea0c5f01411184d372148dd451ab1b38f8d7704e5\n\nQuedamos atentos a cualquier duda o ajuste que necesites.\n\nSaludos,\nColibrí Print\n\nEste es un mensaje automático y no es necesario responder', 'prepared', 1, '2026-10-12 09:51:44'),
+(145, 'design_ready', 85, NULL, 883, '526271137573', 'Hola Energy Industrial & Mining 👋\n\n🎨 El diseño de tu pedido OS-2026-00075 ya está listo para revisión.\n\nPuedes consultar el avance de tu pedido aquí:\nhttps://colibriprint.com.mx/seguimiento.php?t=656b0a7377b9e4e7ead070ebed55fee940a9028bc30c225017b9a3aa6e99ad98\n\nSi necesitas algún ajuste, respóndenos por este mismo medio.\n\nColibrí Print\n\nEste es un mensaje automático y no es necesario responder', 'prepared', 1, '2026-10-12 09:54:09'),
+(146, 'order_confirmed', 86, NULL, 1292, '526144949218', 'Hola Mabel 👋\n\nTu pedido OS-2026-00076 ya fue registrado y comenzamos a trabajar en él.\n\n💰 Total de la orden: $0.00\n📅 Fecha compromiso: 27/10/2026\n\n🔎 Consulta el avance de tu pedido:\nhttps://colibriprint.com.mx/seguimiento.php?t=155d641729fbb7878b9cc80e30373638740cd75d0c59065083498c6dcda6c32a\n\nGracias por confiar en Colibrí Print.\n\nEste es un mensaje automático y no es necesario responder', 'prepared', 1, '2026-10-12 10:03:42'),
+(147, 'printing', 85, NULL, 883, '526271137573', 'Hola Energy Industrial & Mining 👋\n\n🖨️ Tu pedido OS-2026-00075 ya se encuentra en impresión. Estamos avanzando con tu trabajo.\n\n🔎 Consulta el avance aquí:\nhttps://colibriprint.com.mx/seguimiento.php?t=656b0a7377b9e4e7ead070ebed55fee940a9028bc30c225017b9a3aa6e99ad98\n\nColibrí Print', 'prepared', 1, '2026-10-12 10:19:32'),
+(148, 'order_confirmed', 87, NULL, 1316, '526352930579', 'Hola Olga Zulema Ramírez 👋\n\nTu pedido OS-2026-00077 ya fue registrado y comenzamos a trabajar en él.\n\n💰 Total de la orden: $2,745.50\n📅 Fecha compromiso: 27/10/2026\n\n🔎 Consulta el avance de tu pedido:\nhttps://colibriprint.com.mx/seguimiento.php?t=533e3555063b151569e88d029db94a4408408d2943617ff0bf34c8f61909c496\n\nGracias por confiar en Colibrí Print.\n\nEste es un mensaje automático y no es necesario responder', 'prepared', 1, '2026-10-12 10:29:38'),
+(149, 'in_production', 60, NULL, 1297, '526591012696', 'Hola María Guadalupe Villar Saenz 👋\n\n🔧 Tu pedido OS-2026-00050 ya se encuentra en producción. Nuestro equipo está trabajando en los detalles de tu trabajo.\n\n🔎 Consulta el avance aquí:\nhttps://colibriprint.com.mx/seguimiento.php?t=72e7550ab116c5da3426042fe7c83e7b68084bcc71d069bb86b5eed791c36efb\n\nEste es un mensaje automático y no es necesario responder\n\nColibrí Print\n\nEste es un mensaje automático y no es necesario responder', 'prepared', 1, '2026-10-12 10:35:46'),
+(150, 'ready_delivery', 86, NULL, 1292, '526144949218', 'Hola Mabel 👋\n\n🚚 ¡Tu pedido OS-2026-00076 ya está listo para entrega!\n\n📅 Fecha compromiso: 27/10/2026\n\n🔎 Consulta los detalles aquí:\nhttps://colibriprint.com.mx/seguimiento.php?t=155d641729fbb7878b9cc80e30373638740cd75d0c59065083498c6dcda6c32a\n\nGracias por confiar en Colibrí Print.\n\nEste es un mensaje automático y no es necesario responder', 'prepared', 1, '2026-10-12 11:44:13'),
+(151, 'order_confirmed', 89, NULL, 1305, '526271040217', 'Hola CENTRO DE INTERVENCION EN CRISIS ALMA CALMA AC 👋\n\nTu pedido OS-2026-00079 ya fue registrado y comenzamos a trabajar en él.\n\n💰 Total de la orden: $580.00\n📅 Fecha compromiso: 12/10/2026\n\n🔎 Consulta el avance de tu pedido:\nhttps://colibriprint.com.mx/seguimiento.php?t=10b49481b29abe9d55aa9256df8380fcfb91570e681e353be53be96c97f34586\n\nGracias por confiar en Colibrí Print.\n\nEste es un mensaje automático y no es necesario responder', 'prepared', 1, '2026-10-12 12:50:49');
 
 -- --------------------------------------------------------
 
@@ -7353,6 +7661,18 @@ ALTER TABLE `cp_expenses`
   ADD KEY `idx_cp_expenses_category` (`category`),
   ADD KEY `idx_cp_expenses_order` (`order_id`),
   ADD KEY `idx_cp_expenses_created_by` (`created_by`);
+
+--
+-- Indexes for table `cp_expense_documents`
+--
+ALTER TABLE `cp_expense_documents`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uq_cp_expense_documents_sha256` (`xml_sha256`),
+  ADD UNIQUE KEY `uq_cp_expense_documents_uuid` (`uuid`),
+  ADD KEY `idx_cp_expense_documents_expense` (`expense_id`),
+  ADD KEY `idx_cp_expense_documents_issuer` (`issuer_rfc`),
+  ADD KEY `idx_cp_expense_documents_receiver` (`receiver_rfc`),
+  ADD KEY `idx_cp_expense_documents_created` (`created_at`);
 
 --
 -- Indexes for table `cp_invoices`
@@ -7842,7 +8162,7 @@ ALTER TABLE `cp_whatsapp_templates`
 -- AUTO_INCREMENT for table `cp_activity_log`
 --
 ALTER TABLE `cp_activity_log`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1544;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1626;
 
 --
 -- AUTO_INCREMENT for table `cp_categories`
@@ -7854,7 +8174,7 @@ ALTER TABLE `cp_categories`
 -- AUTO_INCREMENT for table `cp_customers`
 --
 ALTER TABLE `cp_customers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1316;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1317;
 
 --
 -- AUTO_INCREMENT for table `cp_customers_backup_20260927_070420`
@@ -7866,49 +8186,55 @@ ALTER TABLE `cp_customers_backup_20260927_070420`
 -- AUTO_INCREMENT for table `cp_expenses`
 --
 ALTER TABLE `cp_expenses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `cp_expense_documents`
+--
+ALTER TABLE `cp_expense_documents`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `cp_invoices`
 --
 ALTER TABLE `cp_invoices`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `cp_invoice_documents`
 --
 ALTER TABLE `cp_invoice_documents`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `cp_invoice_items`
 --
 ALTER TABLE `cp_invoice_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `cp_orders`
 --
 ALTER TABLE `cp_orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `cp_order_history`
 --
 ALTER TABLE `cp_order_history`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=627;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=680;
 
 --
 -- AUTO_INCREMENT for table `cp_order_items`
 --
 ALTER TABLE `cp_order_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=175;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=191;
 
 --
 -- AUTO_INCREMENT for table `cp_order_photos`
 --
 ALTER TABLE `cp_order_photos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `cp_order_production_briefs`
@@ -7926,19 +8252,19 @@ ALTER TABLE `cp_order_production_checklist`
 -- AUTO_INCREMENT for table `cp_order_status`
 --
 ALTER TABLE `cp_order_status`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT for table `cp_payments`
 --
 ALTER TABLE `cp_payments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `cp_payment_receipts`
 --
 ALTER TABLE `cp_payment_receipts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `cp_print_finishes`
@@ -7956,7 +8282,7 @@ ALTER TABLE `cp_print_jobs`
 -- AUTO_INCREMENT for table `cp_print_materials`
 --
 ALTER TABLE `cp_print_materials`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `cp_print_meter_logs`
@@ -7968,7 +8294,7 @@ ALTER TABLE `cp_print_meter_logs`
 -- AUTO_INCREMENT for table `cp_print_prices`
 --
 ALTER TABLE `cp_print_prices`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `cp_print_price_rules`
@@ -7980,13 +8306,13 @@ ALTER TABLE `cp_print_price_rules`
 -- AUTO_INCREMENT for table `cp_print_requests`
 --
 ALTER TABLE `cp_print_requests`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `cp_print_request_items`
 --
 ALTER TABLE `cp_print_request_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `cp_print_rolls`
@@ -8046,7 +8372,7 @@ ALTER TABLE `cp_promotion_products`
 -- AUTO_INCREMENT for table `cp_quotes`
 --
 ALTER TABLE `cp_quotes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- AUTO_INCREMENT for table `cp_quote_condition_templates`
@@ -8064,19 +8390,19 @@ ALTER TABLE `cp_quote_costs`
 -- AUTO_INCREMENT for table `cp_quote_items`
 --
 ALTER TABLE `cp_quote_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=344;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=367;
 
 --
 -- AUTO_INCREMENT for table `cp_quote_public_tokens`
 --
 ALTER TABLE `cp_quote_public_tokens`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `cp_quote_totals`
 --
 ALTER TABLE `cp_quote_totals`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=197;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=209;
 
 --
 -- AUTO_INCREMENT for table `cp_roles`
@@ -8112,13 +8438,13 @@ ALTER TABLE `cp_tiktok_posts`
 -- AUTO_INCREMENT for table `cp_tracking_events`
 --
 ALTER TABLE `cp_tracking_events`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `cp_tracking_tokens`
 --
 ALTER TABLE `cp_tracking_tokens`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT for table `cp_users`
@@ -8136,19 +8462,19 @@ ALTER TABLE `cp_web_checkout_sessions`
 -- AUTO_INCREMENT for table `cp_web_quote_files`
 --
 ALTER TABLE `cp_web_quote_files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `cp_web_quote_notifications`
 --
 ALTER TABLE `cp_web_quote_notifications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `cp_web_quote_requests`
 --
 ALTER TABLE `cp_web_quote_requests`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `cp_whatsapp_chats`
@@ -8160,7 +8486,7 @@ ALTER TABLE `cp_whatsapp_chats`
 -- AUTO_INCREMENT for table `cp_whatsapp_log`
 --
 ALTER TABLE `cp_whatsapp_log`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
 -- AUTO_INCREMENT for table `cp_whatsapp_messages`
