@@ -1,242 +1,160 @@
-SISACT · TRACKING ACTIVITY + CFDI + DASHBOARD NOTIFICATIONS V1
+SISACT · EDITOR DE ÓRDENES V1
 Colibrí Print México
 
 OBJETIVO
 ========
-Registrar la actividad del cliente en Seguimiento y mostrarla en Dashboard:
+Agregar edición real de órdenes ya generadas sin cambiar el folio ni romper
+la relación con su cotización de origen.
 
-👁 Revisó su orden / seguimiento
-📄 Consultó factura PDF
-🧾 Descargó XML
-💳 Envió comprobante de pago
-
-El Dashboard consulta nueva actividad cada 30 segundos y, si está abierto,
-muestra una notificación flotante cuando aparece un evento nuevo.
-
-REVISIÓN PREVIA DEL REPOSITORIO
-===============================
-Se revisaron antes de generar este paquete:
-
-- seguimiento.php
-- seguimiento_cfdi.php
-- includes/tracking_cfdi.php
-- includes/cfdi.php
-- api/comprobante_pago_cliente.php
-- includes/payment_receipts.php
-- admin/dashboard.php
-- assets/js/dashboard-intelligence.js
-- assets/css/dashboard-intelligence.css
-
-PUNTOS DE INTEGRACIÓN
-=====================
-1. seguimiento.php ya llama tracking_cfdi_for_order() una vez por visita válida.
-   V1 aprovecha ese punto para registrar la visita sin reemplazar seguimiento.php.
-
-2. seguimiento_cfdi.php ya centraliza PDF/XML mediante tracking_cfdi_download().
-   V1 registra el evento justo antes de servir el archivo.
-
-3. api/comprobante_pago_cliente.php ya centraliza la subida de comprobantes.
-   V1 registra el evento después de una subida exitosa.
-
-4. Dashboard Intelligence ya carga dashboard-intelligence.js.
-   V1 amplía ese JS con un feed autenticado cada 30 segundos.
-   No se reemplaza admin/dashboard.php.
-
-ARCHIVOS NUEVOS
+REVISIÓN PREVIA
 ===============
-includes/tracking_activity.php
-admin/tracking_activity_feed.php
-assets/css/tracking-activity-dashboard-v1.css
-database/sql/021_tracking_activity.sql
+Se revisaron en GitHub antes de crear este paquete:
+- admin/orden.php
+- admin/ordenes.php
+- admin/orden_nueva.php
+- includes/ordenes.php
+- includes/quote_order_sync.php
+- includes/finanzas.php
 
-ARCHIVOS A REEMPLAZAR
-=====================
-includes/tracking_cfdi.php
-api/comprobante_pago_cliente.php
-assets/js/dashboard-intelligence.js
+La orden actual ya permite estado, archivos, pagos, responsables y notas, pero
+no tiene un editor para cliente/conceptos/precios/total.
 
-BASE DE DATOS
+ARCHIVOS
+========
+NUEVOS:
+- admin/orden_editar.php
+- assets/css/orden-editor-v1.css
+- assets/js/orden-editor-v1.js
+
+REEMPLAZAR:
+- admin/orden.php
+- admin/ordenes.php
+- assets/css/orden-detail-professional-v1.css
+
+QUÉ SE PUEDE EDITAR
+===================
+- Cliente.
+- Fecha de orden.
+- Fecha compromiso.
+- Responsable.
+- Descripciones.
+- Cantidades.
+- Precios unitarios.
+- Agregar conceptos.
+- Eliminar conceptos.
+- Notas operativas.
+- Notas internas.
+
+El total NO llega confiado desde JavaScript.
+PHP vuelve a calcular cada subtotal y el total antes de guardar.
+
+QUÉ NO CAMBIA
 =============
-Ejecutar:
-database/sql/021_tracking_activity.sql
+- Folio OS-...
+- quote_id / cotización de origen.
+- Estado de la orden.
+- Producción.
+- Archivos.
+- Comprobantes.
+- Historial existente.
+- Pagos.
+- WhatsApp.
+- Seguimiento.
+- PDF.
+- Base de datos.
+- Esquema SQL.
 
-Solo crea:
-- cp_tracking_events
-- cp_tracking_event_reads
+ESTADOS EDITABLES
+=================
+Solo:
+- pending / Pendiente
+- in_progress / En proceso
 
-No modifica tablas existentes.
+Completada, Entregada y Cancelada quedan bloqueadas como histórico.
 
-PRIVACIDAD
-==========
-- NO se guarda el token de seguimiento.
-- NO se guarda la IP en texto plano.
-- visitor_hash usa SHA-256 de IP + navegador + contexto.
-- Se guarda solamente device_type: mobile / tablet / desktop / unknown.
-- HEAD, prefetch y bots/previews conocidos se excluyen.
+IMPORTANTE SOBRE "LISTO"
+========================
+La etapa de producción "Listo" normalmente sigue perteneciendo a una orden
+general "En proceso", por lo que puede editarse mientras cp_orders.status sea
+in_progress.
 
-IMPORTANTE SOBRE "QUIÉN VISITÓ"
-===============================
-SISACT puede afirmar:
-"El enlace asociado a este cliente/orden fue abierto".
+PROTECCIONES FINANCIERAS
+========================
+Si existen pagos confirmados:
+- el nuevo total no puede quedar por debajo de lo ya pagado.
 
-Técnicamente no puede demostrar que la persona física cuyo nombre aparece
-tenía el dispositivo en la mano.
+Si existen pagos o facturas:
+- no se permite cambiar de cliente desde este editor.
 
-VISITAS
-=======
-Cada carga GET válida de seguimiento.php genera:
-tracking_view
+Si existe una factura con status=issued:
+- no se permite cambiar el total hasta corregir/cancelar esa factura.
 
-Se filtran:
-- HEAD
-- prefetch/preview
-- Facebook preview
-- WhatsApp preview
-- Twitter/LinkedIn/Slack/Discord/Telegram bots
-- buscadores
-- curl/wget
+Esto evita dejar datos financieros inconsistentes.
 
-PDF CFDI
-========
-Se registra:
-cfdi_pdf_opened
-
-El PDF sigue sirviéndose INLINE para que pueda abrirse en navegador.
-
-XML CFDI
-========
-Se registra:
-cfdi_xml_downloaded
-
-El XML cambia a:
-Content-Disposition: attachment
-
-Por lo tanto, el clic inicia una descarga real del XML.
-
-COMPROBANTES
+TRAZABILIDAD
 ============
-Después de guardar correctamente un comprobante:
-payment_receipt_uploaded
+Cada guardado agrega una entrada en cp_order_history con el mismo estado
+anterior/nuevo y la nota "Orden editada manualmente...".
+También se registra log_activity().
 
-Si la subida falla, NO se registra el evento.
+COTIZACIÓN VINCULADA
+====================
+La orden conserva quote_id.
 
-DASHBOARD
-=========
-Dentro de "Centro de alertas" aparece:
+Después de una edición manual, quote_order_diff() puede indicar que cliente,
+conceptos, total o fecha difieren de la cotización.
 
-ACTIVIDAD DE CLIENTES
-Seguimiento y CFDI
-
-- cliente
-- evento
-- orden
-- factura cuando aplica
-- dispositivo
-- tiempo relativo
-
-También muestra:
-"X nuevas"
-
-El botón "Marcar revisado" guarda por usuario el último evento visto.
-
-NOTIFICACIONES
-==============
-Con Dashboard abierto:
-- consulta el feed cada 30 segundos;
-- al detectar un ID nuevo muestra toast flotante;
-- máximo 3 toast por ciclo;
-- no genera sonido;
-- al volver a una pestaña visible vuelve a consultar.
-
-CACHE
-=====
-admin/dashboard.php actualmente referencia:
-dashboard-intelligence.js?v=1.0.0
-
-Este paquete NO reemplaza dashboard.php para evitar una regresión en el
-Dashboard actual.
-
-DESPUÉS DE INSTALAR:
-hacer Ctrl+F5 una vez en Dashboard para forzar la carga del JS nuevo.
-
-El CSS del módulo se carga dinámicamente con:
-tracking-activity-dashboard-v1.css?v=1.0.0
+ATENCIÓN:
+El botón "Sincronizar desde cotización" de la ficha mantiene su comportamiento
+actual. Si se usa posteriormente, volverá a copiar desde la cotización:
+- cliente;
+- total;
+- fecha compromiso;
+- conceptos.
 
 INSTALACIÓN
 ===========
-1. RESPALDAR:
-   includes/tracking_cfdi.php
-   api/comprobante_pago_cliente.php
-   assets/js/dashboard-intelligence.js
+1. Respaldar:
+   admin/orden.php
+   admin/ordenes.php
+   assets/css/orden-detail-professional-v1.css
 
-2. Ejecutar:
-   database/sql/021_tracking_activity.sql
+2. Copiar este ZIP en la raíz de SISACT respetando carpetas.
 
-3. Copiar archivos nuevos.
+3. Reemplazar los tres archivos indicados.
 
-4. Reemplazar los 3 archivos indicados.
+4. Copiar:
+   admin/orden_editar.php
+   assets/css/orden-editor-v1.css
+   assets/js/orden-editor-v1.js
 
-5. Abrir Dashboard y hacer Ctrl+F5.
+5. Ctrl+F5 una vez.
 
-PRUEBA RECOMENDADA
-==================
-A. VISITA
-1. Abrir Dashboard en PC.
-2. Desde otro teléfono abrir el link de seguimiento de una orden.
-3. En máximo 30 segundos debe aparecer:
-   👁 Cliente · Revisó su orden
+NO HAY SQL
+==========
+No requiere migración.
 
-B. PDF
-1. En Seguimiento pulsar Descargar PDF.
-2. Debe abrir PDF.
-3. Dashboard:
-   📄 Cliente · Consultó factura PDF
+PRUEBA URGENTE RECOMENDADA
+==========================
+Primero usa una orden Pendiente o En proceso.
 
-C. XML
-1. Pulsar Descargar XML.
-2. El navegador debe iniciar descarga.
-3. Dashboard:
-   🧾 Cliente · Descargó XML
+1. Abrir Orden.
+2. Pulsar "Editar orden".
+3. Cambiar una descripción.
+4. Cambiar cantidad o precio.
+5. Confirmar que el total cambia en pantalla.
+6. Guardar.
+7. Verificar en la ficha:
+   - conceptos;
+   - total;
+   - historial;
+   - PDF.
+8. Volver a editar y agregar un concepto.
+9. Volver a editar y eliminar un concepto.
 
-D. COMPROBANTE
-1. Enviar comprobante.
-2. Dashboard:
-   💳 Cliente · Envió comprobante
-
-E. MARCAR REVISADO
-1. Ver contador "X nuevas".
-2. Pulsar "Marcar revisado".
-3. El contador debe desaparecer para ese usuario.
-
-DEGRADACIÓN SEGURA
-==================
-Si la migración NO está instalada:
-- Seguimiento continúa funcionando.
-- PDF/XML continúan funcionando.
-- Comprobantes continúan funcionando.
-- Dashboard muestra aviso de que Tracking Activity debe activarse.
-
-Si falla el registro de un evento:
-el flujo del cliente NO se interrumpe.
+Luego probar una orden con pagos para confirmar las protecciones.
 
 REVERSIÓN
 =========
 Restaurar los tres archivos respaldados.
-
-Las tablas nuevas pueden conservarse; no interfieren con otros módulos.
-Si se desea eliminación completa:
-DROP TABLE cp_tracking_event_reads;
-DROP TABLE cp_tracking_events;
-
-NO SE MODIFICA
-==============
-- órdenes;
-- producción;
-- pagos;
-- estados;
-- cotizaciones;
-- cp_tracking_tokens.last_access_at;
-- generación/importación de CFDI;
-- archivos fiscales almacenados;
-- Dashboard PHP;
-- seguimiento.php;
+Los archivos nuevos orden_editar.php / CSS / JS pueden eliminarse.
