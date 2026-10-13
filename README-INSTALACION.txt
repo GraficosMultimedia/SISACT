@@ -1,84 +1,83 @@
-SISACT · ARCHIVOS FALTANTES PARA GITHUB · V1
-Colibrí Print México
+SISACT · CENTRO DE NOTIFICACIONES DE CLIENTES V3
 
 OBJETIVO
 ========
-Este ZIP reúne únicamente los archivos que faltaban o estaban pendientes de
-sincronización en el repositorio principal de SISACT, conservando exactamente
-sus carpetas y rutas.
+Crear un sistema persistente de notificaciones similar al patrón funcional
+de Akaunting: campana global, contador, panel desplegable, historial,
+leído/no leído y avisos nuevos.
 
-ESTRUCTURA DEL ZIP
-==================
-/
-├── seguimiento_comprobante.php
-├── includes/
-│   ├── order_pdf_professional_2pages.php
-│   └── expense_cfdi.php
-└── database/
-    └── sql/
-        └── 022_expense_cfdi_documents.sql
+CAMBIO CLAVE
+============
+La visita ya NO depende de identificar al cliente por User-Agent.
 
-RUTAS DESTINO EN SISACT / GITHUB
-================================
-1. seguimiento_comprobante.php
-   Ruta:
-   /seguimiento_comprobante.php
+Cuando seguimiento.php está realmente visible en un navegador, ejecuta un
+POST a /api/tracking_view_cliente.php.
 
-   Función:
-   - Endpoint público del PDF de seguimiento por token.
-   - Valida el token público.
-   - Resuelve la orden.
-   - Utiliza el renderer profesional compartido de dos páginas.
+Los previews de enlaces normalmente no ejecutan JavaScript, por lo que no
+generan la misma señal.
 
-2. includes/order_pdf_professional_2pages.php
-   Ruta:
-   /includes/order_pdf_professional_2pages.php
+PDF y XML se registran como acciones verificadas porque seguimiento_cfdi.php
+ya validó token + documento + orden.
 
-   Función:
-   - Renderer profesional compartido entre:
-     /admin/orden_pdf_2paginas.php
-     /seguimiento_comprobante.php
-   - Muestra Subtotal, Descuento (%), IVA (%) y Total cuando corresponda.
+ARCHIVOS NUEVOS
+===============
+includes/tracking_activity_verified.php
+api/tracking_view_cliente.php
+assets/js/admin-notifications-v1.js
+assets/css/admin-notifications-v1.css
+admin/notificaciones.php
+admin/aplicar_centro_notificaciones_v3.php
 
-3. includes/expense_cfdi.php
-   Ruta:
-   /includes/expense_cfdi.php
+ARCHIVOS MODIFICADOS POR EL INSTALADOR
+======================================
+includes/header.php
+includes/tracking_cfdi.php
+seguimiento.php
 
-   Función:
-   - Lógica de importación y gestión de CFDI XML para Egresos.
-   - Es dependencia directa de /admin/egresos.php.
+RESPALDOS
+=========
+*.bak_notificaciones_v3
 
-4. database/sql/022_expense_cfdi_documents.sql
-   Ruta:
-   /database/sql/022_expense_cfdi_documents.sql
+SQL
+===
+No hay migración nueva.
+V3 usa cp_tracking_events y cp_tracking_event_reads.
+Se incluye database/sql/021_tracking_activity.sql como recuperación.
 
-   Función:
-   - Migración para la tabla documental de CFDI de egresos.
-   - Debe ejecutarse en la base de datos del servidor si aún no existe la tabla.
+INSTALACIÓN
+===========
+1. Extraer ZIP en la raíz de SISACT.
+2. Abrir /admin/aplicar_centro_notificaciones_v3.php
+3. Pulsar "Instalar Centro V3".
+4. Ctrl+F5 en el panel.
+5. Debe aparecer una campana en la barra superior.
 
-INSTALACIÓN / SUBIDA A GITHUB
-=============================
-Extraer el ZIP en la raíz del proyecto SISACT conservando carpetas.
+PRUEBA
+======
+Desde otro teléfono:
+1. Abrir seguimiento.php?t=TOKEN.
+2. Esperar 1-2 segundos.
+3. En Administración esperar máximo 20 segundos.
+4. Debe aparecer "Orden revisada".
+5. Abrir PDF de CFDI: debe aparecer "Factura PDF vista".
+6. Descargar XML: debe aparecer "XML descargado".
 
-Después, en GitHub, deben aparecer exactamente estas rutas:
+HISTORIAL
+=========
+/admin/notificaciones.php
 
-seguimiento_comprobante.php
-includes/order_pdf_professional_2pages.php
-includes/expense_cfdi.php
-database/sql/022_expense_cfdi_documents.sql
+GITHUB DESPUÉS DE APROBAR
+=========================
+Subir:
+includes/header.php
+includes/tracking_cfdi.php
+seguimiento.php
+includes/tracking_activity_verified.php
+api/tracking_view_cliente.php
+assets/js/admin-notifications-v1.js
+assets/css/admin-notifications-v1.css
+admin/notificaciones.php
 
-IMPORTANTE
-==========
-- No incluye instaladores temporales.
-- No incluye archivos .bak.
-- No reemplaza seguimiento.php, porque la versión V2 ya fue confirmada como
-  instalada y funcionando.
-- No reemplaza admin/orden_pdf_2paginas.php, porque el controlador ya está
-  presente y referencia el renderer compartido.
-- La migración 022 solo debe ejecutarse una vez y únicamente si la tabla aún
-  no existe.
-
-VALIDACIÓN
-==========
-Los archivos PHP incluidos se validan con php -l antes de empaquetar.
-El ZIP se verifica después de crearse.
+NO subir:
+admin/aplicar_centro_notificaciones_v3.php
+*.bak_notificaciones_v3
