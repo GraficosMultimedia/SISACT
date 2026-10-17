@@ -48,7 +48,8 @@ $navGroups = [
             ['/admin/categorias.php', 'Categorías', '◫'],
             ['/admin/promociones.php', 'Promociones', '%'],
             ['/admin/cotizadores.php', 'Cotizadores', '∑'],
-            ['/admin/impresiones.php', 'Impresiones', '▣'],
+            ['/admin/impresiones.php', 'Metraje', '▣'],
+            ['/admin/rollos.php', 'Metraje', '▣'],
         ],
     ],
         'balance' => [
@@ -70,6 +71,8 @@ $navGroups = [
             ['/admin/impresion_precios.php', 'Configuración de impresión', '🖨'],
             ['/admin/recepcion_impresiones.php', 'Recepción de impresiones', '▣'],
             ['/admin/recepcion_historial.php', 'Historial de impresiones', '◴'],
+            ['/admin/mercadopago_configurar.php', 'Configuración MercadoPago', '⚙'],
+            
         ],
     ],
 ];
@@ -103,8 +106,11 @@ if ($userInitials === '') {
 <title><?=e($title)?> | Colibrí Print</title>
 <link rel="stylesheet" href="/assets/css/app.css">
 <link rel="stylesheet" href="/assets/css/admin-topnav.css">
+    <!-- SISACT_ADMIN_NOTIFICATIONS_V3_ASSETS -->
+    <link rel="stylesheet" href="/assets/css/admin-notifications-v1.css?v=1.0.0">
 <script src="/assets/js/app.js" defer></script>
 <script src="/assets/js/admin-topnav.js" defer></script>
+    <script src="/assets/js/admin-notifications-v1.js?v=1.0.0" defer></script>
 </head>
 <body class="cp-admin-body">
 <div class="cp-admin-shell">
@@ -155,6 +161,18 @@ if ($userInitials === '') {
                 <?php endforeach; ?>
             </nav>
 
+            <!-- SISACT_ADMIN_NOTIFICATIONS_V3_PANEL -->
+            <div class="cp-notifications" data-cp-notifications>
+                <button class="cp-notifications-toggle" type="button" aria-label="Notificaciones" aria-expanded="false" data-cp-notifications-toggle>
+                    <span class="cp-notifications-bell" aria-hidden="true">🔔</span>
+                    <span class="cp-notifications-badge" data-cp-notifications-badge hidden>0</span>
+                </button>
+                <div class="cp-notifications-panel" data-cp-notifications-panel hidden>
+                    <div class="cp-notifications-head"><div><strong>Notificaciones</strong><span>Actividad de clientes</span></div><button class="cp-notifications-mark" type="button" data-cp-notifications-mark-all>Marcar todas</button></div>
+                    <div class="cp-notifications-list" data-cp-notifications-list><div class="cp-notification-empty">Cargando actividad…</div></div>
+                    <div class="cp-notifications-footer"><a href="/admin/notificaciones.php">Ver todas las notificaciones</a></div>
+                </div>
+            </div>
             <div class="cp-account">
                 <div class="cp-avatar" aria-hidden="true"><?=e($userInitials)?></div>
                 <div class="cp-account-copy">

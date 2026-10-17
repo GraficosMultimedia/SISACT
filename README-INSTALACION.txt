@@ -1,55 +1,101 @@
-SISACT · COTIZACIÓN PÚBLICA · OFERTAS V2
+SISACT · IMPRESIONES · ROLLOS CRUD HOTFIX V3.1.1
 
-OBJETIVO
+QUÉ PASÓ
 ========
-Mejorar la pantalla de cotización no vigente para que:
-- use la identidad visual del home de Colibrí Print;
-- se vea más viva y comercial;
-- recupere la intención de compra;
-- muestre productos/servicios actuales que el cliente puede aprovechar.
+La V3 sí quedó activa en el servidor:
+- el Wizard de dimensiones y costos funciona;
+- el popup ya muestra scrollbar;
+- calcula área, paneles, metros, saldo y costo;
+- el historial V3 ya muestra las nuevas columnas.
 
-REEMPLAZA
-=========
-/cotizacion_pdf_publica.php
+El instalador V3.1 falló solamente al intentar volver a reemplazar
+la llamada "create_roll" que la V3 anterior ya había cambiado.
 
-NO REQUIERE
+Por eso:
+Archivado = pendiente
+Auditoría = pendiente
+
+HOTFIX V3.1.1
+=============
+Este paquete NO vuelve a modificar create_roll.
+
+Solo agrega:
+- edición de rollos;
+- modificación de saldo;
+- modificación de ancho;
+- modificación de costo por metro;
+- archivado;
+- restauración;
+- eliminación segura;
+- auditoría de cambios.
+
+NUEVA RUTA
+==========
+/admin/impresiones_rollos.php
+
+ELIMINACIÓN SEGURA
+==================
+Rollo SIN trabajos:
+puede eliminarse físicamente.
+
+Rollo CON trabajos:
+NO se elimina.
+Se archiva y conserva todos los movimientos históricos.
+
+Un rollo archivado:
+- deja de contar en inventario disponible;
+- deja de aparecer como rollo utilizable;
+- mantiene su historial;
+- puede restaurarse.
+
+INSTALACIÓN
 ===========
-- SQL
-- instalador
-- cambios en otras rutas
+1. Extraer el ZIP en la raíz de SISACT.
 
-FUNCIONALIDAD NUEVA
-===================
-1. Hero oscuro con colores del home:
-   - azul marino
-   - rosa/fucsia
-   - cyan
-   - acentos dorados
+2. Abrir:
+   /admin/aplicar_impresiones_rollos_v3_1_1.php
 
-2. CTA principales:
-   - Solicitar nueva cotización
-   - Ver productos y servicios
-   - Ir al sitio principal
+3. Pulsar:
+   Aplicar Hotfix V3.1.1
 
-3. Extra plus comercial:
-   - tarjetas de productos/ofertas actuales
-   - bloque “¿Qué sigue?”
-   - bloque de contacto rápido
+4. Debe mostrar:
+   Archivado      ✓ listo
+   Auditoría      ✓ listo
+   Página Rollos  ✓ lista
+   Helper CRUD    ✓ listo
 
-4. Sección editable:
-   La función qpv2_products() contiene las tarjetas de servicios
-   destacadas y puede modificarse fácilmente más adelante.
+5. Abrir:
+   /admin/impresiones_rollos.php
 
-FUNCIONALIDAD CONSERVADA
-========================
-Si el token es válido:
-- sigue actualizando last_access_at
-- sigue usando quote_items()
-- sigue usando quote_totals()
-- sigue generando el PDF inline
-- no altera la lógica de cotizaciones válidas
+6. Editar un rollo existente y probar:
+   - nombre;
+   - metros iniciales;
+   - metros disponibles;
+   - ancho;
+   - costo/ml.
 
-GITHUB
+IMPORTANTE
+==========
+No necesitas reinstalar V3.
+No pulses nuevamente el instalador V3.1 anterior.
+
+SCROLL
 ======
-Después de aprobar, subir:
-- cotizacion_pdf_publica.php
+En las capturas actuales el scrollbar del Wizard ya aparece y el botón
+"Confirmar y descontar" está accesible en la zona inferior.
+
+Este hotfix no reemplaza el Wizard ni sus cálculos.
+
+GITHUB DESPUÉS DE VALIDAR
+=========================
+Subir:
+admin/impresiones.php
+api/registrar_impresion.php
+admin/impresiones_rollos.php
+includes/impresiones_rollos_v3_1_1.php
+assets/css/impresiones-rollos-v3-1-1.css
+database/sql/026_impresiones_rollos_crud_v3_1_1.sql
+
+NO subir:
+admin/aplicar_impresiones_rollos_v3_1_1.php
+*.bak_rollos_v3_1_1
