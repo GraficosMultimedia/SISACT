@@ -24,6 +24,9 @@ require __DIR__ . '/../includes/header.php';
       <a class="calc-tool" href="/admin/cotizadores_config.php">
         <span class="calc-tool-icon">⚙</span><span><strong>Configurar tarifas</strong><small>Ajusta costos y márgenes internos</small></span>
       </a>
+      <a class="calc-tool" href="/admin/cotizador_laser.php#tarifas">
+        <span class="calc-tool-icon">✧</span><span><strong>Tarifas de láser</strong><small>Configura tu máquina, material y utilidad</small></span>
+      </a>
     </div>
   </div>
 </div>
@@ -54,11 +57,25 @@ require __DIR__ . '/../includes/header.php';
     </div>
     <span class="calc-link">Abrir cotizador <span>→</span></span>
   </a>
+
+  <!-- SISACT_COTIZADOR_LASER_V2 -->
+  <a class="calc-card laser" href="/admin/cotizador_laser.php">
+    <div class="calc-card-head"><span class="calc-badge">Cotizador 03</span><span class="calc-card-icon">✧</span></div>
+    <h3>Corte y grabado láser</h3>
+    <p>Calcula material, corte, grabado, diseño, acabados y precio por pieza con tus costos reales del taller.</p>
+    <div class="calc-feature-list">
+      <span class="calc-feature"><i>◈</i> Materiales y espesores</span>
+      <span class="calc-feature"><i>◈</i> Corte y grabado</span>
+      <span class="calc-feature"><i>◈</i> Utilidad e impuestos</span>
+      <span class="calc-feature"><i>◈</i> Usar resultado en cotización</span>
+    </div>
+    <span class="calc-link">Abrir cotizador <span>→</span></span>
+  </a>
 </div>
 
 <div class="card calc-note">
   <div class="calc-note-icon">💡</div>
-  <div class="calc-note-text"><strong>Regla comercial</strong><br>El margen se interpreta como <b>margen sobre el precio de venta</b>. Por ejemplo, un costo de $100 con 35% de margen genera un precio de $153.85.</div>
+  <div class="calc-note-text"><strong>Regla comercial</strong><br>En Bastidor y CNC, el margen se interpreta como <b>margen sobre el precio de venta</b>. Por ejemplo, un costo de $100 con 35% de margen genera un precio de $153.85. El cotizador láser permite elegir entre recargo sobre costo y margen sobre venta.</div>
 </div>
 <script src="/assets/js/cotizadores.js?v=4.2" defer></script>
 <?php require __DIR__ . '/../includes/footer.php'; ?>

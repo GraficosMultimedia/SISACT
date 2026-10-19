@@ -25,6 +25,7 @@ function quote_money(float $value): string {
 function quote_source_label(?string $source): string {
     if ($source === 'bastidor_lona') return 'Bastidor + Lona';
     if ($source === 'corte_cnc') return 'Corte CNC';
+    if ($source === 'corte_laser') return 'Corte y grabado láser';
     return 'Manual';
 }
 
@@ -76,6 +77,14 @@ function quote_totals(int $quoteId): array {
 }
 
 function quote_source_cost_rows(string $source, array $result): array {
+    if ($source === 'corte_laser') {
+        return [
+            ['Material', (float)($result['material_cost'] ?? 0)],
+            ['Máquina láser', (float)($result['machine_cost'] ?? 0)],
+            ['Diseño y preparación', (float)($result['design_cost'] ?? 0)],
+            ['Acabados', (float)($result['finishing_cost'] ?? 0)],
+        ];
+    }
     if ($source === 'bastidor_lona') {
         return [
             ['PTR', (float)($result['ptr_cost'] ?? 0)],

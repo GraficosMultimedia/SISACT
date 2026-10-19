@@ -1,0 +1,125 @@
+SISACT · COTIZADOR LÁSER V1 · INSTALACIÓN EN CPANEL
+================================================
+
+Paquete de integración de Corte y grabado láser.
+Preparado sobre GraficosMultimedia/SISACT, commit 1ab9e1929efda8425bb3d5a61c0b14614b41aaf9.
+
+CONTENIDO Y ALCANCE
+------------------
+Archivo existente actualizado:
+  admin/cotizadores.php
+
+Archivos nuevos:
+  admin/cotizador_laser.php
+  assets/css/cotizador-laser-v1.css
+  assets/js/cotizador-laser-engine-v1.js
+  assets/js/cotizador-laser-v1.js
+
+El acceso utiliza require_auth(), la sesión y el encabezado actuales de SISACT.
+El módulo aparece en Administración > Cotizadores > Corte y grabado láser.
+La pantalla conserva el formulario aprobado, con navegación interna adaptada.
+Usa el nombre comercial configurado en SISACT para el documento del cliente.
+La integración se limita a estos cinco archivos. No requiere ejecutar SQL,
+modificar config.php ni instalar dependencias en cPanel.
+
+INSTALACIÓN
+-----------
+1. En cPanel > Administrador de archivos, ubica la raíz real de SISACT:
+   es la carpeta que contiene admin/, assets/, includes/ y config/.
+   Si SISACT está instalado en un subdirectorio de public_html, usa esa carpeta.
+
+2. Descarga una copia del archivo actual admin/cotizadores.php antes de subir
+   este paquete. Conserva tu respaldo fuera del directorio público.
+
+3. Sube SISACT_Cotizador_Laser_V1_cPanel.zip a la raíz de SISACT y selecciona
+   Extraer. Combina las carpetas admin/ y assets/ con las existentes.
+   Reemplaza admin/cotizadores.php cuando se solicite. Los cuatro archivos
+   restantes se agregan como nuevos archivos del módulo.
+   No extraigas el ZIP dentro de admin/: sus rutas ya incluyen admin/ y assets/.
+
+4. Inicia sesión en SISACT y entra en Administración > Cotizadores.
+   Debes ver Bastidor + Lona, Corte CNC y Corte y grabado láser.
+   Abre el tercer cotizador. Acceso directo: /admin/cotizador_laser.php
+   Si el listado sigue mostrando dos opciones, recárgalo con Ctrl+F5.
+
+5. Abre Tarifas y máquina y configura tus costos reales. También puedes entrar
+   desde el botón Tarifas de láser en la página de Cotizadores.
+   Comprueba potencia y área útil: los valores iniciales configurables son
+   100 W y 90 × 60 cm. Las tarifas de máquina y material están vacías hasta
+   que las registres.
+
+6. Crea un trabajo, revisa su desglose y usa Guardar cálculo láser.
+   Usa Imprimir / PDF y selecciona Guardar como PDF en el navegador.
+   Comprueba la vista previa y el documento final antes de enviarlo al cliente.
+
+DATOS, HISTORIAL Y RESPALDOS
+--------------------------
+El historial del módulo, los borradores y las tarifas se guardan localmente
+para cada usuario de SISACT en cada navegador. Capacidad: 100 cálculos.
+No se sincronizan automáticamente entre computadoras, teléfonos o navegadores.
+
+El botón Guardar cálculo láser conserva una estimación en este historial.
+Para dar seguimiento a una cotización formal, registra el trabajo y su precio
+en el módulo Cotizaciones de SISACT. Los folios CL del cotizador son internos
+y su numeración pertenece a cada historial local.
+
+Para trasladar datos desde el cotizador aprobado anteriormente:
+1. En el cotizador anterior abre Tarifas y máquina > Exportar respaldo.
+2. En el nuevo módulo inicia sesión con el usuario que utilizará esos datos.
+3. En Tarifas y máquina > Importar respaldo, selecciona el archivo JSON.
+4. Revisa el aviso y confirma la importación.
+
+Importar combina los cálculos por identificador y reemplaza los ajustes.
+El borrador que estés utilizando se conserva. Puedes exportar un respaldo
+desde el módulo en cualquier momento. Limpiar datos del navegador elimina
+el historial local; conserva una copia exportada de los datos que necesites.
+
+CÁLCULO
+-------
+- Material por área utilizada o por hojas completas; material del cliente
+  disponible. Las medidas de pieza y hoja se capturan en centímetros.
+- Tiempo de corte más tiempo de grabado, indicado por lote o por pieza.
+- Costo por minuto y extras de diseño/preparación y acabados por lote.
+- Recargo sobre costo o margen sobre venta, venta mínima, descuento y
+  porcentaje de IVA/impuesto opcional.
+- Precio por pieza como promedio del total del lote, redondeado a centavos.
+- La utilidad interna se obtiene después del descuento y antes del impuesto.
+
+El tiempo se captura desde LightBurn o tu software de corte. El área por sí
+sola no determina la duración. Las hojas completas usan una estimación en
+retícula rectangular con el mejor giro uniforme; confirma el acomodo,
+separación entre piezas y ancho del haz antes de fabricar.
+
+PRUEBA DESPUÉS DE INSTALAR
+-------------------------
+- Con la sesión cerrada, /admin/cotizador_laser.php debe llevar al acceso.
+- Inicia sesión y comprueba el enlace al módulo desde Cotizadores.
+- Guarda tus tarifas, calcula un trabajo y comprueba su total.
+- Guarda y recupera el trabajo en Historial láser.
+- Exporta un respaldo y comprueba la vista previa de Imprimir / PDF.
+- Revisa escritorio y móvil. Los costos internos y la utilidad se muestran
+  en el panel; el documento para el cliente muestra los importes comerciales.
+
+VERIFICACIÓN REALIZADA
+---------------------
+- Sintaxis de los dos archivos PHP: validada con PHP 8.3.6.
+- Sintaxis de ambos archivos JavaScript: validada.
+- 32 comprobaciones de integración aprobadas, con el runtime y
+  encabezado reales de SISACT, sesión de prueba y configuración aislada.
+- Historial por usuario, redirección sin sesión, tarifas, cantidades,
+  cálculo por pieza/lote, guardado, recuperación, copia, respaldo e importación.
+- Identificadores y 570 selectores CSS comprobados para
+  limitar los estilos al módulo y a su impresión.
+- Motor de precios idéntico al aprobado; únicamente cambia su nombre global
+  para evitar interferencias con otros módulos.
+
+Los flujos de interfaz se probaron con DOM simulado. La revisión visual,
+la impresión/PDF real y la comprobación con la configuración y datos de tu
+servidor quedan pendientes de la prueba anterior. Este ZIP está preparado
+para instalar; no representa una instalación ya realizada en tu cPanel.
+
+REVERTIR LA INSTALACIÓN
+----------------------
+Restaura el admin/cotizadores.php que respaldaste y retira únicamente los
+cuatro archivos nuevos de esta lista. Los respaldos JSON exportados siguen
+siendo utilizables. La versión V1 no requiere revertir una migración SQL.

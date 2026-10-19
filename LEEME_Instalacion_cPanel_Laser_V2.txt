@@ -1,0 +1,129 @@
+SISACT · COTIZADOR LÁSER V2 · INSTALACIÓN EN CPANEL
+Versión 2.0.0 — 19 de octubre de 2026
+
+QUÉ INCLUYE
+- Catálogo compartido de materiales y espesores con costo y dimensiones por hoja.
+- MDF de 3, 6, 9, 12 y 15 mm; acrílico de 3 y 6 mm, y opción de agregar otros.
+- Seleccionar todo, editar, borrar y guardar cambios; búsqueda de materiales.
+- Tema azul oscuro, campos y botones acordes con el panel administrativo SISACT.
+- Usar resultado abre Cotización nueva mediante el flujo existente de Bastidor y CNC.
+- Conserva descuento, impuesto, costos internos y centavos del total del lote.
+- Historial local, impresión para cliente y respaldo JSON compatibles con V1.
+No se incluyen precios de ejemplo: captura los costos reales de tu taller.
+
+ANTES DE ACTUALIZAR
+1. Si utilizas V1, abre sus Ajustes y exporta un respaldo JSON desde el mismo
+   usuario y navegador donde guardaste cálculos o tarifas. Conserva ese archivo.
+2. Respalda los siguientes archivos de tu instalación actual:
+   admin/cotizadores.php
+   admin/cotizador_laser.php (si ya existe)
+   admin/cotizacion_nueva.php
+   includes/cotizaciones.php
+   Conserva también el paquete V1 para una eventual reversión.
+3. Este paquete se preparó sobre el repositorio GraficosMultimedia/SISACT,
+   revisión 1ab9e1929efda8425bb3d5a61c0b14614b41aaf9, con la integración V1.
+   Si hiciste otros cambios en esos archivos después, compara antes de sustituirlos.
+
+INSTALACIÓN CON EL ADMINISTRADOR DE ARCHIVOS DE CPANEL
+1. Entra en la carpeta raíz REAL de SISACT, donde ya están admin/, assets/ e
+   includes/. Para tu dominio puede ser public_html u otra raíz configurada.
+2. Sube SISACT_Cotizador_Laser_V2_cPanel.zip a esa carpeta y extrae su contenido
+   allí, permitiendo reemplazar los archivos incluidos. No lo extraigas dentro
+   de una carpeta adicional llamada SISACT_Cotizador_Laser_V2_cPanel.
+3. Confirma que existe admin/cotizador_laser.php y que se copiaron las rutas
+   enumeradas en ARCHIVOS DEL PAQUETE, al final de este documento.
+4. Recarga el navegador con Ctrl+F5 y entra en Administración > Cotizadores >
+   Corte y grabado láser, o en /admin/cotizador_laser.php.
+5. No necesitas importar SQL, crear tablas ni modificar config.php.
+   Se utiliza la tabla cp_settings que tu sistema ya usa para su configuración.
+   Los archivos CSS/JS V1 pueden permanecer: esta página carga los recursos V2.
+
+CONFIGURACIÓN DE MATERIALES Y TARIFAS
+1. En Materiales, cada fila representa un material Y un espesor independiente.
+2. Pulsa Editar, captura ancho y largo de la hoja en centímetros y el costo de
+   la hoja completa en MXN. Pulsa Aplicar al catálogo.
+3. Puedes agregar cualquier material o espesor con Nuevo material. Se evita
+   duplicar una misma combinación de nombre y espesor.
+4. Para editar con el botón global selecciona una fila. Para borrar puedes
+   seleccionar varias o usar Seleccionar todo sobre la búsqueda visible.
+5. Pulsa Guardar cambios para escribir el catálogo y las tarifas en SISACT.
+   Aplicar al catálogo deja cambios pendientes; aún no los comparte.
+6. En Tarifas y máquina configura área útil, potencia, costo por minuto,
+   utilidad, venta mínima, merma e impuesto; guarda los ajustes.
+7. Al elegir material en un cálculo se cargan su espesor y costos. Puedes
+   ajustar costos para ese cálculo sin modificar el catálogo. Los cálculos
+   guardados conservan sus datos, aunque después edites o borres el material.
+
+DATOS COMPARTIDOS Y RESPALDOS V1/V2
+- Materiales y tarifas se guardan en cp_settings, clave calculator.laser.v2,
+  y se comparten entre los usuarios con sesión de SISACT.
+- El historial y el borrador del calculador se conservan en el navegador por
+  usuario, como en V1. Guardar cálculo NO crea aún una cotización formal.
+- V2 utiliza la misma clave local de V1. Conserva cálculos y borrador, y ofrece
+  Importar mis tarifas V1 para revisar las tarifas anteriores. Sus perfiles
+  con espesor y costos se asignan solo al espesor correspondiente. Si tu perfil
+  V1 no tenía espesor, completa ese material manualmente en el catálogo.
+- Después de importar V1 o un respaldo JSON, revisa y pulsa Guardar cambios
+  para compartir catálogo y tarifas. El historial importado se combina por ID.
+- Si otro usuario guardó primero, se rechaza la versión antigua del catálogo
+  para evitar sobrescribirlo. Recarga el catálogo y vuelve a aplicar tus cambios.
+- Los cambios de catálogo y tarifas pendientes se pierden al salir sin guardar.
+
+USAR RESULTADO EN COTIZACIÓN NUEVA
+1. Completa material, medidas, cantidad, tiempo de corte o grabado y tarifas.
+2. Pulsa Usar resultado. El servidor valida y recalcula el resultado, y abre:
+   /admin/cotizacion_nueva.php?from=laser
+3. Se agrega una partida con cantidad 1 por el lote completo. La descripción
+   incluye cantidad física de piezas, material, espesor y medidas por pieza.
+   Esto evita diferencias de centavos al dividir el precio entre piezas.
+4. El importe de la partida es la venta ANTES de descuento e impuesto. Los
+   porcentajes se precargan en sus campos y se aplican una sola vez.
+5. Selecciona el cliente en el formulario normal y guarda la cotización.
+   El nombre de referencia del calculador no crea ni selecciona clientes.
+6. Al guardar se usan las tablas, numeración, condiciones comerciales y flujo
+   habitual de SISACT. Los costos internos se registran por separado y la
+   utilidad del trabajo láser se calcula antes de IVA.
+7. Las cotizaciones de Bastidor + Lona y CNC conservan su flujo actual.
+
+COMPROBACIÓN DESPUÉS DE SUBIR
+- Verifica que el menú muestre el cotizador y que el fondo, campos, avisos y
+  diálogos tengan el tema oscuro del panel.
+- Captura el costo de MDF 3 mm y MDF 6 mm; guarda, vuelve a abrir la página y
+  confirma que cada espesor carga su propio costo. Compruébalo con otro usuario.
+- Realiza un cálculo, usa el resultado, selecciona un cliente y compara el total
+  antes de guardarlo como cotización formal.
+- Revisa el aspecto en tu pantalla y teléfono y la impresión desde tu navegador.
+
+VALIDACIÓN DEL PAQUETE
+- PHP sin errores de sintaxis y JavaScript con sintaxis válida.
+- 59 comprobaciones funcionales aprobadas, incluyendo migración V1, respaldo V2,
+  permisos, CSRF, versiones concurrentes, catálogo por espesor, historial por
+  usuario, impresión sin costos internos, traslado y guardado formal, centavos,
+  descuento/IVA, y regresiones de Bastidor y CNC.
+- Probado con PHP 8.3.6 y una base SQLite aislada con adaptación de las sentencias
+  MySQL. El motor de cálculo del navegador es idéntico al entregado en V1.
+- La revisión visual en navegador real no pudo completarse por una restricción
+  del entorno de pruebas. La comprobación con MySQL y la apariencia final en tu
+  servidor quedan pendientes hasta instalar y probar el paquete.
+- Este ZIP no instala cambios automáticamente en cPanel ni los publica en GitHub.
+
+REVERSIÓN
+Restaura los archivos PHP respaldados y el paquete anterior. Los recursos V2
+pueden permanecer sin cargarse; no es necesario borrar la fila de configuración
+V2. Si vuelves a V1, importa el respaldo JSON exportado ANTES de actualizar: el
+formato local que escribe V2 ya es versión 2. Conserva también un respaldo V2
+antes de revertir por si necesitas recuperar trabajos posteriores.
+
+ARCHIVOS DEL PAQUETE
+admin/cotizadores.php
+admin/cotizador_laser.php
+admin/cotizacion_nueva.php
+includes/cotizaciones.php
+includes/laser_calculator.php
+assets/css/cotizador-laser-v2.css
+assets/js/cotizador-laser-engine-v1.js
+assets/js/cotizador-laser-v2.js
+LEEME_Instalacion_cPanel_Laser_V2.txt
+
+No contiene credenciales, configuración de conexión, bases de datos ni archivos
+subidos por clientes.

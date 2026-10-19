@@ -155,6 +155,13 @@ if ($taxBaseSaved > 0) {
     $taxPct = round(($taxAmountSaved / $taxBaseSaved) * 100, 4);
 }
 
+// SISACT_LASER_V2: precarga comercial del lote; el cálculo ya viene validado en servidor.
+if (!$editing && $source === 'corte_laser') {
+    $discountPct = max(0, min(100, (float)($sourceInput['discount_pct'] ?? 0)));
+    $taxPct = max(0, min(100, (float)($sourceInput['tax_pct'] ?? 0)));
+    $notes = (string)($sourceInput['notes'] ?? '');
+}
+
 if (!$items) {
     $defaultDescription = $sourceTitle !== '' ? $sourceTitle : 'Nuevo concepto';
     $defaultQty = $source === 'corte_cnc' ? (float)($sourceInput['quantity'] ?? 1) : 1.0;
@@ -260,8 +267,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $internalCost = $editing
                 ? (float)($totals['internal_cost'] ?? 0)
                 : (float)($sourceResult['cost'] ?? 0);
-            $profit = round($previewTotal - $internalCost, 2);
-            $margin = $previewTotal > 0 ? round(($profit / $previewTotal) * 100, 3) : 0;
+            $profitBase = $source === 'corte_laser' ? $previewNet : $previewTotal;
+            $profit = round($profitBase - $internalCost, 2);
+            $margin = $profitBase > 0 ? round(($profit / $profitBase) * 100, 3) : 0;
 
             try {
                 $pdo = db();
@@ -678,12 +686,12 @@ require __DIR__ . '/../includes/header.php';
                     <div class="field">
                         <label>Descuento (%)</label>
                         <input id="quoteDiscount" type="number" inputmode="decimal" name="discount"
-                               min="0" max="100" step="0.01" value="<?=e((string)$discountPct)?>">
+                               min="0" max="100" step="<?= $source === 'corte_laser' ? 'any' : '0.01' ?>" value="<?=e((string)$discountPct)?>">
                     </div>
                     <div class="field">
                         <label>Impuesto (%)</label>
                         <input id="quoteTaxPct" type="number" inputmode="decimal" name="tax_pct"
-                               min="0" max="100" step="0.01" value="<?=e((string)$taxPct)?>">
+                               min="0" max="100" step="<?= $source === 'corte_laser' ? 'any' : '0.01' ?>" value="<?=e((string)$taxPct)?>">
                     </div>
                 </div>
 
