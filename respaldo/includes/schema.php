@@ -1,0 +1,6 @@
+<?php
+declare(strict_types=1);
+require_once __DIR__.'/web_common.php';
+function cp_schema_product(array $p,array $c):array{$brand=$c['trade_name']?:$c['legal_name'];$o=['@context'=>'https://schema.org','@type'=>'Product','name'=>(string)$p['name'],'description'=>cp_web_sanitize_text((string)($p['description']??''),5000),'url'=>(string)$p['url'],'brand'=>['@type'=>'Brand','name'=>$brand]];if(!empty($p['image_url']))$o['image']=[$p['image_url']];if(!empty($p['sku']))$o['sku']=(string)$p['sku'];if(($p['pricing_type']??'')==='fixed'&&$p['sale_price']!==null)$o['offers']=['@type'=>'Offer','url'=>(string)$p['url'],'priceCurrency'=>'MXN','price'=>number_format((float)$p['sale_price'],2,'.',''),'availability'=>'https://schema.org/InStock'];return$o;}
+function cp_schema_local_business(array $c):array{return['@context'=>'https://schema.org','@type'=>'LocalBusiness','name'=>$c['trade_name']?:$c['legal_name'],'url'=>$c['website']??cp_web_absolute('/'),'telephone'=>$c['phone']??null,'address'=>['@type'=>'PostalAddress','streetAddress'=>$c['address']??null,'addressLocality'=>$c['city']??null,'addressRegion'=>$c['state']??null,'postalCode'=>$c['postal_code']??null,'addressCountry'=>$c['country']??'MX']];}
+function cp_schema_script(array $d):string{return '<script type="application/ld+json">'.json_encode($d,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES).'</script>';}

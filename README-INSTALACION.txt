@@ -1,101 +1,300 @@
-SISACT · IMPRESIONES · ROLLOS CRUD HOTFIX V3.1.1
+SISACT · FLUJO WEB → ORDEN FORMAL V1
+Colibrí Print México
 
-QUÉ PASÓ
+OBJETIVO
 ========
-La V3 sí quedó activa en el servidor:
-- el Wizard de dimensiones y costos funciona;
-- el popup ya muestra scrollbar;
-- calcula área, paneles, metros, saldo y costo;
-- el historial V3 ya muestra las nuevas columnas.
+Convertir la recepción pública de archivos en UN SOLO EXPEDIENTE:
 
-El instalador V3.1 falló solamente al intentar volver a reemplazar
-la llamada "create_roll" que la V3 anterior ya había cambiado.
+Cliente
+→ Solicitud web CPQ
+→ archivos + configuración + precio
+→ cotización formal
+→ orden formal
+→ archivos de producción en la orden
+→ seguimiento público continuo
 
-Por eso:
-Archivado = pendiente
-Auditoría = pendiente
-
-HOTFIX V3.1.1
-=============
-Este paquete NO vuelve a modificar create_roll.
-
-Solo agrega:
-- edición de rollos;
-- modificación de saldo;
-- modificación de ancho;
-- modificación de costo por metro;
-- archivado;
-- restauración;
-- eliminación segura;
-- auditoría de cambios.
-
-NUEVA RUTA
-==========
-/admin/impresiones_rollos.php
-
-ELIMINACIÓN SEGURA
+PROBLEMA CORREGIDO
 ==================
-Rollo SIN trabajos:
-puede eliminarse físicamente.
+La API pública ya estaba guardando correctamente:
 
-Rollo CON trabajos:
-NO se elimina.
-Se archiva y conserva todos los movimientos históricos.
+cp_web_quote_requests
+cp_web_quote_files
+cp_print_request_items
 
-Un rollo archivado:
-- deja de contar en inventario disponible;
-- deja de aparecer como rollo utilizable;
-- mantiene su historial;
-- puede restaurarse.
+Pero Administración seguía leyendo el formato antiguo [CPQ_JSON] y
+solamente attachment_name / attachment.relative_path.
+
+Resultado:
+- el cliente sí enviaba los archivos;
+- los archivos quedaban en uploads/cotizador/impresiones/{requestId};
+- Administración no consultaba cp_web_quote_files;
+- Convertir a cotización generaba un concepto genérico en $0;
+- la orden copiaba conceptos pero no archivos.
+
+V1 USA COMO FUENTE MAESTRA
+==========================
+cp_web_quote_requests
+  ↓
+cp_web_quote_files
+  ↓
+cp_print_request_items
+  ↓
+cp_quotes / cp_quote_items
+  ↓
+cp_orders / cp_order_items
+  ↓
+cp_order_photos
+
+CAMBIOS
+=======
+1. Solicitudes web:
+   admin/cotizaciones_web.php
+
+   Ahora muestra TODOS los archivos:
+   - nombre
+   - tipo
+   - peso
+   - tamaño
+   - material
+   - acabado
+   - color/B&N
+   - páginas
+   - copias
+   - precio unitario
+   - subtotal
+
+2. Descarga protegida:
+   admin/archivo_web.php
+
+   Los archivos se sirven detrás de require_auth().
+   Ya no es necesario publicar el path directo en Administración.
+
+3. Conversión CPQ → Cotización:
+   admin/cotizacion_desde_web.php
+
+   Crea un concepto por configuración/archivo.
+   Conserva unit_price y subtotal calculados por la API pública.
+   cp_quote_totals recibe el subtotal real.
+
+4. Cotización:
+   admin/cotizacion.php
+
+   El paquete solo agrega:
+   includes/web_print_flow.php
+
+   Como el archivo actual usa function_exists(),
+   el helper sustituye el bloque antiguo de un solo archivo y muestra
+   TODO el expediente.
+
+5. Orden formal:
+   admin/orden_nueva.php
+
+   Cuando la cotización proviene de una solicitud web:
+   - copia los archivos originales a uploads/orders/{orderId}/
+   - crea registros cp_order_photos con photo_type=client_file
+   - deja los archivos visibles en el expediente normal de la orden
+   - registra historial
+   - vincula CPQ con order_id
+
+6. Seguimiento público:
+   seguimiento.php
+
+   Antes de existir la orden:
+   - el mismo request_token muestra recepción/revisión/cotización.
+
+   Después de crear la orden:
+   - ese MISMO token se inserta en cp_tracking_tokens;
+   - seguimiento.php cambia automáticamente al seguimiento normal
+     de la orden, producción, pagos, CFDI, etc.
+
+NUEVA TRAZABILIDAD
+==================
+cp_web_quote_requests:
++ converted_order_id
++ converted_order_at
+
+cp_web_quote_item_links:
+request item/file ↔ quote item
+
+cp_web_quote_order_files:
+web file ↔ order photo/file
+
+NO SE MUEVEN LOS ORIGINALES
+===========================
+Los archivos originales continúan en:
+
+uploads/cotizador/impresiones/{requestId}/
+
+Para la orden se COPIA una versión a:
+
+uploads/orders/{orderId}/
+
+Esto conserva el expediente original CPQ.
 
 INSTALACIÓN
 ===========
 1. Extraer el ZIP en la raíz de SISACT.
 
-2. Abrir:
-   /admin/aplicar_impresiones_rollos_v3_1_1.php
+2. Entrar como administrador.
 
-3. Pulsar:
-   Aplicar Hotfix V3.1.1
+3. Abrir:
+   /admin/aplicar_flujo_web_orden_v1.php
 
-4. Debe mostrar:
-   Archivado      ✓ listo
-   Auditoría      ✓ listo
-   Página Rollos  ✓ lista
-   Helper CRUD    ✓ listo
+4. Pulsar:
+   Instalar flujo V1
 
-5. Abrir:
-   /admin/impresiones_rollos.php
+5. Debe mostrar:
+   Vínculo Orden       ✓ listo
+   CPQ → Conceptos     ✓ listo
+   Archivos → Orden    ✓ listo
+   Helper              ✓ listo
+   Descarga protegida  ✓ lista
 
-6. Editar un rollo existente y probar:
-   - nombre;
-   - metros iniciales;
-   - metros disponibles;
-   - ancho;
-   - costo/ml.
+PRUEBA COMPLETA
+===============
+A. Cliente
+----------
+1. Abrir:
+   https://colibriprint.com.mx/#solicita-impresiones
 
-IMPORTANTE
-==========
-No necesitas reinstalar V3.
-No pulses nuevamente el instalador V3.1 anterior.
+2. Enviar 2 archivos con configuraciones diferentes.
 
-SCROLL
-======
-En las capturas actuales el scrollbar del Wizard ya aparece y el botón
-"Confirmar y descontar" está accesible en la zona inferior.
+3. Debe devolver:
+   CPQ-xxxxxx
+   total
+   token
+   enlace seguimiento
 
-Este hotfix no reemplaza el Wizard ni sus cálculos.
+B. Seguimiento antes de cotización
+----------------------------------
+Abrir el enlace del cliente.
 
-GITHUB DESPUÉS DE VALIDAR
+Debe mostrar:
+Recibimos tus archivos correctamente.
+
+C. Administración
+-----------------
+Abrir:
+   /admin/cotizaciones_web.php
+
+La solicitud debe mostrar los 2 archivos completos con:
+Ver
+Descargar
+configuración
+precio
+subtotal.
+
+D. Convertir
+------------
+Pulsar:
+Convertir en cotización
+
+La cotización debe tener 2 conceptos y total real.
+
+E. Cotización
+-------------
+Abrir la cotización.
+
+Debe mostrar:
+EXPEDIENTE · ARCHIVOS DEL CLIENTE
+
+con ambos archivos.
+
+F. Aprobar
+----------
+Cambiar cotización a Aprobada.
+
+G. Crear orden
+--------------
+Crear la orden desde la cotización aprobada.
+
+La orden debe crearse y automáticamente copiar los archivos.
+
+H. Orden
+--------
+Abrir /admin/orden.php?id=...
+
+En:
+Fotos, documentos y archivos de producción
+
+deben aparecer los archivos originales como:
+Archivo recibido del cliente.
+
+I. Mismo seguimiento
+--------------------
+Abrir EL MISMO enlace de seguimiento que recibió el cliente al enviar CPQ.
+
+Ahora debe mostrar la orden formal, producción, pagos, etc.
+
+SEGURIDAD
+=========
+- Validación del token 64 hex.
+- Descarga administrativa con require_auth().
+- realpath() y prefijo de almacenamiento para evitar traversal.
+- Los archivos de la orden se copian, no se mueven.
+- La importación de archivos ocurre dentro del flujo transaccional de la orden.
+- Si falla la creación de orden, el catch elimina copias creadas antes del rollback.
+- Tabla de mapping evita duplicar el mismo archivo en la misma orden.
+
+ARCHIVOS NUEVOS DE PRODUCCIÓN
+=============================
+includes/web_print_flow.php
+includes/web_print_tracking_view.php
+admin/archivo_web.php
+assets/css/web-print-flow-v1.css
+database/sql/027_web_print_flow_v1.sql
+
+ARCHIVOS MODIFICADOS
+====================
+admin/cotizaciones_web.php
+admin/cotizacion_desde_web.php
+admin/cotizacion.php
+admin/orden_nueva.php
+seguimiento.php
+
+ARCHIVOS DE INSTALACIÓN
+=======================
+admin/aplicar_flujo_web_orden_v1.php
+install/web_print_flow_v1/admin/cotizaciones_web.php
+install/web_print_flow_v1/admin/cotizacion_desde_web.php
+
+Después de validar puedes eliminar:
+admin/aplicar_flujo_web_orden_v1.php
+install/web_print_flow_v1/
+
+RESPALDOS
+=========
+El instalador crea:
+
+*.bak_web_flow_v1
+
+para los 5 archivos modificados.
+
+GITHUB DESPUÉS DE APROBAR
 =========================
 Subir:
-admin/impresiones.php
-api/registrar_impresion.php
-admin/impresiones_rollos.php
-includes/impresiones_rollos_v3_1_1.php
-assets/css/impresiones-rollos-v3-1-1.css
-database/sql/026_impresiones_rollos_crud_v3_1_1.sql
+
+includes/web_print_flow.php
+includes/web_print_tracking_view.php
+admin/archivo_web.php
+assets/css/web-print-flow-v1.css
+database/sql/027_web_print_flow_v1.sql
+
+admin/cotizaciones_web.php
+admin/cotizacion_desde_web.php
+admin/cotizacion.php
+admin/orden_nueva.php
+seguimiento.php
 
 NO subir:
-admin/aplicar_impresiones_rollos_v3_1_1.php
-*.bak_rollos_v3_1_1
+admin/aplicar_flujo_web_orden_v1.php
+install/web_print_flow_v1/
+*.bak_web_flow_v1
+
+NO CAMBIA
+=========
+api/print-request.php
+
+La recepción pública actual ya guarda correctamente archivos, items,
+configuraciones y precios; el problema estaba en el consumo posterior
+de ese expediente.
