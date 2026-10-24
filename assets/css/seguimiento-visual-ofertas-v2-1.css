@@ -1,0 +1,743 @@
+/* ============================================================
+   SISACT · Seguimiento Visual + Ofertas V2.1 · Polish + Mobile
+   Capa de overrides sobre V2 Premium. No altera lógica.
+   ============================================================ */
+
+:root{
+  --v21-navy:#102a56;
+  --v21-blue:#087bd9;
+  --v21-cyan:#19b8ef;
+  --v21-pink:#ff4f8c;
+  --v21-green:#20bd88;
+  --v21-gold:#f2b33d;
+  --v21-purple:#8c6df0;
+  --v21-line:#dce7f2;
+  --v21-shadow:0 14px 34px rgba(16,42,86,.08);
+}
+
+/* ---------- Kanban: más contraste y lectura ---------- */
+.progress-card{
+  overflow:hidden;
+}
+
+.progress-line.client-progress .stage span{
+  color:#687d96!important;
+  font-weight:800!important;
+  letter-spacing:-.01em;
+}
+
+.progress-line.client-progress .stage.done span{
+  color:#173b6e!important;
+}
+
+.progress-line.client-progress .stage.active span{
+  color:#057dc9!important;
+  font-weight:900!important;
+}
+
+.progress-line.client-progress .stage.active .stage-dot{
+  box-shadow:0 0 0 5px rgba(22,168,239,.11),0 7px 18px rgba(8,123,217,.14)!important;
+}
+
+.progress-line.client-progress .stage.done .stage-dot{
+  box-shadow:0 5px 14px rgba(16,42,86,.10);
+}
+
+.progress-helper{
+  color:#7d90a6!important;
+  font-weight:600;
+}
+
+/* ---------- Premium hero: más aire, menos peso del ring ---------- */
+.tracking-premium{
+  border-color:#d7e5f1!important;
+  box-shadow:0 18px 48px rgba(16,42,86,.07)!important;
+}
+
+.tracking-premium-hero{
+  grid-template-columns:minmax(0,1fr) 150px!important;
+  padding:30px 30px 25px!important;
+  background:
+    radial-gradient(circle at 3% 5%,rgba(28,194,239,.14),transparent 31%),
+    radial-gradient(circle at 97% 20%,rgba(255,79,140,.075),transparent 31%),
+    linear-gradient(135deg,#f7fcff 0%,#fff 55%,#fff9fc 100%)!important;
+}
+
+.tracking-premium-copy h2{
+  max-width:760px;
+  font-size:clamp(28px,3vw,40px)!important;
+  line-height:1.02!important;
+}
+
+.tracking-premium-copy p{
+  max-width:780px!important;
+  color:#55708b!important;
+  font-size:12.5px!important;
+}
+
+.tracking-premium-ring{
+  width:128px!important;
+  height:128px!important;
+  box-shadow:0 18px 36px rgba(16,42,86,.10)!important;
+}
+
+.tracking-premium-ring:before{
+  inset:12px!important;
+}
+
+.tracking-premium-ring-content strong{
+  font-size:27px!important;
+}
+
+.tracking-premium-chips{
+  gap:9px!important;
+}
+
+.tracking-premium-chip{
+  min-height:34px;
+  padding:8px 11px!important;
+  background:rgba(255,255,255,.9)!important;
+  border-color:#d7e6f3!important;
+}
+
+/* ---------- Estado actual: jerarquía reforzada ---------- */
+.tracking-premium-current{
+  position:relative;
+  overflow:hidden;
+  margin:0 30px!important;
+  padding:16px 18px!important;
+  border-color:#bfe2f5!important;
+  background:linear-gradient(135deg,#effaff 0%,#fff 55%,#f8fcff 100%)!important;
+  box-shadow:0 12px 28px rgba(8,123,217,.075)!important;
+}
+
+.tracking-premium-current:before{
+  content:"";
+  position:absolute;
+  inset:0 auto 0 0;
+  width:5px;
+  background:linear-gradient(180deg,var(--v21-cyan),var(--v21-blue));
+}
+
+.tracking-premium-current-icon{
+  width:50px!important;
+  height:50px!important;
+  border-radius:16px!important;
+  box-shadow:0 7px 18px rgba(8,123,217,.08);
+}
+
+.tracking-premium-current strong{
+  font-size:17px!important;
+}
+
+.tracking-premium-next{
+  min-width:150px;
+  padding-left:16px;
+  border-left:1px solid #dbe8f2;
+}
+
+.tracking-premium-next b{
+  margin-top:3px;
+  font-size:13px!important;
+}
+
+/* ---------- KPIs: más compactos, mejor lectura ---------- */
+.tracking-premium-metrics{
+  gap:13px!important;
+  padding:19px 30px 4px!important;
+}
+
+.tracking-premium-metric{
+  min-height:110px;
+  padding:15px 16px 17px!important;
+  border-color:#dce7f2!important;
+  box-shadow:0 11px 26px rgba(16,42,86,.055)!important;
+}
+
+.tracking-premium-metric strong{
+  font-size:14.5px!important;
+}
+
+.tracking-premium-metric small{
+  font-size:10.5px!important;
+}
+
+/* ---------- Storytelling ---------- */
+.tracking-premium-section-head{
+  padding-top:27px!important;
+}
+
+.tracking-premium-section-head h3{
+  font-size:22px!important;
+}
+
+.tracking-premium-story{
+  gap:15px!important;
+}
+
+.tracking-premium-card{
+  min-height:218px!important;
+  border-color:#dce7f2!important;
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+}
+
+.tracking-premium-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 34px rgba(16,42,86,.09)!important;
+}
+
+.tracking-premium-card.is-current{
+  border-color:#51bdf4!important;
+  box-shadow:0 18px 38px rgba(8,123,217,.14)!important;
+}
+
+.tracking-premium-card.is-current:before{
+  content:"EN CURSO";
+  position:absolute;
+  top:14px;
+  right:14px;
+  z-index:2;
+  padding:5px 8px;
+  border-radius:999px;
+  background:#087bd9;
+  color:#fff;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+.tracking-premium-card-note{
+  font-size:11.5px!important;
+}
+
+/* ---------- Ofertas: más presencia comercial ---------- */
+.tracking-offers-v2{
+  border-color:#d9e6f1!important;
+  box-shadow:0 18px 48px rgba(16,42,86,.07)!important;
+}
+
+.tracking-offers-v2-head{
+  padding:28px 30px 21px!important;
+  background:
+    radial-gradient(circle at 100% 0,rgba(255,79,140,.10),transparent 35%),
+    radial-gradient(circle at 0 100%,rgba(26,169,239,.07),transparent 35%),
+    linear-gradient(135deg,#fff,#f8fcff)!important;
+}
+
+.tracking-offers-v2 h2{
+  font-size:26px!important;
+}
+
+.tracking-offers-v2-main-cta{
+  min-height:44px;
+  padding:11px 16px!important;
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+
+.tracking-offers-v2-main-cta:hover{
+  transform:translateY(-1px);
+  box-shadow:0 15px 30px rgba(11,141,220,.22)!important;
+}
+
+.tracking-offer-v2{
+  min-height:285px!important;
+  padding:18px!important;
+  border-color:#dfe9f4!important;
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+
+.tracking-offer-v2:hover{
+  transform:translateY(-3px);
+  box-shadow:0 17px 34px rgba(16,42,86,.10)!important;
+}
+
+.tracking-offer-v2 h3{
+  font-size:16.5px!important;
+}
+
+.tracking-offer-v2 p{
+  font-size:10.5px!important;
+}
+
+.tracking-offer-v2>a{
+  min-height:44px;
+  font-size:10.5px!important;
+}
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+@media(max-width:980px){
+  .tracking-premium-hero{
+    grid-template-columns:minmax(0,1fr) 125px!important;
+  }
+
+  .tracking-premium-ring{
+    width:112px!important;
+    height:112px!important;
+  }
+
+  .tracking-premium-metrics{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+
+  .tracking-offers-v2-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+
+/* ============================================================
+   MOBILE · verdadero layout mobile-first
+   ============================================================ */
+@media(max-width:760px){
+  body{
+    overflow-x:hidden;
+  }
+
+  .tracking-page{
+    width:100%;
+    padding:10px 10px 28px!important;
+  }
+
+  .tracking-company-header{
+    padding:14px!important;
+    border-radius:16px!important;
+  }
+
+  .tracking-company-top{
+    align-items:flex-start!important;
+    gap:10px!important;
+  }
+
+  .company-logo{
+    width:62px!important;
+    height:48px!important;
+  }
+
+  .company-identity strong{
+    font-size:18px!important;
+  }
+
+  .company-header-badge{
+    padding:7px 9px!important;
+    font-size:10px!important;
+  }
+
+  /* Kanban: carrusel táctil, no tabla comprimida */
+  .progress-card{
+    padding-left:0!important;
+    padding-right:0!important;
+    overflow:hidden!important;
+  }
+
+  .progress-card .section-title{
+    padding-left:16px;
+    padding-right:16px;
+  }
+
+  .progress-line.client-progress{
+    display:flex!important;
+    grid-template-columns:none!important;
+    width:100%!important;
+    min-width:0!important;
+    gap:0!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    padding:7px 16px 13px!important;
+    scroll-snap-type:x mandatory;
+    scroll-padding-inline:16px;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    overscroll-behavior-x:contain;
+  }
+
+  .progress-line.client-progress::-webkit-scrollbar{
+    display:none;
+  }
+
+  .progress-line.client-progress .stage{
+    position:relative;
+    flex:0 0 88px!important;
+    min-width:88px!important;
+    max-width:88px!important;
+    scroll-snap-align:center;
+    padding:0 5px;
+  }
+
+  .progress-line.client-progress .stage:after{
+    width:100%!important;
+  }
+
+  .progress-line.client-progress .stage span{
+    min-height:30px;
+    display:flex!important;
+    align-items:flex-start;
+    justify-content:center;
+    text-align:center;
+    font-size:9px!important;
+    line-height:1.2!important;
+  }
+
+  .progress-helper{
+    padding:0 16px 12px;
+    margin:0!important;
+    text-align:left!important;
+    font-size:9px!important;
+  }
+
+  /* Hero compacto: texto y progreso comparten fila */
+  .tracking-premium-hero{
+    grid-template-columns:minmax(0,1fr) 86px!important;
+    gap:12px!important;
+    padding:20px 16px 17px!important;
+  }
+
+  .tracking-premium-hero:after{
+    width:180px!important;
+    height:180px!important;
+    right:-92px!important;
+    top:-85px!important;
+  }
+
+  .tracking-premium-kicker{
+    font-size:8px!important;
+    letter-spacing:.09em!important;
+  }
+
+  .tracking-premium-copy h2{
+    margin-top:7px!important;
+    font-size:24px!important;
+    line-height:1.04!important;
+  }
+
+  .tracking-premium-copy p{
+    margin-top:8px!important;
+    font-size:11px!important;
+    line-height:1.58!important;
+  }
+
+  .tracking-premium-ring{
+    width:82px!important;
+    height:82px!important;
+    align-self:start;
+    margin-top:8px!important;
+  }
+
+  .tracking-premium-ring:before{
+    inset:8px!important;
+  }
+
+  .tracking-premium-ring-content strong{
+    font-size:20px!important;
+  }
+
+  .tracking-premium-ring-content span{
+    font-size:7px!important;
+  }
+
+  .tracking-premium-chips{
+    grid-column:1/-1;
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:7px!important;
+    margin-top:13px!important;
+  }
+
+  .tracking-premium-chip{
+    width:100%;
+    min-width:0;
+    min-height:38px;
+    padding:7px 9px!important;
+    justify-content:space-between;
+    font-size:9px!important;
+  }
+
+  .tracking-premium-chip:first-child{
+    grid-column:1/-1;
+  }
+
+  /* Estado actual: tarjeta táctil y compacta */
+  .tracking-premium-current{
+    margin:0 16px!important;
+    padding:13px 14px!important;
+    align-items:center!important;
+    flex-direction:row!important;
+    gap:10px!important;
+    border-radius:15px!important;
+  }
+
+  .tracking-premium-current-main{
+    flex:1 1 auto;
+  }
+
+  .tracking-premium-current-icon{
+    width:42px!important;
+    height:42px!important;
+    border-radius:13px!important;
+    font-size:18px!important;
+  }
+
+  .tracking-premium-current strong{
+    font-size:14px!important;
+  }
+
+  .tracking-premium-next{
+    flex:0 0 112px;
+    min-width:0!important;
+    padding-left:10px!important;
+    text-align:right!important;
+    font-size:8px!important;
+  }
+
+  .tracking-premium-next b{
+    font-size:10px!important;
+  }
+
+  /* KPIs 2x2 para no convertir el móvil en una página interminable */
+  .tracking-premium-metrics{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:9px!important;
+    padding:14px 16px 2px!important;
+  }
+
+  .tracking-premium-metric{
+    min-height:112px!important;
+    padding:12px 12px 14px!important;
+    border-radius:14px!important;
+  }
+
+  .tracking-premium-metric span{
+    font-size:8px!important;
+  }
+
+  .tracking-premium-metric strong{
+    font-size:12px!important;
+    line-height:1.35!important;
+  }
+
+  .tracking-premium-metric small{
+    font-size:9px!important;
+    line-height:1.4!important;
+  }
+
+  .tracking-premium-section-head{
+    padding:20px 16px 0!important;
+  }
+
+  .tracking-premium-section-head h3{
+    font-size:18px!important;
+  }
+
+  .tracking-premium-section-head p{
+    font-size:10px!important;
+  }
+
+  .tracking-premium-legend{
+    margin-top:9px!important;
+    font-size:9px!important;
+  }
+
+  .tracking-premium-story{
+    grid-template-columns:1fr!important;
+    gap:10px!important;
+    padding:14px 16px 20px!important;
+  }
+
+  .tracking-premium-card{
+    min-height:0!important;
+    padding:14px!important;
+    border-radius:16px!important;
+  }
+
+  .tracking-premium-card.is-current:before{
+    top:10px!important;
+    right:10px!important;
+    font-size:7px!important;
+  }
+
+  .tracking-premium-card-icon{
+    width:42px!important;
+    height:42px!important;
+    border-radius:13px!important;
+  }
+
+  .tracking-premium-card h4{
+    font-size:15px!important;
+  }
+
+  .tracking-premium-card-note{
+    margin-top:11px!important;
+    font-size:10.5px!important;
+    line-height:1.58!important;
+  }
+
+  .tracking-premium-card-footer{
+    position:static!important;
+    margin-top:12px;
+    padding-top:9px!important;
+  }
+
+  /* Resumen inferior: una sola columna */
+  .two-col{
+    grid-template-columns:1fr!important;
+    gap:10px!important;
+  }
+
+  /* Promociones: carrusel horizontal táctil */
+  .tracking-offers-v2-head{
+    padding:21px 16px 16px!important;
+  }
+
+  .tracking-offers-v2-headline{
+    grid-template-columns:1fr!important;
+    gap:13px!important;
+  }
+
+  .tracking-offers-v2 h2{
+    font-size:21px!important;
+    line-height:1.1!important;
+  }
+
+  .tracking-offers-v2-head p{
+    font-size:10.5px!important;
+  }
+
+  .tracking-offers-v2-main-cta{
+    width:100%!important;
+    min-height:46px;
+  }
+
+  .tracking-offers-v2-grid{
+    display:flex!important;
+    grid-template-columns:none!important;
+    gap:11px!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    padding:0 16px 18px!important;
+    scroll-snap-type:x mandatory;
+    scroll-padding-inline:16px;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    overscroll-behavior-x:contain;
+  }
+
+  .tracking-offers-v2-grid::-webkit-scrollbar{
+    display:none;
+  }
+
+  .tracking-offer-v2{
+    flex:0 0 min(82vw,310px)!important;
+    min-height:255px!important;
+    scroll-snap-align:start;
+    padding:16px!important;
+  }
+
+  .tracking-offer-v2 a{
+    min-height:46px;
+  }
+
+  .tracking-offers-v2-foot{
+    display:block!important;
+    margin:0 16px 20px!important;
+    padding:12px 13px!important;
+    font-size:9px!important;
+  }
+
+  .tracking-offers-v2-foot a{
+    display:inline-flex!important;
+    margin-top:8px!important;
+    min-height:36px;
+    align-items:center;
+  }
+
+  /* Touch targets */
+  .tracking-page a,
+  .tracking-page button{
+    -webkit-tap-highlight-color:transparent;
+  }
+}
+
+/* Teléfonos pequeños */
+@media(max-width:430px){
+  .tracking-page{
+    padding-left:7px!important;
+    padding-right:7px!important;
+  }
+
+  .tracking-company-top{
+    flex-wrap:wrap;
+  }
+
+  .company-header-badge{
+    margin-left:auto;
+  }
+
+  .tracking-premium-hero{
+    grid-template-columns:1fr 74px!important;
+    padding:18px 14px 15px!important;
+  }
+
+  .tracking-premium-copy h2{
+    font-size:21px!important;
+  }
+
+  .tracking-premium-copy p{
+    grid-column:1/-1;
+  }
+
+  .tracking-premium-ring{
+    width:70px!important;
+    height:70px!important;
+  }
+
+  .tracking-premium-ring-content strong{
+    font-size:17px!important;
+  }
+
+  .tracking-premium-current{
+    margin:0 14px!important;
+  }
+
+  .tracking-premium-next{
+    flex-basis:98px;
+  }
+
+  .tracking-premium-metrics{
+    padding-left:14px!important;
+    padding-right:14px!important;
+  }
+
+  .tracking-premium-section-head{
+    padding-left:14px!important;
+    padding-right:14px!important;
+  }
+
+  .tracking-premium-story{
+    padding-left:14px!important;
+    padding-right:14px!important;
+  }
+
+  .tracking-offers-v2-head,
+  .tracking-offers-v2-grid{
+    padding-left:14px!important;
+    padding-right:14px!important;
+  }
+
+  .tracking-offer-v2{
+    flex-basis:86vw!important;
+  }
+}
+
+/* Accesibilidad / usuarios con reducción de movimiento */
+@media(prefers-reduced-motion:reduce){
+  .tracking-premium-card,
+  .tracking-offer-v2,
+  .tracking-offers-v2-main-cta{
+    transition:none!important;
+  }
+
+  .progress-line.client-progress,
+  .tracking-offers-v2-grid{
+    scroll-behavior:auto!important;
+  }
+}

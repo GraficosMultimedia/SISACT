@@ -60,7 +60,11 @@ function tracking_activity_is_human_request(): bool
         'facebookexternalhit', 'facebot',
         'twitterbot', 'linkedinbot',
         'slackbot', 'discordbot', 'telegrambot',
-        'whatsapp', 'skypeuripreview',
+        /* SISACT_TRACKING_ACTIVITY_V2_WHATSAPP
+         * No bloquear WhatsApp de forma genérica: el navegador integrado
+         * puede usar ese texto en el User-Agent de una visita humana.
+         */
+        'skypeuripreview',
         'microsoft office existence discovery',
         'googlebot', 'bingbot', 'applebot',
         'google-pagerenderer',

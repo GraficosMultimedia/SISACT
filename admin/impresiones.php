@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../config/runtime.php';
 require_once __DIR__ . '/../includes/impresiones.php';
+require_once __DIR__ . '/../includes/impresiones_v3.php';
+require_once __DIR__ . '/../includes/impresiones_rollos_v3_1_1.php';
+// SISACT_IMPRESIONES_V3_INSTALLED
 require_auth();
 
 $title = 'Control de metraje';
@@ -18,17 +21,22 @@ try {
 
         $action = (string)($_POST['action'] ?? '');
         if ($action === 'create_roll') {
-            $id = print_meter_create_roll((string)($_POST['roll_name'] ?? ''), (float)($_POST['initial_m'] ?? 0));
+            $id = print_meter_v3_create_roll(
+                (string)($_POST['roll_name'] ?? ''),
+                (float)($_POST['initial_m'] ?? 0),
+                (float)($_POST['width_m'] ?? 0),
+                (float)($_POST['cost_per_linear_m'] ?? 0)
+            );
             log_activity('create', 'print_rolls', 'Rollo creado #' . $id);
             redirect('/admin/impresiones.php?roll_created=1');
         }
 
         if ($action === 'register_print') {
-            $payload = print_meter_normalize($_POST);
+            $payload = print_meter_v3_normalize($_POST);
             if ($payload['roll_id'] <= 0 || $payload['linear_m'] <= 0 || $payload['job_name'] === '') {
                 throw new RuntimeException('Completa rollo, trabajo y metros lineales.');
             }
-            $id = print_meter_register($payload);
+            $id = print_meter_v3_register_safe($payload);
             log_activity('create', 'print_meter_logs', 'Trabajo impreso #' . $id . ' · ' . $payload['linear_m'] . ' m');
             redirect('/admin/impresiones.php?saved=1');
         }
@@ -47,11 +55,11 @@ $rows = [];
 $rollAnalytics = [];
 $usageBreakdown = ['rolls'=>[],'initial_m'=>0,'used_m'=>0,'remaining_m'=>0,'waste_m'=>0,'good_m'=>0,'jobs'=>0,'used_pct'=>0,'remaining_pct'=>0,'waste_pct'=>0];
 try {
-    $rolls = print_meter_active_rolls();
+    $rolls = print_roll_v311_selectable_rolls();
     $metrics = print_meter_dashboard();
-    $activeRoll = print_meter_active_roll();
-    $rows = print_meter_rows();
-    $usageBreakdown = print_meter_usage_breakdown();
+    $activeRoll = print_roll_v311_active_roll();
+    $rows = print_meter_v3_rows();
+    $usageBreakdown = print_roll_v311_usage_breakdown();
     $rollAnalytics = $usageBreakdown['rolls'];
 } catch (Throwable $e) {
     $error = $error ?: 'No se pudo cargar el módulo de metraje. Verifica que la migración 017 esté instalada.';
@@ -61,13 +69,13 @@ require __DIR__ . '/../includes/header.php';
 ?>
 <link rel="stylesheet" href="/assets/css/impresiones.css?v=20260918-metros1">
 <link rel="stylesheet" href="/assets/css/impresiones-dashboard-v2.css?v=20260919-1">
-<link rel="stylesheet" href="/assets/css/impresiones-wizard-v2.css?v=20260920-2">
-<script src="/assets/js/impresiones-wizard-v2.js?v=20260920-2" defer></script>
+<link rel="stylesheet" href="/assets/css/impresiones-wizard-v3.css?v=20261017-1">
+<script src="/assets/js/impresiones-wizard-v3.js?v=20261017-1" defer></script>
 <div class="meter-toolbar">
   <div>
     <span class="eyebrow">PRODUCCIÓN · CONTROL DE LONA</span>
     <h2>Metros de impresión</h2>
-    <p class="muted">Solo registra los metros lineales consumidos por cada trabajo y descuéntalos del rollo utilizado.</p>
+    <p class="muted">Registra medidas, metros lineales, saldo de rollo y costo real de material por cada trabajo.</p>
   </div>
 </div>
 
@@ -81,7 +89,7 @@ require __DIR__ . '/../includes/header.php';
     <strong>Registra un trabajo sin salir del panel</strong>
     <small>La captura se abre en una ventana guiada. El formulario conserva el proceso actual de registro y descuento.</small>
   </div>
-  <button type="button" class="btn btn-primary capture-open-btn" id="openPrintCapture">＋ Registrar impresión</button>
+  <div style="display:flex;gap:10px;flex-wrap:wrap"><button type="button" class="btn btn-primary capture-open-btn" id="openPrintCapture">＋ Registrar impresión</button><a class="btn btn-secondary" href="/admin/impresiones_rollos.php">Administrar rollos</a></div>
 </div>
 
 <div class="meter-kpis">
@@ -218,11 +226,30 @@ require __DIR__ . '/../includes/header.php';
     <?php else: ?>
       <p class="muted">Crea un rollo nuevo para comenzar a registrar impresiones.</p>
     <?php endif; ?>
-    <form method="post" class="meter-roll-form">
+    <form method="post" class="meter-roll-form meter-roll-form-v3">
       <input type="hidden" name="_csrf" value="<?=e(csrf_token())?>">
       <input type="hidden" name="action" value="create_roll">
-      <div class="field"><label>Nuevo rollo</label><input name="roll_name" placeholder="Ej. Rollo Lona 1" required></div>
-      <div class="field"><label>Metros iniciales</label><input type="number" step="0.001" min="0.001" name="initial_m" placeholder="50.000" required></div>
+
+      <div class="field">
+        <label>Nuevo rollo</label>
+        <input name="roll_name" placeholder="Ej. Lona Pro Max 50.4 · #3" required>
+      </div>
+
+      <div class="field">
+        <label>Metros iniciales</label>
+        <input type="number" step="0.001" min="0.001" name="initial_m" placeholder="50.000" required>
+      </div>
+
+      <div class="field">
+        <label>Ancho útil (m)</label>
+        <input type="number" step="0.001" min="0.001" name="width_m" placeholder="1.520" required>
+      </div>
+
+      <div class="field">
+        <label>Costo / metro</label>
+        <input type="number" step="0.01" min="0" name="cost_per_linear_m" placeholder="45.00" required>
+      </div>
+
       <button class="btn btn-primary" type="submit">+ Abrir rollo</button>
     </form>
   </article>
@@ -247,7 +274,17 @@ require __DIR__ . '/../includes/header.php';
           <div class="meter-form-grid">
             <div class="capture-step-label"><span>01</span><div><strong>Datos del trabajo</strong><small>Cuándo y qué trabajo estás registrando.</small></div></div>
             <div class="field"><label>Fecha y hora</label><input type="datetime-local" name="printed_at" value="<?=e(date('Y-m-d\TH:i'))?>" required></div>
-            <div class="field"><label>Rollo</label><select name="roll_id" id="roll_id" required><option value="">Seleccionar rollo</option><?php foreach($rolls as $r): ?><option data-roll-id="<?=((int)$r['id'])?>" data-roll-name="<?=e($r['roll_name'])?>" data-remaining="<?=e((string)$r['remaining_m'])?>" value="<?=((int)$r['id'])?>" <?=($activeRoll && (int)$activeRoll['id']===(int)$r['id'])?'selected':''?>><?=e($r['roll_name'])?> · <?=number_format((float)$r['remaining_m'],3)?> m disponibles</option><?php endforeach; ?></select></div>
+            <div class="field"><label>Rollo</label><select name="roll_id" id="roll_id" required><option value="">Seleccionar rollo</option><?php foreach($rolls as $r): ?><option
+  data-roll-id="<?=((int)$r['id'])?>"
+  data-roll-name="<?=e($r['roll_name'])?>"
+  data-remaining="<?=e((string)$r['remaining_m'])?>"
+  data-roll-width="<?=e((string)($r['width_m'] ?? 0))?>"
+  data-cost-per-m="<?=e((string)($r['cost_per_linear_m'] ?? 0))?>"
+  data-status="<?=e((string)$r['status'])?>"
+  value="<?=((int)$r['id'])?>"
+  <?=($activeRoll && (int)$activeRoll['id']===(int)$r['id'])?'selected':''?>
+  <?=((string)$r['status']!=='active')?'disabled':''?>
+><?=e($r['roll_name'])?> · <?=number_format((float)$r['remaining_m'],3)?> m disponibles<?=((float)($r['width_m'] ?? 0)>0)?' · ancho '.number_format((float)$r['width_m'],3).' m':''?></option><?php endforeach; ?></select></div>
             <div class="field field-wide"><label>Nombre del trabajo en Printexp</label><input name="job_name" placeholder="Ej. lonas figuras y mtra.prt" required></div>
             <div class="capture-step-label"><span>02</span><div><strong>Consumo Printexp</strong><small>Captura los datos que tomaste de la pantalla.</small></div></div>
             <div class="field"><label>Job Size · largo (mm)</label><input id="job_length_mm" type="number" step="0.01" min="0" name="job_length_mm" placeholder="3810.00"></div>
@@ -279,11 +316,73 @@ require __DIR__ . '/../includes/header.php';
 </section>
 
 <section class="card meter-history-card">
-  <div class="section-heading"><div><span class="eyebrow">HISTORIAL</span><h3>Trabajos impresos</h3><p class="muted">Metros descontados del rollo por cada trabajo.</p></div></div>
-  <div class="table-wrap"><table class="meter-table"><thead><tr><th>ID</th><th>Fecha</th><th>Rollo</th><th>Trabajo</th><th>Job Size</th><th>Metros</th><th>Resultado</th><th>Merma</th></tr></thead><tbody>
-  <?php foreach($rows as $r): ?><tr><td><span class="meter-log-id">#<?=((int)$r['id'])?></span></td><td><?=e(date('d/m/Y H:i',strtotime((string)$r['printed_at'])))?></td><td><?=e($r['roll_name'])?></td><td><?=e($r['job_name'])?></td><td><?=number_format((float)$r['job_length_mm'],2)?> mm</td><td><strong><?=number_format((float)$r['linear_m'],3)?> m</strong></td><td><span class="meter-status meter-status-<?=e((string)$r['result_status'])?>"><?=e(print_meter_result_label((string)$r['result_status']))?></span></td><td><?=number_format((float)$r['waste_m'],3)?> m</td></tr><?php endforeach; ?>
-  <?php if(!$rows): ?><tr><td colspan="8" class="empty">Todavía no hay trabajos registrados.</td></tr><?php endif; ?>
-  </tbody></table></div>
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow">HISTORIAL Y COSTOS</span>
+      <h3>Trabajos impresos</h3>
+      <p class="muted">Consumo, saldo de material y costo histórico por trabajo.</p>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table class="meter-table meter-table-v3">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Fecha</th>
+          <th>Rollo</th>
+          <th>Trabajo</th>
+          <th>Medida</th>
+          <th>Área</th>
+          <th>Paneles</th>
+          <th>Metros</th>
+          <th>Saldo</th>
+          <th>$/ml</th>
+          <th>Costo material</th>
+          <th>Resultado</th>
+          <th>Merma</th>
+        </tr>
+      </thead>
+      <tbody>
+      <?php foreach($rows as $r): ?>
+        <tr>
+          <td><span class="meter-log-id">#<?=((int)$r['id'])?></span></td>
+          <td><?=e(date('d/m/Y H:i',strtotime((string)$r['printed_at'])))?></td>
+          <td><?=e($r['roll_name'])?></td>
+          <td><?=e($r['job_name'])?></td>
+          <td>
+            <?php if((float)$r['job_width_m']>0 && (float)$r['job_length_m']>0): ?>
+              <?=number_format((float)$r['job_width_m'],3)?> × <?=number_format((float)$r['job_length_m'],3)?> m
+            <?php else: ?>
+              <?=number_format((float)$r['job_length_mm'],2)?> mm
+            <?php endif; ?>
+          </td>
+          <td><?=number_format((float)$r['area_m2'],3)?> m²</td>
+          <td><?=((int)$r['panels'])?></td>
+          <td><strong><?=number_format((float)$r['linear_m'],3)?> m</strong></td>
+          <td>
+            <?=number_format((float)$r['linear_m_before'],3)?> →
+            <strong><?=number_format((float)$r['linear_m_after'],3)?> m</strong>
+          </td>
+          <td>$<?=number_format((float)$r['cost_per_linear_m'],2)?></td>
+          <td><strong>$<?=number_format((float)$r['material_cost'],2)?></strong></td>
+          <td>
+            <span class="meter-status meter-status-<?=e((string)$r['result_status'])?>">
+              <?=e(print_meter_result_label((string)$r['result_status']))?>
+            </span>
+          </td>
+          <td><?=number_format((float)$r['waste_m'],3)?> m</td>
+        </tr>
+      <?php endforeach; ?>
+
+      <?php if(!$rows): ?>
+        <tr>
+          <td colspan="13" class="empty">Todavía no hay trabajos registrados.</td>
+        </tr>
+      <?php endif; ?>
+      </tbody>
+    </table>
+  </div>
 </section>
 
 <script>
@@ -381,7 +480,6 @@ require __DIR__ . '/../includes/header.php';
   });
 })();
 </script>
-<?php require __DIR__ . '/../includes/footer.php'; ?>
 
 <script>
 (function(){

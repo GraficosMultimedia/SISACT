@@ -1002,5 +1002,5 @@ require __DIR__ . '/../includes/header.php';
     </div>
 </section>
 
-<script src="/assets/js/dashboard-intelligence.js?v=1.0.0" defer></script>
+<script src="/assets/js/dashboard-intelligence.js?v=1.1.0" defer></script>
 <?php require __DIR__ . '/../includes/footer.php'; ?>

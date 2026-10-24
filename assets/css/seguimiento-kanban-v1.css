@@ -1,0 +1,169 @@
+/* ============================================================
+   SISACT · Seguimiento · Cancelación + Kanban completo V1
+   ============================================================ */
+
+.progress-card{
+  overflow:hidden;
+}
+
+.progress-line.client-progress{
+  grid-template-columns:repeat(8,minmax(100px,1fr))!important;
+  min-width:930px;
+}
+
+.progress-line.client-progress .stage{
+  min-width:0;
+}
+
+.progress-line.client-progress .stage span{
+  line-height:1.25;
+}
+
+.stage.is-blocked{
+  opacity:.48;
+}
+
+.stage.is-interrupted{
+  color:#c72f49!important;
+}
+
+.stage.is-interrupted .stage-dot{
+  background:#fff0f2!important;
+  border:4px solid #f09aa8!important;
+  color:#c72f49!important;
+  box-shadow:0 0 0 5px #fff5f6!important;
+}
+
+.stage.is-interrupted:after{
+  background:#ead1d6!important;
+}
+
+.hero-card.is-cancelled{
+  background:
+    radial-gradient(circle at 100% 0,rgba(255,255,255,.08),transparent 34%),
+    linear-gradient(135deg,#8b1830,#b42345 55%,#d4435f)!important;
+  box-shadow:0 16px 40px rgba(139,24,48,.22)!important;
+}
+
+.current-pill.is-cancelled{
+  background:#731226!important;
+  border-color:rgba(255,255,255,.35)!important;
+}
+
+.tracking-cancelled-alert{
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr);
+  gap:12px;
+  align-items:start;
+  margin-top:17px;
+  padding:15px 16px;
+  border:1px solid #f1bec8;
+  border-radius:13px;
+  background:#fff4f6;
+}
+
+.tracking-cancelled-alert-icon{
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  border-radius:11px;
+  background:#b42345;
+  color:#fff;
+  font-size:17px;
+}
+
+.tracking-cancelled-alert strong{
+  display:block;
+  color:#82172e;
+  font-size:13px;
+}
+
+.tracking-cancelled-alert p{
+  margin:4px 0 0;
+  color:#85515c;
+  font-size:11px;
+  line-height:1.55;
+}
+
+.tracking-cancelled-alert small{
+  display:block;
+  margin-top:6px;
+  color:#a36b76;
+  font-size:9px;
+}
+
+.timeline-item.is-cancelled .timeline-dot{
+  background:#fff0f2;
+  border-color:#ec9aaa;
+  color:#b42345;
+}
+
+.timeline-item.is-cancelled strong{
+  color:#a51f3c;
+}
+
+.current-message.is-cancelled{
+  border-color:#efc2ca;
+  background:#fffafb;
+}
+
+.current-message.is-cancelled h2{
+  color:#a51f3c;
+}
+
+.order-summary .info-row.status-cancelled strong{
+  color:#b42345;
+}
+
+.cancel-payment-warning{
+  margin-top:12px;
+  padding:12px 13px;
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  border:1px solid #efc3cb;
+  border-radius:11px;
+  background:#fff5f6;
+  color:#8d283c;
+  font-size:11px;
+  line-height:1.55;
+}
+
+.cancel-payment-warning strong{
+  display:block;
+  color:#9d1d38;
+}
+
+.cancel-payment-warning small{
+  display:block;
+  margin-top:3px;
+  color:#a36a76;
+}
+
+.receipt-badge.is-cancelled{
+  color:#a51f3c!important;
+  background:#fff0f2!important;
+  border-color:#edbcc6!important;
+}
+
+.progress-helper{
+  margin:10px 0 0;
+  color:#8b98aa;
+  font-size:9px;
+  text-align:center;
+}
+
+@media(max-width:760px){
+  .progress-card{
+    overflow-x:auto!important;
+  }
+
+  .progress-line.client-progress{
+    min-width:980px!important;
+  }
+
+  .tracking-cancelled-alert{
+    grid-template-columns:1fr;
+  }
+}

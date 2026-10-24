@@ -4,6 +4,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/../config/runtime.php';
 require_once __DIR__ . '/cfdi.php';
 require_once __DIR__ . '/tracking_activity.php';
+require_once __DIR__ . '/tracking_activity_verified.php';
 
 function tracking_cfdi_table_ready(): bool {
     try {
@@ -16,7 +17,7 @@ function tracking_cfdi_table_ready(): bool {
 function tracking_cfdi_for_order(int $orderId): array {
     // seguimiento.php llama esta función una vez por visita válida.
     // El registrador filtra HEAD, previews y bots conocidos.
-    tracking_activity_log_tracking_view($orderId);
+    // SISACT V3: visita registrada por beacon de navegador visible.
 
     if ($orderId <= 0 || !tracking_cfdi_table_ready()) return [];
     $st = db()->prepare(
@@ -117,14 +118,15 @@ function tracking_cfdi_download(int $documentId, string $token, string $kind): v
 
     $kind = $kind === 'pdf' ? 'pdf' : 'xml';
 
-    tracking_activity_log(
+    tracking_activity_log_verified(
         $kind === 'pdf' ? 'cfdi_pdf_opened' : 'cfdi_xml_downloaded',
         (int)$doc['linked_order_id'],
         (int)($doc['customer_id'] ?? 0) ?: null,
         $documentId,
         (int)($doc['invoice_id'] ?? 0) ?: null,
         null,
-        $token
+        $token,
+        10
     );
 
     tracking_cfdi_public_stream($doc, $kind);

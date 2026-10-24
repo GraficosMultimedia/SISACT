@@ -299,3 +299,213 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home2/colibrip/public_html/contacto.php on line 1
+[10-Oct-2026 10:41:09 America/Chihuahua] PHP Fatal error:  Uncaught Error: Call to undefined function cp_meta() in /home2/colibrip/public_html/contacto.php:1
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/contacto.php on line 1
+[12-Oct-2026 09:26:35 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 307
+[12-Oct-2026 09:26:35 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 308
+[12-Oct-2026 09:26:35 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 308
+[12-Oct-2026 09:26:35 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 364
+[12-Oct-2026 09:26:35 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 365
+[12-Oct-2026 09:26:35 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 366
+[12-Oct-2026 09:26:35 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 367
+[12-Oct-2026 10:05:00 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 307
+[12-Oct-2026 10:05:00 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 308
+[12-Oct-2026 10:05:00 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 308
+[12-Oct-2026 10:05:00 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 364
+[12-Oct-2026 10:05:00 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 365
+[12-Oct-2026 10:05:00 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 366
+[12-Oct-2026 10:05:00 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 367
+[12-Oct-2026 10:05:01 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 307
+[12-Oct-2026 10:05:01 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 308
+[12-Oct-2026 10:05:01 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 308
+[12-Oct-2026 10:05:01 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 364
+[12-Oct-2026 10:05:01 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 365
+[12-Oct-2026 10:05:01 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 366
+[12-Oct-2026 10:05:01 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 367
+[12-Oct-2026 16:01:06 America/Chihuahua] PHP Warning:  require_once(/home2/colibrip/public_html/includes/order_pdf_professional_2pages.php): Failed to open stream: No such file or directory in /home2/colibrip/public_html/seguimiento_comprobante.php on line 11
+[12-Oct-2026 16:01:06 America/Chihuahua] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/colibrip/public_html/includes/order_pdf_professional_2pages.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home2/colibrip/public_html/seguimiento_comprobante.php:11
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/seguimiento_comprobante.php on line 11
+[12-Oct-2026 16:01:24 America/Chihuahua] PHP Warning:  require_once(/home2/colibrip/public_html/includes/order_pdf_professional_2pages.php): Failed to open stream: No such file or directory in /home2/colibrip/public_html/seguimiento_comprobante.php on line 11
+[12-Oct-2026 16:01:24 America/Chihuahua] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/colibrip/public_html/includes/order_pdf_professional_2pages.php' (include_path='.:/opt/cpanel/ea-php83/root/usr/share/pear') in /home2/colibrip/public_html/seguimiento_comprobante.php:11
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/seguimiento_comprobante.php on line 11
+[12-Oct-2026 22:45:06 America/Chihuahua] [SISACT][MercadoPago][iniciar] Mercado Pago rechazó la solicitud: At least one policy returned UNAUTHORIZED.
+[12-Oct-2026 22:50:04 America/Chihuahua] [SISACT][MercadoPago][iniciar] Mercado Pago rechazó la solicitud: At least one policy returned UNAUTHORIZED.
+[12-Oct-2026 22:50:08 America/Chihuahua] [SISACT][MercadoPago][iniciar] Mercado Pago rechazó la solicitud: At least one policy returned UNAUTHORIZED.
+[12-Oct-2026 22:51:41 America/Chihuahua] [SISACT][MercadoPago][iniciar] Mercado Pago rechazó la solicitud: At least one policy returned UNAUTHORIZED.
+[12-Oct-2026 22:52:42 America/Chihuahua] [SISACT][MercadoPago][iniciar] Mercado Pago rechazó la solicitud: At least one policy returned UNAUTHORIZED.
+[12-Oct-2026 23:10:43 America/Chihuahua] [SISACT][MercadoPago][iniciar] Mercado Pago rechazó la solicitud: At least one policy returned UNAUTHORIZED.
+[12-Oct-2026 23:12:57 America/Chihuahua] [SISACT][MercadoPago][iniciar] Mercado Pago rechazó la solicitud: At least one policy returned UNAUTHORIZED.
+[12-Oct-2026 23:25:11 America/Chihuahua] [SISACT][MercadoPago][iniciar] Mercado Pago rechazó la solicitud: HTTP 400
+[12-Oct-2026 23:52:55 America/Chihuahua] [SISACT][MercadoPago][create_order] property_value: Invalid value for property
+[12-Oct-2026 23:52:55 America/Chihuahua] [SISACT][MercadoPago][iniciar] property_value: Invalid value for property
+[12-Oct-2026 23:54:11 America/Chihuahua] [SISACT][MercadoPago][create_order] property_value: Invalid value for property
+[12-Oct-2026 23:54:11 America/Chihuahua] [SISACT][MercadoPago][iniciar] property_value: Invalid value for property
+[13-Oct-2026 00:02:23 America/Chihuahua] [SISACT][MercadoPago][create_order] HTTP 400 | errors.0.code=unsupported_properties | errors.0.message=Properties not supported | errors.0.details.0='$.items[0]' - additionalProperties 'unit_measure', 'total_amount' not allowed
+[13-Oct-2026 00:02:23 America/Chihuahua] [SISACT][MercadoPago][iniciar] HTTP 400 | errors.0.code=unsupported_properties | errors.0.message=Properties not supported | errors.0.details.0='$.items[0]' - additionalProperties 'unit_measure', 'total_amount' not allowed
+[13-Oct-2026 00:04:15 America/Chihuahua] [SISACT][MercadoPago][create_order] HTTP 400 | errors.0.code=unsupported_properties | errors.0.message=Properties not supported | errors.0.details.0='$.items[0]' - additionalProperties 'unit_measure', 'total_amount' not allowed
+[13-Oct-2026 00:04:15 America/Chihuahua] [SISACT][MercadoPago][iniciar] HTTP 400 | errors.0.code=unsupported_properties | errors.0.message=Properties not supported | errors.0.details.0='$.items[0]' - additionalProperties 'unit_measure', 'total_amount' not allowed
+[14-Oct-2026 13:18:40 America/Chihuahua] PHP Fatal error:  Uncaught Error: Call to undefined function cp_meta() in /home2/colibrip/public_html/contacto.php:1
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/contacto.php on line 1
+[14-Oct-2026 13:18:57 America/Chihuahua] PHP Fatal error:  Uncaught Error: Call to undefined function cp_meta() in /home2/colibrip/public_html/contacto.php:1
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/contacto.php on line 1
+[16-Oct-2026 22:05:33 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 442
+[16-Oct-2026 22:05:33 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[16-Oct-2026 22:05:33 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[16-Oct-2026 22:05:33 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 499
+[16-Oct-2026 22:05:33 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 500
+[16-Oct-2026 22:05:33 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 501
+[16-Oct-2026 22:05:33 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 502
+[16-Oct-2026 22:05:36 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 442
+[16-Oct-2026 22:05:36 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[16-Oct-2026 22:05:36 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[16-Oct-2026 22:05:36 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 499
+[16-Oct-2026 22:05:36 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 500
+[16-Oct-2026 22:05:36 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 501
+[16-Oct-2026 22:05:36 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 502
+[16-Oct-2026 22:05:40 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 442
+[16-Oct-2026 22:05:40 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[16-Oct-2026 22:05:40 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[16-Oct-2026 22:05:40 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 499
+[16-Oct-2026 22:05:40 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 500
+[16-Oct-2026 22:05:40 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 501
+[16-Oct-2026 22:05:40 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 502
+[16-Oct-2026 22:05:46 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 442
+[16-Oct-2026 22:05:46 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[16-Oct-2026 22:05:46 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[16-Oct-2026 22:05:46 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 499
+[16-Oct-2026 22:05:46 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 500
+[16-Oct-2026 22:05:46 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 501
+[16-Oct-2026 22:05:46 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 502
+[16-Oct-2026 22:05:53 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 442
+[16-Oct-2026 22:05:53 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[16-Oct-2026 22:05:53 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[16-Oct-2026 22:05:53 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 499
+[16-Oct-2026 22:05:53 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 500
+[16-Oct-2026 22:05:53 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 501
+[16-Oct-2026 22:05:53 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 502
+[16-Oct-2026 22:05:58 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 442
+[16-Oct-2026 22:05:58 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[16-Oct-2026 22:05:58 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[16-Oct-2026 22:05:58 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 499
+[16-Oct-2026 22:05:58 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 500
+[16-Oct-2026 22:05:58 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 501
+[16-Oct-2026 22:05:58 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 502
+[16-Oct-2026 22:06:02 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 442
+[16-Oct-2026 22:06:02 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[16-Oct-2026 22:06:02 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[16-Oct-2026 22:06:02 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 499
+[16-Oct-2026 22:06:02 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 500
+[16-Oct-2026 22:06:02 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 501
+[16-Oct-2026 22:06:02 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 502
+[16-Oct-2026 22:53:38 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 442
+[16-Oct-2026 22:53:38 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[16-Oct-2026 22:53:38 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[16-Oct-2026 22:53:38 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 499
+[16-Oct-2026 22:53:38 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 500
+[16-Oct-2026 22:53:38 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 501
+[16-Oct-2026 22:53:38 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 502
+[16-Oct-2026 23:08:44 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 442
+[16-Oct-2026 23:08:44 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[16-Oct-2026 23:08:44 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[16-Oct-2026 23:08:44 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 499
+[16-Oct-2026 23:08:44 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 500
+[16-Oct-2026 23:08:44 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 501
+[16-Oct-2026 23:08:44 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 502
+[16-Oct-2026 23:24:22 America/Chihuahua] PHP Fatal error:  Uncaught Error: Call to undefined function cp_meta() in /home2/colibrip/public_html/contacto.php:1
+Stack trace:
+#0 {main}
+  thrown in /home2/colibrip/public_html/contacto.php on line 1
+[17-Oct-2026 10:47:08 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 442
+[17-Oct-2026 10:47:08 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[17-Oct-2026 10:47:08 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[17-Oct-2026 10:47:08 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 499
+[17-Oct-2026 10:47:08 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 500
+[17-Oct-2026 10:47:08 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 501
+[17-Oct-2026 10:47:08 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 502
+[17-Oct-2026 10:56:14 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 442
+[17-Oct-2026 10:56:14 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[17-Oct-2026 10:56:14 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[17-Oct-2026 10:56:14 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 499
+[17-Oct-2026 10:56:14 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 500
+[17-Oct-2026 10:56:14 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 501
+[17-Oct-2026 10:56:14 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 502
+[17-Oct-2026 10:56:28 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 442
+[17-Oct-2026 10:56:28 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[17-Oct-2026 10:56:28 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[17-Oct-2026 10:56:28 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 499
+[17-Oct-2026 10:56:28 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 500
+[17-Oct-2026 10:56:28 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 501
+[17-Oct-2026 10:56:28 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 502
+[17-Oct-2026 12:01:32 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 442
+[17-Oct-2026 12:01:32 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[17-Oct-2026 12:01:32 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 443
+[17-Oct-2026 12:01:32 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 499
+[17-Oct-2026 12:01:32 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 500
+[17-Oct-2026 12:01:32 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 501
+[17-Oct-2026 12:01:32 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 502
+[21-Oct-2026 05:40:02 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 452
+[21-Oct-2026 05:40:02 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 453
+[21-Oct-2026 05:40:02 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 453
+[21-Oct-2026 05:40:02 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 509
+[21-Oct-2026 05:40:02 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 510
+[21-Oct-2026 05:40:02 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 511
+[21-Oct-2026 05:40:02 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 512
+[22-Oct-2026 17:10:43 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 452
+[22-Oct-2026 17:10:43 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 453
+[22-Oct-2026 17:10:43 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 453
+[22-Oct-2026 17:10:43 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 509
+[22-Oct-2026 17:10:43 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 510
+[22-Oct-2026 17:10:43 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 511
+[22-Oct-2026 17:10:43 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 512
+[22-Oct-2026 17:10:44 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 452
+[22-Oct-2026 17:10:44 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 453
+[22-Oct-2026 17:10:44 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 453
+[22-Oct-2026 17:10:44 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 509
+[22-Oct-2026 17:10:44 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 510
+[22-Oct-2026 17:10:44 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 511
+[22-Oct-2026 17:10:44 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 512
+[23-Oct-2026 19:12:50 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 452
+[23-Oct-2026 19:12:50 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 453
+[23-Oct-2026 19:12:50 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 453
+[23-Oct-2026 19:12:50 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 509
+[23-Oct-2026 19:12:50 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 510
+[23-Oct-2026 19:12:50 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 511
+[23-Oct-2026 19:12:50 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 512
+[23-Oct-2026 19:13:04 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 452
+[23-Oct-2026 19:13:04 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 453
+[23-Oct-2026 19:13:04 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 453
+[23-Oct-2026 19:13:04 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 509
+[23-Oct-2026 19:13:04 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 510
+[23-Oct-2026 19:13:04 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 511
+[23-Oct-2026 19:13:04 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 512
+[23-Oct-2026 19:13:08 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 452
+[23-Oct-2026 19:13:08 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 453
+[23-Oct-2026 19:13:08 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 453
+[23-Oct-2026 19:13:08 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 509
+[23-Oct-2026 19:13:08 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 510
+[23-Oct-2026 19:13:08 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 511
+[23-Oct-2026 19:13:08 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 512
+[24-Oct-2026 09:58:33 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 570
+[24-Oct-2026 09:58:33 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 571
+[24-Oct-2026 09:58:33 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 571
+[24-Oct-2026 09:58:33 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 755
+[24-Oct-2026 09:58:33 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 760
+[24-Oct-2026 09:58:33 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 765
+[24-Oct-2026 09:58:33 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 775
+[24-Oct-2026 09:58:54 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 570
+[24-Oct-2026 09:58:54 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 571
+[24-Oct-2026 09:58:54 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 571
+[24-Oct-2026 09:58:54 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 755
+[24-Oct-2026 09:58:54 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 760
+[24-Oct-2026 09:58:54 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 765
+[24-Oct-2026 09:58:54 America/Chihuahua] PHP Warning:  Trying to access array offset on null in /home2/colibrip/public_html/seguimiento.php on line 775

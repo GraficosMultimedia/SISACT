@@ -49,7 +49,7 @@ $navGroups = [
             ['/admin/promociones.php', 'Promociones', '%'],
             ['/admin/cotizadores.php', 'Cotizadores', '∑'],
             ['/admin/impresiones.php', 'Metraje', '▣'],
-            ['/admin/rollos.php', 'Metraje', '▣'],
+            ['/admin/impresiones_rollos.php', 'Rollos', '▣'],
         ],
     ],
         'balance' => [
@@ -72,6 +72,7 @@ $navGroups = [
             ['/admin/recepcion_impresiones.php', 'Recepción de impresiones', '▣'],
             ['/admin/recepcion_historial.php', 'Historial de impresiones', '◴'],
             ['/admin/mercadopago_configurar.php', 'Configuración MercadoPago', '⚙'],
+            ['https://colibriprint.com.mx/SistemaQR/admin.php', 'Codigos QR', '⚙'],
             
         ],
     ],

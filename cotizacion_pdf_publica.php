@@ -5,6 +5,8 @@ require_once __DIR__ . '/config/runtime.php';
 require_once __DIR__ . '/includes/cotizaciones.php';
 require_once __DIR__ . '/includes/company.php';
 require_once __DIR__ . '/includes/cotizacion_pdf_renderer.php';
+require_once __DIR__ . '/includes/cancelled_public_landing_v1.php';
+// SISACT_CANCELLED_LANDING_ORDER_TOKEN_V1
 
 function qpv2_e(?string $v): string {
     return htmlspecialchars((string)$v, ENT_QUOTES, 'UTF-8');
@@ -59,8 +61,8 @@ function qpv2_products(string $website, string $whatsUrl): array {
     ];
 }
 
-function qpv2_unavailable(array $company, string $title, string $message): never {
-    http_response_code(404);
+function qpv2_unavailable(array $company, string $title, string $message, int $httpStatus=404): never {
+    http_response_code($httpStatus);
     header('Content-Type: text/html; charset=utf-8');
     header('Cache-Control: private, no-store, no-cache, must-revalidate, max-age=0');
     header('X-Robots-Tag: noindex, nofollow', true);
@@ -659,6 +661,47 @@ body{
 }
 
 $company = company_profile();
+/*
+ * Entrada desde seguimiento.php cuando una orden fue cancelada.
+ * Se vuelve a validar el token y el estado en servidor.
+ */
+$orderTrackingToken = trim(
+    (string)(
+        $_GET['ot']
+        ?? ''
+    )
+);
+
+if (
+    $orderTrackingToken !== ''
+    && preg_match(
+        '/^[a-f0-9]{64}$/i',
+        $orderTrackingToken
+    )
+) {
+    $cancelContext =
+        cancelled_landing_v1_context_by_tracking_token(
+            $orderTrackingToken
+        );
+
+    if (
+        $cancelContext
+        && !empty(
+            $cancelContext['is_cancelled']
+        )
+    ) {
+        qpv2_unavailable(
+            $company,
+            cancelled_landing_v1_title(
+                $cancelContext
+            ),
+            cancelled_landing_v1_message(
+                $cancelContext
+            ),
+            200
+        );
+    }
+}
 $token = trim((string)($_GET['t'] ?? ''));
 
 if (!preg_match('/^[a-f0-9]{64}$/i', $token)) {
@@ -688,11 +731,31 @@ if ($quoteId <= 0) {
 
 $quote = quote_get($quoteId);
 
-if (!$quote || in_array((string)($quote['status'] ?? ''), ['cancelled'], true)) {
+if (!$quote) {
     qpv2_unavailable(
         $company,
         'Esta cotización ya no está disponible',
         'La cotización fue cerrada o dejó de estar activa.'
+    );
+}
+
+if (
+    strtolower(
+        trim(
+            (string)(
+                $quote['status']
+                ?? ''
+            )
+        )
+    ) === 'cancelled'
+) {
+    qpv2_unavailable(
+        $company,
+        'Esta cotización fue cancelada',
+        'La propuesta anterior ya no se encuentra vigente. '
+        . 'Puedes solicitar una nueva cotización con precio, disponibilidad '
+        . 'y tiempos actualizados, o revisar nuestros productos y ofertas actuales.',
+        200
     );
 }
 

@@ -1,4 +1,18 @@
 Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # AMBIT Parral: redireccion de esta tarjeta a Beacons.
+RewriteEngine On
+RewriteCond %{QUERY_STRING} (^|&)id=vcard-6ad401463ec0e(&|$)
+RewriteRule ^SistemaQR/(index\.php)?$ https://beacons.ai/ambitparral [R=302,L,QSD]
+
+  # Compatibilidad con los codigos QR antiguos.
+  # Mantiene los parametros originales, incluido qr.
+  RewriteCond %{QUERY_STRING} (^|&)rest_route=(/|%2F)rapi(/|%2F)dynamic-qr-code(&|$) [NC]
+  RewriteRule ^(index\.php)?$ /rapi/dynamic-qr-code.php [L]
+</IfModule>
+
 <IfModule mod_headers.c>
   Header always set X-Content-Type-Options nosniff
   Header always set Referrer-Policy strict-origin-when-cross-origin

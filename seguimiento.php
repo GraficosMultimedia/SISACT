@@ -4,10 +4,50 @@ require_once __DIR__ . '/includes/seguimiento.php';
 require_once __DIR__ . '/includes/seguimiento_cfdi.php';
 require_once __DIR__ . '/includes/cotizaciones.php';
 require_once __DIR__ . '/includes/company.php';
+require_once __DIR__ . '/includes/tracking_experience_v1_1.php';
+require_once __DIR__ . '/includes/tracking_experience_v2.php';
+// SISACT_TRACKING_VISUAL_PREMIUM_V2
+// SISACT_TRACKING_VISUAL_OFFERS_V1_1
+require_once __DIR__ . '/includes/cancelled_public_landing_v1.php';
+// SISACT_CANCELLED_TO_OFFERS_V1
+require_once __DIR__ . '/includes/seguimiento_cancelacion_kanban_v1.php';
+// SISACT_TRACKING_CANCEL_GUARD_V1
+require_once __DIR__ . '/includes/web_print_flow.php';
+require_once __DIR__ . '/includes/mercadopago.php';
 
 $company = company_profile();
 $token = trim((string)($_GET['t'] ?? ''));
 $order = $token !== '' ? tracking_order_by_token($token) : null;
+/*
+ * Si la orden, su etapa de producción o su cotización origen
+ * están canceladas, el cliente ya no ve un seguimiento operativo.
+ * Se redirige a la landing pública de ofertas.
+ */
+if (
+    $order
+    && cancelled_landing_v1_is_cancelled_order(
+        (int)$order['id']
+    )
+) {
+    header(
+        'Location: '
+        . cancelled_landing_v1_tracking_redirect_url(
+            $token
+        ),
+        true,
+        302
+    );
+    exit;
+}
+/* SISACT_WEB_REQUEST_TRACKING_V1 */
+if (!$order && $token !== '') {
+    $webRequest = web_flow_request_by_token($token);
+
+    if ($webRequest) {
+        require __DIR__ . '/includes/web_print_tracking_view.php';
+        exit;
+    }
+}
 $currentInternal = $order ? tracking_current_stage((int)$order['id']) : '';
 $history = $order ? tracking_history((int)$order['id']) : [];
 $clientStages = tracking_client_stages();
@@ -23,6 +63,47 @@ $finance = $order ? tracking_payment_summary((int)$order['id']) : ['order_total'
 $payments = $order ? tracking_confirmed_payments((int)$order['id']) : [];
 $paymentReceipts = $order ? tracking_payment_receipts((int)$order['id']) : [];
 $trackingCfdis = $order ? tracking_cfdi_for_order((int)$order['id']) : [];
+$trackingGuard = $order
+    ? tracking_guard_v1_state((int)$order['id'])
+    : tracking_guard_v1_empty_state();
+
+$isCancelled = (bool)($trackingGuard['is_cancelled'] ?? false);
+
+$kanbanStages = tracking_guard_v1_progress_stages();
+$kanbanKeys = array_keys($kanbanStages);
+
+$kanbanCurrent = (string)(
+    $trackingGuard['current_stage']
+    ?? 'pending'
+);
+
+if (!isset($kanbanStages[$kanbanCurrent])) {
+    $kanbanCurrent = 'pending';
+}
+
+$kanbanCurrentIndex = array_search(
+    $kanbanCurrent,
+    $kanbanKeys,
+    true
+);
+
+if ($kanbanCurrentIndex === false) {
+    $kanbanCurrentIndex = 0;
+}
+
+$trackingCurrentMeta =
+    tracking_guard_v1_stage_meta(
+        $isCancelled
+            ? 'cancelled'
+            : $kanbanCurrent
+    );
+
+$kanbanHistory = $order
+    ? tracking_guard_v1_history(
+        (int)$order['id'],
+        $trackingGuard
+    )
+    : [];
 
 /* SISACT_TRACKING_BREAKDOWN_V2 */
 $commercialSubtotal = 0.0;
@@ -127,6 +208,51 @@ $companyWhatsAppHref = preg_replace('/[^0-9]/', '', $companyPhone);
 if ($companyWhatsAppHref !== '' && strlen($companyWhatsAppHref) === 10) $companyWhatsAppHref = '52' . $companyWhatsAppHref;
 $pdfUrl = $order ? '/seguimiento_comprobante.php?t=' . rawurlencode($token) : '#';
 $waUrl = ($order && $companyWhatsAppHref !== '') ? 'https://wa.me/' . $companyWhatsAppHref . '?text=' . rawurlencode('Hola Colibrí Print México, quiero consultar mi pedido ' . ($order['order_number'] ?? '') . '.') : '#';
+
+/* SISACT_TRACKING_VISUAL_DATA_V1_1 */
+$trackingVisualHistory = [];
+if (isset($kanbanHistory) && is_array($kanbanHistory) && $kanbanHistory) {
+    $trackingVisualHistory = $kanbanHistory;
+} elseif (isset($clientHistory) && is_array($clientHistory)) {
+    $trackingVisualHistory = $clientHistory;
+}
+
+$trackingVisualCurrentKey = 'pending';
+if (isset($kanbanCurrent) && is_string($kanbanCurrent) && $kanbanCurrent !== '') {
+    $trackingVisualCurrentKey = $kanbanCurrent;
+} elseif (isset($currentInternal) && is_string($currentInternal) && $currentInternal !== '') {
+    $trackingVisualCurrentKey = $currentInternal;
+} elseif (isset($currentClient) && is_string($currentClient) && $currentClient !== '') {
+    $trackingVisualCurrentKey = $currentClient;
+}
+
+$trackingVisualCancelled = isset($isCancelled) ? (bool)$isCancelled : false;
+$trackingExperienceV11 = trackexp_v11_build(
+    $order,
+    $trackingVisualHistory,
+    $trackingVisualCurrentKey,
+    $company
+);
+$trackingVisualHistory = $trackingExperienceV11['history'];
+$trackingVisualStats = $trackingExperienceV11['stats'];
+$trackingOfferCards = $trackingExperienceV11['offers'];
+$trackingVisualStarted = $trackingExperienceV11['started_at'];
+$trackingVisualUpdated = $trackingExperienceV11['updated_at'];
+$trackingVisualNext = $trackingExperienceV11['next_meta'];
+
+/* SISACT_TRACKING_VISUAL_DATA_V2 */
+$trackingPremium = trackexp_v2_build(
+    $order,
+    $trackingVisualHistory,
+    $trackingVisualCurrentKey,
+    $company,
+    $trackingVisualCancelled
+);
+$trackingPremiumHistory = $trackingPremium['history'];
+$trackingPremiumOffers = $trackingPremium['offers'];
+$trackingPremiumProgress = (int)$trackingPremium['progress_pct'];
+$trackingPremiumCurrent = $trackingPremium['current_meta'];
+$trackingPremiumNext = $trackingPremium['next_meta'];
 ?>
 <!doctype html>
 <html lang="es">
@@ -135,6 +261,7 @@ $waUrl = ($order && $companyWhatsAppHref !== '') ? 'https://wa.me/' . $companyWh
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>Seguimiento de pedido | <?=track_e($companyDisplayName)?></title>
+<link rel="stylesheet" href="/assets/css/mercadopago-tracking-v1.css?v=1.0.0">
 <style>
 :root{
   --navy:#102a56; --blue:#087bd9; --blue2:#18a8f0; --green:#19a85b;
@@ -391,6 +518,9 @@ footer strong{color:var(--navy)}
 
 <link rel="stylesheet" href="/assets/css/public-header-unified-v1.css?v=20260927-1">
 <script src="/assets/js/public-header-unified-v1.js?v=20260927-1" defer></script>
+<link rel="stylesheet" href="/assets/css/seguimiento-kanban-v1.css?v=20261023-1">
+<link rel="stylesheet" href="/assets/css/seguimiento-visual-ofertas-v1-1.css?v=20261024-1">
+<link rel="stylesheet" href="/assets/css/seguimiento-visual-ofertas-v2.css?v=20261024-1">
 </head>
 <body>
 <div class="tracking-page">
@@ -434,72 +564,257 @@ footer strong{color:var(--navy)}
   <?php endif; ?>
 </header>
 
-<section class="hero-card">
+<section class="hero-card <?=$isCancelled?'is-cancelled':''?>">
   <div>
     <span class="eyebrow">ORDEN DE SERVICIO</span>
     <h1><?=track_e($order['order_number'])?></h1>
     <p><?=track_e($order['customer_name'] ?: 'Cliente')?> · <?=track_e($order['quote_number'] ?: 'Orden de servicio')?></p>
-    <div class="tracking-tagline">Seguimiento actualizado de tu pedido.</div>
+    <div class="tracking-tagline"><?=$isCancelled?'Esta orden fue cancelada y su proceso quedó detenido.':'Seguimiento actualizado de tu pedido.'?></div>
   </div>
-  <div class="current-pill">
+  <div class="current-pill <?=$isCancelled?'is-cancelled':''?>">
     <span>Estado actual</span>
-    <strong><?=$clientStages[$currentClient]['icon']?> <?=track_e($clientStages[$currentClient]['label'])?></strong>
+    <strong><?=$trackingCurrentMeta['icon']?> <?=track_e($trackingCurrentMeta['label'])?></strong>
   </div>
 </section>
 
 <section class="progress-card">
   <div class="section-title">
-    <div><span class="eyebrow">PROGRESO</span><h2>Así va tu pedido</h2></div>
+    <div>
+      <span class="eyebrow">PROGRESO</span>
+      <h2>Así va tu pedido</h2>
+    </div>
   </div>
+
   <div class="progress-line client-progress">
-  <?php foreach ($clientStages as $key=>$stage): $idx=array_search($key,$clientKeys,true); $done=$idx < $currentIndex; $active=$key===$currentClient; ?>
-    <div class="stage <?=($done?'done ':'').($active?'active':'')?>">
-      <div class="stage-dot"><?=($done?'✓':$stage['icon'])?></div>
+  <?php foreach ($kanbanStages as $key=>$stage):
+      $idx=array_search($key,$kanbanKeys,true);
+      $done=$idx < $kanbanCurrentIndex;
+      $active=!$isCancelled && $key===$kanbanCurrent;
+      $interrupted=$isCancelled && $key===$kanbanCurrent;
+      $blocked=$isCancelled && $idx > $kanbanCurrentIndex;
+  ?>
+    <div class="stage <?=($done?'done ':'').($active?'active ':'').($interrupted?'is-interrupted ':'').($blocked?'is-blocked':'')?>">
+      <div class="stage-dot"><?=($done?'✓':($interrupted?'⛔':$stage['icon']))?></div>
       <span><?=track_e($stage['label'])?></span>
     </div>
   <?php endforeach; ?>
   </div>
-  <?php if ($showApproval): ?>
-  <div class="approval-note <?=($currentInternal==='approval'?'is-current':'')?>">
-    <div class="approval-note-icon">✅</div>
-    <div><strong>Aprobación de diseño</strong><span><?=$currentInternal==='approval'?'Estamos esperando tu aprobación para continuar.':'El diseño ya pasó por esta etapa.'?></span></div>
-  </div>
-  <?php endif; ?>
-</section>
 
-<section class="history tracking-card">
-  <div class="section-title"><div><span class="eyebrow">ACTUALIZACIONES</span><h2>Lo que ha pasado</h2></div></div>
-  <?php if (!$clientHistory): ?>
-    <p class="muted">Aún no hay actualizaciones registradas.</p>
-  <?php else: ?>
-  <div class="timeline">
-    <?php foreach ($clientHistory as $entry): ?>
-    <div class="timeline-item <?=($entry['key']==='approval'?'timeline-approval':'')?>">
-      <div class="timeline-dot"><?=$entry['icon']?></div>
-      <div><strong><?=track_e($entry['label'])?></strong><time><?=track_date($entry['created_at'],'d/m/Y H:i')?></time>
-      <?php if(trim((string)$entry['note'])!==''): ?><p><?=nl2br(track_e($entry['note']))?></p><?php endif; ?></div>
+  <p class="progress-helper">
+    El progreso corresponde a todas las etapas del Kanban interno de Producción.
+  </p>
+
+  <?php if ($isCancelled): ?>
+    <div class="tracking-cancelled-alert">
+      <div class="tracking-cancelled-alert-icon">⛔</div>
+      <div>
+        <strong>Esta orden está cancelada</strong>
+        <p><?=nl2br(track_e((string)($trackingGuard['cancel_note'] ?? 'La orden fue cancelada.')))?></p>
+        <?php if (!empty($trackingGuard['cancelled_at'])): ?>
+          <small>
+            Cancelación registrada:
+            <?=track_date((string)$trackingGuard['cancelled_at'],'d/m/Y H:i')?>
+          </small>
+        <?php endif; ?>
+      </div>
     </div>
-    <?php endforeach; ?>
-  </div>
   <?php endif; ?>
 </section>
 
+<section class="history tracking-card tracking-premium">
+  <div class="tracking-premium-hero">
+    <div class="tracking-premium-copy">
+      <span class="tracking-premium-kicker">Experiencia Colibrí · Seguimiento en vivo</span>
+      <h2><?=track_e((string)$trackingPremium['headline'])?></h2>
+      <p><?=track_e((string)($trackingPremiumCurrent['message'] ?? 'Consulta el avance de tu orden y cada movimiento confirmado por nuestro equipo.'))?></p>
+
+      <div class="tracking-premium-chips">
+        <span class="tracking-premium-chip">Orden <strong><?=track_e((string)$trackingPremium['order_number'])?></strong></span>
+        <span class="tracking-premium-chip">Inicio <strong><?=track_e((string)$trackingPremium['started_at'])?></strong></span>
+        <span class="tracking-premium-chip">Tiempo registrado <strong><?=track_e((string)$trackingPremium['duration'])?></strong></span>
+      </div>
+    </div>
+
+    <div class="tracking-premium-ring" style="--tracking-progress:<?=$trackingPremiumProgress?>%">
+      <div class="tracking-premium-ring-content">
+        <strong><?=$trackingPremiumProgress?>%</strong>
+        <span><?=$trackingPremium['is_complete']?'completado':'avance'?></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tracking-premium-current">
+    <div class="tracking-premium-current-main">
+      <div class="tracking-premium-current-icon"><?=track_e((string)($trackingPremiumCurrent['icon'] ?? '●'))?></div>
+      <div>
+        <span>Estado actual</span>
+        <strong><?=track_e((string)($trackingPremiumCurrent['label'] ?? 'Pedido'))?></strong>
+      </div>
+    </div>
+
+    <div class="tracking-premium-next">
+      <?= $trackingVisualCancelled ? 'Proceso detenido' : 'Próximo paso' ?>
+      <b><?=track_e((string)($trackingPremiumNext['icon'] ?? '→'))?> <?=track_e((string)($trackingPremiumNext['label'] ?? 'Por confirmar'))?></b>
+    </div>
+  </div>
+
+  <div class="tracking-premium-metrics">
+    <div class="tracking-premium-metric tone-pink">
+      <span>Movimientos</span>
+      <strong><?=((int)$trackingPremium['movement_count'])?> registrados</strong>
+      <small>Cambios confirmados dentro del expediente de producción.</small>
+    </div>
+    <div class="tracking-premium-metric tone-purple">
+      <span>Última actualización</span>
+      <strong><?=track_e((string)$trackingPremium['updated_at'])?></strong>
+      <small>Último movimiento reportado por nuestro equipo.</small>
+    </div>
+    <div class="tracking-premium-metric tone-green">
+      <span>Avance general</span>
+      <strong><?=$trackingPremiumProgress?>% del recorrido</strong>
+      <small>Calculado sobre las etapas del Kanban de Producción.</small>
+    </div>
+    <div class="tracking-premium-metric tone-gold">
+      <span>Siguiente objetivo</span>
+      <strong><?=track_e((string)($trackingPremiumNext['label'] ?? 'Por confirmar'))?></strong>
+      <small><?=track_e((string)($trackingPremiumNext['message'] ?? 'Continuaremos actualizando tu pedido.'))?></small>
+    </div>
+  </div>
+
+  <div class="tracking-premium-section-head">
+    <div>
+      <span class="eyebrow">HISTORIA DE PRODUCCIÓN</span>
+      <h3>Cada etapa cuenta una parte de tu pedido</h3>
+      <p>Te mostramos los movimientos registrados para que conozcas qué ocurrió, cuándo ocurrió y en qué punto se encuentra tu proyecto.</p>
+    </div>
+    <div class="tracking-premium-legend"><i></i> Información confirmada en SISACT</div>
+  </div>
+
+  <?php if (!$trackingPremiumHistory): ?>
+    <p class="muted" style="padding:20px 30px 30px">Aún no hay movimientos registrados.</p>
+  <?php else: ?>
+    <div class="tracking-premium-story">
+      <?php foreach ($trackingPremiumHistory as $idx=>$entry):
+        $entryKey=(string)($entry['key'] ?? '');
+        $isCurrent=($entryKey === $trackingVisualCurrentKey);
+        $isComplete=!$isCurrent;
+      ?>
+        <article class="tracking-premium-card <?=$isCurrent?'is-current':''?> <?=$isComplete?'is-complete':''?>">
+          <div class="tracking-premium-card-head">
+            <div class="tracking-premium-card-icon"><?=track_e((string)($entry['icon'] ?? '●'))?></div>
+            <div>
+              <span class="tracking-premium-card-index">Movimiento <?=str_pad((string)($idx+1),2,'0',STR_PAD_LEFT)?></span>
+              <h4><?=track_e((string)($entry['label'] ?? 'Actualización'))?></h4>
+              <time><?=track_date($entry['created_at'] ?? null,'d/m/Y H:i')?></time>
+              <span class="tracking-premium-card-state"><?=$isCurrent?'● Etapa actual':'✓ Registrado'?></span>
+            </div>
+          </div>
+
+          <p class="tracking-premium-card-note"><?=nl2br(track_e((string)($entry['note'] ?? 'Movimiento registrado en el proceso de producción.')))?></p>
+
+          <div class="tracking-premium-card-footer">
+            <span><?=track_e((string)$trackingPremium['order_number'])?></span>
+            <strong><?=track_e((string)($entry['label'] ?? ''))?></strong>
+          </div>
+        </article>
+      <?php endforeach; ?>
+    </div>
+  <?php endif; ?>
+</section>
 <section class="two-col">
-  <article class="current-message">
-    <span class="eyebrow">ACTUALIZACIÓN</span>
-    <h2><?=$clientStages[$currentClient]['icon']?> <?=track_e($clientStages[$currentClient]['label'])?></h2>
-    <p><?=nl2br(track_e($latestMessage))?></p>
-    <small>Última actualización: <?=track_date($history ? $history[count($history)-1]['created_at'] : null,'d/m/Y H:i')?></small>
+  <article class="current-message <?=$isCancelled?'is-cancelled':''?>">
+    <span class="eyebrow"><?=$isCancelled?'ESTADO DE LA ORDEN':'ACTUALIZACIÓN'?></span>
+
+    <h2>
+      <?=$trackingCurrentMeta['icon']?>
+      <?=track_e($trackingCurrentMeta['label'])?>
+    </h2>
+
+    <?php if ($isCancelled): ?>
+      <p><?=nl2br(track_e((string)($trackingGuard['cancel_note'] ?? 'La orden fue cancelada.')))?></p>
+    <?php else: ?>
+      <p><?=track_e((string)$trackingCurrentMeta['description'])?></p>
+    <?php endif; ?>
+
+    <small>
+      Última actualización:
+      <?=track_date(
+        $isCancelled
+          ? ($trackingGuard['cancelled_at'] ?? null)
+          : ($trackingGuard['stage_updated_at'] ?? null),
+        'd/m/Y H:i'
+      )?>
+    </small>
   </article>
 
   <article class="order-summary">
     <span class="eyebrow">INFORMACIÓN DE LA ORDEN</span>
-    <div class="info-row"><span>Pedido</span><strong><?=track_e($order['order_number'])?></strong></div>
-    <div class="info-row"><span>Fecha de pedido</span><strong><?=track_date($order['order_date'])?></strong></div>
-    <div class="info-row"><span>Entrega estimada</span><strong><?=track_date($order['due_date'])?></strong></div>
-    <div class="info-row total"><span>Total</span><strong><?=track_money((float)$order['total'])?></strong></div>
+
+    <div class="info-row">
+      <span>Pedido</span>
+      <strong><?=track_e($order['order_number'])?></strong>
+    </div>
+
+    <div class="info-row">
+      <span>Fecha de pedido</span>
+      <strong><?=track_date($order['order_date'])?></strong>
+    </div>
+
+    <div class="info-row">
+      <span>Entrega estimada</span>
+      <strong><?=$isCancelled?'No aplica':track_date($order['due_date'])?></strong>
+    </div>
+
+    <div class="info-row <?=$isCancelled?'status-cancelled':''?>">
+      <span>Estado</span>
+      <strong><?=$trackingCurrentMeta['icon']?> <?=track_e($trackingCurrentMeta['label'])?></strong>
+    </div>
+
+    <div class="info-row total">
+      <span>Total</span>
+      <strong><?=track_money((float)$order['total'])?></strong>
+    </div>
   </article>
 </section>
+<?php if ($order && !$trackingVisualCancelled && !empty($trackingPremiumOffers)): ?>
+<section class="tracking-card tracking-offers-v2">
+  <div class="tracking-offers-v2-head">
+    <div class="tracking-offers-v2-headline">
+      <div>
+        <span class="tracking-offers-v2-kicker">Selección Colibrí · Exclusivo para clientes</span>
+        <h2>Ideas para tu próximo proyecto</h2>
+        <p>Tu seguimiento también puede inspirarte. Descubre otros servicios de Colibrí Print y consulta las promociones vigentes para impresión, personalización y fabricación.</p>
+      </div>
+      <a class="tracking-offers-v2-main-cta" href="<?=track_e((string)$trackingPremium['whatsapp_url'])?>" target="_blank" rel="noopener">💬 Consultar promociones</a>
+    </div>
+  </div>
+
+  <div class="tracking-offers-v2-grid">
+    <?php foreach ($trackingPremiumOffers as $offer): ?>
+      <article class="tracking-offer-v2 accent-<?=track_e((string)($offer['accent'] ?? 'cyan'))?>">
+        <div class="tracking-offer-v2-top">
+          <div class="tracking-offer-v2-icon"><?=track_e((string)($offer['icon'] ?? '✨'))?></div>
+          <span class="tracking-offer-v2-tag"><?=track_e((string)($offer['tag'] ?? 'Destacado'))?></span>
+        </div>
+        <span class="tracking-offer-v2-eyebrow"><?=track_e((string)($offer['eyebrow'] ?? 'SERVICIO'))?></span>
+        <h3><?=track_e((string)($offer['title'] ?? 'Servicio Colibrí Print'))?></h3>
+        <p><?=track_e((string)($offer['text'] ?? ''))?></p>
+        <span class="tracking-offer-v2-benefit">✦ <?=track_e((string)($offer['benefit'] ?? 'Consulta disponibilidad'))?></span>
+        <a href="<?=track_e((string)($offer['href'] ?? '#'))?>" target="_blank" rel="noopener">
+          <?=track_e((string)($offer['cta'] ?? 'Ver más'))?>
+          <span>→</span>
+        </a>
+      </article>
+    <?php endforeach; ?>
+  </div>
+
+  <div class="tracking-offers-v2-foot">
+    <span><strong>Nota:</strong> precios, disponibilidad y promociones pueden cambiar. Confirma la oferta vigente antes de ordenar.</span>
+    <a href="<?=track_e((string)$trackingPremium['site_url'])?>/#servicios" target="_blank" rel="noopener">Explorar todos los servicios →</a>
+  </div>
+</section>
+<?php endif; ?>
+
 
 <?php if (!$order): ?>
 <section class="tracking-card not-found">
@@ -511,7 +826,7 @@ footer strong{color:var(--navy)}
 
 
 
-<?php if (trim((string)($company['payment_info'] ?? '')) !== ''): ?>
+<?php if (!$isCancelled && trim((string)($company['payment_info'] ?? '')) !== ''): ?>
 <section class="payment-info-card" id="datos-para-pago">
   <span class="eyebrow">PAGO</span>
   <h2>Información comercial de pago</h2>
@@ -532,6 +847,38 @@ footer strong{color:var(--navy)}
 </section>
 <?php endif; ?>
 
+<?php
+/* SISACT_MERCADOPAGO_TRACKING_V1 */
+$mpPublic = $order
+    ? mp_public_context((int)$order['id'], $finance)
+    : ['configured'=>false,'ready'=>false,'balance'=>0.0,'show'=>false];
+?>
+<?php if ($mpPublic['show']): ?>
+<section class="mp-pay-card" id="pagar-mercadopago">
+  <div class="mp-pay-head">
+    <div>
+      <span class="eyebrow">PAGO EN LÍNEA</span>
+      <h2>Paga tu orden con Mercado Pago</h2>
+      <p>Realiza el pago del saldo pendiente en el entorno seguro de Mercado Pago. Al acreditarse, SISACT registrará el pago automáticamente.</p>
+    </div>
+    <span class="mp-pay-badge">MERCADO PAGO</span>
+  </div>
+  <div class="mp-pay-body">
+    <div class="mp-pay-amount">
+      <span>Saldo a pagar</span>
+      <strong><?=track_money((float)$mpPublic['balance'])?></strong>
+    </div>
+    <form class="mp-pay-form" action="/mercadopago_iniciar.php" method="post">
+      <input type="hidden" name="tracking_token" value="<?=track_e($token)?>">
+      <button class="mp-pay-button" type="submit">Pagar con Mercado Pago →</button>
+    </form>
+  </div>
+  <?php if (!empty($_GET['mp_error'])): ?>
+    <div class="mp-pay-error"><?=track_e((string)$_GET['mp_error'])?></div>
+  <?php endif; ?>
+  <p class="mp-pay-security">El monto se recalcula en el servidor antes de iniciar el checkout. El pago solo se registra cuando Mercado Pago confirma la acreditación.</p>
+</section>
+<?php endif; ?>
 <section class="tracking-receipt">
   <div class="receipt-head">
     <div>
@@ -539,7 +886,7 @@ footer strong{color:var(--navy)}
       <h2>Servicio y pagos</h2>
       <p>Pedido <?=track_e($order['order_number'])?> · <?=track_date($order['order_date'])?></p>
     </div>
-    <span class="receipt-badge"><?= $finance['paid_total'] > 0 ? 'PAGO REGISTRADO' : 'PAGO PENDIENTE' ?></span>
+    <span class="receipt-badge <?=$isCancelled?'is-cancelled':''?>"><?= $isCancelled ? 'ORDEN CANCELADA' : ($finance['paid_total'] > 0 ? 'PAGO REGISTRADO' : 'PAGO PENDIENTE') ?></span>
   </div>
 
   <div class="receipt-kpis">
@@ -673,7 +1020,15 @@ footer strong{color:var(--navy)}
     <?php endif; ?>
   </div>
   <?php endif; ?>
-  <?php if ($finance['first_payment']): $fp=$finance['first_payment']; ?>
+  <?php if ($isCancelled): ?>
+  <div class="cancel-payment-warning">
+    <span>⛔</span>
+    <div>
+      <strong>No realices pagos para esta orden</strong>
+      <small>La orden se encuentra cancelada. Si ya realizaste un pago, comunícate con Administración para revisar el expediente.</small>
+    </div>
+  </div>
+<?php elseif ($finance['first_payment']): $fp=$finance['first_payment']; ?>
   <div class="advance-confirmed">
     <span>💳</span>
     <div><strong>Primer pago registrado: <?=track_money((float)$fp['amount'])?></strong>
@@ -695,7 +1050,7 @@ footer strong{color:var(--navy)}
   <?php endif; ?>
 
   <div class="receipt-actions">
-    <a class="pdf" href="<?=track_e($pdfUrl)?>">📄 Descargar comprobante PDF</a>
+    <?php if (!$isCancelled): ?><a class="pdf" href="<?=track_e($pdfUrl)?>">📄 Descargar comprobante PDF</a><?php endif; ?>
     <?php if($waUrl!=='#'): ?><a class="wa" href="<?=track_e($waUrl)?>" target="_blank" rel="noopener noreferrer">💬 Consultar por WhatsApp</a><?php endif; ?>
   </div>
   <p class="receipt-disclaimer">Esta información refleja los datos comerciales y pagos confirmados en el sistema. No sustituye un CFDI.</p>
@@ -717,13 +1072,17 @@ footer strong{color:var(--navy)}
     <p class="muted">Los comprobantes enviados para esta orden aparecerán aquí.</p>
   <?php endif; ?>
 
-  <form class="public-receipt-upload" action="/api/comprobante_pago_cliente.php" method="post" enctype="multipart/form-data">
+  <?php if (!$isCancelled): ?>
+<form class="public-receipt-upload" action="/api/comprobante_pago_cliente.php" method="post" enctype="multipart/form-data">
     <input type="hidden" name="tracking_token" value="<?=track_e($token)?>">
     <label><span>Enviar comprobante de pago</span><input type="file" name="receipt" accept="image/jpeg,image/png,image/webp,application/pdf" required></label>
     <label><span>Nota (opcional)</span><textarea name="note" rows="2" placeholder="Ej. Anticipo de la orden"></textarea></label>
     <button type="submit">🧾 Enviar comprobante</button>
     <small>JPG, PNG, WEBP o PDF · máximo 10 MB. El envío no confirma automáticamente el pago.</small>
   </form>
+<?php else: ?>
+<div class="cancel-payment-warning"><span>⛔</span><div><strong>Recepción de comprobantes deshabilitada</strong><small>Esta orden está cancelada y no acepta nuevos comprobantes de pago.</small></div></div>
+<?php endif; ?>
 </section>
 
 <section class="public-cfdi tracking-card" id="facturas-cfdi">
@@ -791,5 +1150,29 @@ footer strong{color:var(--navy)}
   <br><span>Seguimiento de pedido · Información informativa y operativa.</span>
 </footer>
 </div>
+<?php if ($order && preg_match('/^[a-f0-9]{64}$/i', $token)): ?>
+<script>
+/* SISACT_TRACKING_VISIBLE_BEACON_V3 */
+(() => {
+  'use strict';
+  let sent=false;
+  function registerVisibleVisit(){
+    if(sent||document.visibilityState!=='visible')return;
+    sent=true;
+    const body=new URLSearchParams();
+    body.set('token',<?=json_encode($token,JSON_UNESCAPED_SLASHES)?>);
+    fetch('/api/tracking_view_cliente.php',{
+      method:'POST',credentials:'same-origin',cache:'no-store',keepalive:true,
+      headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8','Accept':'application/json'},
+      body:body.toString()
+    }).catch(()=>{});
+  }
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',()=>setTimeout(registerVisibleVisit,500),{once:true});
+  }else setTimeout(registerVisibleVisit,500);
+  document.addEventListener('visibilitychange',registerVisibleVisit);
+})();
+</script>
+<?php endif; ?>
 </body>
 </html>

@@ -1,300 +1,177 @@
-SISACT · FLUJO WEB → ORDEN FORMAL V1
-Colibrí Print México
+SISACT · SEGUIMIENTO VISUAL + OFERTAS V2.1
+PULIDO FINO + OPTIMIZACIÓN MÓVIL
+===============================================
 
 OBJETIVO
-========
-Convertir la recepción pública de archivos en UN SOLO EXPEDIENTE:
+--------
+Aplicar el diseño V2.1 aprobado sobre la V2 Premium actualmente estable,
+sin modificar lógica de SISACT.
 
-Cliente
-→ Solicitud web CPQ
-→ archivos + configuración + precio
-→ cotización formal
-→ orden formal
-→ archivos de producción en la orden
-→ seguimiento público continuo
+ESTA ES UNA CAPA INCREMENTAL
+----------------------------
+V2.1 requiere que V2 Premium ya esté instalada.
 
-PROBLEMA CORREGIDO
-==================
-La API pública ya estaba guardando correctamente:
+No reemplaza:
+- tracking_experience_v2.php
+- seguimiento-visual-ofertas-v2.css
+- lógica de seguimiento
 
-cp_web_quote_requests
-cp_web_quote_files
-cp_print_request_items
+Agrega overrides y UX móvil encima de V2.
 
-Pero Administración seguía leyendo el formato antiguo [CPQ_JSON] y
-solamente attachment_name / attachment.relative_path.
+CAMBIOS VISUALES
+----------------
+1. Kanban
+   - mayor contraste de textos;
+   - etapa actual más visible;
+   - estados completados más legibles.
 
-Resultado:
-- el cliente sí enviaba los archivos;
-- los archivos quedaban en uploads/cotizador/impresiones/{requestId};
-- Administración no consultaba cp_web_quote_files;
-- Convertir a cotización generaba un concepto genérico en $0;
-- la orden copiaba conceptos pero no archivos.
+2. Hero premium
+   - ring de progreso ligeramente más pequeño;
+   - mejor balance entre texto y porcentaje;
+   - chips más limpios;
+   - gradientes más sutiles.
 
-V1 USA COMO FUENTE MAESTRA
-==========================
-cp_web_quote_requests
-  ↓
-cp_web_quote_files
-  ↓
-cp_print_request_items
-  ↓
-cp_quotes / cp_quote_items
-  ↓
-cp_orders / cp_order_items
-  ↓
-cp_order_photos
+3. Estado actual
+   - barra/acento lateral;
+   - mayor jerarquía visual;
+   - próximo paso más claro.
 
-CAMBIOS
-=======
-1. Solicitudes web:
-   admin/cotizaciones_web.php
+4. KPIs
+   - tarjetas compactas;
+   - sombras más suaves;
+   - mejor lectura de títulos y valores.
 
-   Ahora muestra TODOS los archivos:
-   - nombre
-   - tipo
-   - peso
-   - tamaño
-   - material
-   - acabado
-   - color/B&N
-   - páginas
-   - copias
-   - precio unitario
-   - subtotal
+5. Historia de producción
+   - tarjetas con mayor contraste;
+   - estado actual con badge "EN CURSO";
+   - footer corregido para móvil;
+   - hover refinado en escritorio.
 
-2. Descarga protegida:
-   admin/archivo_web.php
+6. Ofertas
+   - tarjetas más premium;
+   - CTAs mayores;
+   - mejor encabezado comercial.
 
-   Los archivos se sirven detrás de require_auth().
-   Ya no es necesario publicar el path directo en Administración.
+MÓVIL
+-----
+La V2.1 NO se limita a reducir la versión de escritorio.
 
-3. Conversión CPQ → Cotización:
-   admin/cotizacion_desde_web.php
+Incluye:
 
-   Crea un concepto por configuración/archivo.
-   Conserva unit_price y subtotal calculados por la API pública.
-   cp_quote_totals recibe el subtotal real.
+- tracking-page con padding reducido;
+- encabezado de empresa compacto;
+- Kanban horizontal táctil;
+- scroll-snap;
+- centrado automático de etapa actual;
+- hero compacto en dos columnas;
+- ring de 70–82 px;
+- chips en grid;
+- estado actual + próximo paso en una sola tarjeta;
+- KPIs 2×2;
+- historial en una columna;
+- tarjetas sin alturas fijas problemáticas;
+- ofertas en carrusel horizontal táctil;
+- CTAs de 44–46 px;
+- soporte prefers-reduced-motion.
 
-4. Cotización:
-   admin/cotizacion.php
+ARCHIVOS NUEVOS
+---------------
+assets/css/seguimiento-visual-ofertas-v2-1.css
+assets/js/seguimiento-visual-ofertas-v2-1.js
+admin/aplicar_tracking_visual_ofertas_v2_1.php
 
-   El paquete solo agrega:
-   includes/web_print_flow.php
+ARCHIVO MODIFICADO POR INSTALADOR
+---------------------------------
+seguimiento.php
 
-   Como el archivo actual usa function_exists(),
-   el helper sustituye el bloque antiguo de un solo archivo y muestra
-   TODO el expediente.
+NO HAY CAMBIOS DE BASE DE DATOS
+-------------------------------
+No agrega tablas.
+No agrega columnas.
+No modifica registros.
 
-5. Orden formal:
-   admin/orden_nueva.php
-
-   Cuando la cotización proviene de una solicitud web:
-   - copia los archivos originales a uploads/orders/{orderId}/
-   - crea registros cp_order_photos con photo_type=client_file
-   - deja los archivos visibles en el expediente normal de la orden
-   - registra historial
-   - vincula CPQ con order_id
-
-6. Seguimiento público:
-   seguimiento.php
-
-   Antes de existir la orden:
-   - el mismo request_token muestra recepción/revisión/cotización.
-
-   Después de crear la orden:
-   - ese MISMO token se inserta en cp_tracking_tokens;
-   - seguimiento.php cambia automáticamente al seguimiento normal
-     de la orden, producción, pagos, CFDI, etc.
-
-NUEVA TRAZABILIDAD
-==================
-cp_web_quote_requests:
-+ converted_order_id
-+ converted_order_at
-
-cp_web_quote_item_links:
-request item/file ↔ quote item
-
-cp_web_quote_order_files:
-web file ↔ order photo/file
-
-NO SE MUEVEN LOS ORIGINALES
-===========================
-Los archivos originales continúan en:
-
-uploads/cotizador/impresiones/{requestId}/
-
-Para la orden se COPIA una versión a:
-
-uploads/orders/{orderId}/
-
-Esto conserva el expediente original CPQ.
+NO TOCA
+-------
+- Kanban / cp_order_status
+- cancelaciones
+- pagos
+- Mercado Pago
+- comprobantes
+- CFDI
+- archivos
+- cotizaciones
+- totales
+- token público
 
 INSTALACIÓN
-===========
-1. Extraer el ZIP en la raíz de SISACT.
+-----------
+1. Mantener V2 Premium instalada.
 
-2. Entrar como administrador.
+2. Extraer el ZIP en la raíz SISACT.
 
 3. Abrir:
-   /admin/aplicar_flujo_web_orden_v1.php
+   /admin/aplicar_tracking_visual_ofertas_v2_1.php
 
 4. Pulsar:
-   Instalar flujo V1
+   Instalar V2.1
 
-5. Debe mostrar:
-   Vínculo Orden       ✓ listo
-   CPQ → Conceptos     ✓ listo
-   Archivos → Orden    ✓ listo
-   Helper              ✓ listo
-   Descarga protegida  ✓ lista
+5. Abrir un seguimiento real y hacer Ctrl + F5.
 
-PRUEBA COMPLETA
-===============
-A. Cliente
-----------
-1. Abrir:
-   https://colibriprint.com.mx/#solicita-impresiones
-
-2. Enviar 2 archivos con configuraciones diferentes.
-
-3. Debe devolver:
-   CPQ-xxxxxx
-   total
-   token
-   enlace seguimiento
-
-B. Seguimiento antes de cotización
-----------------------------------
-Abrir el enlace del cliente.
-
-Debe mostrar:
-Recibimos tus archivos correctamente.
-
-C. Administración
------------------
-Abrir:
-   /admin/cotizaciones_web.php
-
-La solicitud debe mostrar los 2 archivos completos con:
-Ver
-Descargar
-configuración
-precio
-subtotal.
-
-D. Convertir
-------------
-Pulsar:
-Convertir en cotización
-
-La cotización debe tener 2 conceptos y total real.
-
-E. Cotización
--------------
-Abrir la cotización.
-
-Debe mostrar:
-EXPEDIENTE · ARCHIVOS DEL CLIENTE
-
-con ambos archivos.
-
-F. Aprobar
-----------
-Cambiar cotización a Aprobada.
-
-G. Crear orden
+PRUEBA DESKTOP
 --------------
-Crear la orden desde la cotización aprobada.
+Verificar:
+- las 8 etapas del Kanban;
+- ring de avance;
+- estado actual;
+- 4 KPIs;
+- historia de producción;
+- ofertas y CTAs.
 
-La orden debe crearse y automáticamente copiar los archivos.
+PRUEBA MÓVIL
+------------
+Probar en 360 px, 390 px y 430 px de ancho.
 
-H. Orden
+Verificar:
+- no existe scroll horizontal global;
+- el Kanban sí puede deslizarse horizontalmente;
+- la etapa actual aparece centrada automáticamente;
+- los KPIs aparecen 2×2;
+- tarjetas de historial usan una sola columna;
+- las ofertas se deslizan como carrusel;
+- los botones son cómodos para tocar;
+- ningún texto queda cortado.
+
+REVERTIR
 --------
-Abrir /admin/orden.php?id=...
-
-En:
-Fotos, documentos y archivos de producción
-
-deben aparecer los archivos originales como:
-Archivo recibido del cliente.
-
-I. Mismo seguimiento
---------------------
-Abrir EL MISMO enlace de seguimiento que recibió el cliente al enviar CPQ.
-
-Ahora debe mostrar la orden formal, producción, pagos, etc.
-
-SEGURIDAD
-=========
-- Validación del token 64 hex.
-- Descarga administrativa con require_auth().
-- realpath() y prefijo de almacenamiento para evitar traversal.
-- Los archivos de la orden se copian, no se mueven.
-- La importación de archivos ocurre dentro del flujo transaccional de la orden.
-- Si falla la creación de orden, el catch elimina copias creadas antes del rollback.
-- Tabla de mapping evita duplicar el mismo archivo en la misma orden.
-
-ARCHIVOS NUEVOS DE PRODUCCIÓN
-=============================
-includes/web_print_flow.php
-includes/web_print_tracking_view.php
-admin/archivo_web.php
-assets/css/web-print-flow-v1.css
-database/sql/027_web_print_flow_v1.sql
-
-ARCHIVOS MODIFICADOS
-====================
-admin/cotizaciones_web.php
-admin/cotizacion_desde_web.php
-admin/cotizacion.php
-admin/orden_nueva.php
-seguimiento.php
-
-ARCHIVOS DE INSTALACIÓN
-=======================
-admin/aplicar_flujo_web_orden_v1.php
-install/web_print_flow_v1/admin/cotizaciones_web.php
-install/web_print_flow_v1/admin/cotizacion_desde_web.php
-
-Después de validar puedes eliminar:
-admin/aplicar_flujo_web_orden_v1.php
-install/web_print_flow_v1/
-
-RESPALDOS
-=========
 El instalador crea:
 
-*.bak_web_flow_v1
+seguimiento.php.bak_tracking_visual_v2_1
 
-para los 5 archivos modificados.
+Revertir V2.1 restaura exactamente la V2 Premium que estaba instalada
+antes de aplicar este paquete.
 
-GITHUB DESPUÉS DE APROBAR
-=========================
+GITHUB DESPUÉS DE VALIDAR
+-------------------------
 Subir:
+- seguimiento.php
+- assets/css/seguimiento-visual-ofertas-v2-1.css
+- assets/js/seguimiento-visual-ofertas-v2-1.js
 
-includes/web_print_flow.php
-includes/web_print_tracking_view.php
-admin/archivo_web.php
-assets/css/web-print-flow-v1.css
-database/sql/027_web_print_flow_v1.sql
-
-admin/cotizaciones_web.php
-admin/cotizacion_desde_web.php
-admin/cotizacion.php
-admin/orden_nueva.php
-seguimiento.php
+Mantener también los archivos V2 existentes:
+- includes/tracking_experience_v2.php
+- assets/css/seguimiento-visual-ofertas-v2.css
 
 NO subir:
-admin/aplicar_flujo_web_orden_v1.php
-install/web_print_flow_v1/
-*.bak_web_flow_v1
+- admin/aplicar_tracking_visual_ofertas_v2_1.php
+- *.bak_tracking_visual_v2_1
 
-NO CAMBIA
-=========
-api/print-request.php
+VALIDACIÓN
+----------
+PHP:
+php -l
 
-La recepción pública actual ya guarda correctamente archivos, items,
-configuraciones y precios; el problema estaba en el consumo posterior
-de ese expediente.
+JavaScript:
+node --check
+
+ZIP:
+prueba de integridad

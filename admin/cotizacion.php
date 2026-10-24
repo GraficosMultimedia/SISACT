@@ -6,6 +6,8 @@ require_once __DIR__ . '/../includes/actions.php';
 require_once __DIR__ . '/../includes/cotizaciones.php';
 require_once __DIR__ . '/../includes/ordenes.php';
 require_once __DIR__ . '/../includes/company.php';
+require_once __DIR__ . '/../includes/web_print_flow.php';
+// SISACT_WEB_PRINT_FLOW_V1
 
 if (!function_exists('cp_quote_web_attachment_block')) {
     function cp_quote_web_attachment_block(array $quote): void {
@@ -162,6 +164,129 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                      WHERE id=?'
                 );
                 $st->execute([$newStatus, current_user()['id'] ?? null, $id]);
+                /* SISACT_QUOTE_CANCEL_ORDER_SYNC_V1
+                 * Si una cotización con orden vinculada se cancela,
+                 * la orden queda cancelada en el mismo COMMIT.
+                 * No se modifica una orden ya entregada.
+                 */
+                if ($newStatus === 'cancelled') {
+                    $linkedOrderStmt = $pdo->prepare(
+                        "SELECT id,status
+                         FROM cp_orders
+                         WHERE quote_id=?
+                         LIMIT 1
+                         FOR UPDATE"
+                    );
+
+                    $linkedOrderStmt->execute([$id]);
+                    $linkedOrder = $linkedOrderStmt->fetch(PDO::FETCH_ASSOC);
+
+                    if ($linkedOrder) {
+                        $linkedOrderId = (int)$linkedOrder['id'];
+                        $linkedOrderStatus = (string)$linkedOrder['status'];
+
+                        if (
+                            $linkedOrderId > 0
+                            && $linkedOrderStatus !== 'delivered'
+                            && $linkedOrderStatus !== 'cancelled'
+                        ) {
+                            $stageStmt = $pdo->prepare(
+                                "SELECT stage
+                                 FROM cp_order_status
+                                 WHERE order_id=?
+                                 LIMIT 1
+                                 FOR UPDATE"
+                            );
+
+                            $stageStmt->execute([$linkedOrderId]);
+                            $oldStage = (string)(
+                                $stageStmt->fetchColumn()
+                                ?: 'pending'
+                            );
+
+                            $note =
+                                'Orden cancelada automáticamente al cancelar la cotización '
+                                . (string)$quote['quote_number']
+                                . '.';
+
+                            $existsStage = $pdo->prepare(
+                                'SELECT id
+                                 FROM cp_order_status
+                                 WHERE order_id=?
+                                 LIMIT 1'
+                            );
+
+                            $existsStage->execute([$linkedOrderId]);
+
+                            if ($existsStage->fetchColumn()) {
+                                $pdo->prepare(
+                                    'UPDATE cp_order_status
+                                     SET
+                                        stage=?,
+                                        note=?,
+                                        updated_by=?,
+                                        updated_at=NOW()
+                                     WHERE order_id=?'
+                                )->execute([
+                                    'cancelled',
+                                    $note,
+                                    current_user()['id'] ?? null,
+                                    $linkedOrderId,
+                                ]);
+                            } else {
+                                $pdo->prepare(
+                                    'INSERT INTO cp_order_status
+                                     (
+                                        order_id,
+                                        stage,
+                                        note,
+                                        updated_by,
+                                        created_at,
+                                        updated_at
+                                     )
+                                     VALUES(?,?,?,?,NOW(),NOW())'
+                                )->execute([
+                                    $linkedOrderId,
+                                    'cancelled',
+                                    $note,
+                                    current_user()['id'] ?? null,
+                                ]);
+                            }
+
+                            $pdo->prepare(
+                                'UPDATE cp_orders
+                                 SET
+                                    status=?,
+                                    updated_by=?,
+                                    updated_at=NOW()
+                                 WHERE id=?'
+                            )->execute([
+                                'cancelled',
+                                current_user()['id'] ?? null,
+                                $linkedOrderId,
+                            ]);
+
+                            $pdo->prepare(
+                                'INSERT INTO cp_order_history
+                                 (
+                                    order_id,
+                                    old_status,
+                                    new_status,
+                                    note,
+                                    changed_by,
+                                    created_at
+                                 )
+                                 VALUES(?,?,?,?,?,NOW())'
+                            )->execute([
+                                $linkedOrderId,
+                                $oldStage,
+                                'cancelled',
+                                $note,
+                                current_user()['id'] ?? null,
+                            ]);
+                        }
+                    }
+                }
 
                 $web = $pdo->prepare(
                     'SELECT id FROM cp_web_quote_requests

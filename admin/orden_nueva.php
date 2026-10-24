@@ -4,6 +4,7 @@ require_once __DIR__ . '/../config/runtime.php';
 require_once __DIR__ . '/../includes/actions.php';
 require_once __DIR__ . '/../includes/cotizaciones.php';
 require_once __DIR__ . '/../includes/ordenes.php';
+require_once __DIR__ . '/../includes/web_print_flow.php';
 require_auth();
 
 $quoteId=(int)($_GET['quote_id'] ?? $_POST['quote_id'] ?? 0);
@@ -82,6 +83,9 @@ if($_SERVER['REQUEST_METHOD']==='POST' && $quote && !$error){
         $responsible=(int)($_POST['responsible_user_id'] ?? 0);
         $notes=trim((string)($_POST['notes'] ?? ''));
         $internalNotes=trim((string)($_POST['internal_notes'] ?? ''));
+        /* SISACT_WEB_ORDER_FILES_V1 */
+        $webRequestId=web_flow_request_id_for_quote($quoteId);
+        $webCopiedFiles=[];
         try {
             $items=quote_items($quoteId);
             $total=(float)order_total_from_quote($quoteId);
@@ -101,11 +105,46 @@ if($_SERVER['REQUEST_METHOD']==='POST' && $quote && !$error){
                 }
                 $pdo->prepare('INSERT INTO cp_order_history(order_id,old_status,new_status,note,changed_by,created_at) VALUES(?,?,?,?,?,NOW())')
                     ->execute([$orderId,null,'pending','Orden creada desde '.$quote['quote_number'],$uid]);
+                if($webRequestId>0){
+                    $importedFiles=web_flow_import_request_files_to_order(
+                        $pdo,
+                        $webRequestId,
+                        $orderId,
+                        $uid,
+                        $webCopiedFiles
+                    );
+
+                    web_flow_bind_request_token_to_order(
+                        $pdo,
+                        $webRequestId,
+                        $orderId
+                    );
+
+                    web_flow_link_order(
+                        $pdo,
+                        $webRequestId,
+                        $orderId
+                    );
+
+                    if($importedFiles>0){
+                        $pdo->prepare(
+                            'INSERT INTO cp_order_history(order_id,old_status,new_status,note,changed_by,created_at)
+                             VALUES(?,?,?,?,?,NOW())'
+                        )->execute([
+                            $orderId,
+                            'pending',
+                            'pending',
+                            $importedFiles.' archivo(s) del cliente importados automáticamente desde '.web_flow_reference($webRequestId),
+                            $uid
+                        ]);
+                    }
+                }
                 $pdo->commit();
                 log_activity('create','orders','Orden creada '.$number.' desde cotización #'.$quoteId);
                 redirect('/admin/orden.php?id='.$orderId.'&created=1');
         }catch(Throwable $e){
             if(isset($pdo)&&$pdo->inTransaction())$pdo->rollBack();
+            if(!empty($webCopiedFiles)){foreach($webCopiedFiles as $webCopiedFile){@unlink($webCopiedFile);}}
             error_log('orden_nueva crear orden: '.$e->getMessage().' | '.$e->getFile().' | linea='.$e->getLine());
             $error='No se pudo crear la orden. Revisa el registro de errores.';
         }

@@ -1,0 +1,25 @@
+.mp-pay-card{
+  margin-top:16px;
+  padding:21px;
+  background:linear-gradient(135deg,#eef8ff,#ffffff 70%);
+  border:1px solid #cfe5f7;
+  border-radius:18px;
+  box-shadow:0 12px 35px rgba(16,42,86,.08)
+}
+.mp-pay-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.mp-pay-head .eyebrow{color:#087bd9}
+.mp-pay-head h2{margin:4px 0 5px;color:#102a56;font-size:20px}
+.mp-pay-head p{margin:0;color:#6d7d95;font-size:11px;line-height:1.5}
+.mp-pay-badge{white-space:nowrap;background:#e8f6ff;border:1px solid #bfe1f6;color:#0870bd;border-radius:999px;padding:7px 10px;font-size:10px;font-weight:900}
+.mp-pay-body{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;margin-top:16px;padding-top:15px;border-top:1px solid #dceaf6}
+.mp-pay-amount span{display:block;color:#6d7d95;font-size:10px;text-transform:uppercase;letter-spacing:.06em;font-weight:800}
+.mp-pay-amount strong{display:block;margin-top:5px;color:#102a56;font-size:27px;letter-spacing:-.5px}
+.mp-pay-form{margin:0}
+.mp-pay-button{appearance:none;border:0;border-radius:11px;padding:12px 17px;background:#087bd9;color:#fff;font:inherit;font-size:12px;font-weight:900;cursor:pointer;box-shadow:0 8px 18px rgba(8,123,217,.2)}
+.mp-pay-button:hover{background:#066cc0}
+.mp-pay-security{margin:12px 0 0;color:#8796a9;font-size:9.5px;line-height:1.5}
+.mp-pay-error{margin-top:12px;padding:10px 12px;background:#fff2f4;border:1px solid #f0ccd3;color:#b63b50;border-radius:10px;font-size:11px}
+@media(max-width:680px){
+  .mp-pay-head{display:block}.mp-pay-badge{display:inline-block;margin-top:10px}
+  .mp-pay-body{grid-template-columns:1fr}.mp-pay-button{width:100%;min-height:46px}
+}
