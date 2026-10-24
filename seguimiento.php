@@ -521,6 +521,8 @@ footer strong{color:var(--navy)}
 <link rel="stylesheet" href="/assets/css/seguimiento-kanban-v1.css?v=20261023-1">
 <link rel="stylesheet" href="/assets/css/seguimiento-visual-ofertas-v1-1.css?v=20261024-1">
 <link rel="stylesheet" href="/assets/css/seguimiento-visual-ofertas-v2.css?v=20261024-1">
+<link rel="stylesheet" href="/assets/css/seguimiento-visual-ofertas-v2-1.css?v=20261024-1">
+<!-- SISACT_TRACKING_VISUAL_POLISH_V2_1 -->
 </head>
 <body>
 <div class="tracking-page">
@@ -1174,5 +1176,6 @@ $mpPublic = $order
 })();
 </script>
 <?php endif; ?>
+<script src="/assets/js/seguimiento-visual-ofertas-v2-1.js?v=20261024-1" defer></script>
 </body>
 </html>

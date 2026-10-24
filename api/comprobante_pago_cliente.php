@@ -4,6 +4,9 @@ declare(strict_types=1);
 require_once __DIR__.'/../config/runtime.php';
 require_once __DIR__.'/../includes/payment_receipts.php';
 require_once __DIR__.'/../includes/tracking_activity.php';
+require_once __DIR__.'/../includes/seguimiento.php';
+require_once __DIR__.'/../includes/seguimiento_cancelacion_kanban_v1.php';
+// SISACT_RECEIPT_CANCEL_GUARD_V1
 
 function prc_track_redirect(string $token,string $extra=''): never {
     header('Location: /seguimiento.php?t='.rawurlencode($token).$extra);
@@ -21,6 +24,8 @@ $orderId=(int)$st->fetchColumn();
 if($orderId<=0){http_response_code(404);exit('Seguimiento no encontrado.');}
 
 try{
+    tracking_guard_v1_assert_active($orderId);
+
     $receipt = payment_receipt_upload(
         $orderId,
         is_array($_FILES['receipt']??null)?$_FILES['receipt']:[],

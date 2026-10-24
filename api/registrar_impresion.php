@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 require_once __DIR__.'/../config/runtime.php';
 require_once __DIR__.'/../includes/impresiones.php';
+require_once __DIR__.'/../includes/impresiones_v3.php';
+require_once __DIR__.'/../includes/impresiones_rollos_v3_1_1.php';
+// SISACT_IMPRESIONES_API_V3
 require_auth();
 
 if($_SERVER['REQUEST_METHOD']!=='POST'){
@@ -15,14 +18,15 @@ try{
         throw new RuntimeException('La sesión del formulario expiró. Recarga la página e intenta nuevamente.');
     }
 
-    $payload=print_meter_normalize($_POST);
+    $payload=print_meter_v3_normalize($_POST);
+    print_roll_v311_assert_selectable((int)($payload['roll_id'] ?? 0));
     $payload['roll_name']=trim((string)($_POST['roll_name']??''));
 
     if($payload['roll_id']<=0 || $payload['linear_m']<=0 || $payload['job_name']===''){
         throw new RuntimeException('Completa rollo, trabajo y metros lineales.');
     }
 
-    $id=print_meter_register_safe($payload);
+    $id=print_meter_v3_register_safe($payload);
 
     log_activity(
         'create',
