@@ -1,0 +1,384 @@
+/* ============================================================
+   SISACT · Seguimiento Visual Motion V2.2
+   Tema Colibrí dark-premium + motion + mobile portrait guard.
+   Capa visual. No altera lógica ni datos.
+   ============================================================ */
+
+:root{
+  --cp22-bg:#031425;
+  --cp22-bg-2:#071d38;
+  --cp22-panel:#07264b;
+  --cp22-panel-2:#0a3264;
+  --cp22-navy:#062a55;
+  --cp22-blue:#087ff0;
+  --cp22-cyan:#19d4f2;
+  --cp22-teal:#2fe1c0;
+  --cp22-pink:#ff4f9a;
+  --cp22-purple:#8b68ff;
+  --cp22-green:#2fd19c;
+  --cp22-gold:#ffc64a;
+  --cp22-ink:#071f42;
+  --cp22-muted:#6f849d;
+  --cp22-line:#d7e5f1;
+  --cp22-white:#ffffff;
+  --cp22-shadow:0 24px 70px rgba(0,24,55,.22);
+}
+
+html{background:var(--cp22-bg)}
+body{
+  background:
+    radial-gradient(circle at 10% -5%,rgba(25,212,242,.18),transparent 29rem),
+    radial-gradient(circle at 90% 12%,rgba(139,104,255,.13),transparent 30rem),
+    linear-gradient(180deg,#02101f 0,#061b33 38%,#eef5fb 38.1%,#f5f9fd 100%);
+  background-attachment:fixed;
+  overflow-x:hidden;
+}
+
+.tracking-page{
+  max-width:1180px!important;
+  margin:0 auto!important;
+  padding:18px 16px 42px!important;
+}
+
+/* ---------- Cabecera de marca ---------- */
+.tracking-company-header{
+  position:relative;
+  overflow:hidden;
+  color:#dceeff!important;
+  border:1px solid rgba(106,203,255,.20)!important;
+  background:
+    linear-gradient(135deg,rgba(5,31,62,.97),rgba(4,48,93,.95)),
+    radial-gradient(circle at 80% 0,rgba(25,212,242,.18),transparent 35%)!important;
+  box-shadow:0 18px 52px rgba(0,14,34,.28)!important;
+  backdrop-filter:blur(18px);
+}
+.tracking-company-header:after{
+  content:"";position:absolute;right:-70px;top:-110px;width:260px;height:260px;border-radius:50%;
+  border:1px solid rgba(57,205,255,.14);box-shadow:0 0 0 36px rgba(57,205,255,.035),0 0 0 72px rgba(255,79,154,.025);pointer-events:none;
+}
+.company-identity strong,.tracking-company-details,.tracking-company-details a,.tracking-company-details span{color:#eaf6ff!important}
+.company-identity span,.company-identity small{color:#a9c9e8!important}
+.company-header-badge{color:#b9ffe8!important;background:rgba(31,201,143,.10)!important;border-color:rgba(66,235,180,.30)!important}
+.badge-dot{box-shadow:0 0 0 5px rgba(47,209,156,.10),0 0 18px rgba(47,209,156,.45)}
+.company-logo{background:rgba(255,255,255,.96)!important;box-shadow:0 10px 30px rgba(0,13,34,.22)}
+
+/* ---------- Resumen de orden ---------- */
+.hero-card{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(69,190,255,.25)!important;
+  background:
+    radial-gradient(circle at 100% 0,rgba(25,212,242,.18),transparent 34%),
+    radial-gradient(circle at 0 100%,rgba(139,104,255,.13),transparent 38%),
+    linear-gradient(118deg,#063b7f 0%,#087cd8 55%,#12a8dc 100%)!important;
+  box-shadow:0 20px 56px rgba(2,50,107,.28)!important;
+}
+.hero-card:after{
+  content:"";position:absolute;right:-8%;top:-85%;width:300px;height:300px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.14);box-shadow:0 0 0 44px rgba(255,255,255,.035);pointer-events:none;
+}
+.hero-card .eyebrow,.hero-card p,.tracking-tagline{color:#d9f3ff!important}
+.hero-card h1{color:white!important;text-shadow:0 8px 32px rgba(0,24,69,.22)}
+.current-pill{
+  position:relative;z-index:1;
+  background:linear-gradient(135deg,#16b578,#25cf8d)!important;
+  border-color:rgba(255,255,255,.22)!important;
+  box-shadow:0 15px 35px rgba(10,112,76,.28)!important;
+}
+.current-pill span,.current-pill strong{color:#fff!important}
+
+/* ---------- Kanban dark ---------- */
+.progress-card{
+  border:1px solid rgba(98,191,255,.18)!important;
+  background:linear-gradient(180deg,#061b36 0%,#08264b 100%)!important;
+  box-shadow:0 18px 45px rgba(0,17,40,.22)!important;
+}
+.progress-card .eyebrow{color:#6fe7ff!important}
+.progress-card h2{color:#fff!important}
+.progress-line.client-progress:before{background:linear-gradient(90deg,#0e8eea,#23d8e2)!important;opacity:.72}
+.progress-line.client-progress .stage span{color:#8eabc8!important}
+.progress-line.client-progress .stage.done span{color:#dff1ff!important}
+.progress-line.client-progress .stage.active span{color:#54e7ff!important}
+.progress-line.client-progress .stage-dot{
+  border-color:#365976!important;background:#0b294e!important;color:#b9d5ef!important;
+  transition:transform .22s ease,box-shadow .22s ease,background .22s ease;
+}
+.progress-line.client-progress .stage.done .stage-dot{background:#0a4384!important;border-color:#1488d9!important;color:white!important}
+.progress-line.client-progress .stage.active .stage-dot{
+  background:linear-gradient(135deg,#0a87ee,#1ed5e8)!important;border-color:#66efff!important;color:#fff!important;
+  animation:cp22ActivePulse 2.1s ease-in-out infinite;
+}
+.progress-helper{color:#7898b6!important}
+
+/* ---------- V2 Premium: top dark / history light ---------- */
+.tracking-premium{
+  overflow:hidden;
+  border:1px solid rgba(73,185,255,.20)!important;
+  background:#f6faff!important;
+  box-shadow:var(--cp22-shadow)!important;
+}
+.tracking-premium-hero{
+  position:relative;
+  background:
+    radial-gradient(circle at 90% 0,rgba(25,212,242,.22),transparent 31%),
+    radial-gradient(circle at 0 100%,rgba(139,104,255,.16),transparent 36%),
+    linear-gradient(125deg,#041b38 0%,#072d5d 52%,#074985 100%)!important;
+}
+.tracking-premium-hero:after{
+  content:"";position:absolute;right:-40px;top:-90px;width:270px;height:270px;border-radius:50%;
+  border:1px solid rgba(121,224,255,.16);box-shadow:0 0 0 34px rgba(41,198,255,.035),0 0 0 68px rgba(255,79,154,.02);pointer-events:none;
+}
+.tracking-premium-copy{position:relative;z-index:2}
+.tracking-premium-kicker{color:#53e7ff!important}
+.tracking-premium-copy h2{color:#fff!important;text-shadow:0 8px 28px rgba(0,18,48,.25)}
+.tracking-premium-copy p{color:#c6ddf2!important}
+.tracking-premium-chip{color:#d5e9fb!important;background:rgba(255,255,255,.08)!important;border-color:rgba(160,221,255,.20)!important;backdrop-filter:blur(10px)}
+.tracking-premium-chip strong{color:white!important}
+.tracking-premium-ring{
+  position:relative;z-index:2;
+  background:conic-gradient(var(--cp22-cyan) calc(var(--tracking-progress) * 1%),rgba(151,206,235,.18) 0)!important;
+  box-shadow:0 0 0 1px rgba(98,228,255,.18),0 18px 48px rgba(0,23,60,.34),0 0 38px rgba(24,209,242,.13)!important;
+}
+.tracking-premium-ring:before{background:#061d3a!important}
+.tracking-premium-ring-content strong{color:white!important}
+.tracking-premium-ring-content span{color:#8fc9ee!important}
+
+.tracking-premium-current{
+  margin-top:-1px!important;border:0!important;border-radius:0!important;
+  background:linear-gradient(112deg,#052448,#0a3d75 58%,#075895)!important;
+  box-shadow:none!important;color:#fff!important;
+}
+.tracking-premium-current:before{width:6px!important;background:linear-gradient(180deg,#2fe1c0,#13bcea)!important;box-shadow:0 0 18px rgba(47,225,192,.45)}
+.tracking-premium-current-icon{color:#071c39!important;background:#fff!important;border-color:#bdeeff!important;box-shadow:0 9px 26px rgba(0,12,36,.24)!important}
+.tracking-premium-current span,.tracking-premium-next{color:#9cc3e5!important}
+.tracking-premium-current strong,.tracking-premium-next b{color:white!important}
+.tracking-premium-next{border-left-color:rgba(179,224,255,.22)!important}
+
+.tracking-premium-metrics{
+  background:#062348!important;padding-top:22px!important;padding-bottom:24px!important;
+}
+.tracking-premium-metric{
+  position:relative;overflow:hidden;
+  border-color:rgba(130,206,255,.18)!important;background:linear-gradient(150deg,#092c56,#061c39)!important;
+  box-shadow:0 13px 30px rgba(0,17,43,.18)!important;
+}
+.tracking-premium-metric:after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--metric-accent,#19d4f2);box-shadow:0 0 16px var(--metric-accent,#19d4f2)}
+.tracking-premium-metric.tone-pink{--metric-accent:var(--cp22-pink)}
+.tracking-premium-metric.tone-purple{--metric-accent:var(--cp22-purple)}
+.tracking-premium-metric.tone-green{--metric-accent:var(--cp22-teal)}
+.tracking-premium-metric.tone-gold{--metric-accent:var(--cp22-gold)}
+.tracking-premium-metric span{color:#7eaad0!important}
+.tracking-premium-metric strong{color:#fff!important}
+.tracking-premium-metric small{color:#a9c4dd!important}
+.cp22-metric-icon{display:inline-grid;place-items:center;width:30px;height:30px;margin-bottom:9px;border-radius:10px;color:var(--metric-accent);background:color-mix(in srgb,var(--metric-accent) 12%,transparent);border:1px solid color-mix(in srgb,var(--metric-accent) 26%,transparent)}
+.cp22-metric-icon svg{width:17px;height:17px}
+
+.tracking-premium-section-head{margin:0!important;padding:28px 30px 18px!important;background:#f6faff!important;border-top:1px solid #e0ebf5!important}
+.tracking-premium-section-head .eyebrow{color:#087fd9!important}
+.tracking-premium-section-head h3{color:#082b59!important}
+.tracking-premium-section-head p,.tracking-premium-legend{color:#6e8399!important}
+.tracking-premium-legend i{box-shadow:0 0 0 5px rgba(47,209,156,.10),0 0 15px rgba(47,209,156,.28)}
+.tracking-premium-story{padding:0 30px 30px!important;background:#f6faff!important}
+.tracking-premium-card{
+  overflow:hidden;background:#fff!important;border-color:#d9e7f2!important;
+  box-shadow:0 12px 28px rgba(14,49,89,.06)!important;
+  animation:cp22CardIn .55s cubic-bezier(.2,.7,.2,1) both;
+  animation-delay:calc(var(--cp22-index,0) * 55ms);
+}
+.tracking-premium-card:hover{transform:translateY(-4px)!important;box-shadow:0 20px 42px rgba(8,52,101,.11)!important}
+.tracking-premium-card.is-current{background:linear-gradient(145deg,#effbff,#fff)!important;border-color:#5fd7ff!important;box-shadow:0 18px 42px rgba(8,126,217,.13)!important}
+.tracking-premium-card.is-current:before{background:linear-gradient(90deg,#087ff0,#16cce8)!important;box-shadow:0 8px 20px rgba(8,127,240,.24)}
+.tracking-premium-card-icon{background:#eef8ff!important;border-color:#cfeafa!important;color:#087dd8!important;box-shadow:0 8px 22px rgba(9,116,190,.08)}
+.tracking-premium-card h4,.tracking-premium-card strong{color:#082b59!important}
+.tracking-premium-card p,.tracking-premium-card-note,.tracking-premium-card-footer{color:#688097!important}
+
+/* ---------- SVG icon system ---------- */
+.cp22-icon-svg{display:inline-block;width:1em;height:1em;vertical-align:-.12em;stroke:currentColor;fill:none;stroke-width:1.85;stroke-linecap:round;stroke-linejoin:round}
+.stage-dot .cp22-icon-svg,.tracking-premium-current-icon .cp22-icon-svg,.tracking-premium-card-icon .cp22-icon-svg,.tracking-offer-v2-icon .cp22-icon-svg{width:24px;height:24px}
+.tracking-premium-current-icon .cp22-icon-svg{width:26px;height:26px}
+.tracking-offer-v2-icon .cp22-icon-svg{width:25px;height:25px}
+
+/* ---------- Ofertas: franja premium del mockup ---------- */
+.tracking-offers-v2{
+  overflow:hidden;border-color:rgba(79,187,255,.26)!important;background:linear-gradient(135deg,#08275b,#0a49a3 58%,#0b7cd7)!important;
+  box-shadow:0 22px 60px rgba(0,32,83,.20)!important;
+}
+.tracking-offers-v2-head{
+  color:#fff!important;background:
+    radial-gradient(circle at 88% 20%,rgba(33,226,236,.16),transparent 30%),
+    radial-gradient(circle at 12% 100%,rgba(157,87,255,.18),transparent 35%),
+    linear-gradient(110deg,#08275b,#0a3c86)!important;
+}
+.tracking-offers-v2-kicker{color:#9eeeff!important}
+.tracking-offers-v2 h2{color:white!important}
+.tracking-offers-v2-headline p{color:#bcd7ef!important}
+.tracking-offers-v2-main-cta{color:#072656!important;background:linear-gradient(135deg,#68f0ff,#39d3ff)!important;border-color:rgba(255,255,255,.25)!important;box-shadow:0 14px 35px rgba(25,212,242,.20)!important}
+.tracking-offers-v2-grid{padding:20px 24px 24px!important;background:linear-gradient(180deg,#0a3b7c 0,#08285b 100%)!important}
+.tracking-offer-v2{background:#fff!important;border:0!important;box-shadow:0 16px 38px rgba(0,19,49,.22)!important}
+.tracking-offer-v2-icon{background:#edf8ff!important;border-color:#cfebfa!important;color:#087fd9!important}
+.tracking-offer-v2 h3{color:#082b59!important}
+.tracking-offer-v2 p{color:#687f96!important}
+.tracking-offer-v2>a{background:linear-gradient(90deg,#082c62,#0b4f9b)!important;color:#fff!important;box-shadow:0 9px 20px rgba(7,44,98,.18)}
+.tracking-offers-v2-foot{background:#061d43!important;border-top-color:rgba(144,213,255,.18)!important;color:#a8c8e5!important}
+.tracking-offers-v2-foot a{color:#63ddff!important}
+
+/* ---------- Cards posteriores ---------- */
+.two-col .tracking-card,.tracking-receipt,.payment-receipts-public,.public-cfdi{
+  border-color:#d8e5f0!important;box-shadow:0 14px 36px rgba(12,48,86,.075)!important;
+}
+.payment-info-card{background:linear-gradient(140deg,#061f42,#0a3b72)!important;box-shadow:0 18px 45px rgba(0,28,68,.19)!important}
+.receipt-actions a,.public-cfdi-files a,.public-receipt-upload button{transition:transform .18s ease,box-shadow .18s ease}
+.receipt-actions a:hover,.public-cfdi-files a:hover,.public-receipt-upload button:hover{transform:translateY(-2px)}
+
+/* ---------- Micro motion ---------- */
+.tracking-premium-ring-content{animation:cp22RingBreath 3.8s ease-in-out infinite}
+.tracking-premium-current-icon{animation:cp22IconFloat 3.2s ease-in-out infinite}
+.tracking-offers-v2-main-cta{position:relative;overflow:hidden}
+.tracking-offers-v2-main-cta:after{content:"";position:absolute;top:-40%;left:-35%;width:22%;height:180%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-18deg);animation:cp22Shine 4.6s ease-in-out infinite}
+.tracking-offer-v2:hover .tracking-offer-v2-icon{animation:cp22IconPop .46s ease both}
+
+@keyframes cp22ActivePulse{0%,100%{transform:translateY(0) scale(1);box-shadow:0 0 0 5px rgba(25,212,242,.12),0 0 18px rgba(25,212,242,.18)}50%{transform:translateY(-2px) scale(1.05);box-shadow:0 0 0 8px rgba(25,212,242,.07),0 0 28px rgba(25,212,242,.34)}}
+@keyframes cp22RingBreath{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+@keyframes cp22IconFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes cp22IconPop{0%{transform:scale(1) rotate(0)}55%{transform:scale(1.15) rotate(-6deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes cp22Shine{0%,66%{left:-35%;opacity:0}72%{opacity:.9}86%{left:125%;opacity:0}100%{left:125%;opacity:0}}
+@keyframes cp22CardIn{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+@media(max-width:760px){
+  body{
+    background:
+      radial-gradient(circle at 50% -10%,rgba(24,208,241,.20),transparent 22rem),
+      linear-gradient(180deg,#031328 0,#061d3c 72%,#07172c 100%)!important;
+  }
+  .tracking-page{padding:8px 8px calc(24px + env(safe-area-inset-bottom))!important}
+  .tracking-company-header{border-radius:18px!important;padding:12px!important;margin-bottom:10px!important}
+  .tracking-company-details{display:none!important}
+  .company-logo{width:54px!important;height:42px!important;border-radius:12px!important}
+  .company-identity strong{font-size:17px!important}
+  .company-identity span{font-size:10px!important}
+  .company-identity small{display:none!important}
+  .company-header-badge{display:none!important}
+
+  .hero-card{margin-top:10px!important;padding:17px 16px!important;border-radius:18px!important}
+  .hero-card h1{font-size:26px!important;letter-spacing:-.04em}
+  .hero-card p{font-size:11px!important}
+  .tracking-tagline{display:none!important}
+  .current-pill{margin-top:14px!important;padding:11px 13px!important;border-radius:13px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important}
+
+  .progress-card{margin-top:10px!important;border-radius:18px!important;padding-top:14px!important;padding-bottom:10px!important}
+  .progress-card .section-title{margin-bottom:4px!important}
+  .progress-line.client-progress .stage{flex-basis:82px!important}
+  .progress-line.client-progress .stage-dot{width:40px!important;height:40px!important}
+  .progress-line.client-progress .stage span{font-size:9px!important}
+  .progress-helper{display:none!important}
+
+  .tracking-premium{margin-top:10px!important;border-radius:20px!important}
+  .tracking-premium-hero{display:grid!important;grid-template-columns:minmax(0,1fr) 80px!important;gap:10px!important;padding:20px 15px 16px!important}
+  .tracking-premium-copy h2{font-size:27px!important;line-height:1.02!important;max-width:240px}
+  .tracking-premium-copy p{font-size:11px!important;line-height:1.45!important;max-width:250px!important}
+  .tracking-premium-kicker{font-size:8px!important;letter-spacing:.09em!important}
+  .tracking-premium-ring{width:76px!important;height:76px!important;align-self:center!important}
+  .tracking-premium-ring:before{inset:8px!important}
+  .tracking-premium-ring-content strong{font-size:20px!important}
+  .tracking-premium-ring-content span{font-size:7px!important}
+  .tracking-premium-chips{grid-column:1/-1;display:grid!important;grid-template-columns:1fr!important;gap:6px!important;margin-top:5px!important}
+  .tracking-premium-chip{width:100%;min-height:34px!important;justify-content:space-between!important;padding:8px 10px!important}
+  .tracking-premium-chip:nth-child(n+2){display:none!important}
+
+  .tracking-premium-current{margin:0!important;padding:14px!important;display:block!important}
+  .tracking-premium-current-main{align-items:flex-start!important}
+  .tracking-premium-current-icon{width:46px!important;height:46px!important;border-radius:14px!important}
+  .tracking-premium-current strong{font-size:20px!important}
+  .tracking-premium-next{margin:12px 0 0!important;padding:10px 0 0!important;border-left:0!important;border-top:1px solid rgba(166,219,255,.18)!important;display:flex!important;justify-content:space-between!important;align-items:center!important}
+
+  .tracking-premium-metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;padding:12px!important}
+  .tracking-premium-metric{min-height:104px!important;padding:11px 10px 13px!important;border-radius:13px!important}
+  .cp22-metric-icon{width:26px;height:26px;margin-bottom:6px;border-radius:8px}
+  .cp22-metric-icon svg{width:14px;height:14px}
+  .tracking-premium-metric span{font-size:8px!important}
+  .tracking-premium-metric strong{font-size:12.5px!important;line-height:1.25!important}
+  .tracking-premium-metric small{display:none!important}
+
+  .tracking-premium-section-head{padding:19px 14px 10px!important;display:flex!important;align-items:end!important;gap:10px!important}
+  .tracking-premium-section-head h3{font-size:18px!important;line-height:1.08!important}
+  .tracking-premium-section-head p,.tracking-premium-legend{display:none!important}
+  .tracking-premium-story{display:block!important;padding:0 12px 14px!important}
+  .tracking-premium-card{min-height:0!important;margin-bottom:8px!important;padding:12px!important;border-radius:14px!important;animation:none!important}
+  .tracking-premium-card:hover{transform:none!important}
+  .tracking-premium-card-head{gap:10px!important}
+  .tracking-premium-card-icon{width:40px!important;height:40px!important;flex:0 0 40px!important;border-radius:12px!important}
+  .tracking-premium-card-index{font-size:8px!important}
+  .tracking-premium-card h4{font-size:15px!important;margin-top:1px!important}
+  .tracking-premium-card-note{display:none!important}
+  .tracking-premium-card-footer{margin-top:8px!important;padding-top:8px!important}
+  .tracking-premium-card.is-current:before{top:10px!important;right:10px!important;font-size:7px!important;padding:4px 7px!important}
+
+  .tracking-offers-v2{margin-top:10px!important;border-radius:20px!important}
+  .tracking-offers-v2-head{display:block!important;padding:18px 15px 14px!important}
+  .tracking-offers-v2 h2{font-size:21px!important;line-height:1.05!important}
+  .tracking-offers-v2-headline p{font-size:10px!important}
+  .tracking-offers-v2-main-cta{margin-top:12px!important;min-height:42px!important;width:100%!important}
+  .tracking-offers-v2-grid{display:flex!important;overflow-x:auto!important;gap:10px!important;padding:12px 14px 16px!important;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .tracking-offers-v2-grid::-webkit-scrollbar{display:none}
+  .tracking-offer-v2{flex:0 0 84%!important;min-height:245px!important;scroll-snap-align:center!important;border-radius:16px!important}
+  .tracking-offers-v2-foot{padding:12px 14px!important;font-size:9px!important}
+
+  .two-col{gap:10px!important}
+  .tracking-card,.tracking-receipt,.payment-receipts-public,.public-cfdi{border-radius:18px!important}
+  .receipt-kpis{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .public-receipt-upload button,.receipt-actions a,.public-cfdi-files a{min-height:46px!important}
+}
+
+/* ============================================================
+   LANDSCAPE MOBILE · "gravity" orientation guard
+   No usa sensores. Se activa por orientación real del viewport.
+   ============================================================ */
+.cp22-portrait-guard{display:none}
+@media (orientation:landscape) and (max-height:600px) and (pointer:coarse){
+  body.cp22-landscape-lock{overflow:hidden!important;background:#02101f!important}
+  body.cp22-landscape-lock>.tracking-page{filter:blur(10px) saturate(.55);opacity:.15;transform:scale(.985);pointer-events:none;user-select:none}
+  .cp22-portrait-guard{
+    position:fixed;z-index:2147483000;inset:0;display:grid;place-items:center;overflow:hidden;
+    padding:max(18px,env(safe-area-inset-top)) max(22px,env(safe-area-inset-right)) max(18px,env(safe-area-inset-bottom)) max(22px,env(safe-area-inset-left));
+    background:
+      radial-gradient(circle at 50% 0,rgba(25,212,242,.22),transparent 44%),
+      linear-gradient(135deg,rgba(2,15,32,.97),rgba(4,36,72,.98));
+    color:white;text-align:center;
+  }
+  .cp22-portrait-guard-inner{position:relative;z-index:3;width:min(520px,88vw);padding:18px 22px 20px;border:1px solid rgba(104,222,255,.25);border-radius:24px;background:rgba(6,36,70,.72);box-shadow:0 30px 90px rgba(0,0,0,.35);backdrop-filter:blur(16px)}
+  .cp22-phone-turn{display:grid;place-items:center;width:58px;height:58px;margin:0 auto 10px;border-radius:18px;background:linear-gradient(135deg,#0a88ee,#1bd7e5);box-shadow:0 14px 34px rgba(18,202,236,.28);animation:cp22PhoneTurn 1.8s ease-in-out infinite}
+  .cp22-phone-turn svg{width:31px;height:31px}
+  .cp22-portrait-guard h2{margin:0;font-size:clamp(22px,6vw,34px);letter-spacing:-.04em}
+  .cp22-portrait-guard p{margin:8px auto 0;max-width:420px;color:#a9cae7;font-size:13px;line-height:1.45}
+  .cp22-portrait-guard strong{color:#60e9ff}
+  .cp22-gravity-field{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+  .cp22-gravity-icon{
+    --x:10vw;--delay:0s;--dur:2.5s;--rot:130deg;
+    position:absolute;left:var(--x);top:-74px;width:48px;height:48px;display:grid;place-items:center;border-radius:15px;
+    color:#dff8ff;background:linear-gradient(145deg,rgba(18,124,220,.92),rgba(19,210,224,.72));border:1px solid rgba(255,255,255,.25);
+    box-shadow:0 18px 34px rgba(0,0,0,.28);animation:cp22GravityDrop var(--dur) cubic-bezier(.26,.78,.24,1) var(--delay) infinite;
+  }
+  .cp22-gravity-icon:nth-child(2n){background:linear-gradient(145deg,rgba(139,104,255,.92),rgba(255,79,154,.72))}
+  .cp22-gravity-icon:nth-child(3n){background:linear-gradient(145deg,rgba(38,196,151,.92),rgba(25,212,242,.72))}
+  .cp22-gravity-icon svg{width:26px;height:26px}
+}
+
+@keyframes cp22GravityDrop{
+  0%{transform:translate3d(0,-90px,0) rotate(0);opacity:0}
+  12%{opacity:.95}
+  76%{transform:translate3d(18px,calc(100vh - 12px),0) rotate(var(--rot));opacity:.95}
+  86%{transform:translate3d(22px,calc(100vh - 55px),0) rotate(calc(var(--rot) * .8));opacity:.92}
+  100%{transform:translate3d(26px,calc(100vh + 70px),0) rotate(calc(var(--rot) * 1.15));opacity:0}
+}
+@keyframes cp22PhoneTurn{0%,100%{transform:rotate(90deg)}50%{transform:rotate(0deg)}}
+
+/* ---------- Accesibilidad ---------- */
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.001ms!important}
+  .tracking-premium-card{opacity:1!important;transform:none!important}
+  .cp22-gravity-icon{animation:none!important;top:auto!important;bottom:12px!important;opacity:.45!important}
+  .cp22-phone-turn{animation:none!important;transform:rotate(0)!important}
+}

@@ -445,9 +445,12 @@ footer strong{color:var(--navy)}
 <link rel="stylesheet" href="/assets/css/seguimiento-visual-ofertas-v1-1.css?v=20261024-1">
 <link rel="stylesheet" href="/assets/css/seguimiento-visual-ofertas-v2.css?v=20261024-1">
 <link rel="stylesheet" href="/assets/css/seguimiento-visual-ofertas-v2-1.css?v=20261024-1">
+<link rel="stylesheet" href="/assets/css/seguimiento-visual-motion-v2-2.css?v=20261024-1">
 <!-- SISACT_TRACKING_VISUAL_POLISH_V2_1 -->
+<!-- SISACT_TRACKING_VISUAL_MOTION_V2_2 -->
 <script src="/assets/js/public-header-unified-v1.js?v=20260927-1" defer></script>
 <script src="/assets/js/seguimiento-visual-ofertas-v2-1.js?v=20261024-1" defer></script>
+<script src="/assets/js/seguimiento-visual-motion-v2-2.js?v=20261024-1" defer></script>
 </head>
 <body>
 <div class="tracking-page">
